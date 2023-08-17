@@ -56,4 +56,77 @@ public class Constant {
 		return category;
 	}
 	
+	final public static String Method(String s) {
+		String method = "";
+		
+		switch (s) {
+		case "1":
+			method = "대면거래";
+			break;
+			
+		case "2":
+			method = "택배거래";
+			break;
+			
+		case "3":
+			method = "제3자 안전 거래";
+			break;
+
+		default:
+			break;
+		}
+		
+		return method;
+	}
+	
+	final public static String Payment(String s) {
+		String payment = "";
+		
+		switch (s) {
+		case "1":
+			payment = "현금거래";
+			break;
+			
+		case "2":
+			payment = "계좌이체";
+			break;
+			
+		case "3":
+			payment = "ITSO페이";
+			break;
+			
+		case "4":
+			payment = "제3자안전거래";
+			break;
+
+		default:
+			break;
+		}
+		
+		return payment;
+	}
+	
+	final public static String Condition(String s) {
+		String condition = "";
+		
+		switch (s) {
+		case "1":
+			condition = "상";
+			break;
+			
+		case "2":
+			condition = "중";
+			break;
+			
+		case "3":
+			condition = "하";
+			break;
+
+		default:
+			break;
+		}
+		
+		return condition;
+	}
+	
 }
