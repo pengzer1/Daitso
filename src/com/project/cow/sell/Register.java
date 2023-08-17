@@ -33,6 +33,7 @@ public class Register {
 		
 		int no = Integer.parseInt(maxNo) + 1;
 		
+//		TODO 마지막 sellerNo는 로그인되어 있는 사용자 번호로 변경해야함
 		SellingStuff s = new SellingStuff(no + "", name, category, price, method, payment, condition, from, until, "0", "6000");
 		
 		SellingStuffData.sellingList.add(s);
