@@ -3,25 +3,18 @@ package com.project.cow.sell;
 import java.util.Scanner;
 
 import com.project.cow.constant.Constant;
-import com.project.cow.data.object.SellingStuff;
 
 public class Register {
 	
 	private static String sellingStuff = "";
 	
 	public static void Screen() {
-		
-<<<<<<< HEAD
-		System.out.println("등록화면");
-		
-=======
 		System.out.println();
 		System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
 		System.out.println("상품등록화면");
 		System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
 		
 		Category();
->>>>>>> main
 		
 	}
 	
