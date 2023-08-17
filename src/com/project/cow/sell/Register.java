@@ -27,7 +27,7 @@ public class Register {
 		System.out.println("상품등록화면");
 		System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
 		
-		Registering();
+		Check();
 		
 		String maxNo = SellingStuffData.sellingList.stream().map(s -> s.getNo()).max((a, b) -> Integer.parseInt(a) - Integer.parseInt(b)).get();
 		
@@ -43,6 +43,29 @@ public class Register {
 		scan.nextLine();
 		
 		sellMenu.Screen();
+	}
+	
+	private void Check() {
+		SellMenu sellMenu = new SellMenu();
+		
+		System.out.println();
+		System.out.println("상품을 등록하시겠습니까?");
+		System.out.println("1.등록하기\t0.돌아가기");
+		System.out.print("번호입력: ");
+		String check = scan.nextLine();
+		
+		if (check.equals("0")) {
+			System.out.println();
+			System.out.println();
+			sellMenu.Screen();
+		} else if (check.equals("1")) {
+			Registering();
+		} else {
+			System.out.println();
+			System.out.println("잘못된 번호입니다. 다시 선택해주세요.");
+			System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+			Check();
+		}
 	}
 	
 	private void Registering() {
