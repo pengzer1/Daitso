@@ -190,7 +190,7 @@ public class MemberCheck {
 			memberDataList.sort((data1, data2) -> {
 				int ageComparison = Integer.compare(calculateAge(data1[5]), calculateAge(data2[5]));
 
-				if (ageComparison == 0) {// 생일년도가 같은 경우 생일월로 내림차순 정렬
+				if (ageComparison == 0) { // 생일년도가 같은 경우 생일월로 내림차순 정렬
 					int month1 = Integer.parseInt(data1[5].substring(2, 4));
 					int month2 = Integer.parseInt(data2[5].substring(2, 4));
 
