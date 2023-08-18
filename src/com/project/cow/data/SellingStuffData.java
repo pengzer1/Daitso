@@ -37,7 +37,7 @@ public class SellingStuffData {
 			reader.close();
 			
 		} catch (Exception e) {
-			// TODO: handle exception
+			e.printStackTrace();
 		}
 		
 	}
@@ -57,7 +57,7 @@ public class SellingStuffData {
 			writer.close();
 			
 		} catch (Exception e) {
-			// TODO: handle exception
+			e.printStackTrace();
 		}
 		
 	}

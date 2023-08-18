@@ -2,8 +2,12 @@ package com.project.cow.sell;
 
 import java.util.Scanner;
 
+import com.project.cow.constant.Constant;
+import com.project.cow.data.SellingStuffData;
+import com.project.cow.data.object.SellingStuff;
+
 public class Modify {
-	
+	private static final int SELLER = 3510;
 	Scanner scan = new Scanner(System.in);
 
 	public void Screen() {
@@ -14,8 +18,12 @@ public class Modify {
 		System.out.println("[판매 등록 현황]");
 		System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
 		
-		//TODO 회원 정보 받아와서 등록 상품 list 조금 띄우기
-		System.out.println("[번호]\t[제목]\t[카테고리]\t[물건 상태]\t[판매 가격]\t[판매자명]\t[상품 거래 방식]\t[결제 방식]\t[등록 날짜]\t[마감 날짜]\t[찜");
+		System.out.println("[번호]\t[제목]\t\t[카테고리]\t[물건 상태]\t[판매 가격]\t[판매자명]\t[상품 거래 방식]\t[결제 방식]\t[등록 날짜]\t[마감 날짜]\t[찜]");
+		for (SellingStuff s : SellingStuffData.sellingList) {
+			if (s.getSellerNo().equals(SELLER + "")) {
+				System.out.printf("%s\t%s\t%s\t\t%s\t\t%s\t\t%s\t%s\t\t%s\t%s\t%s\t%s\n", s.getNo(), s.getName(), Constant.Category(s.getCategory()), Constant.Condition(s.getCondition()), s.getPrice(), "판매자번호", Constant.Method(s.getMethod()), Constant.Payment(s.getPayment()), s.getFrom(), s.getUntil(), s.getLike());
+			}
+		}
 
 		System.out.println();
 		System.out.println("상품 정보를 수정하시겠습니까?");
@@ -24,13 +32,13 @@ public class Modify {
 		System.out.println();
 		System.out.println("수정하실 상품 번호를 입력해주세요.");
 		System.out.println();
-		String num = GetStuff();
+		
+		SellingStuff s = GetStuff();
 		
 		System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
 		System.out.println();
-		System.out.println("1.제목 수정하기\t\t2.판매 기간 수정하기\r\n3.판매 가격 수정하기\t4.삭제하기\t0.돌아가기");
-		
-		modifyDetail.Screen(num);
+
+		modifyDetail.Screen(s);
 	}
 	
 	private void Check() {
@@ -53,12 +61,27 @@ public class Modify {
 		}
 	}
 	
-	private String GetStuff() {
+	private SellingStuff GetStuff() {
 		System.out.print("번호입력: ");
 		String no = scan.nextLine();
 		
-//		TODO 판매물품 번호로 판매물품 정보 쭈루루루룩 밑에 띄우기
-		return no;
+		SellingStuff sellingStuff = new SellingStuff("", null, null, null, null, null, null, null, null, null, null);
+		
+		for (SellingStuff s : SellingStuffData.sellingList) {
+			if (s.getSellerNo().equals(SELLER + "") && s.getNo().equals(no)) {
+				sellingStuff = s;
+				break;
+			}
+		}
+		
+		if(sellingStuff.getNo().equals("")) {
+			System.out.println();
+			System.out.println("잘못된 상품 번호입니다. 다시 입력해주세요.");
+			System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+			GetStuff();
+		}
+		
+		return sellingStuff;
 	}
 	
 }
