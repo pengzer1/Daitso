@@ -7,7 +7,7 @@ import com.project.cow.data.SellingStuffData;
 import com.project.cow.data.object.SellingStuff;
 
 public class Modify {
-	private static final int SELLER = 3510;
+	private static final int SELLER = 6023;
 	Scanner scan = new Scanner(System.in);
 
 	public void Screen() {
