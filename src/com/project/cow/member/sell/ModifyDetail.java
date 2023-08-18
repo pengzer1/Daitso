@@ -1,4 +1,4 @@
-package com.project.cow.sell;
+package com.project.cow.member.sell;
 
 import java.util.Calendar;
 import java.util.Scanner;

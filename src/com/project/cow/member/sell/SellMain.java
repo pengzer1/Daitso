@@ -1,4 +1,4 @@
-package com.project.cow.sell;
+package com.project.cow.member.sell;
 
 import com.project.cow.data.SellingStuffData;
 
