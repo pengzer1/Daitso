@@ -10,8 +10,6 @@ public class SellMain {
 		SellingStuffData.load();
 		
 		sellMenu.Screen();
-		
-		SellingStuffData.save();
 	}
 	
 }
