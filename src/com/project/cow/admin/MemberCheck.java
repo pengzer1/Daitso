@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Scanner;
+import java.util.Stack;
 
 public class MemberCheck {
 
@@ -15,178 +16,207 @@ public class MemberCheck {
 	 * @author 이승원
 	 */
 
-	private static final String GUEST_LIST = "C:\\Class\\code\\java\\Daitso\\src\\com\\project\\cow\\admin\\Data\\member.txt";
+	// 회원 정보 파일 경로
+	private static final String GUEST_LIST = "C:\\이승원\\Isaac portfolio\\8 AWS 클라우드 & Elasticsearch\\project\\Daitso\\data\\member.txt";
 	private static ArrayList<String[]> memberDataList = new ArrayList<>(); // 전체 회원 정보 배열
 
-	// 전체 회원 목록 조회 메소드
+	// 관리자 회원 관리 메소드
 	public static void adminMemberManage() {
 		Scanner scan = new Scanner(System.in);
-		boolean loop = true;
-		String sortprocess = "1"; // 기본 정렬 방법: 등급별 정렬
-		String sortCriterion = "1++등급"; // 기본 정렬 기준: 1++등급
+		String sortCriterion = "1++등급";
 		String[] rateCriterionList = { "돌아가기", "1++등급", "1+등급", "1등급", "2등급", "3등급" }; // 등급별 정렬 기준
-		int memberCount = 0; // 정렬하는 멤버 누적
 
-		System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
-		System.out.println("              전체 회원 목록 조회");
-		System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
-
-		while (loop) {
-
-			try {
-				BufferedReader reader = new BufferedReader(new FileReader(GUEST_LIST));
-				String member;
-
-				System.out.println(
-						"[번호] [이름]    [아이디]      [비밀번호]  [전화번호]     [주민번호]           [이메일]          [주소]      [계좌번호]     [보유금액] [회원등급]");
-
-				if (sortprocess.equals("1")) {
-					// 등급별로 정렬하여 출력
-					for (String[] data : memberDataList) {
-
-						if (data[10].equals(sortCriterion)) {
-							printMemberInfo(data);
-							memberCount++;
-						}
-					}
-				} else if (sortprocess.equals("2")) {
-					// 이름순으로 정렬하여 출력
-					sortAndPrintByName();
-				} else if (sortprocess.equals("3")) {
-					// 나이순으로 정렬하여 출력
-					sortAndPrintByAge();
-				} else if (sortprocess.equals("4")) {
-					// 주소별로 정렬하여 출력
-					sortAndPrintByAddress();
-				} else {
-					// 돌아가기
-					loop = false;
-				}
-
-				if (sortprocess.equals("1")) {
-					System.out.printf("정렬: %s (총 회원 수 %d명 / %d명)\r\n", sortCriterion, memberDataList.size(),
-							memberCount);
-				} else {
-					System.out.printf("정렬: %s (총 회원 수 %d명)\r\n", sortCriterion, memberDataList.size());
-				}
-				reader.close();
-
-			} catch (IOException e) {
-				System.out.println("Error");
-				e.printStackTrace();
-			}
-
-			/*
-			 * System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
-			 * System.out.println("[회원 목록 정렬]"); System.out.println("1. 등급별 정렬");
-			 * System.out.println("2. 이름순 정렬"); System.out.println("3. 나이순 정렬");
-			 * System.out.println("4. 주소별 정렬"); System.out.println("0. 돌아가기");
-			 * System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
-			 * System.out.print("번호 입력 : ");
-			 */
-			// 회원 목록 정렬 방법 선택
-			displaySortMemberList();
-			sortprocess = scan.nextLine().trim();
+		while (true) {
+			// 메인 메뉴 표시 및 사용자 선택
+			System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+			System.out.println("                    회원 관리");
+			memberManagementFunctionList();
+			String functionChoice = scan.nextLine().trim();
 			scan.skip("\r\n");
 
-			if (sortprocess.equals("1")) {
-				/*
-				 * System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
-				 * System.out.println("[등급별 정렬]"); System.out.println("1. 1++등급 정렬");
-				 * System.out.println("2. 1+등급 정렬"); System.out.println("3. 1등급 정렬");
-				 * System.out.println("4. 2등급 정렬"); System.out.println("5. 3등급 정렬");
-				 * System.out.println("0. 돌아가기");
-				 * System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
-				 * System.out.print("번호 입력 : ");
-				 */
-				// 등급별 정렬
-				displayRateCriterionList();
-				String rateCriterion = scan.nextLine().trim();
-				scan.skip("\r\n");
+			switch (functionChoice) {
+			case "1":
+				manageMemberList(scan, sortCriterion, rateCriterionList);
+				break;
+			case "2":
+				break;
+			case "3":
+				break;
+			default:
+				return; // 로그인 메뉴
+			}
+		}
+	}
 
-				if (Integer.parseInt(rateCriterion) >= 0
-						&& Integer.parseInt(rateCriterion) < rateCriterionList.length) {
-					sortCriterion = rateCriterionList[Integer.parseInt(rateCriterion)];
+	// 회원 목록 관리 메소드
+	private static void manageMemberList(Scanner scan, String defaultSortCriterion, String[] rateCriterionList) {
+		boolean loop = true;
 
-					if (sortCriterion.equals("돌아가기")) {
-						loop = false;
-					}
-				} else {
-					sortprocess = "1";
-					sortCriterion = "1++등급";
-					loop = false;
+		while (loop) {
+			// 회원 목록 옵션 표시 및 사용자 선택
+			System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+			System.out.println("              전체 회원 목록 조회");
+			String sortProcess = chooseSortProcess(scan);
+
+			if (sortProcess.equals("0")) {
+				return; // 관리자 메인메뉴
+			}
+
+			String sortCriterion = getSortCriterion(scan, sortProcess, rateCriterionList);
+
+			// 사용자 선택에 따라 정렬 및 출력 수행
+			try {
+				BufferedReader reader = new BufferedReader(new FileReader(GUEST_LIST));
+
+				if (sortProcess.equals("1")) {
+					sortAndPrintMember(sortCriterion);
+				} else if (sortProcess.equals("2")) {
+					sortAndPrintMember(sortCriterion);
+				} else if (sortProcess.equals("3")) {
+					sortAndPrintMember(sortCriterion);
+				} else if (sortProcess.equals("4")) {
+					sortAndPrintMember(sortCriterion);
 				}
-			} else if (sortprocess.equals("2")) {
-				// 이름순 정렬
-				sortCriterion = "이름순";
-			} else if (sortprocess.equals("3")) {
-				// 나이순 정렬
-				sortCriterion = "나이순";
-			} else if (sortprocess.equals("4")) {
-				// 주소별 정렬
-				sortCriterion = "주소별";
+
+				reader.close();
+			} catch (IOException e) {
+				System.out.println("manageMemberList Error");
+				e.printStackTrace();
+			}
+		}
+	}
+
+	// 정렬 방식 선택 메소드
+	private static String chooseSortProcess(Scanner scan) {
+		// 정렬 방식 옵션 표시 및 사용자 선택
+		displaySortMemberList();
+		return scan.nextLine().trim();
+	}
+
+	// 정렬 기준 선택 메소드
+	private static String getSortCriterion(Scanner scan, String sortProcess, String[] rateCriterionList) {
+		String sortCriterion = "0";
+
+		if (sortProcess.equals("1")) {
+			// 등급 옵션 표시 및 사용자 선택
+			displayRateCriterionList();
+			String rateCriterion = scan.nextLine().trim();
+			scan.skip("\r\n");
+
+			if (Integer.parseInt(rateCriterion) > 0) { //  Integer.parseInt(rateCriterion)< rateCriterionList.length
+				sortCriterion = rateCriterionList[Integer.parseInt(rateCriterion)];
+			}
+		} else if (sortProcess.equals("2")) {
+			sortCriterion = "이름순";
+		} else if (sortProcess.equals("3")) {
+			sortCriterion = "나이순";
+		} else if (sortProcess.equals("4")) {
+			sortCriterion = "주소별";
+		}
+
+		return sortCriterion;
+	}
+
+	// 정렬 기준별 회원 정보 출력 메소드
+	private static void displayMemberInfo(String sortCriterion, Stack<Integer> lastData, int dataCount) {
+		// 헤더 출력
+		System.out.println(
+				"[번호]  [이름]    [아이디]      [비밀번호]  [전화번호]     [주민번호]           [이메일]          [주소]      [계좌번호]     [보유금액] [회원등급]");
+
+		// 회원 정보 출력
+		for (String[] data : memberDataList) {
+			if (dataCount <= 100 && dataCount < memberDataList.size()) {
+				if (lastData.isEmpty() || Integer.parseInt(data[0]) > lastData.peek()) {
+					// 등급이 정렬 기준과 일치하는 회원 출력
+					if (sortCriterion.equals("이름순") || sortCriterion.equals("나이순") || sortCriterion.equals("주소별")) {
+						printMemberInfo(data);
+						dataCount++;
+					} else {
+						if (data[10].equals(sortCriterion)) {
+							printMemberInfo(data);
+							dataCount++;
+						}
+					}
+				}
+				if (dataCount > 100) {
+					lastData.push(Integer.parseInt(data[0]));
+				}
+			}
+		}
+
+		// 정보 출력 및 다음 동작 선택
+		System.out.printf("정렬: %s (총 회원 수 %d명)%n", sortCriterion, memberDataList.size());
+		displayDataList(sortCriterion, lastData.size());
+	}
+
+	// 회원을 정렬하고 출력하는 메소드
+	private static void sortAndPrintMember(String sortCriterion) {
+		Scanner scan = new Scanner(System.in);
+
+		boolean groupLoop = true;
+		int groupDataCount = 0;
+		String groupChoice;
+
+		Stack<Integer> lastRangeData = new Stack<>();
+		lastRangeData.push(0);
+
+		// 정렬 수행
+		performSorting(sortCriterion);
+		
+		while (groupLoop) {
+			// 회원 정보 출력
+			displayMemberInfo(sortCriterion, lastRangeData, groupDataCount);
+
+			groupChoice = scan.nextLine();
+			scan.skip("\r\n");
+			groupDataCount = 0;
+
+			if (groupChoice.equals("1")) {
+				// 다음 100명 보기
+			} else if (lastRangeData.size() > 1 && groupChoice.equals("2")) {
+				// 이전 100명 보기
+				lastRangeData.pop();
+				lastRangeData.pop();
+
+				if (lastRangeData.isEmpty()) {
+					lastRangeData.push(0);
+				}
 			} else {
 				// 돌아가기
-				loop = false;
+				groupLoop = false;
+
+				while (!lastRangeData.isEmpty()) {
+					lastRangeData.pop();
+				}
 			}
 		}
 	}
 
-	// 회원 목록 정렬 화면 출력
-	private static void displaySortMemberList() {
-		System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
-		System.out.println("[회원 목록 정렬]");
-		System.out.println("1. 등급별 정렬");
-		System.out.println("2. 이름순 정렬");
-		System.out.println("3. 나이순 정렬");
-		System.out.println("4. 주소별 정렬");
-		System.out.println("0. 돌아가기");
-		System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
-		System.out.print("번호 입력 : ");
-	}
-
-	// 등급별 정렬 방법 화면 출력
-	private static void displayRateCriterionList() {
-		System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
-		System.out.println("[등급별 정렬]");
-		System.out.println("1. 1++등급 정렬");
-		System.out.println("2. 1+등급 정렬");
-		System.out.println("3. 1등급 정렬");
-		System.out.println("4. 2등급 정렬");
-		System.out.println("5. 3등급 정렬");
-		System.out.println("0. 돌아가기");
-		System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
-		System.out.print("번호 입력 : ");
-	}
-
-	// 이름순 정렬 및 출력
-	private static void sortAndPrintByName() {
-		memberDataList.sort(Comparator.comparing(data -> data[1]));
-		memberDataList.forEach(MemberCheck::printMemberInfo);
-	}
-
-	// 나이순 정렬 및 출력
-	private static void sortAndPrintByAge() {
-		memberDataList.sort((data1, data2) -> Integer.compare(calculateAge(data1[5]), calculateAge(data2[5])));
-		memberDataList.forEach(MemberCheck::printMemberInfo);
-	}
-
-	// 주소별 정렬 및 출력
-	private static void sortAndPrintByAddress() {
-		memberDataList.sort(Comparator.comparing(data -> data[7]));
-		String currentAddress = "";
-
-		for (String[] data : memberDataList) {
-			String address = data[7];
-			if (!address.equals(currentAddress)) {
-				System.out.printf("주소: %s%n", address);
-				currentAddress = address;
+	// 등급별, 이름순, 나이순, 주소별 정렬 메소드
+	private static void performSorting(String sortCriterion) {
+		if (sortCriterion.equals("이름순")) {
+			memberDataList.sort(Comparator.comparing(data -> data[1]));
+			
+		} else if (sortCriterion.equals("나이순")) {
+			memberDataList.sort((data1, data2) -> Integer.compare(calculateAge(data1[5]), calculateAge(data2[5])));
+			
+		} else if (sortCriterion.equals("주소별")) {
+			memberDataList.sort(Comparator.comparing(data -> data[7]));
+			
+			String currentAddress = "";
+			for (String[] data : memberDataList) {
+				String address = data[7];
+				if (!address.equals(currentAddress)) {
+					System.out.printf("주소: %s%n", address);
+					currentAddress = address;
+				}
 			}
-			printMemberInfo(data);
+		} else {
+			memberDataList.sort(Comparator.comparing(data -> data[10]));
 		}
 	}
-
-	// 주민번호 나이 계산 메소드
+	
+	// 주민번호를 이용한 나이 계산 메소드
 	private static int calculateAge(String jumin) {
 		int birthYear = Integer.parseInt(jumin.substring(0, 2));
 		int currentYear = 2023;
@@ -232,7 +262,7 @@ public class MemberCheck {
 		String money = data[9];
 		String rating = data[10];
 
-		System.out.printf("%4s %5s %-14s %-12s %13s %14s %-24s %-5s", no, name, id, pw, tel, jumin, email, region);
+		System.out.printf(" %-4s %5s %-16s %-12s %13s %14s %-24s %-5s", no, name, id, pw, tel, jumin, email, region);
 
 		// 띄어쓰기 간격 조절
 		for (int i = 0; i < 4 - region.length(); i++) {
@@ -240,5 +270,57 @@ public class MemberCheck {
 		}
 
 		System.out.printf("%16s %,9d %7s\r\n", account, Integer.parseInt(money), rating);
+	}
+	
+	// 회원 목록 정렬 화면 출력
+	private static void displaySortMemberList() {
+		System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+		System.out.println("[회원 목록 정렬]");
+		System.out.println("1. 등급별 정렬");
+		System.out.println("2. 이름순 정렬");
+		System.out.println("3. 나이순 정렬");
+		System.out.println("4. 주소별 정렬");
+		System.out.println("0. 돌아가기");
+		System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+		System.out.print("번호 입력 : ");
+	}
+
+	// 등급별 정렬 방법 화면 출력
+	private static void displayRateCriterionList() {
+		System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+		System.out.println("[등급별 정렬]");
+		System.out.println("1. 1++등급 정렬");
+		System.out.println("2. 1+등급 정렬");
+		System.out.println("3. 1등급 정렬");
+		System.out.println("4. 2등급 정렬");
+		System.out.println("5. 3등급 정렬");
+		System.out.println("0. 돌아가기");
+		System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+		System.out.print("번호 입력 : ");
+	}
+
+	// 등급별 정렬 방법 화면 출력
+	private static void memberManagementFunctionList() {
+		System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+		System.out.println("[회원 관리 기능]");
+		System.out.println("1. 전체 회원 목록 조회");
+		System.out.println("2. 회원 검색");
+		System.out.println("3. 회원 삭제");
+		System.out.println("0. 돌아가기");
+		System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+		System.out.print("번호 입력 : ");
+	}
+
+	// 회원 정보 범위 출력 화면 출력
+	private static void displayDataList(String sortCriterion, int lastRangeDataSize) {
+		System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+		System.out.printf("[%s 별 정렬]\n", sortCriterion);
+		System.out.println("1. 다음 100명 보기");
+		if (lastRangeDataSize > 2) {
+			System.out.println("2. 이전 100명 보기");
+		}
+		System.out.println("0. 돌아가기");
+		System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+		System.out.print("번호 입력 : ");
 	}
 }

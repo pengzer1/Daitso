@@ -19,9 +19,11 @@ class AdminMenu {
 	 */
 
 	public static void main(String[] args) {
-		MemberCheck.loadMemberInfo(); // 전체 회원 정보 로드
+		// 전체 회원 정보 로드
+		MemberCheck.loadMemberInfo();
 
-		adminMain(); // 관리자 메인 메뉴
+		// 관리자 메인 메뉴
+		adminMain();
 	}
 
 	// 관리자 메인 메뉴
