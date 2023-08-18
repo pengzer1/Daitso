@@ -104,13 +104,13 @@ public class MemberCheck {
 	private static void displayMemberInfo(String sortCriterion, Stack<Integer> lastData, int dataCount) {
 		// 헤더 출력
 		System.out.println(
-				"[번호]  [이름]    [아이디]      [비밀번호]  [전화번호]     [주민번호]           [이메일]          [주소]      [계좌번호]     [보유금액] [회원등급]");
+				"[번호]  [이름]      [아이디]      [비밀번호]  [전화번호]     [주민번호]           [이메일]          [주소]      [계좌번호]     [보유금액] [회원등급]");
 
 		// 회원 정보 출력
 		for (String[] data : memberDataList) {
 			if (dataCount <= 100) {
 				if (lastData.isEmpty() || Integer.parseInt(data[0]) > lastData.peek()) {
-					if (sortCriterion.equals("이름순") || sortCriterion.equals("나이순") || sortCriterion.equals("주소별")) {
+					if (sortCriterion.matches("^(이름순|나이순|주소별)$")) {
 						printMemberInfo(data);
 						dataCount++;
 					} else {
@@ -136,7 +136,7 @@ public class MemberCheck {
 		}
 	}
 
-	// 회원을 정0=-하고 출력하는 메소드
+	// 회원을 정렬하고 출력하는 메소드
 	private static void sortAndPrintMember(String sortCriterion) {
 		Scanner scan = new Scanner(System.in);
 
@@ -192,8 +192,17 @@ public class MemberCheck {
 			memberDataList.sort(Comparator.comparing(data -> data[1]));
 
 		} else if (sortCriterion.equals("나이순")) {
-			memberDataList.sort((data1, data2) -> Integer.compare(calculateAge(data1[5]), calculateAge(data2[5])));
-
+			memberDataList.sort((data1, data2) -> {
+	            int ageComparison = Integer.compare(calculateAge(data1[5]), calculateAge(data2[5]));
+	            
+	            if (ageComparison == 0) {
+	            	// 생일년도가 같은 경우 생일월로 내림차순 정렬
+	                int month1 = Integer.parseInt(data1[5].substring(2, 4));
+	                int month2 = Integer.parseInt(data2[5].substring(2, 4));
+	                return Integer.compare(month2, month1);
+	            }
+	            return ageComparison;
+	        });
 		} else if (sortCriterion.equals("주소별")) {
 			memberDataList.sort(Comparator.comparing(data -> data[7]));
 
