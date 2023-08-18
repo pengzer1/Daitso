@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Scanner;
 import java.util.Stack;
+import java.util.regex.Pattern;
 
 public class MemberCheck {
 
@@ -17,7 +18,7 @@ public class MemberCheck {
 	 */
 
 	// 회원 정보 파일 경로
-	private static final String GUEST_LIST = "C:\\이승원\\Isaac portfolio\\8 AWS 클라우드 & Elasticsearch\\project\\Daitso\\data\\member.txt";
+	private static final String MEMBER_LIST = "data\\member.txt";
 	private static ArrayList<String[]> memberDataList = new ArrayList<>(); // 전체 회원 정보 배열
 
 	// 관리자 회원 관리 메소드
@@ -32,7 +33,6 @@ public class MemberCheck {
 			System.out.println("                    회원 관리");
 			memberManagementFunctionList();
 			String functionChoice = scan.nextLine().trim();
-			scan.skip("\r\n");
 
 			switch (functionChoice) {
 			case "1":
@@ -58,31 +58,15 @@ public class MemberCheck {
 			System.out.println("              전체 회원 목록 조회");
 			String sortProcess = chooseSortProcess(scan);
 
-			if (sortProcess.equals("0")) {
-				return; // 관리자 메인메뉴
+			if (!Pattern.matches("[1234]", sortProcess)) {
+				return;
 			}
 
+			// 정렬 기준 선택
 			String sortCriterion = getSortCriterion(scan, sortProcess, rateCriterionList);
 
 			// 사용자 선택에 따라 정렬 및 출력 수행
-			try {
-				BufferedReader reader = new BufferedReader(new FileReader(GUEST_LIST));
-
-				if (sortProcess.equals("1")) {
-					sortAndPrintMember(sortCriterion);
-				} else if (sortProcess.equals("2")) {
-					sortAndPrintMember(sortCriterion);
-				} else if (sortProcess.equals("3")) {
-					sortAndPrintMember(sortCriterion);
-				} else if (sortProcess.equals("4")) {
-					sortAndPrintMember(sortCriterion);
-				}
-
-				reader.close();
-			} catch (IOException e) {
-				System.out.println("manageMemberList Error");
-				e.printStackTrace();
-			}
+			sortAndPrintMember(sortCriterion);
 		}
 	}
 
@@ -101,9 +85,8 @@ public class MemberCheck {
 			// 등급 옵션 표시 및 사용자 선택
 			displayRateCriterionList();
 			String rateCriterion = scan.nextLine().trim();
-			scan.skip("\r\n");
 
-			if (Integer.parseInt(rateCriterion) > 0) { //  Integer.parseInt(rateCriterion)< rateCriterionList.length
+			if (Pattern.matches("[1234]", rateCriterion)) {
 				sortCriterion = rateCriterionList[Integer.parseInt(rateCriterion)];
 			}
 		} else if (sortProcess.equals("2")) {
@@ -125,13 +108,13 @@ public class MemberCheck {
 
 		// 회원 정보 출력
 		for (String[] data : memberDataList) {
-			if (dataCount <= 100 && dataCount < memberDataList.size()) {
+			if (dataCount <= 100) {
 				if (lastData.isEmpty() || Integer.parseInt(data[0]) > lastData.peek()) {
-					// 등급이 정렬 기준과 일치하는 회원 출력
 					if (sortCriterion.equals("이름순") || sortCriterion.equals("나이순") || sortCriterion.equals("주소별")) {
 						printMemberInfo(data);
 						dataCount++;
 					} else {
+						// 등급순
 						if (data[10].equals(sortCriterion)) {
 							printMemberInfo(data);
 							dataCount++;
@@ -144,12 +127,16 @@ public class MemberCheck {
 			}
 		}
 
-		// 정보 출력 및 다음 동작 선택
-		System.out.printf("정렬: %s (총 회원 수 %d명)%n", sortCriterion, memberDataList.size());
-		displayDataList(sortCriterion, lastData.size());
+		if (!sortCriterion.equals("0")) {
+			// 정보 출력 및 다음 동작 선택
+			System.out.printf("정렬: %s (총 회원 수 %d명)%n", sortCriterion, memberDataList.size());
+			displayDataList(sortCriterion, lastData.size());
+		} else {
+			return;
+		}
 	}
 
-	// 회원을 정렬하고 출력하는 메소드
+	// 회원을 정0=-하고 출력하는 메소드
 	private static void sortAndPrintMember(String sortCriterion) {
 		Scanner scan = new Scanner(System.in);
 
@@ -160,15 +147,22 @@ public class MemberCheck {
 		Stack<Integer> lastRangeData = new Stack<>();
 		lastRangeData.push(0);
 
-		// 정렬 수행
+		// 회원 정렬 수행
 		performSorting(sortCriterion);
-		
+
 		while (groupLoop) {
-			// 회원 정보 출력
-			displayMemberInfo(sortCriterion, lastRangeData, groupDataCount);
+			if (!sortCriterion.equals("0")) {
+				System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+				System.out.println("                    회원 목록");
+				System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+
+				// 회원 정보 출력
+				displayMemberInfo(sortCriterion, lastRangeData, groupDataCount);
+			} else {
+				return;
+			}
 
 			groupChoice = scan.nextLine();
-			scan.skip("\r\n");
 			groupDataCount = 0;
 
 			if (groupChoice.equals("1")) {
@@ -196,26 +190,28 @@ public class MemberCheck {
 	private static void performSorting(String sortCriterion) {
 		if (sortCriterion.equals("이름순")) {
 			memberDataList.sort(Comparator.comparing(data -> data[1]));
-			
+
 		} else if (sortCriterion.equals("나이순")) {
 			memberDataList.sort((data1, data2) -> Integer.compare(calculateAge(data1[5]), calculateAge(data2[5])));
-			
+
 		} else if (sortCriterion.equals("주소별")) {
 			memberDataList.sort(Comparator.comparing(data -> data[7]));
-			
+
 			String currentAddress = "";
+			System.out.print("주소 정렬 순서:");
 			for (String[] data : memberDataList) {
 				String address = data[7];
 				if (!address.equals(currentAddress)) {
-					System.out.printf("주소: %s%n", address);
+					System.out.printf(" %s", address);
 					currentAddress = address;
 				}
 			}
+			System.out.println();
 		} else {
 			memberDataList.sort(Comparator.comparing(data -> data[10]));
 		}
 	}
-	
+
 	// 주민번호를 이용한 나이 계산 메소드
 	private static int calculateAge(String jumin) {
 		int birthYear = Integer.parseInt(jumin.substring(0, 2));
@@ -232,7 +228,7 @@ public class MemberCheck {
 	// 회원 정보 로드 메소드
 	public static void loadMemberInfo() {
 		try {
-			BufferedReader reader = new BufferedReader(new FileReader(GUEST_LIST));
+			BufferedReader reader = new BufferedReader(new FileReader(MEMBER_LIST));
 			String member;
 
 			while ((member = reader.readLine()) != null) {
@@ -271,7 +267,7 @@ public class MemberCheck {
 
 		System.out.printf("%16s %,9d %7s\r\n", account, Integer.parseInt(money), rating);
 	}
-	
+
 	// 회원 목록 정렬 화면 출력
 	private static void displaySortMemberList() {
 		System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
@@ -314,7 +310,6 @@ public class MemberCheck {
 	// 회원 정보 범위 출력 화면 출력
 	private static void displayDataList(String sortCriterion, int lastRangeDataSize) {
 		System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
-		System.out.printf("[%s 별 정렬]\n", sortCriterion);
 		System.out.println("1. 다음 100명 보기");
 		if (lastRangeDataSize > 2) {
 			System.out.println("2. 이전 100명 보기");

@@ -35,7 +35,6 @@ class AdminMenu {
 		while (true) {
 			displayMainMenu(); // 관리자 메인 메뉴 화면 출력
 			String input = scan.nextLine().trim();
-			scan.skip("\r\n");
 
 			if (input.equals("1")) {
 				// 회원 관리
