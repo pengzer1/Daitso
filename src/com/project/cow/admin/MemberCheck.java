@@ -81,8 +81,7 @@ public class MemberCheck {
 	private static String getSortCriterion(Scanner scan, String sortProcess, String[] rateCriterionList) {
 		String sortCriterion = "0";
 
-		if (sortProcess.equals("1")) {
-			// 등급 옵션 표시 및 사용자 선택
+		if (sortProcess.equals("1")) { // 등급 옵션 표시 및 사용자 선택
 			displayRateCriterionList();
 			String rateCriterion = scan.nextLine().trim();
 
@@ -127,8 +126,7 @@ public class MemberCheck {
 			}
 		}
 
-		if (!sortCriterion.equals("0")) {
-			// 정보 출력 및 다음 동작 선택
+		if (!sortCriterion.equals("0")) { // 정보 출력 및 다음 동작 선택
 			System.out.printf("정렬: %s (총 회원 수 %d명)%n", sortCriterion, memberDataList.size());
 			displayDataList(sortCriterion, lastData.size());
 		} else {
@@ -165,18 +163,15 @@ public class MemberCheck {
 			groupChoice = scan.nextLine();
 			groupDataCount = 0;
 
-			if (groupChoice.equals("1")) {
-				// 다음 100명 보기
-			} else if (lastRangeData.size() > 1 && groupChoice.equals("2")) {
-				// 이전 100명 보기
+			if (groupChoice.equals("1")) { // 다음 100명 보기
+			} else if (lastRangeData.size() > 1 && groupChoice.equals("2")) { // 이전 100명 보기
 				lastRangeData.pop();
 				lastRangeData.pop();
 
 				if (lastRangeData.isEmpty()) {
 					lastRangeData.push(0);
 				}
-			} else {
-				// 돌아가기
+			} else { // 돌아가기
 				groupLoop = false;
 
 				while (!lastRangeData.isEmpty()) {
@@ -193,21 +188,27 @@ public class MemberCheck {
 
 		} else if (sortCriterion.equals("나이순")) {
 			memberDataList.sort((data1, data2) -> {
-	            int ageComparison = Integer.compare(calculateAge(data1[5]), calculateAge(data2[5]));
-	            
-	            if (ageComparison == 0) {
-	            	// 생일년도가 같은 경우 생일월로 내림차순 정렬
-	                int month1 = Integer.parseInt(data1[5].substring(2, 4));
-	                int month2 = Integer.parseInt(data2[5].substring(2, 4));
-	                return Integer.compare(month2, month1);
-	            }
-	            return ageComparison;
-	        });
+				int ageComparison = Integer.compare(calculateAge(data1[5]), calculateAge(data2[5]));
+
+				if (ageComparison == 0) {// 생일년도가 같은 경우 생일월로 내림차순 정렬
+					int month1 = Integer.parseInt(data1[5].substring(2, 4));
+					int month2 = Integer.parseInt(data2[5].substring(2, 4));
+
+					if (month1 == month2) { // 생일월이 같은 경우 생일일로 내림차순 정렬
+						int day1 = Integer.parseInt(data1[5].substring(4, 6));
+						int day2 = Integer.parseInt(data2[5].substring(4, 6));
+						return Integer.compare(day2, day1);
+					}
+					return Integer.compare(month2, month1);
+				}
+				return ageComparison;
+			});
 		} else if (sortCriterion.equals("주소별")) {
 			memberDataList.sort(Comparator.comparing(data -> data[7]));
 
 			String currentAddress = "";
 			System.out.print("주소 정렬 순서:");
+
 			for (String[] data : memberDataList) {
 				String address = data[7];
 				if (!address.equals(currentAddress)) {
@@ -269,8 +270,7 @@ public class MemberCheck {
 
 		System.out.printf(" %-4s %5s %-16s %-12s %13s %14s %-24s %-5s", no, name, id, pw, tel, jumin, email, region);
 
-		// 띄어쓰기 간격 조절
-		for (int i = 0; i < 4 - region.length(); i++) {
+		for (int i = 0; i < 4 - region.length(); i++) { // 띄어쓰기 간격 조절
 			System.out.print(" ");
 		}
 
