@@ -10,7 +10,8 @@ import java.util.Scanner;
 public class MemberQuestion {
 	/**
 	 * 관리자 FAQ 및 답변 관리 클래스
-	 * @author 이승원 목적: 관리자가 FAQ 게시판을 확인하고 답변을 수정하는 클래스
+	 * @author 이승원
+	 * 목적: 관리자가 FAQ 게시판을 확인하고 답변을 수정하는 클래스
 	 * 기능: - FAQ 게시판 출력 및 답변 수정 기능 제공
 	 */
 
