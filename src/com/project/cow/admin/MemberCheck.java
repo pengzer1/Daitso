@@ -3,7 +3,6 @@ package com.project.cow.admin;
 import java.util.Scanner;
 
 public class MemberCheck {
-
 	/**
 	 * 관리자 회원 관리 클래스
 	 * @author 이승원
