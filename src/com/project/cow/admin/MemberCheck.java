@@ -25,23 +25,16 @@ public class MemberCheck {
 			System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
 			System.out.println("                    회원 관리");
 			memberCheckFunction();
-			String functionChoice = scan.nextLine().trim();
+			String manageChoice = scan.nextLine().trim();
 
-			switch (functionChoice) {
-			case "1":
-				// 전체 회원 목록 조회
+			if (manageChoice.equals("1")) { // 전체 회원 목록 조회
 				MemberListDisplay.sortMemberList(scan, sortCriterion, rateCriterionList);
-				break;
-			case "2":
-				// 회원 검색
+			} else if (manageChoice.equals("2")) { // 회원 검색
 				MemberSearch.searchMember(scan);
-				break;
-			case "3":
-				// 회원 삭제
+			} else if (manageChoice.equals("3")) { // 회원 삭제
 				MemberRemove.removeMember(scan);
-				break;
-			default:
-				return; // 로그인 메뉴
+			} else { // 로그인 메뉴
+				return;
 			}
 		}
 	}

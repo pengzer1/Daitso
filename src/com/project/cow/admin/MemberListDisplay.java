@@ -30,9 +30,8 @@ public class MemberListDisplay {
 	 * @param rateCriterionList    등급 정렬 기준 리스트
 	 */
 	public static void sortMemberList(Scanner scan, String defaultSortCriterion, String[] rateCriterionList) {
-		boolean loop = true;
 
-		while (loop) {
+		while (true) {
 			// 회원 목록 옵션 표시 및 사용자 선택
 			System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
 			System.out.println("              전체 회원 목록 조회");
@@ -84,7 +83,6 @@ public class MemberListDisplay {
 	 * @param sortCriterion 정렬 기준
 	 */
 	private static void sortAndPrintMember(Scanner scan, String sortCriterion) {
-		boolean groupLoop = true;
 		int groupDataCount = 0;
 		String groupChoice;
 
@@ -94,7 +92,7 @@ public class MemberListDisplay {
 		// 회원 정렬 수행
 		performSorting(sortCriterion);
 
-		while (groupLoop) {
+		while (true) {
 			if (!sortCriterion.equals("0")) {
 				System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
 				System.out.println("                    회원 목록");
@@ -118,11 +116,7 @@ public class MemberListDisplay {
 					lastRangeData.push(0);
 				}
 			} else { // 돌아가기
-				groupLoop = false;
-
-				while (!lastRangeData.isEmpty()) {
-					lastRangeData.pop();
-				}
+				return;
 			}
 		}
 	}

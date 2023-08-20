@@ -13,11 +13,10 @@ class AdminMenu {
 	 */
 
 	public static void main(String[] args) {
-		// 전체 회원 정보 로드
-		MemberListDisplay.loadMemberInfo();
+		MemberListDisplay.loadMemberInfo(); // 전체 회원 정보 로드
+		MemberQuestion.loadFAQInfo(); // FAQ 정보 로드
 
-		// 관리자 메인 메뉴
-		adminMain();
+		adminMain(); // 관리자 메인 메뉴
 		
 		// TODO 로그인 기능에서 통합할 때 main 메소드 내용을 adminMain 메소드로 이동한다.
 		// TODO 전체 회원 정보를 로드하는 부분을 다른 클래스에서 만들 예정이므로 추후 수정한다.
@@ -28,9 +27,8 @@ class AdminMenu {
 	 */
 	public static void adminMain() {
 		try (Scanner scan = new Scanner(System.in)) {
-			boolean loop = true;
 
-			while (loop) {
+			while (true) {
 				displayMainMenu(); // 관리자 메인 메뉴 화면 출력
 				String input = scan.nextLine().trim();
 
@@ -44,14 +42,14 @@ class AdminMenu {
 					// 중고 물품 관리
 
 				} else if (input.equals("4")) {
-					// 고객센터 Q & A
-					CustomerServiceQuestion.questionManage();
+					// 고객센터 F A Q
+					MemberQuestion.manageFAQ();
 				} else if (input.equals("5")) {
 					// 중고거래 제한물품
 
 				} else {
 					// 돌아가기
-					loop = false;
+					return;
 				}
 			}
 		}
@@ -67,7 +65,7 @@ class AdminMenu {
 		System.out.println("1. 회원 관리");
 		System.out.println("2. 블랙리스트 관리");
 		System.out.println("3. 중고 물품 관리");
-		System.out.println("4. 고객센터 Q & A");
+		System.out.println("4. 고객센터 F A Q");
 		System.out.println("5. 각 지역 우편함");
 		System.out.println("6. 중고거래 제한물품");
 		System.out.println("0. 돌아가기");
