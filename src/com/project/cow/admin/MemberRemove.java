@@ -64,7 +64,7 @@ public class MemberRemove {
 
 	/**
 	 * 회원 정보 삭제를 수행하는 메소드
-	 * @param scan Scanner 사용자 입력
+	 * @param scan           Scanner 사용자 입력
 	 * @param selectedMember 선택된 회원의 정보 배열 반환 값:
 	 */
 	private static void performMemberDeletion(Scanner scan, String[] selectedMember) {

@@ -19,7 +19,7 @@ public class MemberCheck {
 		Scanner scan = new Scanner(System.in);
 		String sortCriterion = "1++등급";
 		String[] rateCriterionList = { "돌아가기", "1++등급", "1+등급", "1등급", "2등급", "3등급" }; // 등급별 정렬 기준
-		
+
 		while (true) {
 			// 메인 메뉴 표시 및 사용자 선택
 			System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");

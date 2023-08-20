@@ -25,9 +25,9 @@ public class MemberListDisplay {
 
 	/**
 	 * 회원 목록 조회 메인 메소드
-	 * @param scan Scanner 사용자 입력
+	 * @param scan                 Scanner 사용자 입력
 	 * @param defaultSortCriterion 기본 정렬 기준
-	 * @param rateCriterionList 등급 정렬 기준 리스트
+	 * @param rateCriterionList    등급 정렬 기준 리스트
 	 */
 	public static void sortMemberList(Scanner scan, String defaultSortCriterion, String[] rateCriterionList) {
 		boolean loop = true;
@@ -52,8 +52,8 @@ public class MemberListDisplay {
 
 	/**
 	 * 정렬 기준 선택 메소드
-	 * @param scan Scanner 사용자 입력
-	 * @param sortProcess 정렬 옵션
+	 * @param scan              Scanner 사용자 입력
+	 * @param sortProcess       정렬 옵션
 	 * @param rateCriterionList 등급 정렬 기준 리스트
 	 * @return 선택된 정렬 기준
 	 */
@@ -80,7 +80,7 @@ public class MemberListDisplay {
 
 	/**
 	 * 회원을 정렬하고 출력하는 메소드
-	 * @param scan Scanner 사용자 입력
+	 * @param scan          Scanner 사용자 입력
 	 * @param sortCriterion 정렬 기준
 	 */
 	private static void sortAndPrintMember(Scanner scan, String sortCriterion) {
@@ -284,16 +284,16 @@ public class MemberListDisplay {
 	}
 
 	/**
-     * 회원 목록의 헤더를 출력하는 메소드
-     */
+	 * 회원 목록의 헤더를 출력하는 메소드
+	 */
 	public static void displayMemberHeader() {
 		System.out.println(
 				"[번호]  [이름]      [아이디]      [비밀번호]  [전화번호]     [주민번호]           [이메일]          [주소]      [계좌번호]     [보유금액] [회원등급]");
 	}
 
 	/**
-     * 회원 목록 정렬 화면을 출력하는 메소드
-     */
+	 * 회원 목록 정렬 화면을 출력하는 메소드
+	 */
 	private static void displaySortMemberList() {
 		System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
 		System.out.println("[회원 목록 정렬]");
@@ -307,8 +307,8 @@ public class MemberListDisplay {
 	}
 
 	/**
-     * 등급별 정렬 방법을 화면에 출력하는 메소드
-     */
+	 * 등급별 정렬 방법을 화면에 출력하는 메소드
+	 */
 	private static void displayRateCriterionList() {
 		System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
 		System.out.println("[등급별 정렬]");
@@ -323,10 +323,10 @@ public class MemberListDisplay {
 	}
 
 	/**
-     * 회원 정보 범위를 출력하는 화면을 표시하는 메소드
-     * @param sortCriterion 정렬 기준
-     * @param lastRangeDataSize 마지막 범위 데이터 크기
-     */
+	 * 회원 정보 범위를 출력하는 화면을 표시하는 메소드
+	 * @param sortCriterion     정렬 기준
+	 * @param lastRangeDataSize 마지막 범위 데이터 크기
+	 */
 	private static void displayDataList(String sortCriterion, int lastRangeDataSize) {
 		System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
 		System.out.println("1. 다음 100명 보기");

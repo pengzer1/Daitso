@@ -12,9 +12,9 @@ public class MemberSearch {
 	 */
 
 	/**
-     * 회원 검색 기능을 수행하는 메소드
-     * @param scan Scanner 사용자 입력
-     */
+	 * 회원 검색 기능을 수행하는 메소드
+	 * @param scan Scanner 사용자 입력
+	 */
 	public static void searchMember(Scanner scan) {
 		System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
 		System.out.println("                    회원 검색");
@@ -28,13 +28,13 @@ public class MemberSearch {
 	}
 
 	/**
-     * 검색 결과를 출력하고 검색된 회원 수를 보여주는 메소드
-     * @param scan Scanner 사용자 입력
-     * @param keyword 검색 키워드 (회원 번호, 이름 또는 아이디)
-     */
+	 * 검색 결과를 출력하고 검색된 회원 수를 보여주는 메소드
+	 * @param scan    Scanner 사용자 입력
+	 * @param keyword 검색 키워드 (회원 번호, 이름 또는 아이디)
+	 */
 	private static void displaySearchResults(Scanner scan, String keyword) {
 		int foundCount = 0;
-		
+
 		System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
 		System.out.println("                    회원 목록");
 		System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
@@ -42,18 +42,18 @@ public class MemberSearch {
 		MemberListDisplay.displayMemberHeader(); // 헤더 출력
 
 		for (String[] data : MemberListDisplay.memberDataList) {
-            if (data[0].equals(keyword) || data[1].equals(keyword) || data[2].equals(keyword)) {
-                MemberListDisplay.printMemberInfo(data);
-                foundCount++;
-            }
-        }
+			if (data[0].equals(keyword) || data[1].equals(keyword) || data[2].equals(keyword)) {
+				MemberListDisplay.printMemberInfo(data);
+				foundCount++;
+			}
+		}
 
 		System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
 		if (foundCount == 0) {
-            System.out.println("검색 결과가 없습니다.");
-        } else {
-            System.out.printf("%d명의 회원이 검색되었습니다.%n", foundCount);
-        }
+			System.out.println("검색 결과가 없습니다.");
+		} else {
+			System.out.printf("%d명의 회원이 검색되었습니다.%n", foundCount);
+		}
 
 		scan.nextLine();
 	}
