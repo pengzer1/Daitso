@@ -30,15 +30,15 @@ public class MemberRemove {
 		String deleteKeyword = scan.nextLine().trim();
 
 		// 검색 결과 출력 및 회원 선택
-		Set<Integer> selectedMembersIndices = searchAndSelectMembers(deleteKeyword);
+		Set<Integer> selectedMemberList = searchAndSelectMember(deleteKeyword);
 
-		if (!selectedMembersIndices.isEmpty()) {
+		if (!selectedMemberList.isEmpty()) {
 			System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
 			System.out.print("위 회원들 중 삭제할 회원 번호를 입력하세요: ");
 			int deleteIndex = Integer.parseInt(scan.nextLine().trim()) - 1;
 
 			if (deleteIndex >= 0 && deleteIndex < MemberListDisplay.memberDataList.size()
-					&& selectedMembersIndices.contains(deleteIndex)) {
+					&& selectedMemberList.contains(deleteIndex)) {
 				String[] selectedMember = MemberListDisplay.memberDataList.get(deleteIndex);
 
 				System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
@@ -79,8 +79,8 @@ public class MemberRemove {
 	 * @param keyword 검색 키워드 (회원 번호, 이름 또는 아이디)
 	 * @return 선택된 회원의 인덱스를 담은 TreeSet
 	 */
-	private static Set<Integer> searchAndSelectMembers(String keyword) {
-		Set<Integer> selectedMembersIndices = new TreeSet<>();
+	private static Set<Integer> searchAndSelectMember(String keyword) {
+		Set<Integer> selectedMemberList = new TreeSet<>();
 
 		System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
 		System.out.println("                    회원 목록");
@@ -93,12 +93,12 @@ public class MemberRemove {
 		for (String[] data : MemberListDisplay.memberDataList) {
 			if (data[0].equals(keyword) || data[1].equals(keyword) || data[2].equals(keyword)) {
 				MemberListDisplay.printMemberInfo(data);
-				selectedMembersIndices.add(index);
+				selectedMemberList.add(index);
 			}
 			index++;
 		}
 
-		return selectedMembersIndices;
+		return selectedMemberList;
 	}
 
 	/**

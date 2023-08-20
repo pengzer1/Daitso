@@ -24,7 +24,7 @@ public class MemberSearch {
 		String searchKeyword = scan.nextLine().trim();
 
 		// 검색 결과 출력
-		displaySearchResults(scan, searchKeyword);
+		displaySearchResult(scan, searchKeyword);
 	}
 
 	/**
@@ -32,7 +32,7 @@ public class MemberSearch {
 	 * @param scan    Scanner 사용자 입력
 	 * @param keyword 검색 키워드 (회원 번호, 이름 또는 아이디)
 	 */
-	private static void displaySearchResults(Scanner scan, String keyword) {
+	private static void displaySearchResult(Scanner scan, String keyword) {
 		int foundCount = 0;
 
 		System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
