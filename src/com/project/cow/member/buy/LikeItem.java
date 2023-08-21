@@ -11,7 +11,7 @@ public class LikeItem {
 //	TODO 추후 로그인 된 사용자 번호로 변경해야 함
 	private static final int BUYER = 3702;
 	
-	String num;
+	String num = "";
 	Scanner scan = new Scanner(System.in);
 	
 	public void Screen() {
@@ -35,27 +35,30 @@ public class LikeItem {
 		}
 		
 		System.out.println();
-		System.out.println("원하시는 찜 상품을 골라주세요.");
+		System.out.println("원하시는 찜 상품을 골라주세요.\r\n초기화면으로 돌아가려면 0을 입력하세요.");
 		System.out.println();
 		
-		GetStuff();
+		this.num = GetStuff();
 		
 		System.out.println("구매 활동을 선택하세요.");
 		
 		Check();
 	}
 
-	private void GetStuff() {
+	private String GetStuff() {
 		System.out.print("상품번호입력: ");
 		String no = scan.nextLine();
+		
+		if (no.equals("0")) {
+			BuyMenu.FirstScreen();
+		}
 		
 		com.project.cow.data.object.LikeItem likeItem = new com.project.cow.data.object.LikeItem(null, "", null);
 		
 		for (com.project.cow.data.object.LikeItem l : LikeItemData.likeList) {
 			if (l.getBuyerNo().equals(BUYER + "") && l.getItemNo().equals(no)) {
 				likeItem = l;
-				this.num = no;
-				break;
+				return no;
 			}
 		}
 		
@@ -66,6 +69,7 @@ public class LikeItem {
 			GetStuff();
 		}
 		
+		return "";
 	}
 
 	private void Check() {
@@ -101,8 +105,29 @@ public class LikeItem {
 		
 		String check = scan.nextLine();
 		
+		int index = 0;
+		
 		if (check.equals("1")) {
-//			String
+			
+			for (com.project.cow.data.object.LikeItem likeItem : LikeItemData.likeList) {
+				if (likeItem.getItemNo().equals(num) && likeItem.getBuyerNo().equals(BUYER+"")) {
+					index++;
+					break;
+				}
+				index++;
+			}
+			
+			for (int i = index; i < LikeItemData.likeList.size(); i++) {
+				LikeItemData.likeList.set(i - 1, LikeItemData.likeList.get(i));
+			}
+			LikeItemData.likeList.remove(LikeItemData.likeList.size() - 1);
+			System.out.println();
+			System.out.println("삭제가 완료되었습니다.");
+			System.out.println("Enter를 누르면 찜 목록 화면으로 돌아갑니다.");
+			
+			scan.nextLine();
+			
+			Screen();
 		}
 		else if (check.equals("0")) {
 			BuyMenu.FirstScreen();

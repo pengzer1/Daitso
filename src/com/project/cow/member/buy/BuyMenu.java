@@ -4,7 +4,7 @@ import java.util.*;
 import com.project.cow.data.object.SellingStuff;
 
 public class BuyMenu {
-   SellingStuff item ;
+   SellingStuff item;
    public BuyMenu(SellingStuff item) {
       this.item =item;
    }
@@ -12,6 +12,8 @@ public class BuyMenu {
    
    public static void FirstScreen() {
       Scanner sc = new Scanner(System.in);
+      
+      LikeItem likeItem = new LikeItem();
       
       System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
         System.out.println("[구매하기]");
@@ -34,8 +36,8 @@ public class BuyMenu {
             StuffCategory.Screen();
         } else if (input.equals("3")) {
            System.out.println();
+           likeItem.Screen();
            
-
         } else if (input.equals("4")) {
             //알림 키워드 설정
 
