@@ -287,13 +287,7 @@ public class MemberListDisplay {
 	 */
 	private static void displaySortMemberList() {
 		System.out.println("[회원 목록 정렬]");
-		System.out.println("1. 등급별 정렬");
-		System.out.println("2. 이름순 정렬");
-		System.out.println("3. 나이순 정렬");
-		System.out.println("4. 주소별 정렬");
-		System.out.println("0. 돌아가기");
-		AdminMenu.printLine();
-		System.out.print("번호 입력: ");
+		AdminMenu.printOption("등급별 정렬", "이름순 정렬", "나이순 정렬", "주소별 정렬");
 	}
 
 	/**
@@ -301,14 +295,7 @@ public class MemberListDisplay {
 	 */
 	private static void displayRateCriterionList() {
 		System.out.println("[등급별 정렬]");
-		System.out.println("1. 1++등급 정렬");
-		System.out.println("2. 1+등급 정렬");
-		System.out.println("3. 1등급 정렬");
-		System.out.println("4. 2등급 정렬");
-		System.out.println("5. 3등급 정렬");
-		System.out.println("0. 돌아가기");
-		AdminMenu.printLine();
-		System.out.print("번호 입력: ");
+		AdminMenu.printOption("1++등급 정렬", "1+등급 정렬", "1등급 정렬", "2등급 정렬", "3등급 정렬");
 	}
 
 	/**

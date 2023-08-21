@@ -125,10 +125,6 @@ public class MemberQuestion {
 	 */
 	private static void memberQuestionFunction() {
 		System.out.println("[F A Q 관리 기능]");
-		System.out.println("1. F A Q 게시판");
-		System.out.println("2. F A Q 답변 수정");
-		System.out.println("0. 돌아가기");
-		AdminMenu.printLine();
-		System.out.print("번호 입력: ");
+		AdminMenu.printOption("F A Q 게시판", "F A Q 답변 수정");
 	}
 }

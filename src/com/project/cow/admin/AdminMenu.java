@@ -56,10 +56,12 @@ class AdminMenu {
 	}
 
 	/**
-	 * 관리자 메인 메뉴 화면 출력
+	 * 관리자 메인 메뉴 화면 출력하는 메소드
 	 */
 	public static void displayMainMenu() {
 		AdminMenu.printMenu("관리자 메인 메뉴");
+		AdminMenu.printOption("회원 관리", "블랙리스트 관리", "중고 물품 관리", "고객센터 F A Q", "각 지역 우편함", "중고거래 제한물품");
+		/*
 		System.out.println("1. 회원 관리");
 		System.out.println("2. 블랙리스트 관리");
 		System.out.println("3. 중고 물품 관리");
@@ -67,9 +69,21 @@ class AdminMenu {
 		System.out.println("5. 각 지역 우편함");
 		System.out.println("6. 중고거래 제한물품");
 		System.out.println("0. 돌아가기");
+		*/
+	}
+	
+	/**
+     * 메뉴의 주어진 옵션과 '돌아가기' 옵션을 출력하는 메소드
+     * @param options 출력할 옵션
+     */
+	public static void printOption(String... options) {
+        for (int i = 0; i < options.length; i++) {
+            System.out.println((i + 1) + ". " + options[i]);
+        }
+        System.out.println("0. 돌아가기");
 		AdminMenu.printLine();
 		System.out.print("번호 입력: ");
-	}
+    }
 	
 	/**
 	 * 주어진 문자열을 가운데 정렬하여 출력하는 메소드

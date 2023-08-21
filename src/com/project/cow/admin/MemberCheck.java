@@ -42,13 +42,7 @@ public class MemberCheck {
 	 * 등급별 정렬 방법 화면 출력
 	 */
 	private static void memberCheckFunction() {
-		AdminMenu.printLine();
 		System.out.println("[회원 관리 기능]");
-		System.out.println("1. 전체 회원 목록 조회");
-		System.out.println("2. 회원 검색");
-		System.out.println("3. 회원 삭제");
-		System.out.println("0. 돌아가기");
-		AdminMenu.printLine();
-		System.out.print("번호 입력: ");
+		AdminMenu.printOption("전체 회원 목록 조회", "회원 검색", "회원 삭제");
 	}
 }
