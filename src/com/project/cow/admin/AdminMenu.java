@@ -26,31 +26,30 @@ class AdminMenu {
 	 * 관리자 메인 메뉴
 	 */
 	public static void adminMain() {
-		try (Scanner scan = new Scanner(System.in)) {
+		Scanner scan = new Scanner(System.in);
+				
+		while (true) {
+			displayMainMenu(); // 관리자 메인 메뉴 화면 출력
+			String input = scan.nextLine().trim();
 
-			while (true) {
-				displayMainMenu(); // 관리자 메인 메뉴 화면 출력
-				String input = scan.nextLine().trim();
-
-				if (input.equals("1")) {
-					// 회원 관리
-					MemberCheck.adminMemberCheck();
-				} else if (input.equals("2")) {
-					// 블랙리스트 관리
-
-				} else if (input.equals("3")) {
-					// 중고 물품 관리
-
-				} else if (input.equals("4")) {
-					// 고객센터 F A Q
-					MemberQuestion.manageFAQ();
-				} else if (input.equals("5")) {
-					// 중고거래 제한물품
-
-				} else {
-					// 돌아가기
-					return;
-				}
+			if (input.equals("1")) {
+				// 회원 관리
+				MemberCheck.adminMemberCheck();
+			} else if (input.equals("2")) {
+				// 블랙리스트 관리
+				
+			} else if (input.equals("3")) {
+				// 중고 물품 관리
+				StuffCheck.adminStuffCheck();
+			} else if (input.equals("4")) {
+				// 고객센터 F A Q
+				MemberQuestion.adminFAQCheck();
+			} else if (input.equals("5")) {
+				// 중고거래 제한물품
+				
+			} else {
+				// 돌아가기
+				return;
 			}
 		}
 	}

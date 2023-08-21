@@ -34,6 +34,8 @@ public class SellingStuffData {
 				
 			}
 			
+			reader.close();
+			
 		} catch (Exception e) {
 			// TODO: handle exception
 		}

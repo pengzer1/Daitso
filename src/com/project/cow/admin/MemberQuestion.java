@@ -22,10 +22,14 @@ public class MemberQuestion {
 	/**
 	 * FAQ 및 답변 게시판을 화면에 출력하는 메인 메소드
 	 */
-	public static void manageFAQ() {
+	public static void adminFAQCheck() {
 		Scanner scan = new Scanner(System.in);
-		AdminMenu.printMenu("고객센터 F A Q");
-		memberQuestionFunction(); // FAQ 관리 기능 메뉴 출력
+		
+		AdminMenu.printLine();
+		System.out.println("                 고객센터 F A Q");
+		AdminMenu.printLine();
+		System.out.println("[F A Q 관리 기능]");
+		AdminMenu.printOption("F A Q 게시판", "F A Q 답변 수정");
 		String manageChoice = scan.nextLine().trim();
 
 		if (manageChoice.equals("1")) { // 자주 묻는 질문 확인
@@ -42,7 +46,9 @@ public class MemberQuestion {
 	 * @param scan Scanner 사용자 입력
 	 */
 	private static void displayFAQ(Scanner scan) {
-		AdminMenu.printMenu("F A Q 게시판");
+		AdminMenu.printLine();
+		System.out.println("                  F A Q 게시판");
+		AdminMenu.printLine();
 
 		for (String[] data : qnaDataList) {
 			String index = data[0];
@@ -118,13 +124,5 @@ public class MemberQuestion {
 			System.out.println("loadFAQInfo Error");
 			e.printStackTrace();
 		}
-	}
-
-	/**
-	 * FAQ 및 답변 관리 기능 화면 출력 메소드
-	 */
-	private static void memberQuestionFunction() {
-		System.out.println("[F A Q 관리 기능]");
-		AdminMenu.printOption("F A Q 게시판", "F A Q 답변 수정");
 	}
 }
