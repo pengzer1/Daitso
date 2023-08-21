@@ -7,6 +7,7 @@ import com.project.cow.data.SellingStuffData;
 import com.project.cow.data.object.SellingStuff;
 
 public class Modify {
+//	TODO 추후 로그인 된 사용자 번호로 변경해야 함
 	private static final int SELLER = 6023;
 	Scanner scan = new Scanner(System.in);
 
@@ -62,7 +63,7 @@ public class Modify {
 	}
 	
 	private SellingStuff GetStuff() {
-		System.out.print("번호입력: ");
+		System.out.print("상품번호입력: ");
 		String no = scan.nextLine();
 		
 		SellingStuff sellingStuff = new SellingStuff("", null, null, null, null, null, null, null, null, null, null);

@@ -8,9 +8,6 @@ import com.project.cow.data.SellingStuffData;
 import com.project.cow.data.object.SellingStuff;
 
 public class ModifyDetail {
-//	TODO 추후 로그인 된 사용자 번호로 변경해야 함
-
-
 	Scanner scan = new Scanner(System.in);
 
 	Modify modify = new Modify();
