@@ -139,8 +139,6 @@ public class ModifyDetail {
 //			SellingStuffData.sellingList.remove(s);
 			
 			for (int i = Integer.parseInt(num); i < SellingStuffData.sellingList.size(); i++) {
-				SellingStuff sellingStuff = SellingStuffData.sellingList.get(i);
-				sellingStuff.setNo(i + "");
 				SellingStuffData.sellingList.set(i - 1, SellingStuffData.sellingList.get(i));
 			}
 			SellingStuffData.sellingList.remove(SellingStuffData.sellingList.size() - 1);

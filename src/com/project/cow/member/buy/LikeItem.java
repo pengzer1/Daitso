@@ -11,6 +11,7 @@ public class LikeItem {
 //	TODO 추후 로그인 된 사용자 번호로 변경해야 함
 	private static final int BUYER = 3702;
 	
+	String num;
 	Scanner scan = new Scanner(System.in);
 	
 	public void Screen() {
@@ -53,6 +54,7 @@ public class LikeItem {
 		for (com.project.cow.data.object.LikeItem l : LikeItemData.likeList) {
 			if (l.getBuyerNo().equals(BUYER + "") && l.getItemNo().equals(no)) {
 				likeItem = l;
+				this.num = no;
 				break;
 			}
 		}
@@ -67,7 +69,7 @@ public class LikeItem {
 	}
 
 	private void Check() {
-		System.out.println("1.물품 구매\t2.물품 검색\t3.물품 정렬\r\n4.찜 물품 삭제\t0.돌아가기");
+		System.out.println("1.물품 구매\t2.찜 물품 삭제\t0.돌아가기");
 		System.out.print("번호입력: ");
 		String check = scan.nextLine();
 		
@@ -75,12 +77,6 @@ public class LikeItem {
 			
 		}
 		else if (check.equals("2")) {
-			
-		}
-		else if (check.equals("3")) {
-			
-		}
-		else if (check.equals("4")) {
 			DeleteLikeItem();
 		}
 		else if (check.equals("0")) {

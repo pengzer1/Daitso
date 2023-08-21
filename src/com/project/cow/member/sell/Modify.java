@@ -52,9 +52,8 @@ public class Modify {
 			System.out.println();
 			System.out.println();
 			sellMenu.Screen();
-		} else if (check.equals("1")) {
-			
-		} else {
+		} else if (check.equals("1")) {} 
+		else {
 			System.out.println();
 			System.out.println("잘못된 번호입니다. 다시 선택해주세요.");
 			System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
