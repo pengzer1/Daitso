@@ -10,10 +10,10 @@ import com.project.cow.data.object.SellingStuff;
 
 public class SellingStuffData {
 
-	public static ArrayList<SellingStuff> list;
+	public static ArrayList<SellingStuff> sellingList;
 	
 	static {
-		list = new ArrayList<SellingStuff>();
+		sellingList = new ArrayList<SellingStuff>();
 	}
 	
 	public static void load() {
@@ -30,14 +30,14 @@ public class SellingStuffData {
 				
 				SellingStuff s = new SellingStuff(temp[0], temp[1], temp[2], temp[3], temp[4], temp[5], temp[6], temp[7], temp[8], temp[9], temp[10]);
 				
-				SellingStuffData.list.add(s);
+				SellingStuffData.sellingList.add(s);
 				
 			}
 			
 			reader.close();
 			
 		} catch (Exception e) {
-			// TODO: handle exception
+			e.printStackTrace();
 		}
 		
 	}
@@ -48,14 +48,16 @@ public class SellingStuffData {
 			
 			BufferedWriter writer = new BufferedWriter(new FileWriter("data\\sellingStuff.txt"));
 			
-			for (SellingStuff s : SellingStuffData.list) {
+			for (SellingStuff s : SellingStuffData.sellingList) {
 				
 				writer.write(String.format("%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s\r\n", s.getNo(), s.getName(), s.getCategory(), s.getPrice(), s.getMethod(), s.getPayment(), s.getCondition(), s.getFrom(), s.getUntil(), s.getLike(), s.getSellerNo()));
 				
 			}
 			
+			writer.close();
+			
 		} catch (Exception e) {
-			// TODO: handle exception
+			e.printStackTrace();
 		}
 		
 	}

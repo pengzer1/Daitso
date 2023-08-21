@@ -16,7 +16,7 @@ public class SellingStuff {
 	
 	public SellingStuff(String no, String name, String category, String price, String method, String payment,
 			String condition, String from, String until, String like, String sellerNo) {
-	
+		
 		this.no = no;
 		this.name = name;
 		this.category = category;
