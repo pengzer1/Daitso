@@ -3,12 +3,14 @@ package com.project.cow.member;
 import java.util.Scanner;
 
 import com.project.cow.login.Login;
+import com.project.cow.member.sell.SellMenu;
 
 public class MemberMenu {
 
-	
 		
 	public static void membermenu() {
+
+		SellMenu sellMenu = new SellMenu();
 		Scanner scan = new Scanner(System.in);
 		
 		System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
@@ -29,7 +31,7 @@ public class MemberMenu {
 		if(sel.equals("1")) {	
 			
 		}else if (sel.equals("2")) {
-			
+			sellMenu.Screen();
 		}else if (sel.equals("3")) {
 
 		}else if(sel.equals("4")){

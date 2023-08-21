@@ -8,6 +8,8 @@ import com.project.cow.data.SellingStuffData;
 import com.project.cow.data.object.SellingStuff;
 
 public class Register {
+	SellingStuffData sellingStuffData = new SellingStuffData();
+	
 	Scanner scan = new Scanner(System.in);
 	
 	private String category;
@@ -40,8 +42,9 @@ public class Register {
 		
 		System.out.println("등록이 완료되었습니다.");
 		System.out.println("Enter를 누르면 초기화면으로 돌아갑니다.");
-		scan.nextLine();
 		
+		scan.nextLine();
+		sellingStuffData.save();
 		sellMenu.Screen();
 	}
 	

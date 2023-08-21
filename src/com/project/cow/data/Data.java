@@ -14,7 +14,7 @@ public class Data {  //txt 파일을 받아서 조작하고 데이터 입출력�
 	
 	public static void memberLoad() {   // 회원정보txt를 배열에 load.
 		try {
-			BufferedReader reader= new BufferedReader(new FileReader("C:\\class\\code\\java\\Project\\data\\member.txt"));
+			BufferedReader reader= new BufferedReader(new FileReader("data\\member.txt"));
 			
 			String line=null;
 			while((line=reader.readLine()) != null) {
@@ -32,7 +32,7 @@ public class Data {  //txt 파일을 받아서 조작하고 데이터 입출력�
 	
 	public static void memberSave() {   // 배열에 새로운 내용들을 반영시켜 저장하기.
 		try {
-			BufferedWriter writer = new BufferedWriter(new FileWriter("C:\\class\\code\\java\\Project\\data\\member.txt"));
+			BufferedWriter writer = new BufferedWriter(new FileWriter("data\\member.txt"));
 			
 			for(Member m : Data.list) {
 				writer.write(String.format("%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s\r\n", m.getNo(), m.getName(), m.getId(), m.getPwd(), m.getTel(), m.getJumin(), m.getEmail(), m.getAddress(), m.getAccount(), m.getMoney(), m.getGrade()));

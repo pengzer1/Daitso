@@ -3,6 +3,7 @@ package com.project.cow.member.sell;
 import java.util.Scanner;
 
 import com.project.cow.data.SellingStuffData;
+import com.project.cow.member.MemberMenu;
 
 
 public class SellMenu {
@@ -43,10 +44,7 @@ public class SellMenu {
 			modify.Screen();
 		}
 		else if (answer.equals("0")) {
-//			TODO 추후 합칠 때, 메인 메뉴 화면으로 이동
-			SellingStuffData.save();
-			System.out.println("프로그램 종료");
-			System.exit(0);
+			MemberMenu.membermenu();
 		}
 		else {
 			System.out.println("잘못된 선택입니다.");
