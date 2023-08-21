@@ -59,9 +59,7 @@ class AdminMenu {
 	 * 관리자 메인 메뉴 화면 출력
 	 */
 	public static void displayMainMenu() {
-		System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
-		System.out.println("               관리자 메인 메뉴");
-		System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+		AdminMenu.printMenu("관리자 메인 메뉴");
 		System.out.println("1. 회원 관리");
 		System.out.println("2. 블랙리스트 관리");
 		System.out.println("3. 중고 물품 관리");
@@ -69,7 +67,40 @@ class AdminMenu {
 		System.out.println("5. 각 지역 우편함");
 		System.out.println("6. 중고거래 제한물품");
 		System.out.println("0. 돌아가기");
-		System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+		AdminMenu.printLine();
 		System.out.print("번호 입력: ");
+	}
+	
+	/**
+	 * 주어진 문자열을 가운데 정렬하여 출력하는 메소드
+	 * @param text 출력할 문자열
+	 */
+	public static void printMenu(String text) {
+		String line = "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━";
+		int totalWidth = line.length() / 2; // 총 출력 폭 설정(24)
+
+		String formattedText = centerText(text, totalWidth);
+
+		AdminMenu.printLine();
+		System.out.println(formattedText);
+		AdminMenu.printLine();
+	}
+	
+	/**
+	 * 주어진 문자열을 주어진 폭에 맞게 가운데 정렬하여 반환하는 메소드
+	 * @param text 가운데 정렬할 문자열
+	 * @param width 문자열을 정렬할 폭
+	 * @return 가운데 정렬된 문자열
+	 */
+	public static String centerText(String text, int width) {
+		return String.format("%" + width + "s", text);
+	}
+	
+	/**
+	 * 가운데 정렬된 선을 출력하는 메소드
+	 */
+	public static void printLine() {
+	    String line = "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━";
+	    System.out.println(line);
 	}
 }

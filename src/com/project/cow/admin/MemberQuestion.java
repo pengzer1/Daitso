@@ -24,8 +24,7 @@ public class MemberQuestion {
 	 */
 	public static void manageFAQ() {
 		Scanner scan = new Scanner(System.in);
-		System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
-		System.out.println("                고객센터 F A Q");
+		AdminMenu.printMenu("고객센터 F A Q");
 		memberQuestionFunction(); // FAQ 관리 기능 메뉴 출력
 		String manageChoice = scan.nextLine().trim();
 
@@ -43,9 +42,7 @@ public class MemberQuestion {
 	 * @param scan Scanner 사용자 입력
 	 */
 	private static void displayFAQ(Scanner scan) {
-		System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
-		System.out.println("                  F A Q 게시판");
-		System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+		AdminMenu.printMenu("F A Q 게시판");
 
 		for (String[] data : qnaDataList) {
 			String index = data[0];
@@ -57,7 +54,7 @@ public class MemberQuestion {
 			System.out.println("조회수: " + viewCount);
 			System.out.println("질문: " + question);
 			System.out.println("답변: " + answer);
-			System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+			AdminMenu.printLine();
 		}
 	}
 
@@ -127,12 +124,11 @@ public class MemberQuestion {
 	 * FAQ 및 답변 관리 기능 화면 출력 메소드
 	 */
 	private static void memberQuestionFunction() {
-		System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
 		System.out.println("[F A Q 관리 기능]");
 		System.out.println("1. F A Q 게시판");
 		System.out.println("2. F A Q 답변 수정");
 		System.out.println("0. 돌아가기");
-		System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+		AdminMenu.printLine();
 		System.out.print("번호 입력: ");
 	}
 }

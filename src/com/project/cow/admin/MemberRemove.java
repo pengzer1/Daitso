@@ -22,9 +22,7 @@ public class MemberRemove {
 	 * @param scan Scanner 사용자 입력
 	 */
 	public static void removeMember(Scanner scan) {
-		System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
-		System.out.println("                    회원 삭제");
-		System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+		AdminMenu.printMenu("회원 삭제");
 
 		System.out.print("삭제할 회원 번호, 이름 또는 아이디 입력: ");
 		String deleteKeyword = scan.nextLine().trim();
@@ -33,7 +31,7 @@ public class MemberRemove {
 		Set<Integer> selectedMemberList = searchAndSelectMember(deleteKeyword);
 
 		if (!selectedMemberList.isEmpty()) {
-			System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+			AdminMenu.printLine();
 			System.out.print("위 회원들 중 삭제할 회원 번호를 입력하세요: ");
 			int deleteIndex = Integer.parseInt(scan.nextLine().trim()) - 1;
 
@@ -41,7 +39,7 @@ public class MemberRemove {
 					&& selectedMemberList.contains(deleteIndex)) {
 				String[] selectedMember = MemberListDisplay.memberDataList.get(deleteIndex);
 
-				System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+				AdminMenu.printLine();
 				MemberListDisplay.printMemberInfo(selectedMember);
 				System.out.print("위 회원을 삭제하시겠습니까? (y/n): ");
 				String confirm = scan.nextLine().trim();
@@ -82,9 +80,7 @@ public class MemberRemove {
 	private static Set<Integer> searchAndSelectMember(String keyword) {
 		Set<Integer> selectedMemberList = new TreeSet<>();
 
-		System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
-		System.out.println("                    회원 목록");
-		System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+		AdminMenu.printMenu("회원 목록");
 
 		MemberListDisplay.displayMemberHeader(); // 헤더 출력
 
