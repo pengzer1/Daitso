@@ -19,20 +19,27 @@ public class Account { // 다이소페이 클래스
 
 
     public void accountScreen(User user){
-        System.out.println("━━━━━━━━━━━━━━━━Daitso pay━━━━━━━━━━━━━━━━━━━━━");
-        System.out.printf(" Daitso 페이 머니 : %,d원\n", Integer.parseInt(user.getMoney()));
-        System.out.println(" 1.충전하기");
-        System.out.println(" 0.마이페이지로 돌아가기");
-        System.out.print("번호를 입력해주세요 : ");
-        String input = scan.nextLine();
-        switch (input) {
-            case "1":
-                payCharging(user);
-                break;
-            case "0":
-                MyPageList myPageList = new MyPageList(user);
-                myPageList.myPageScreen();
-                break;
+        while (true) {
+
+            System.out.println("━━━━━━━━━━━━━━━━Daitso pay━━━━━━━━━━━━━━━━━━━━━");
+            System.out.printf(" Daitso 페이 머니 : %,d원\n", Integer.parseInt(user.getMoney()));
+            System.out.println(" 1.충전하기");
+            System.out.println(" 0.마이페이지로 돌아가기");
+            System.out.print("번호를 입력해주세요 : ");
+            String input = scan.nextLine();
+            switch (input) {
+                case "1":
+                    payCharging(user);
+                    break;
+                case "0":
+                    MyPageList myPageList = new MyPageList(user);
+                    myPageList.myPageScreen();
+                    break;
+                default:
+                    System.out.println("0~1숫자를 입력해주세요.");
+                    continue;
+            }
+            break;
         }
     }
 

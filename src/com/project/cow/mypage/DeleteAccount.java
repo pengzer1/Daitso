@@ -21,6 +21,7 @@ public class DeleteAccount { //회원탈퇴 클래스
         System.out.println(" 0.돌아가기");
         System.out.print(" 번호입력 : ");
         String input = scan.nextLine().trim();
+
         ment(user, input);
 
         System.out.println("계속하실려면 엔터");
@@ -38,7 +39,7 @@ public class DeleteAccount { //회원탈퇴 클래스
         if (select.equals("1")) {
             Data.deleteMember(user);
         } else if (select.equals("0")) {
-
+            MyPageList myPageList = new MyPageList(user);
         }
     }
 
@@ -62,8 +63,9 @@ public class DeleteAccount { //회원탈퇴 클래스
                     break;
                 default:
                     System.out.println("0~3 숫자를 입력해주세요");
-                    break;
             }
+
+
     }
 
 

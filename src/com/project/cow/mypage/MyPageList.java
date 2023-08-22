@@ -46,7 +46,7 @@ public class MyPageList {
         System.out.println("     1. 회원 정보 수정                                 ");
         System.out.println("     2. 구매/판매 내역                             ");
         System.out.println("     3. 상품 거래 후기                             ");
-        System.out.println("     4. 내 거래 약속                           ");
+        System.out.println("     4. 내 알림 키워드                           ");
         System.out.println("     5. 다잇소 페이                                 ");
         System.out.println("     6. 회원 탈퇴            `                      ");
         System.out.println("     0. 돌아가기                                     "  );
@@ -63,7 +63,8 @@ public class MyPageList {
         } else if (input.equals("3")) {
             // 상품 거래 후기
         } else if (input.equals("4")) {
-            // 내 거래약스
+            SearchAlerts searchAlerts = new SearchAlerts();
+            searchAlerts.searchScreen(user);
         } else if (input.equals("5")) {
             Account account = new Account();
             account.accountScreen(user);

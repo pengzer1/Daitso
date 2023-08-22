@@ -189,6 +189,9 @@ private void changeLivingArea(User user){
             case "25":
                 user.setLivingArea("강동구");
                 break;
+            default:
+                System.out.println("1~25숫자를 입력해주세요.");
+            return;
         }
         System.out.println(user.getLivingArea()+"로 지역이 변경되었습니다.");
         System.out.println();
@@ -204,6 +207,7 @@ private void changeLivingArea(User user){
             + "16.강서구 " + " 17.구로구 " + " 18.금천구 " + " 19.영등포구 " + " 20.동작구\n"
             + "21.관악구 " + " 22.서초구 " + " 23.강남구 " + " 24.송파구 " + " 25.강동구\n";
     System.out.println(area);
+        System.out.println("0.이전으로 돌아가기");
 }
 
 private void returnPage(User user){

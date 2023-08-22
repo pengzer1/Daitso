@@ -12,25 +12,29 @@ public class Review { // 상품 거래 후기
     User a = Data.userList.get(1);
 
     void reviewScreen(User user){
-        System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
-        System.out.println("                   상품 거래 후기");
-        System.out.println(" 1. 내리뷰 보기");
-        System.out.println(" 2. 리뷰 남기기");
-        System.out.println(" 0. 돌아가기");
-        System.out.print(" 번호 입력 : ");
-        String input = scan.nextLine();
-        switch (input) {
-            case "0":
-                MyPageList myPageList = new MyPageList(user);
-                myPageList.myPageScreen();
-                break;
-            case "1":
-                // 내리뷰 보기
-                break;
-            case "2":
-                // 리뷰 남기기
-                break;
-
+        while (true) {
+            System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+            System.out.println("                   상품 거래 후기");
+            System.out.println(" 1. 내 리뷰 보기");
+            System.out.println(" 0. 돌아가기");
+            System.out.print(" 번호 입력 : ");
+            String input = scan.nextLine();
+            switch (input) {
+                case "0":
+                    MyPageList myPageList = new MyPageList(user);
+                    myPageList.myPageScreen();
+                    break;
+                case "1":
+                    // 내리뷰 보기
+                    break;
+                case "2":
+                    // 리뷰 남기기
+                    break;
+                default:
+                    System.out.println("1 또는 0번을 입력해주세요.");
+                    continue;
+            }
+            break;
         }
     }
 

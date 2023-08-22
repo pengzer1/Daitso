@@ -1,19 +1,21 @@
 package com.project.cow.mypage;
 
+import com.project.cow.data.SellingStuffData;
+
 public class Test {
     public static void main(String[] args) {
         Data.memberLoad();
         Data.soldOutLoad();
-        Data.keyWordLoad();
-        for (int i = 0; i < 30; i++) {
+        Data.keyWordListLoad();
+        SellingStuffData.load();
 
-            Data.keyWordList.get(i);
-        }
-       /* MyPageList myPageList = new MyPageList(Data.userList.get(2));
 
-        myPageList.myPageScreen();*/
 
+        MyPageList myPageList = new MyPageList(Data.userList.get(0));
+
+        myPageList.myPageScreen();
 
     }
 }
+
 

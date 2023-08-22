@@ -8,28 +8,33 @@ public class BuyList {
         scan = new Scanner(System.in);
     }
     public void buySellHistoryScreen(User user){
-        System.out.println("━━━━━━━━━━━━━━━━구매/판매 목록━━━━━━━━━━━━━━━━━━━━━");
-        System.out.println(" 1.구매 목록");
-        System.out.println(" 2.판매 목록");
-        System.out.println(" 0.이전으로 돌아가기");
-        System.out.print(" 번호 입력 : ");
-        String input = scan.nextLine();
+        while (true) {
 
-        switch (input) {
-            case "0":
-                MyPageList myPageList = new MyPageList(user);
-                myPageList.myPageScreen();
-                break;
-            case "1":
-                myBuyList(user);
-                break;
-            case "2":
-                SelledList selledList = new SelledList();
-                selledList.selledScreen(user);
-                break;
+            System.out.println("━━━━━━━━━━━━━━━━구매/판매 목록━━━━━━━━━━━━━━━━━━━━━");
+            System.out.println(" 1.구매 목록");
+            System.out.println(" 2.판매 목록");
+            System.out.println(" 0.이전으로 돌아가기");
+            System.out.print(" 번호 입력 : ");
+            String input = scan.nextLine();
 
+            switch (input) {
+                case "0":
+                    MyPageList myPageList = new MyPageList(user);
+                    myPageList.myPageScreen();
+                    break;
+                case "1":
+                    myBuyList(user);
+                    break;
+                case "2":
+                    SelledList selledList = new SelledList();
+                    selledList.selledScreen(user);
+                    break;
+                default:
+                    System.out.println("0~2숫자를 입력해주세요.");
+                    continue;
+            }
+            break;
         }
-
     }
 
     private void myBuyList(User user) {
