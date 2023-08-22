@@ -2,10 +2,12 @@ package com.project.cow;
 
 import java.util.Scanner;
 
+import com.project.cow.data.BlackListData;
 import com.project.cow.data.Data;
 import com.project.cow.data.KeyWordData;
 import com.project.cow.data.LikeItemData;
 import com.project.cow.data.SellingStuffData;
+import com.project.cow.data.object.BlackList;
 import com.project.cow.data.object.KeyWord;
 import com.project.cow.find.FindID;
 import com.project.cow.find.FindPW;
@@ -20,6 +22,7 @@ public class Main {
 		SellingStuffData.load();
 		LikeItemData.likeItemLoad();
 		KeyWordData.keyWordListLoad();
+		BlackListData.blackListLoad();
 		
 		MainScreen();
 		

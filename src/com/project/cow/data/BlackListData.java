@@ -11,7 +11,7 @@ public class BlackListData {
 
 	public static void blackListLoad() {   // 블랙리스트 배열
 		try {
-			BufferedReader reader= new BufferedReader(new FileReader("C:\\class\\code\\java\\Daitso\\data\\blackList.txt"));
+			BufferedReader reader= new BufferedReader(new FileReader("data\\blackList.txt"));
 			
 			String line=null;
 			while((line=reader.readLine()) != null) {
@@ -29,7 +29,7 @@ public class BlackListData {
 	
 	public static void blackListSave() {   // 배열에 새로운 내용들을 반영시켜 저장하기.
 		try {
-			BufferedWriter writer = new BufferedWriter(new FileWriter("C:\\class\\code\\java\\Daitso\\data\\blackList.txt"));
+			BufferedWriter writer = new BufferedWriter(new FileWriter("data\\blackList.txt"));
 			
 			for(BlackList bl : BlackListData.blackList) {
 				writer.write(String.format("%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s\r\n", bl.getNo(), bl.getName(), bl.getId(), bl.getPwd(), bl.getTel(), bl.getJumin(), bl.getEmail(), bl.getAddress(), bl.getAccount(), bl.getMoney(), bl.getGrade(), bl.getYellowCard(), bl.getAgo(), bl.getVan()));

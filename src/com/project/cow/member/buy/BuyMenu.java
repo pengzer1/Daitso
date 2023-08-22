@@ -84,8 +84,8 @@ public class BuyMenu {
             System.out.println();
             StuffSearch.search();
         } else if (input.equals("3")) {
-            //물품정렬
-
+            System.out.println();
+            StuffSort.stuffSortChoice();
         } else if (input.equals("4")) {
             //찜하기
 

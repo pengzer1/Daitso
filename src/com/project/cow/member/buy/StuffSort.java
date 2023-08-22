@@ -86,7 +86,7 @@ public class StuffSort {
 
 			for(SellingStuff stuff : SellingStuffData.sellingList) {
 				if (num.equals("0")) {  
-					StuffCategory.Screen();  //이전화면
+					StuffSort.stuffSortChoice();  //이전화면
 					break;
 				} else if(num.equals(stuff.getNo())){
 					System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
