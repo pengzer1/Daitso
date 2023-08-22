@@ -78,7 +78,7 @@ public class StuffCheck {
 		}
 
 		// 판매중인 물품 현황 출력
-		displayStuff(scan, SellingStuffData.sellingList, startDate, endDate);
+		displayStuffStatus(scan, SellingStuffData.sellingList, startDate, endDate);
 	}
 
 	/**
@@ -102,7 +102,7 @@ public class StuffCheck {
 		}
 
 		// 판매중인 물품 현황 출력
-		displayStuff(scan, SoldOutStuffData.soldOutList, startDate, endDate);
+		displayStuffStatus(scan, SoldOutStuffData.soldOutList, startDate, endDate);
 	}
 
 	/**
@@ -112,7 +112,7 @@ public class StuffCheck {
 	 * @param startDate 검색 시작 날짜
 	 * @param endDate   검색 종료 날짜
 	 */
-	private static void displayStuff(Scanner scan, List<? extends Stuff> stuffList, String startDate, String endDate) {
+	private static void displayStuffStatus(Scanner scan, List<? extends Stuff> stuffList, String startDate, String endDate) {
 		int stuffCount = 0;
 		int[] stuffCategory = new int[12]; // 카테고리별 물품 개수 배열
 		int[] topStuffCategory; // 인기 있는 카테고리 배열
@@ -136,14 +136,14 @@ public class StuffCheck {
 			System.out.printf("판매중인 전체 물품 수: %,d개\n", stuffCount);
 
 			topStuffCategory = calculateTopCategory(stuffCategory); // 상위 카테고리 계산
-			displayCategoryRanking(topStuffCategory); // 카테고리별 순위 출력
+			displayCategoryRanking(topStuffCategory, stuffCategory); // 카테고리별 순위 및 개수 출력
 
 			// 인기 있는 물품 이름 업데이트
 			for (Stuff stuff : stuffList) {
 				updateTopStuff(stuff, topStuffName, topStuffCount, stuffCategory);
 			}
 
-			displayTopStuffRanking(topStuffName, topStuffCount); // 인기 물품 순위 출력
+			displayStuffRanking(topStuffName, topStuffCount); // 인기 물품 순위 출력
 
 			AdminMenu.printLine();
 			System.out.println("물품 현황 조회가 완료되었습니다.");
@@ -215,14 +215,14 @@ public class StuffCheck {
 	 * @param topStuffName  인기 물품 배열
 	 * @param topStuffCount 인기 물품 카운트 배열
 	 */
-	private static void displayTopStuffRanking(String[] topStuffName, int[] topStuffCount) {
+	private static void displayStuffRanking(String[] topStuffName, int[] topStuffCount) {
 		System.out.println();
 		System.out.println("[인기 물품 순위]");
 
 		// 순위와 함께 인기 물품 이름 및 판매 수 출력
 		for (int i = 0; i < 5; i++) {
 			if (topStuffName[i] != null) {
-				System.out.printf("%d위 %s - 물품 수: %d\n", i + 1, topStuffName[i], topStuffCount[i]);
+				System.out.printf("%d위 %s (%d개)\n", i + 1, topStuffName[i], topStuffCount[i]);
 			}
 		}
 	}
@@ -257,15 +257,19 @@ public class StuffCheck {
 	/**
 	 * 인기 카테고리 순위를 출력하는 메소드
 	 * @param topCategorie 상위 카테고리 배열
+	 * @param stuffCategory 카테고리별 물품 개수 배열
 	 */
-	private static void displayCategoryRanking(int[] topCategorie) {
-		System.out.println();
-		System.out.println("[인기 카테고리 순위]");
-		
-		// 순위와 함께 해당 카테고리의 이름을 출력
-		for (int i = 0; i < 5; i++) {
-			System.out.printf("%d위 %s\n", i + 1, getCategoryName(topCategorie[i] + 1));
-		}
+	private static void displayCategoryRanking(int[] topCategorie, int[] stuffCategory) {
+	    System.out.println();
+	    System.out.println("[인기 카테고리 순위]");
+
+	    // 순위와 함께 해당 카테고리의 이름 및 물품 개수를 출력
+	    for (int i = 0; i < 5; i++) {
+	        int categoryIndex = topCategorie[i];
+	        String categoryName = getCategoryName(categoryIndex + 1);
+	        int categoryItemCount = stuffCategory[categoryIndex];
+	        System.out.printf("%d위 %s (%d개)\n", i + 1, categoryName, categoryItemCount);
+	    }
 	}
 
 	/**
