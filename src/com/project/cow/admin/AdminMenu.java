@@ -2,6 +2,8 @@ package com.project.cow.admin;
 
 import java.util.Scanner;
 
+import com.project.cow.data.MemberData;
+
 class AdminMenu {
 	/**
 	 * 관리자 메인 페이지 화면 출력 클래스
@@ -16,7 +18,7 @@ class AdminMenu {
 	 * 관리자 메인 메뉴 메소드
 	 */
 	public static void main(String[] args) {
-		MemberListDisplay.loadMemberInfo(); // 전체 회원 정보 로드
+		MemberData.load();
 		MemberQuestion.loadFAQInfo(); // FAQ 정보 로드
 		
 		Scanner scan = new Scanner(System.in);

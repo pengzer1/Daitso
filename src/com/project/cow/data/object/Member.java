@@ -1,6 +1,7 @@
 package com.project.cow.data.object;
 
 public class Member {   //회원 1명의 정보
+	
 	private String no;
 	private String name;
 	private String id;
@@ -97,9 +98,7 @@ public class Member {   //회원 1명의 정보
 
 	@Override
 	public String toString() {
-		return "Member [no=" + no + ", name=" + name + ", id=" + id + ", pwd=" + pwd + ", tel=" + tel + ", jumin=" + jumin + ", email="
-				+ email + ", address=" + address + ", account=" + account + ", money=" + money + ", grade=" + grade
-				+ "]";
-	}
-
+        return String.format("%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s",
+            no, name, id, pwd, tel, jumin, email, address, account, money, grade);
+    }
 }

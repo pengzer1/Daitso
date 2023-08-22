@@ -1,13 +1,12 @@
 package com.project.cow.admin;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Scanner;
 import java.util.Stack;
 import java.util.regex.Pattern;
+
+import com.project.cow.data.MemberData;
+import com.project.cow.data.object.Member;
 
 public class MemberListDisplay {
 	/**
@@ -19,10 +18,7 @@ public class MemberListDisplay {
 	 * - 등급, 이름, 나이, 주소별 등의 기준으로 회원 정보를 정렬하여 출력한다.
 	 * - 회원 정보를 화면에 표시할 때 페이지 단위로 나눠서 보여주고 다음/이전 페이지로 이동할 수 있다.
 	 */
-
-	public static final String MEMBER_LIST = "data\\member.txt"; // 회원 정보 파일 경로
-	public static ArrayList<String[]> memberDataList = new ArrayList<>(); // 전체 회원 정보 배열
-
+	
 	/**
 	 * 회원 목록 조회 메인 메소드
 	 * @param scan                 Scanner 사용자 입력
@@ -30,7 +26,6 @@ public class MemberListDisplay {
 	 * @param rateCriterionList    등급 정렬 기준 리스트
 	 */
 	public static void sortMemberList(Scanner scan, String defaultSortCriterion, String[] rateCriterionList) {
-
 		while (true) {
 			// 회원 목록 옵션 표시 및 사용자 선택
 			AdminMenu.printMenu("전체 회원 목록 조회");
@@ -137,29 +132,29 @@ public class MemberListDisplay {
 		displayMemberHeader(); // 헤더 출력
 
 		// 회원 정보 출력
-		for (String[] data : memberDataList) {
+		for (Member member : MemberData.list) {
 			if (dataCount <= 100) {
-				if (lastData.isEmpty() || Integer.parseInt(data[0]) > lastData.peek()) {
+				if (lastData.isEmpty() || Integer.parseInt(member.getNo()) > lastData.peek()) {
 					if (sortCriterion.matches("^(이름순|나이순|주소별)$")) {
 						// 이름순, 나이순, 주소별 출력
-						printMemberInfo(data);
+						printMemberInfo(member);
 						dataCount++;
 					} else {
 						// 등급순 출력
-						if (data[10].equals(sortCriterion)) {
-							printMemberInfo(data);
+						if (member.getGrade().equals(sortCriterion)) {
+							printMemberInfo(member);
 							dataCount++;
 						}
 					}
 				}
 				if (dataCount > 100) {
-					lastData.push(Integer.parseInt(data[0]));
+					lastData.push(Integer.parseInt(member.getNo()));
 				}
 			}
 		}
 
 		if (!sortCriterion.equals("0")) { // 정보 출력 및 다음 동작 선택
-			System.out.printf("정렬: %s (총 회원 수 %d명)%n", sortCriterion, memberDataList.size());
+			System.out.printf("정렬: %s (총 회원 수 %d명)%n", sortCriterion, MemberData.list.size());
 			displayDataList(sortCriterion, lastData.size());
 		} else {
 			return;
@@ -172,19 +167,19 @@ public class MemberListDisplay {
 	 */
 	private static void performSorting(String sortCriterion) {
 		if (sortCriterion.equals("이름순")) {
-			memberDataList.sort(Comparator.comparing(data -> data[1]));
+			MemberData.list.sort(Comparator.comparing(member -> member.getName()));
 
 		} else if (sortCriterion.equals("나이순")) {
-			memberDataList.sort((data1, data2) -> {
-				int ageComparison = Integer.compare(calculateAge(data1[5]), calculateAge(data2[5]));
+			MemberData.list.sort((member1, member2) -> {
+				int ageComparison = Integer.compare(calculateAge(member1.getJumin()), calculateAge(member1.getJumin()));
 
 				if (ageComparison == 0) { // 생일년도가 같은 경우 생일월로 내림차순 정렬
-					int month1 = Integer.parseInt(data1[5].substring(2, 4));
-					int month2 = Integer.parseInt(data2[5].substring(2, 4));
+					int month1 = Integer.parseInt(member1.getJumin().substring(2, 4));
+					int month2 = Integer.parseInt(member2.getJumin().substring(2, 4));
 
 					if (month1 == month2) { // 생일월이 같은 경우 생일일로 내림차순 정렬
-						int day1 = Integer.parseInt(data1[5].substring(4, 6));
-						int day2 = Integer.parseInt(data2[5].substring(4, 6));
+						int day1 = Integer.parseInt(member1.getJumin().substring(4, 6));
+						int day2 = Integer.parseInt(member2.getJumin().substring(4, 6));
 						return Integer.compare(day2, day1);
 					}
 					return Integer.compare(month2, month1);
@@ -192,13 +187,13 @@ public class MemberListDisplay {
 				return ageComparison;
 			});
 		} else if (sortCriterion.equals("주소별")) {
-			memberDataList.sort(Comparator.comparing(data -> data[7]));
+			MemberData.list.sort(Comparator.comparing(member -> member.getAddress()));
 
 			String currentAddress = "";
 			System.out.print("주소 정렬 순서:");
 
-			for (String[] data : memberDataList) {
-				String address = data[7];
+			for (Member member : MemberData.list) {
+				String address = member.getAddress();
 				if (!address.equals(currentAddress)) {
 					System.out.printf(" %s", address);
 					currentAddress = address;
@@ -206,7 +201,7 @@ public class MemberListDisplay {
 			}
 			System.out.println();
 		} else {
-			memberDataList.sort(Comparator.comparing(data -> data[10]));
+			MemberData.list.sort(Comparator.comparing(member -> member.getGrade()));
 		}
 	}
 
@@ -226,52 +221,19 @@ public class MemberListDisplay {
 
 		return age;
 	}
-
-	/**
-	 * 회원 정보 로드 메소드
-	 */
-	public static void loadMemberInfo() {
-		try {
-			BufferedReader reader = new BufferedReader(new FileReader(MEMBER_LIST));
-			String member;
-
-			while ((member = reader.readLine()) != null) {
-				String[] data = member.split(",");
-				memberDataList.add(data);
-			}
-
-			reader.close();
-
-		} catch (IOException e) {
-			System.out.println("loadMemberInfo Error");
-			e.printStackTrace();
-		}
-	}
-
+	
 	/**
 	 * 회원 정보를 출력하는 메소드
-	 * @param data 회원 정보 데이터 배열
+	 * @param member 회원 정보 데이터 객체
 	 */
-	static void printMemberInfo(String[] data) {
-		String no = data[0];
-		String name = data[1];
-		String id = data[2];
-		String pw = data[3];
-		String tel = data[4];
-		String jumin = data[5];
-		String email = data[6];
-		String region = data[7];
-		String account = data[8];
-		String money = data[9];
-		String rating = data[10];
+	static void printMemberInfo(Member member) {
+		System.out.printf(" %-4s %5s %-16s %-12s %13s %14s %-24s %-5s", member.getNo(), member.getName(), member.getId(), member.getPwd(), member.getTel(), member.getJumin(), member.getEmail(), member.getGrade());
 
-		System.out.printf(" %-4s %5s %-16s %-12s %13s %14s %-24s %-5s", no, name, id, pw, tel, jumin, email, region);
-
-		for (int i = 0; i < 4 - region.length(); i++) { // 띄어쓰기 간격 조절
+		for (int i = 0; i < 4 - member.getAddress().length(); i++) { // 띄어쓰기 간격 조절
 			System.out.print(" ");
 		}
 
-		System.out.printf("%16s %,9d %7s\r\n", account, Integer.parseInt(money), rating);
+		System.out.printf("%16s %,9d %7s\r\n", member.getAccount(), Integer.parseInt(member.getMoney()), member.getGrade());
 	}
 
 	/**
