@@ -1,6 +1,7 @@
 package com.project.cow.member.buy;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.stream.Collectors;
 import com.project.cow.constant.Constant;
 import com.project.cow.data.SellingStuffData;
 import com.project.cow.data.object.SellingStuff;
@@ -16,6 +17,7 @@ public class StuffSort {
         System.out.println("2. 가격 높은 순 정렬");
         System.out.println("3. 날짜별 정렬");
         System.out.println("4. 인기별 정렬");     //찜 개수 기준
+        System.out.println("5. 나눔만 보기");
         System.out.println("0을 입력하시면 이전화면으로 돌아갑니다.");
         System.out.print("번호 입력 : ");
         String input = sc.nextLine();
@@ -24,7 +26,15 @@ public class StuffSort {
         if(input.equals("1")) {
     		System.out.println();
     		//Collections.sort(SellingStuffData.sellingList, (a, b) -> Integer.compare(Integer.parseInt(a.getPrice()), Integer.parseInt(b.getPrice())));
-			SellingStuffData.sellingList.sort((a,b) -> Integer.parseInt(a.getPrice()) - Integer.parseInt(b.getPrice()));
+			//SellingStuffData.sellingList.sort((a,b) -> Integer.parseInt(a.getPrice()) - Integer.parseInt(b.getPrice()));
+			
+    		// 가격이 0인 것을 필터링한 후 정렬
+    		List<SellingStuff> filteredList = SellingStuffData.sellingList.stream()
+    	        .filter(stuff -> Integer.parseInt(stuff.getPrice()) > 0)
+    	        .collect(Collectors.toList());
+    	    
+    	    filteredList.sort((a, b) -> Integer.parseInt(a.getPrice()) - Integer.parseInt(b.getPrice()));
+    	    SellingStuffData.sellingList = (ArrayList<SellingStuff>) filteredList; // 필터링된 리스트로 대체
     	}else if(input.equals("2")) {
     		System.out.println();
     		Collections.sort(SellingStuffData.sellingList, (a, b) -> Integer.compare(Integer.parseInt(b.getPrice()), Integer.parseInt(a.getPrice())));
@@ -35,6 +45,15 @@ public class StuffSort {
     	}else if(input.equals("4")) {
     		System.out.println();
     		SellingStuffData.sellingList.sort((a,b) -> Integer.parseInt(b.getLike()) - Integer.parseInt(a.getLike()));
+    	}else if(input.equals("5")) {
+    		System.out.println();
+    		// 가격이 0인 것만 필터링한 후 정렬
+    		List<SellingStuff> filteredList2 = SellingStuffData.sellingList.stream()
+    	        .filter(stuff -> Integer.parseInt(stuff.getPrice()) == 0)
+    	        .collect(Collectors.toList());
+    	    
+    	    filteredList2.sort((a, b) -> Integer.parseInt(a.getPrice()) - Integer.parseInt(b.getPrice()));
+    	    SellingStuffData.sellingList = (ArrayList<SellingStuff>) filteredList2; // 필터링된 리스트로 대체
     	}else if(input.equals("0")) {
     		System.out.println();
     		BuyMenu.Screen();
@@ -45,12 +64,16 @@ public class StuffSort {
    		}
 
        	System.out.println("[번호]               [품명]     [상품품질]      [가격]    [판매자]         [거래방법]       [지불방법]      [판매시작일]     [판매마감일]   [찜횟수]");
-       
+       int index = 0;
        	for(SellingStuff s : SellingStuffData.sellingList) {
     			System.out.printf("%5s %15s %11s %9s %10s %13s %13s %13s %13s %8s\r\n", s.getNo(), s.getName(),
 						Constant.Condition(s.getCondition()), s.getPrice(), s.getSellerNo(),
 						Constant.Method(s.getMethod()), Constant.Payment(s.getPayment()), s.getFrom(), s.getUntil(),
 						s.getLike());
+    			index++;
+    			if(index == 100) {
+    				break;
+    			}
         }
        	int flag=0;
        	boolean loop = true;
