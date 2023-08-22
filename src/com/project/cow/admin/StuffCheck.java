@@ -64,16 +64,16 @@ public class StuffCheck {
 		String startDate = null;
 		String endDate = null;
 
-		// 처음 판매를 시작한 물품, 마지막에 판매를 종료하는 물품을 찾음
+		// 처음 판매를 시작한 물품, 마지막에 판매를 종료하는 물품의 날짜를 찾음
 		for (SellingStuff stuff : SellingStuffData.sellingList) {
 			String sellStartDate = stuff.getFrom();
 			String sellEndDate = stuff.getUntil();
 
 			if (startDate == null || sellStartDate.compareTo(startDate) < 0) {
-				startDate = sellStartDate;
+				startDate = sellStartDate; // 물품 검색을 시작할 날짜
 			}
 			if (endDate == null || sellEndDate.compareTo(endDate) > 0) {
-				endDate = sellEndDate;
+				endDate = sellEndDate; // 물품 검색을 끝낼 날짜
 			}
 		}
 
@@ -89,15 +89,15 @@ public class StuffCheck {
 		String startDate = null;
 		String endDate = null;
 
-		// 처음 판매된 물품, 마지막에 판매된 물품을 찾음
+		// 처음 판매된 물품, 마지막에 판매된 물품의 날짜를 찾음
 		for (SoldOutStuff stuff : SoldOutStuffData.soldOutList) {
 			String soldDate = stuff.getWhen();
 
 			if (startDate == null || soldDate.compareTo(startDate) < 0) {
-				startDate = soldDate;
+				startDate = soldDate; // 물품 검색을 시작할 날짜
 			}
 			if (endDate == null || soldDate.compareTo(endDate) > 0) {
-				endDate = soldDate;
+				endDate = soldDate; // 물품 검색을 끝낼 날짜
 			}
 		}
 
@@ -161,15 +161,15 @@ public class StuffCheck {
 	private static int updateStuffInfo(List<? extends Stuff> stuffList, int[] stuffCategory, String[] stuffName) {
 		int stuffCount = 0;
 
-		for (Stuff stuff : stuffList) {
-			stuffCount++; // 물품 개수 누적
+	    for (Stuff stuff : stuffList) {
+	        updateCategoryCount(stuffCategory, stuff); // 카테고리별 물품 개수 업데이트
 
-			updateCategoryCount(stuffCategory, stuff); // 카테고리별 물품 개수 업데이트
+	        stuffName[stuffCount] = stuff.getName(); // 물품 이름 저장
 
-			stuffName[stuffCount] = stuff.getName(); // 물품 이름 저장
-		}
+	        stuffCount++; // 물품 개수 누적
+	    }
 
-		return stuffCount;
+	    return stuffCount;
 	}
 
 	/**
@@ -178,9 +178,10 @@ public class StuffCheck {
 	 * @param stuff         물품 정보 객체
 	 */
 	private static void updateCategoryCount(int[] stuffCategory, Stuff stuff) {
+		// 물품의 카테고리를 가져와 해당 카테고리 인덱스로 초기화
 		int index = Integer.parseInt(stuff.getCategory()) - 1;
-
-		stuffCategory[index] += 1;
+		
+		stuffCategory[index] += 1; // 해당 카테고리의 물품 개수 증가
 	}
 
 	/**
@@ -192,12 +193,16 @@ public class StuffCheck {
 	 */
 	private static void updateTopStuff(Stuff stuff, String[] topStuffName, int[] topStuffCount, int[] stuffCategory) {
 		for (int i = 0; i < 5; i++) {
-			if (topStuffName[i] == null
-					|| topStuffCount[i] < stuffCategory[Integer.parseInt(stuff.getCategory()) - 1]) {
+			// 인기 물품 배열의 i번째가 비어있거나 카테고리의 판매 수가 인기 물품 배열의 i번째 판매 수보다 큰 경우
+			if (topStuffName[i] == null || topStuffCount[i] < stuffCategory[Integer.parseInt(stuff.getCategory()) - 1]) {
+				
+				// 인기 물품 배열을 오른쪽으로 한 칸씩 이동
 				for (int j = 4; j > i; j--) {
 					topStuffName[j] = topStuffName[j - 1];
 					topStuffCount[j] = topStuffCount[j - 1];
 				}
+				
+				// 해당 카테고리의 물품 이름과 판매 수를 인기 물품 배열에 삽입
 				topStuffName[i] = stuff.getName();
 				topStuffCount[i] = stuffCategory[Integer.parseInt(stuff.getCategory()) - 1];
 				break;
@@ -214,6 +219,7 @@ public class StuffCheck {
 		System.out.println();
 		System.out.println("[인기 물품 순위]");
 
+		// 순위와 함께 인기 물품 이름 및 판매 수 출력
 		for (int i = 0; i < 5; i++) {
 			if (topStuffName[i] != null) {
 				System.out.printf("%d위 %s - 물품 수: %d\n", i + 1, topStuffName[i], topStuffCount[i]);
@@ -229,16 +235,22 @@ public class StuffCheck {
 	private static int[] calculateTopCategory(int[] stuffCategory) {
 		int[] topCategory = new int[5];
 		for (int i = 0; i < 5; i++) {
-			int maxCount = -1;
-			int maxIndex = -1;
+			
+			// 각 상위 카테고리의 초기 최대값 및 인덱스 설정
+			int maxCount = -1; // 최대 판매 수 초기값 설정
+			int maxIndex = -1; // 최대 판매 수를 가진 카테고리 인덱스 초기값 설정
+			
 			for (int j = 0; j < stuffCategory.length; j++) {
+				// 해당 카테고리의 판매 수가 최대값이면서 상위 카테고리 배열에 포함되지 않은 경우
 				if (stuffCategory[j] > maxCount && !contains(topCategory, j)) {
-					maxCount = stuffCategory[j];
-					maxIndex = j;
+					maxCount = stuffCategory[j]; // 최대 판매 수 업데이트
+					maxIndex = j; // 최대 판매 수를 가진 카테고리 인덱스 업데이트
 				}
 			}
+			// 최대값을 가지는 카테고리의 인덱스를 상위 카테고리 배열에 삽입
 			topCategory[i] = maxIndex;
 		}
+		
 		return topCategory;
 	}
 
@@ -249,6 +261,8 @@ public class StuffCheck {
 	private static void displayCategoryRanking(int[] topCategorie) {
 		System.out.println();
 		System.out.println("[인기 카테고리 순위]");
+		
+		// 순위와 함께 해당 카테고리의 이름을 출력
 		for (int i = 0; i < 5; i++) {
 			System.out.printf("%d위 %s\n", i + 1, getCategoryName(topCategorie[i] + 1));
 		}
@@ -263,9 +277,11 @@ public class StuffCheck {
 	private static boolean contains(int[] array, int value) {
 		for (int element : array) {
 			if (element == value) {
+				// 배열 요소가 특정 값과 일치하는 경우 true 반환
 				return true;
 			}
 		}
+		
 		return false;
 	}
 
