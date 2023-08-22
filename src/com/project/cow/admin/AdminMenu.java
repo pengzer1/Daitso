@@ -12,24 +12,19 @@ class AdminMenu {
 	 * - 사용자의 선택에 따라 해당 기능을 실행하거나 메인 메뉴로 돌아갈 수 있다.
 	 */
 
-	public static void adminmain(String[] args) {
+	/**
+	 * 관리자 메인 메뉴 메소드
+	 */
+	public static void main(String[] args) {
 		MemberListDisplay.loadMemberInfo(); // 전체 회원 정보 로드
 		MemberQuestion.loadFAQInfo(); // FAQ 정보 로드
-
-		adminMain(); // 관리자 메인 메뉴
 		
-		// TODO 로그인 기능에서 통합할 때 adminMain 메소드를 실행하게 하면 됩니다!
-		// TODO 전체 회원 정보를 로드하는 부분을 다른 클래스에서 만들 예정이므로 추후 수정해야 할 수 있습니다.
-	}
-
-	/**
-	 * 관리자 메인 메뉴
-	 */
-	public static void adminMain() {
 		Scanner scan = new Scanner(System.in);
-				
+		
 		while (true) {
-			displayMainMenu(); // 관리자 메인 메뉴 화면 출력
+			// 관리자 메인 메뉴 화면 출력
+			AdminMenu.printMenu("관리자 메인 메뉴");
+			AdminMenu.printOption("회원 관리", "블랙리스트 관리", "중고 물품 관리", "고객센터 F A Q", "각 지역 우편함", "중고거래 제한물품");
 			String input = scan.nextLine().trim();
 
 			if (input.equals("1")) {
@@ -52,14 +47,9 @@ class AdminMenu {
 				return;
 			}
 		}
-	}
-
-	/**
-	 * 관리자 메인 메뉴 화면 출력하는 메소드
-	 */
-	public static void displayMainMenu() {
-		AdminMenu.printMenu("관리자 메인 메뉴");
-		AdminMenu.printOption("회원 관리", "블랙리스트 관리", "중고 물품 관리", "고객센터 F A Q", "각 지역 우편함", "중고거래 제한물품");
+		// TODO (합칠 때 main -> adminMain으로 메소드 이름 수정)
+		// TODO 로그인 기능에서 통합할 때 adminMain 메소드를 실행하게 하면 됩니다!
+		// TODO 전체 회원 정보를 로드하는 부분을 다른 클래스에서 만들 예정이므로 추후 수정해야 할 수 있습니다.
 	}
 
 	/**

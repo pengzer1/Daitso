@@ -11,7 +11,7 @@ import com.project.cow.data.object.SoldOutStuff;
 public class StuffCheck {
 	/**
 	 * 중고 물품 현황 분석 클래스
-	 * @ author 이승원
+	 * @author 이승원
 	 * 목적: 중고 물품의 판매 중 및 판매 완료된 물품의 현황을 분석하고 조회하는 클래스
 	 * 기능:
 	 * - 판매중인 물품 및 판매된 물품의 현황을 조회할 수 있다.
