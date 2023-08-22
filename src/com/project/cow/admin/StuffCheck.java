@@ -1,21 +1,46 @@
 package com.project.cow.admin;
 
+import java.util.List;
 import java.util.Scanner;
 
 import com.project.cow.data.SellingStuffData;
+import com.project.cow.data.SoldOutStuffData;
 import com.project.cow.data.object.SellingStuff;
+import com.project.cow.data.object.SoldOutStuff;
 
 public class StuffCheck {
+	/**
+	 * 중고 물품 현황 분석 클래스
+	 * @ author 이승원
+	 * 목적: 중고 물품의 판매 중 및 판매 완료된 물품의 현황을 분석하고 조회하는 클래스
+	 * 기능:
+	 * - 판매중인 물품 및 판매된 물품의 현황을 조회할 수 있다.
+	 * - 물품의 카테고리별 판매 현황 및 인기 물품을 분석하여 1위부터 5위까지 출력한다.
+	 */
 
+	public interface Stuff {
+		String getCategory();
+
+		String getName();
+	}
+
+	/**
+	 * 관리자가 중고 물품을 확인하는 메인 메소드
+	 */
 	public static void adminStuffCheck() {
-		SellingStuffData.load();
+		SellingStuffData.load(); // 판매중인 물품 로드
+		SoldOutStuffData.load(); // 판매된 물품 로드
 
 		Scanner scan = new Scanner(System.in);
 
-		itemStatusCheck(scan);
+		stuffStatusCheck(scan);
 	}
 
-	private static void itemStatusCheck(Scanner scan) {
+	/**
+	 * 중고 물품 관리 메뉴를 처리하는 메소드
+	 * @param scan Scanner 사용자 입력
+	 */
+	private static void stuffStatusCheck(Scanner scan) {
 		while (true) {
 			AdminMenu.printMenu("중고 물품 관리");
 			AdminMenu.printOption("판매중인 물품 현황", "판매된 물품 현황");
@@ -30,166 +55,207 @@ public class StuffCheck {
 			}
 		}
 	}
-	
-	private static void analyzeSoldOutStuff(Scanner scan) {
-		
-	}
 
 	/**
-	 * 물품 분석 기능을 수행하는 메인 메소드.
+	 * 판매중인 물품 분석 기능을 수행하는 메소드
 	 * @param scan Scanner 사용자 입력
 	 */
 	private static void analyzeSellingStuff(Scanner scan) {
 		String startDate = null;
 		String endDate = null;
 
-		// 가장 처음 물품과 마지막 물품을 찾음
-		for (SellingStuff item : SellingStuffData.sellingList) {
-			String itemStartDate = item.getFrom();
-			String itemEndDate = item.getUntil();
+		// 처음 판매를 시작한 물품, 마지막에 판매를 종료하는 물품을 찾음
+		for (SellingStuff stuff : SellingStuffData.sellingList) {
+			String sellStartDate = stuff.getFrom();
+			String sellEndDate = stuff.getUntil();
 
-			if (startDate == null || itemStartDate.compareTo(startDate) < 0) {
-				startDate = itemStartDate;
+			if (startDate == null || sellStartDate.compareTo(startDate) < 0) {
+				startDate = sellStartDate;
 			}
-			if (endDate == null || itemEndDate.compareTo(endDate) > 0) {
-				endDate = itemEndDate;
+			if (endDate == null || sellEndDate.compareTo(endDate) > 0) {
+				endDate = sellEndDate;
 			}
 		}
 
 		// 판매중인 물품 현황 출력
-		displayStuff(scan, startDate, endDate);
+		displayStuff(scan, SellingStuffData.sellingList, startDate, endDate);
 	}
-	
+
 	/**
-	 * 물품 현황을 출력하는 메소드.
+	 * 판매된 물품 분석 기능을 수행하는 메소드
 	 * @param scan Scanner 사용자 입력
+	 */
+	private static void analyzeSoldOutStuff(Scanner scan) {
+		String startDate = null;
+		String endDate = null;
+
+		// 처음 판매된 물품, 마지막에 판매된 물품을 찾음
+		for (SoldOutStuff stuff : SoldOutStuffData.soldOutList) {
+			String soldDate = stuff.getWhen();
+
+			if (startDate == null || soldDate.compareTo(startDate) < 0) {
+				startDate = soldDate;
+			}
+			if (endDate == null || soldDate.compareTo(endDate) > 0) {
+				endDate = soldDate;
+			}
+		}
+
+		// 판매중인 물품 현황 출력
+		displayStuff(scan, SoldOutStuffData.soldOutList, startDate, endDate);
+	}
+
+	/**
+	 * 물품 현황을 출력하는 메소드
+	 * @param scan      Scanner 사용자 입력
+	 * @param stuffList 물품 정보 객체 리스트
 	 * @param startDate 검색 시작 날짜
-	 * @param endDate 검색 종료 날짜
+	 * @param endDate   검색 종료 날짜
 	 */
-	private static void displayStuff(Scanner scan, String startDate, String endDate) {
-	    int count = 0;
-	    boolean hasItems = false;
-	    int[] category = new int[12];
-		String[] name = new String[SellingStuffData.sellingList.size()];
+	private static void displayStuff(Scanner scan, List<? extends Stuff> stuffList, String startDate, String endDate) {
+		int stuffCount = 0;
+		int[] stuffCategory = new int[12]; // 카테고리별 물품 개수 배열
+		int[] topStuffCategory; // 인기 있는 카테고리 배열
 
-	    System.out.printf("%s ~ %s까지의 매물 현황을 조회합니다.\n", startDate, endDate);
-	    scan.nextLine();
+		String[] stuffName = new String[stuffList.size()]; // 물품 이름 배열
+		String[] topStuffName = new String[5]; // 인기 있는 물품 이름 배열
+		int[] topStuffCount = new int[5]; // 인기 있는 물품 판매 수 배열
 
-	    for (SellingStuff item : SellingStuffData.sellingList) {
-	        updateCategoryCount(category, item);
-	        name[count] = item.getName();
-	        count++;
-	        hasItems = true;
-	    }
+		// 물품 정보 업데이트 및 물품 개수 계산
+		stuffCount = updateStuffInfo(stuffList, stuffCategory, stuffName);
 
-	    if (!hasItems) {
-	        System.out.println("판매중인 물품이 없습니다.");
-	        scan.nextLine();
-	    } else {
-	        AdminMenu.printMenu("물품 현황 조회");
-	        System.out.printf("검색 기간: %s ~ %s\n", startDate, endDate);
-	        System.out.printf("판매중인 전체 물품 수: %,d개\n", count);
+		System.out.printf("%s ~ %s까지의 매물 현황을 조회합니다.\n", startDate, endDate);
+		scan.nextLine();
 
-	        int[] topCategories = calculateTopCategory(category);
+		if (stuffCount <= 0) {
+			System.out.println("판매중인 물품이 없습니다.");
+			scan.nextLine();
+		} else {
+			AdminMenu.printMenu("물품 현황 조회");
+			System.out.printf("검색 기간: %s ~ %s\n", startDate, endDate);
+			System.out.printf("판매중인 전체 물품 수: %,d개\n", stuffCount);
 
-	        displayCategoryRanking(topCategories);
+			topStuffCategory = calculateTopCategory(stuffCategory); // 상위 카테고리 계산
+			displayCategoryRanking(topStuffCategory); // 카테고리별 순위 출력
 
-	        String[] popularItems = new String[5];
-	        int[] popularItemCounts = new int[5];
+			// 인기 있는 물품 이름 업데이트
+			for (Stuff stuff : stuffList) {
+				updateTopStuff(stuff, topStuffName, topStuffCount, stuffCategory);
+			}
 
-	        for (SellingStuff item : SellingStuffData.sellingList) {
-	            updatePopularItem(item, popularItems, popularItemCounts, category);
-	        }
+			displayTopStuffRanking(topStuffName, topStuffCount); // 인기 물품 순위 출력
 
-	        displayPopularItemRanking(popularItems, popularItemCounts);
-
-	        AdminMenu.printLine();
-	        System.out.println("물품 현황 조회가 완료되었습니다.");
-	        scan.nextLine();
-	    }
+			AdminMenu.printLine();
+			System.out.println("물품 현황 조회가 완료되었습니다.");
+			scan.nextLine();
+		}
 	}
 
 	/**
-	 * 물품의 카테고리별 개수를 업데이트하는 메소드.
-	 * @param category 카테고리 배열
-	 * @param item 물품 정보 객체
+	 * 물품 정보를 업데이트하고 물품 개수를 계산하는 메소드
+	 * @param stuffList     물품 정보 객체 리스트
+	 * @param stuffCategory 카테고리별 물품 개수를 저장하는 배열
+	 * @param stuffName     물품 이름을 저장하는 배열
+	 * @return 업데이트된 물품 개수
 	 */
-	private static void updateCategoryCount(int[] category, SellingStuff item) {
-	    int index = Integer.parseInt(item.getCategory()) - 1;
-	    category[index] += 1;
+	private static int updateStuffInfo(List<? extends Stuff> stuffList, int[] stuffCategory, String[] stuffName) {
+		int stuffCount = 0;
+
+		for (Stuff stuff : stuffList) {
+			stuffCount++; // 물품 개수 누적
+
+			updateCategoryCount(stuffCategory, stuff); // 카테고리별 물품 개수 업데이트
+
+			stuffName[stuffCount] = stuff.getName(); // 물품 이름 저장
+		}
+
+		return stuffCount;
 	}
 
 	/**
-	 * 인기 물품을 업데이트하는 메소드.
-	 * @param item 물품 정보 객체
-	 * @param popularItems 인기 물품 배열
-	 * @param popularItemCounts 인기 물품 카운트 배열
-	 * @param category 카테고리 배열
+	 * 물품의 카테고리별 개수를 업데이트하는 메소드
+	 * @param stuffCategory 카테고리 배열
+	 * @param stuff         물품 정보 객체
 	 */
-	private static void updatePopularItem(SellingStuff item, String[] popularItems, int[] popularItemCounts, int[] category) {
-	    for (int i = 0; i < 5; i++) {
-	        if (popularItems[i] == null || popularItemCounts[i] < category[Integer.parseInt(item.getCategory()) - 1]) {
-	            for (int j = 4; j > i; j--) {
-	                popularItems[j] = popularItems[j - 1];
-	                popularItemCounts[j] = popularItemCounts[j - 1];
-	            }
-	            popularItems[i] = item.getName();
-	            popularItemCounts[i] = category[Integer.parseInt(item.getCategory()) - 1];
-	            break;
-	        }
-	    }
+	private static void updateCategoryCount(int[] stuffCategory, Stuff stuff) {
+		int index = Integer.parseInt(stuff.getCategory()) - 1;
+
+		stuffCategory[index] += 1;
 	}
 
 	/**
-	 * 인기 물품 순위를 출력하는 메소드.
-	 * @param popularItems 인기 물품 배열
-	 * @param popularItemCounts 인기 물품 카운트 배열
+	 * 인기 물품을 업데이트하는 메소드
+	 * @param stuff         물품 정보 객체
+	 * @param topStuffName  인기 물품 배열
+	 * @param topStuffCount 인기 물품 카운트 배열
+	 * @param stuffCategory 카테고리 배열
 	 */
-	private static void displayPopularItemRanking(String[] popularItems, int[] popularItemCounts) {
-	    System.out.println();
-	    System.out.println("[인기 물품 순위]");
-	    for (int i = 0; i < 5; i++) {
-	        if (popularItems[i] != null) {
-	            System.out.printf("%d위 %s - 물품 수: %d\n", i + 1, popularItems[i], popularItemCounts[i]);
-	        }
-	    }
+	private static void updateTopStuff(Stuff stuff, String[] topStuffName, int[] topStuffCount, int[] stuffCategory) {
+		for (int i = 0; i < 5; i++) {
+			if (topStuffName[i] == null
+					|| topStuffCount[i] < stuffCategory[Integer.parseInt(stuff.getCategory()) - 1]) {
+				for (int j = 4; j > i; j--) {
+					topStuffName[j] = topStuffName[j - 1];
+					topStuffCount[j] = topStuffCount[j - 1];
+				}
+				topStuffName[i] = stuff.getName();
+				topStuffCount[i] = stuffCategory[Integer.parseInt(stuff.getCategory()) - 1];
+				break;
+			}
+		}
 	}
-	
+
 	/**
-	 * 인기 카테고리 순위를 계산하는 메소드.
-	 * @param category 카테고리 배열
+	 * 인기 물품 순위를 출력하는 메소드
+	 * @param topStuffName  인기 물품 배열
+	 * @param topStuffCount 인기 물품 카운트 배열
+	 */
+	private static void displayTopStuffRanking(String[] topStuffName, int[] topStuffCount) {
+		System.out.println();
+		System.out.println("[인기 물품 순위]");
+
+		for (int i = 0; i < 5; i++) {
+			if (topStuffName[i] != null) {
+				System.out.printf("%d위 %s - 물품 수: %d\n", i + 1, topStuffName[i], topStuffCount[i]);
+			}
+		}
+	}
+
+	/**
+	 * 인기 카테고리 순위를 계산하는 메소드
+	 * @param stuffCategory 카테고리 배열
 	 * @return 상위 카테고리 배열
 	 */
-	private static int[] calculateTopCategory(int[] category) {
-	    int[] topCategory = new int[5];
-	    for (int i = 0; i < 5; i++) {
-	        int maxCount = -1;
-	        int maxIndex = -1;
-	        for (int j = 0; j < category.length; j++) {
-	            if (category[j] > maxCount && !contains(topCategory, j)) {
-	                maxCount = category[j];
-	                maxIndex = j;
-	            }
-	        }
-	        topCategory[i] = maxIndex;
-	    }
-	    return topCategory;
+	private static int[] calculateTopCategory(int[] stuffCategory) {
+		int[] topCategory = new int[5];
+		for (int i = 0; i < 5; i++) {
+			int maxCount = -1;
+			int maxIndex = -1;
+			for (int j = 0; j < stuffCategory.length; j++) {
+				if (stuffCategory[j] > maxCount && !contains(topCategory, j)) {
+					maxCount = stuffCategory[j];
+					maxIndex = j;
+				}
+			}
+			topCategory[i] = maxIndex;
+		}
+		return topCategory;
 	}
 
 	/**
-	 * 인기 카테고리 순위를 출력하는 메소드.
-	 * @param topCategories 상위 카테고리 배열
+	 * 인기 카테고리 순위를 출력하는 메소드
+	 * @param topCategorie 상위 카테고리 배열
 	 */
-	private static void displayCategoryRanking(int[] topCategories) {
-	    System.out.println();
-	    System.out.println("[인기 카테고리 순위]");
-	    for (int i = 0; i < 5; i++) {
-	        System.out.printf("%d위 %s\n", i + 1, getCategoryName(topCategories[i] + 1));
-	    }
+	private static void displayCategoryRanking(int[] topCategorie) {
+		System.out.println();
+		System.out.println("[인기 카테고리 순위]");
+		for (int i = 0; i < 5; i++) {
+			System.out.printf("%d위 %s\n", i + 1, getCategoryName(topCategorie[i] + 1));
+		}
 	}
 
 	/**
-	 * 배열 내에서 특정 값이 존재하는지 확인하는 메소드.
+	 * 배열 내에서 특정 값이 존재하는지 확인하는 메소드
 	 * @param array 배열
 	 * @param value 확인할 값
 	 * @return 값의 존재 여부
@@ -204,12 +270,12 @@ public class StuffCheck {
 	}
 
 	/**
-	 * 카테고리 번호에 해당하는 카테고리 이름을 반환하는 메소드.
-	 * @param category 카테고리 번호
+	 * 카테고리 번호에 해당하는 카테고리 이름을 반환하는 메소드
+	 * @param stuffCategory 카테고리 번호
 	 * @return 카테고리 이름
 	 */
-	private static String getCategoryName(int category) {
-		switch (category) {
+	private static String getCategoryName(int stuffCategory) {
+		switch (stuffCategory) {
 		case 1:
 			return "가구/인테리어/생활/주방";
 		case 2:
@@ -236,156 +302,4 @@ public class StuffCheck {
 			return "카테고리 미등록";
 		}
 	}
-
-	/*
-	private static void displayStuff(Scanner scan, String startDate, String endDate) {
-		int count = 0;
-		boolean hasItems = false; // 물품이 있는지 확인
-		int[] category = new int[12];
-		String[] name = new String[SellingStuffData.sellingList.size()];
-
-		System.out.printf("%s ~ %s까지의 매물 현황을 조회합니다.\n", startDate, endDate);
-		scan.nextLine();
-
-		for (SellingStuff item : SellingStuffData.sellingList) {
-			category[Integer.parseInt(item.getCategory()) - 1] += 1;
-			name[count] = item.getName();
-			count++;
-			hasItems = true;
-		}
-
-		if (!hasItems) {
-			// 물품이 없을 경우
-			System.out.println("판매중인 물품이 없습니다.");
-			scan.nextLine();
-		} else {
-			String[] popularItems = new String[5];
-			int[] popularItemCounts = new int[5];
-
-			AdminMenu.printMenu("물품 현황 조회");
-			System.out.printf("검색 기간: %s ~ %s\n", startDate, endDate);
-			System.out.printf("판매중인 전체 물품 수: %,d개\n", count);
-
-			int[] topCategories = new int[5];
-			for (int i = 0; i < 5; i++) {
-				int maxCount = -1;
-				int maxIndex = -1;
-				for (int j = 0; j < category.length; j++) {
-					if (category[j] > maxCount && !contains(topCategories, j)) {
-						maxCount = category[j];
-						maxIndex = j;
-					}
-				}
-				topCategories[i] = maxIndex;
-			}
-
-			System.out.println();
-			System.out.println("[인기 카테고리 순위]");
-			for (int i = 0; i < 5; i++) {
-				System.out.printf("%d위 %s\n", i + 1, getCategoryName(topCategories[i] + 1));
-			}
-
-			for (SellingStuff item : SellingStuffData.sellingList) {
-				for (int i = 0; i < 5; i++) {
-					if (popularItems[i] == null
-							|| popularItemCounts[i] < category[Integer.parseInt(item.getCategory()) - 1]) {
-						for (int j = 4; j > i; j--) {
-							popularItems[j] = popularItems[j - 1];
-							popularItemCounts[j] = popularItemCounts[j - 1];
-						}
-						popularItems[i] = item.getName();
-						popularItemCounts[i] = category[Integer.parseInt(item.getCategory()) - 1];
-						break;
-					}
-				}
-			}
-
-			System.out.println();
-			System.out.println("[인기 물품 순위]");
-			for (int i = 0; i < 5; i++) {
-				if (popularItems[i] != null) {
-					System.out.printf("%d위 %s - 물품 수: %d\n", i + 1, popularItems[i], popularItemCounts[i]);
-				}
-			}
-			
-			AdminMenu.printLine();
-			System.out.println("물품 현황 조회가 완료되었습니다.");
-			scan.nextLine();
-		}
-	}
-	*/
-	
-	/*
-	private static void stuffDateSearch(Scanner scan) {
-		System.out.println("날짜 입력 형식: XXXXXXXX or XXXX-XX-XX (년-월-일)");
-		System.out.print("시작 날짜 입력: ");
-		String startDate = scan.nextLine();
-		System.out.print("끝 날짜 입력: ");
-		String endDate = scan.nextLine();
-
-		if (!isValidDate(startDate) || !isValidDate(endDate)) {
-			System.out.println("유효하지 않은 날짜 형식입니다.");
-			scan.nextLine();
-			return;
-		}
-
-		displayStuff(scan, startDate, endDate);
-	}
-	*/
-
-	/*
-	private static boolean isValidDate(String date) {
-		Pattern pattern = Pattern.compile(DATE_PATTERN);
-		Matcher matcher = pattern.matcher(date);
-		return matcher.matches();
-	}
-	*/
-
-	/*
-	private static boolean isWithinDateRange(String sellDate, String startDate, String endDate) {
-		Calendar setStartDate = parseDate(startDate);
-		Calendar setEndDate = parseDate(endDate);
-		Calendar setSellDate = parseDate(sellDate);
-
-		int sellYear = setSellDate.get(Calendar.YEAR);
-	    int sellMonth = setSellDate.get(Calendar.MONTH);
-	    int sellDay = setSellDate.get(Calendar.DAY_OF_MONTH);
-
-	    int startYear = setStartDate.get(Calendar.YEAR);
-	    int startMonth = setStartDate.get(Calendar.MONTH);
-	    int startDay = setStartDate.get(Calendar.DAY_OF_MONTH);
-
-	    int endYear = setEndDate.get(Calendar.YEAR);
-	    int endMonth = setEndDate.get(Calendar.MONTH);
-	    int endDay = setEndDate.get(Calendar.DAY_OF_MONTH);
-
-	    boolean withinYearRange = (sellYear >= startYear && sellYear <= endYear);
-	    boolean withinMonthRange = (sellMonth >= startMonth && sellMonth <= endMonth);
-	    boolean withinDayRange = (sellDay >= startDay && sellDay <= endDay);
-	  
-		return (setSellDate.equals(setStartDate) || setSellDate.after(setStartDate))
-				&& (setSellDate.equals(setEndDate) || setSellDate.before(setEndDate));
-	}
-	*/
-	/*
-	private static Calendar parseDate(String date) {
-		int year, month, day;
-
-		if (date.length() == 8) {
-			year = Integer.parseInt(date.substring(0, 4));
-			month = Integer.parseInt(date.substring(4, 6));
-			day = Integer.parseInt(date.substring(6, 8));
-		} else {
-			String[] dateComponents = date.split("-");
-			year = Integer.parseInt(dateComponents[0]);
-			month = Integer.parseInt(dateComponents[1]);
-			day = Integer.parseInt(dateComponents[2]);
-		}
-
-		Calendar calendar = Calendar.getInstance();
-		calendar.set(year, month, day);
-
-		return calendar;
-	}
-	*/
 }

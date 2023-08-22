@@ -2,7 +2,7 @@ package com.project.cow.data.object;
 
 import com.project.cow.admin.StuffCheck.Stuff;
 
-public class SellingStuff implements Stuff {
+public class SoldOutStuff implements Stuff {
 
 	private String no;
 	private String name;
@@ -11,14 +11,13 @@ public class SellingStuff implements Stuff {
 	private String method;
 	private String payment;
 	private String condition;
-	private String from;
-	private String until;
-	private String like;
+	private String when;
 	private String sellerNo;
-	
-	public SellingStuff(String no, String name, String category, String price, String method, String payment,
-			String condition, String from, String until, String like, String sellerNo) {
-		
+	private String buyerNo;
+
+	public SoldOutStuff(String no, String name, String category, String price, String method, String payment,
+			String condition, String when, String sellerNo, String buyerNo) {
+		super();
 		this.no = no;
 		this.name = name;
 		this.category = category;
@@ -26,10 +25,9 @@ public class SellingStuff implements Stuff {
 		this.method = method;
 		this.payment = payment;
 		this.condition = condition;
-		this.from = from;
-		this.until = until;
-		this.like = like;
+		this.when = when;
 		this.sellerNo = sellerNo;
+		this.buyerNo = buyerNo;
 	}
 
 	public String getNo() {
@@ -88,28 +86,12 @@ public class SellingStuff implements Stuff {
 		this.condition = condition;
 	}
 
-	public String getFrom() {
-		return from;
+	public String getWhen() {
+		return when;
 	}
 
-	public void setFrom(String from) {
-		this.from = from;
-	}
-
-	public String getUntil() {
-		return until;
-	}
-
-	public void setUntil(String until) {
-		this.until = until;
-	}
-
-	public String getLike() {
-		return like;
-	}
-
-	public void setLike(String like) {
-		this.like = like;
+	public void setWhen(String when) {
+		this.when = when;
 	}
 
 	public String getSellerNo() {
@@ -120,12 +102,18 @@ public class SellingStuff implements Stuff {
 		this.sellerNo = sellerNo;
 	}
 
+	public String getBuyerNo() {
+		return buyerNo;
+	}
+
+	public void setBuyerNo(String buyerNo) {
+		this.buyerNo = buyerNo;
+	}
+
 	@Override
 	public String toString() {
-		return "[no=" + no + ", name=" + name + ", category=" + category + ", price=" + price + ", method="
-				+ method + ", payment=" + payment + ", condition=" + condition + ", from=" + from + ", until=" + until
-				+ ", like=" + like + ", sellerNo=" + sellerNo + "]";
+		return "SoldOutStuff [no=" + no + ", name=" + name + ", category=" + category + ", price=" + price + ", method="
+				+ method + ", payment=" + payment + ", condition=" + condition + ", when=" + when + ", sellerNo="
+				+ sellerNo + ", buyerNo=" + buyerNo + "]";
 	}
-	
-	
 }
