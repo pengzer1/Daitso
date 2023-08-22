@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 import com.project.cow.constant.Constant;
 import com.project.cow.data.LikeItemData;
-import com.project.cow.data.Member;
+import com.project.cow.data.object.Member;
 import com.project.cow.data.SellingStuffData;
 import com.project.cow.data.object.SellingStuff;
 import com.project.cow.login.Login;

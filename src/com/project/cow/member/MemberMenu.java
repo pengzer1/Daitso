@@ -35,10 +35,17 @@ public class MemberMenu {
 			sellMenu.Screen();
 		}else if (sel.equals("3")) {
 
+			
+			
+			
 		}else if(sel.equals("4")){
 			Login.logout();
 			
 			
+		}
+		else {
+			System.out.println("잘못된 입력입니다. 다시 입력해주세요.");
+			membermenu();
 		}
 		
 	}

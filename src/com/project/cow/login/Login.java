@@ -4,13 +4,13 @@ import java.util.Scanner;
 
 import com.project.cow.Main;
 import com.project.cow.data.Data;
-import com.project.cow.data.Member;
+import com.project.cow.data.object.Member;
 import com.project.cow.member.MemberMenu;
 
 public class Login {
 
 	public static Member login; //로그인을 성공한 회원의 객체
-
+	
 	public static void login() {
 		
 		Scanner scan = new Scanner(System.in);

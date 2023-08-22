@@ -3,8 +3,10 @@ package com.project.cow;
 import java.util.Scanner;
 
 import com.project.cow.data.Data;
+import com.project.cow.data.KeyWordData;
 import com.project.cow.data.LikeItemData;
 import com.project.cow.data.SellingStuffData;
+import com.project.cow.data.object.KeyWord;
 import com.project.cow.find.FindID;
 import com.project.cow.find.FindPW;
 import com.project.cow.join.Join;
@@ -17,6 +19,7 @@ public class Main {
 		Data.memberLoad();
 		SellingStuffData.load();
 		LikeItemData.likeItemLoad();
+		KeyWordData.keyWordListLoad();
 		
 		MainScreen();
 		

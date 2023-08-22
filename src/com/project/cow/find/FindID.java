@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import com.project.cow.data.Member;
+import com.project.cow.data.object.Member;
 
 public class FindID {
 

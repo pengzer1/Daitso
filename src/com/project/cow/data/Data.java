@@ -1,6 +1,7 @@
 package com.project.cow.data;
 import java.io.*;
 import java.util.*;
+import com.project.cow.data.object.Member;
 
 public class Data {  //txt 파일을 받아서 조작하고 데이터 입출력을 담당.
 	public static ArrayList<Member> list;  //회원배열

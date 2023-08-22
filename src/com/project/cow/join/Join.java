@@ -5,7 +5,7 @@ import java.util.Scanner;
 import java.util.regex.Pattern;
 
 import com.project.cow.data.Data;
-import com.project.cow.data.Member;
+import com.project.cow.data.object.Member;
 
 public class Join {
 	

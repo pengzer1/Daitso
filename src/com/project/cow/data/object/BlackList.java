@@ -13,10 +13,11 @@ public class BlackList {  //블랙리스트 1명의 정보
 	private String money;
 	private String grade;
 	private String yellowCard;
-	private String warningWord;
+	private String ago;
+	private String van;
 	
 	public BlackList(String no, String name, String id, String pwd, String tel, String jumin, String email,
-			String address, String account, String money, String grade, String yellowCard, String warningWord) {
+			String address, String account, String money, String grade, String yellowCard, String ago, String van) {
 		this.no = no;
 		this.name = name;
 		this.id = id;
@@ -29,7 +30,8 @@ public class BlackList {  //블랙리스트 1명의 정보
 		this.money = money;
 		this.grade = grade;
 		this.yellowCard = yellowCard;
-		this.warningWord = warningWord;
+		this.ago = ago;
+		this.van = van;
 	}
 
 	public String getNo() {
@@ -104,18 +106,24 @@ public class BlackList {  //블랙리스트 1명의 정보
 	public void setYellowCard(String yellowCard) {
 		this.yellowCard = yellowCard;
 	}
-	public String getWarningWord() {
-		return warningWord;
+	public String getAgo() {
+		return ago;
 	}
-	public void setWarningWord(String warningWord) {
-		this.warningWord = warningWord;
+	public void setAgo(String ago) {
+		this.ago = ago;
 	}
-
+	public String getVan() {
+		return van;
+	}
+	public void setVan(String van) {
+		this.van = van;
+	}
+	
 	@Override
 	public String toString() {
 		return "BlackList [no=" + no + ", name=" + name + ", id=" + id + ", pwd=" + pwd + ", tel=" + tel + ", jumin="
 				+ jumin + ", email=" + email + ", address=" + address + ", account=" + account + ", money=" + money
-				+ ", grade=" + grade + ", yellowCard=" + yellowCard + ", warningWord=" + warningWord + "]";
+				+ ", grade=" + grade + ", yellowCard=" + yellowCard + ", ago=" + ago + ", van=" + van +"]";
 	}
 	
 }
