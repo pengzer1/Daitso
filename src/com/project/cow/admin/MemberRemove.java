@@ -67,7 +67,7 @@ public class MemberRemove {
 	 */
 	private static void performMemberDeletion(Scanner scan, String[] selectedMember) {
 		MemberListDisplay.memberDataList.remove(selectedMember);
-		updateMemberFile(); // 파일에서 회원 정보 업데이트
+		updateMemberFile(); // 회원 정보 파일 업데이트
 		System.out.println("회원이 삭제되었습니다.");
 		scan.nextLine();
 	}
