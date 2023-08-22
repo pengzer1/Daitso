@@ -47,8 +47,7 @@ class AdminMenu {
 				return;
 			}
 		}
-		// TODO (합칠 때 main -> adminMain으로 메소드 이름 수정)
-		// TODO 로그인 기능에서 통합할 때 adminMain 메소드를 실행하게 하면 됩니다!
+		// TODO 로그인 기능에서 통합할 때 adminMain 메소드로 이름을 변경하고 실행하게 하면 됩니다!
 		// TODO 전체 회원 정보를 로드하는 부분을 다른 클래스에서 만들 예정이므로 추후 수정해야 할 수 있습니다.
 	}
 
