@@ -12,14 +12,14 @@ class AdminMenu {
 	 * - 사용자의 선택에 따라 해당 기능을 실행하거나 메인 메뉴로 돌아갈 수 있다.
 	 */
 
-	public static void main(String[] args) {
+	public static void adminmain(String[] args) {
 		MemberListDisplay.loadMemberInfo(); // 전체 회원 정보 로드
 		MemberQuestion.loadFAQInfo(); // FAQ 정보 로드
 
 		adminMain(); // 관리자 메인 메뉴
 		
-		// TODO 로그인 기능에서 통합할 때 main 메소드 내용을 adminMain 메소드로 이동한다.
-		// TODO 전체 회원 정보를 로드하는 부분을 다른 클래스에서 만들 예정이므로 추후 수정한다.
+		// TODO 로그인 기능에서 통합할 때 adminMain 메소드를 실행하게 하면 됩니다!
+		// TODO 전체 회원 정보를 로드하는 부분을 다른 클래스에서 만들 예정이므로 추후 수정해야 할 수 있습니다.
 	}
 
 	/**
