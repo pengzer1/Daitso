@@ -2,6 +2,8 @@ package com.project.cow.mypage;
 
 import java.util.Scanner;
 
+import com.project.cow.member.MemberMenu;
+
 public class MyPageList {
     //1,남승승,4chyz,iltxz3meo,010-2109-7033,580418-2907053,v6ztl78f@nate.com,광진구,사아-8689959395814,219000,2등급
     // 번호 , 이름 , 아이디 , 비번 , 전번 , 주민번호 , 이메일 , 동네 , 계좌 , 돈 , 등급
@@ -11,7 +13,7 @@ public class MyPageList {
         scan = new Scanner(System.in);
     }
 
-    User user ; // 로그인유저
+    User user; // 로그인유저
     public MyPageList(User user){ // 로그인유저 생성자주입
         this.user = user;
     }
@@ -72,7 +74,7 @@ public class MyPageList {
             DeleteAccount deleteAccount = new DeleteAccount();
             deleteAccount.deleteAccountScreen(user);
         } else if (input.equals("0")) {
-            // 돌아가기
+            MemberMenu.membermenu();
         } else {
             System.out.println("1~6의 번호를 입력해주세요");
             myPageScreen();

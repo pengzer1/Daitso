@@ -16,9 +16,7 @@ public class MemberSearch {
 	 * @param scan Scanner 사용자 입력
 	 */
 	public static void searchMember(Scanner scan) {
-		System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
-		System.out.println("                    회원 검색");
-		System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+		AdminMenu.printMenu("회원 검색");
 
 		System.out.print("검색할 회원 번호, 이름 또는 아이디 입력: ");
 		String searchKeyword = scan.nextLine().trim();
@@ -34,10 +32,7 @@ public class MemberSearch {
 	 */
 	private static void displaySearchResult(Scanner scan, String keyword) {
 		int foundCount = 0;
-
-		System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
-		System.out.println("                    회원 목록");
-		System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+		AdminMenu.printMenu("회원 목록");
 
 		MemberListDisplay.displayMemberHeader(); // 헤더 출력
 
@@ -48,7 +43,7 @@ public class MemberSearch {
 			}
 		}
 
-		System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+		AdminMenu.printLine();
 		if (foundCount == 0) {
 			System.out.println("검색 결과가 없습니다.");
 		} else {
