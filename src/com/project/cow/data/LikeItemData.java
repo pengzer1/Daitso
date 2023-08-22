@@ -11,7 +11,7 @@ public class LikeItemData {
 	
 	public static void likeItemLoad() {   // 찜목록txt를 배열에 load.
 		try {
-			BufferedReader reader= new BufferedReader(new FileReader("C:\\class\\code\\java\\Daitso\\data\\likeItem.txt"));
+			BufferedReader reader= new BufferedReader(new FileReader("data\\likeItem.txt"));
 			
 			String line=null;
 			while((line=reader.readLine()) != null) {
@@ -29,10 +29,10 @@ public class LikeItemData {
 	
 	public static void likeItemSave() {   // 배열에 새로운 내용들을 반영시켜 저장하기.
 		try {
-			BufferedWriter writer = new BufferedWriter(new FileWriter("C:\\class\\code\\java\\Daitso\\data\\likeItem.txt"));
+			BufferedWriter writer = new BufferedWriter(new FileWriter("data\\likeItem.txt"));
 			
 			for(LikeItem likeItem : LikeItemData.likeList) {
-				writer.write(String.format("%s,%s,%s,%s\r\n", likeItem.getNo(), likeItem.getItemNo(), likeItem.getBuyerNo()));
+				writer.write(String.format("%s,%s,%s\r\n", likeItem.getNo(), likeItem.getItemNo(), likeItem.getBuyerNo()));
 			}  //배열에 새로운 내용들을 반영시키기.
 			
 			writer.close();

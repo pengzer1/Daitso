@@ -4,13 +4,15 @@ import java.util.Scanner;
 
 import com.project.cow.constant.Constant;
 import com.project.cow.data.LikeItemData;
+import com.project.cow.data.object.Member;
 import com.project.cow.data.SellingStuffData;
 import com.project.cow.data.object.SellingStuff;
+import com.project.cow.login.Login;
 
 public class LikeItem {
-//	TODO 추후 로그인 된 사용자 번호로 변경해야 함
-	private static final int BUYER = 3702;
+	Member buyer = Login.login;
 	
+	String num = "";
 	Scanner scan = new Scanner(System.in);
 	
 	public void Screen() {
@@ -21,7 +23,7 @@ public class LikeItem {
 		
 		System.out.println("[번호]\t[제목]\t\t[카테고리]\t[물건 상태]\t[판매 가격]\t[판매자명]\t[상품 거래 방식]\t[결제 방식]\t[등록 날짜]\t[마감 날짜]\t[찜]");
 		for (com.project.cow.data.object.LikeItem likeItem : LikeItemData.likeList) {
-			if (likeItem.getBuyerNo().equals(BUYER + "")) {
+			if (likeItem.getBuyerNo().equals(buyer.getNo())) {
 				String no = likeItem.getItemNo();
 				
 				for(SellingStuff s : SellingStuffData.sellingList) {
@@ -34,26 +36,30 @@ public class LikeItem {
 		}
 		
 		System.out.println();
-		System.out.println("원하시는 찜 상품을 골라주세요.");
+		System.out.println("원하시는 찜 상품을 골라주세요.\r\n초기화면으로 돌아가려면 0을 입력하세요.");
 		System.out.println();
 		
-		GetStuff();
+		this.num = GetStuff();
 		
 		System.out.println("구매 활동을 선택하세요.");
 		
 		Check();
 	}
 
-	private void GetStuff() {
+	private String GetStuff() {
 		System.out.print("상품번호입력: ");
 		String no = scan.nextLine();
+		
+		if (no.equals("0")) {
+			BuyMenu.FirstScreen();
+		}
 		
 		com.project.cow.data.object.LikeItem likeItem = new com.project.cow.data.object.LikeItem(null, "", null);
 		
 		for (com.project.cow.data.object.LikeItem l : LikeItemData.likeList) {
-			if (l.getBuyerNo().equals(BUYER + "") && l.getItemNo().equals(no)) {
+			if (l.getBuyerNo().equals(buyer.getNo()) && l.getItemNo().equals(no)) {
 				likeItem = l;
-				break;
+				return no;
 			}
 		}
 		
@@ -64,10 +70,11 @@ public class LikeItem {
 			GetStuff();
 		}
 		
+		return "";
 	}
 
 	private void Check() {
-		System.out.println("1.물품 구매\t2.물품 검색\t3.물품 정렬\r\n4.찜 물품 삭제\t0.돌아가기");
+		System.out.println("1.물품 구매\t2.찜 물품 삭제\t0.돌아가기");
 		System.out.print("번호입력: ");
 		String check = scan.nextLine();
 		
@@ -75,12 +82,6 @@ public class LikeItem {
 			
 		}
 		else if (check.equals("2")) {
-			
-		}
-		else if (check.equals("3")) {
-			
-		}
-		else if (check.equals("4")) {
 			DeleteLikeItem();
 		}
 		else if (check.equals("0")) {
@@ -105,8 +106,29 @@ public class LikeItem {
 		
 		String check = scan.nextLine();
 		
+		int index = 0;
+		
 		if (check.equals("1")) {
-//			String
+			
+			for (com.project.cow.data.object.LikeItem likeItem : LikeItemData.likeList) {
+				if (likeItem.getItemNo().equals(num) && likeItem.getBuyerNo().equals(buyer.getNo())) {
+					index++;
+					break;
+				}
+				index++;
+			}
+			
+			for (int i = index; i < LikeItemData.likeList.size(); i++) {
+				LikeItemData.likeList.set(i - 1, LikeItemData.likeList.get(i));
+			}
+			LikeItemData.likeList.remove(LikeItemData.likeList.size() - 1);
+			System.out.println();
+			System.out.println("삭제가 완료되었습니다.");
+			System.out.println("Enter를 누르면 찜 목록 화면으로 돌아갑니다.");
+			
+			scan.nextLine();
+			
+			Screen();
 		}
 		else if (check.equals("0")) {
 			BuyMenu.FirstScreen();
