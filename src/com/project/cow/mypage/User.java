@@ -1,9 +1,5 @@
 package com.project.cow.mypage;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 import java.util.function.Function;
 
 public class User {
