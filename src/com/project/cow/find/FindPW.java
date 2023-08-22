@@ -10,8 +10,22 @@ import com.project.cow.data.Member;
 
 public class FindPW {
 	
+	/*
+	  비밀번호 찾기 클래스
+	  @author 이슬아
+	  이 클래스는 입력된 아이디, 이름, 전화번호로 회원 비밀번호를 찾는 기능을 제공합니다.
+	  기능:
+	  - 입력된 아이디, 이름, 전화번호로 가입 시 등록한 회원 비밀번호를 찾아 출력합니다.
+	  - 회원 정보 파일에서 데이터를 읽어와 검색을 수행합니다.
+	 */
+	
 
 	public static void findpw() {
+		
+		/*
+	     * 비밀번호 찾기 기능을 수행하는 메인 메소드
+	     * @param scan Scanner 객체를 사용하여 사용자 입력을 처리합니다.
+	     */
 		
 		
 		Scanner scan = new Scanner(System.in);
@@ -57,7 +71,12 @@ public class FindPW {
 	            scan.nextLine();
 	        }
     }
-
+	
+	 /*
+     * 회원 정보를 파일에서 읽어와 ArrayList로 반환하는 메소드
+     * @param filename 회원 정보가 저장된 파일의 경로
+     * @return ArrayList<Member> 회원 정보가 저장된 ArrayList
+     */
 
 	private static ArrayList<Member> memberpwd(String filename) {
         ArrayList<Member> members = new ArrayList<>();

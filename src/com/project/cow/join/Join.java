@@ -6,7 +6,22 @@ import java.util.regex.Pattern;
 
 import com.project.cow.data.Data;
 import com.project.cow.data.Member;
+import com.project.cow.data.object.BlackList;
 
+
+/*
+ * 회원가입 클래스
+ * 이 클래스는 사용자로부터 입력을 받아 회원 정보를 등록하는 기능을 제공합니다.
+ * 기능:
+ * - 아이디, 비밀번호, 이름, 주민등록번호, 전화번호, 이메일, 지역, 계좌번호를 입력받아 회원 정보를 등록합니다.
+ * - 중복된 아이디는 등록할 수 없습니다.
+ * 목적:
+ * - 사용자의 정보를 입력받아 회원으로 등록하여 서비스 이용을 가능하게 합니다.
+ * 매개변수:
+ * - 없음
+ * 반환 값:
+ * - 없음
+ */
 public class Join {
 	
     private String id;
@@ -17,6 +32,11 @@ public class Join {
     private String email;
     private String address;
     private String account;
+    
+    /*
+      회원가입 기능을 수행하는 메인 메소드
+      @param scan Scanner 객체를 사용하여 사용자 입력을 처리합니다.
+     */
 
 	public void join() {
 		
@@ -28,7 +48,7 @@ public class Join {
 	      System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
 	      
 	      
-	   
+	      // 아이디 입력 받음
 	      id();
 	      
 
@@ -39,18 +59,19 @@ public class Join {
 	      System.out.println("계속하려면 엔터를 입력하시오.");
 	      scan.nextLine();
 	      
-	      
+	      // 회원 번호 생성 로직
 	      String maxNo = Data.list.stream()
 	               .map(s->s.getNo())
 	               .max((a,b)->Integer.parseInt(a)-Integer.parseInt(b))
 	               .get();
 	   int no = Integer.parseInt(maxNo)+1;
 	   
+	   // 회원 등급 설정 및 생성
 	   String maxmemberNo = Data.list.stream()
 	                  .map(s->s.getNo())
 	                  .max((a,b)->Integer.parseInt(a)-Integer.parseInt(b))
 	                  .get();
-
+	   
 	   int memberNo = Integer.parseInt(maxmemberNo)+1;
 	      
 	        // 회원 정보 생성
@@ -246,6 +267,8 @@ public class Join {
             
             if(month >= 1 && month <= 12 ) {
             	if (day >= 1 && day <= 30 ) {
+            	
+            		
             		this.jumin=jumin;
       	    	  System.out.println();
       	    	  email();
@@ -351,7 +374,10 @@ public class Join {
 	    String id = scan.nextLine();
 	    this.id = id;
 	    
+	    // 아이디 길이와 형식 검사
 	    if(id.length()>3&&id.length()<=16&&Pattern.matches("[A-Za-z0-9]*", id)){
+	    	
+	    	// 중복 체크
 	    	if(doublecheck(id)) {
 	    		this.id = id;
 	    		System.out.println();
@@ -371,7 +397,8 @@ public class Join {
 	    }
 		
 	}
-
+	
+	// 중복 아이디 체크 메소드
 	private static boolean doublecheck(String id) {
 		
 		for(Member member : Data.list){
@@ -381,5 +408,16 @@ public class Join {
 		}
 		return true;
 	}
-
+	
+//	//블랙리스트 체크 메소드
+//	private static boolean blacklistcheck(String jumin) {
+//		
+//		for (BlackList blackmember : Data.blackList) {
+//			if(blackmember.getJumin().equals(jumin)) {
+//				return false;
+//			}
+//		}
+//		return true;
+//	}
+	
 }

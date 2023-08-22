@@ -3,6 +3,7 @@ package com.project.cow;
 import java.util.Scanner;
 
 import com.project.cow.data.Data;
+import com.project.cow.data.object.BlackList;
 import com.project.cow.find.FindID;
 import com.project.cow.find.FindPW;
 import com.project.cow.join.Join;
@@ -14,6 +15,11 @@ public class Main {
 	public static void main(String[] args) {
 		
 		Data.memberLoad();
+		Data.blackListLoad();
+		
+		for(BlackList bl : Data.blackList) {
+			System.out.println(bl);
+		}
 		
 		boolean loop = true;
 		Scanner scan = new Scanner(System.in);
@@ -25,6 +31,7 @@ public class Main {
 		System.out.println("	    DAITSO");
 		System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
 		
+		// 로그인이 되어있지 않을 때 메뉴를 출력
 		if(Login.login == null) {
 		System.out.println("1.로그인");
 		System.out.println("2.회원가입");
@@ -60,7 +67,7 @@ public class Main {
 			
 		}
 		
-		// loop =false;
+//		 loop =false;
 	}
 		System.out.println("프로그램 종료");
 		
