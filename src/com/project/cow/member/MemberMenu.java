@@ -2,12 +2,17 @@ package com.project.cow.member;
 
 import java.util.Scanner;
 
+import com.project.cow.data.object.Member;
 import com.project.cow.login.Login;
 import com.project.cow.member.buy.BuyMenu;
 import com.project.cow.member.sell.SellMenu;
+import com.project.cow.mypage.MyPageList;
+import com.project.cow.mypage.User;
 
 public class MemberMenu {
-
+	
+	Member member = Login.login;
+	static User user = Login.user;
 		
 	public static void membermenu() {
 
@@ -34,10 +39,8 @@ public class MemberMenu {
 		}else if (sel.equals("2")) {
 			sellMenu.Screen();
 		}else if (sel.equals("3")) {
-
-			
-			
-			
+			MyPageList myPageList = new MyPageList(user);
+	        myPageList.myPageScreen();
 		}else if(sel.equals("4")){
 			Login.logout();
 			

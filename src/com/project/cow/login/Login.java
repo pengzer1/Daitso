@@ -6,10 +6,12 @@ import com.project.cow.Main;
 import com.project.cow.data.Data;
 import com.project.cow.data.object.Member;
 import com.project.cow.member.MemberMenu;
+import com.project.cow.mypage.User;
 
 public class Login {
 
 	public static Member login; //로그인을 성공한 회원의 객체
+	public static User user;
 	
 	public static void login() {
 		
@@ -40,6 +42,8 @@ public class Login {
 		if (Login.login != null) {
 			
 			System.out.println("로그인 성공!");
+			
+			user = new User(login.getNo(), login.getName(), login.getId(), login.getPwd(), login.getTel(), login.getJumin(), login.getEmail(), login.getAddress(), login.getAccount(), login.getMoney(), login.getGrade());
 			
 		      System.out.println("엔터를 누르면 회원 메뉴로 이동됩니다.");
 		      scan.nextLine();

@@ -13,6 +13,8 @@ public class Member {   //회원 1명의 정보
 	   private String money;
 	   private String grade;
 	   
+	   public Member() {}
+	   
 	   public Member(String no, String name, String id, String pwd, String tel, String jumin, String email, String address,
 	         String account, String money, String grade) {
 	      this.no = no;

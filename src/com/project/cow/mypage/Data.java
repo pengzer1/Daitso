@@ -21,7 +21,7 @@ public class Data {  //txt 파일을 받아서 조작하고 데이터 입출력�
 
         public static void memberLoad() {   // 회원정보txt를 배열에 load.
             try {
-                BufferedReader reader = new BufferedReader(new FileReader("/Users/green/Desktop/member.txt"));
+                BufferedReader reader = new BufferedReader(new FileReader("data//member.txt"));
 
                 String line = null;
                 while ((line = reader.readLine()) != null) {
@@ -39,7 +39,7 @@ public class Data {  //txt 파일을 받아서 조작하고 데이터 입출력�
 
         public static void memberSave(){// 변경된 정보를 텍스트에 세이브
             try {
-                BufferedWriter writer = new BufferedWriter(new FileWriter("/Users/green/Desktop/member.txt"));
+                BufferedWriter writer = new BufferedWriter(new FileWriter("data//member.txt"));
 
                 for (User user : Data.userList) {
                     // 객체 정보를 텍스트 파일에 쓰는 로직
@@ -60,8 +60,8 @@ public class Data {  //txt 파일을 받아서 조작하고 데이터 입출력�
 
 
         public static void deleteMember(User userToDelete) { // 회원 탈퇴 메서드
-            String filePath = "/Users/green/Desktop/member.txt";
-            String tempFilePath = "/Users/green/Desktop/temp_member.txt";
+            String filePath = "data//member.txt";
+            String tempFilePath = "data//temp_member.txt";
 
             try {
                 File inputFile = new File(filePath);
@@ -81,6 +81,7 @@ public class Data {  //txt 파일을 받아서 조작하고 데이터 입출력�
                 }
 
                 reader.close();
+                writer.close();
 
                 BufferedWriter newWriter = new BufferedWriter(new FileWriter(inputFile));
                 for (String line : lines) {
@@ -96,7 +97,7 @@ public class Data {  //txt 파일을 받아서 조작하고 데이터 입출력�
         }
         public static void soldOutLoad(){  // 판매된 목록
             try {
-                BufferedReader reader = new BufferedReader(new FileReader("/Users/green/Desktop/SoldOut.txt"));
+                BufferedReader reader = new BufferedReader(new FileReader("data//soldOutStuff.txt"));
 
                 String line = null;
                 while ((line = reader.readLine()) != null) {
@@ -116,7 +117,7 @@ public class Data {  //txt 파일을 받아서 조작하고 데이터 입출력�
 
         try {
 
-            BufferedReader reader = new BufferedReader(new FileReader("/Users/green/Desktop/sellingStuff.txt"));
+            BufferedReader reader = new BufferedReader(new FileReader("data//sellingStuff.txt"));
 
             String line = null;
 
@@ -126,9 +127,11 @@ public class Data {  //txt 파일을 받아서 조작하고 데이터 입출력�
 
                 SellingStuff s = new SellingStuff(temp[0], temp[1], temp[2], temp[3], temp[4], temp[5], temp[6], temp[7], temp[8], temp[9], temp[10]);
 
-                SellingStuffData.list.add(s);
+                SellingStuffData.sellingList.add(s);
 
             }
+            
+            reader.close();
 
         } catch (Exception e) {
             // TODO: handle exception
@@ -140,13 +143,15 @@ public class Data {  //txt 파일을 받아서 조작하고 데이터 입출력�
 
         try {
 
-            BufferedWriter writer = new BufferedWriter(new FileWriter("/Users/green/Desktop/sellingStuff.txt"));
+            BufferedWriter writer = new BufferedWriter(new FileWriter("data//sellingStuff.txt"));
 
-            for (SellingStuff s : SellingStuffData.list) {
+            for (SellingStuff s : SellingStuffData.sellingList) {
 
                 writer.write(String.format("%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s\r\n", s.getNo(), s.getName(), s.getCategory(), s.getPrice(), s.getMethod(), s.getPayment(), s.getCondition(), s.getFrom(), s.getUntil(), s.getLike(), s.getSellerNo()));
 
             }
+            
+            writer.close();
 
         } catch (Exception e) {
             // TODO: handle exception
@@ -156,7 +161,7 @@ public class Data {  //txt 파일을 받아서 조작하고 데이터 입출력�
 
 public static void keyWordLoad(){
     try {
-        BufferedReader reader = new BufferedReader(new FileReader("/Users/green/Downloads/keyWord.txt"));
+        BufferedReader reader = new BufferedReader(new FileReader("data//keyWord.txt"));
 
         String line = reader.readLine();
         for (int i = 0; i < 7000; i++) {
