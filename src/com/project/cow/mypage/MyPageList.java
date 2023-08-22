@@ -63,7 +63,8 @@ public class MyPageList {
             BuyList buyList = new BuyList();
             buyList.buySellHistoryScreen(user);
         } else if (input.equals("3")) {
-            // 상품 거래 후기
+            Review review = new Review();
+            review.reviewScreen(user);
         } else if (input.equals("4")) {
             SearchAlerts searchAlerts = new SearchAlerts();
             searchAlerts.searchScreen(user);

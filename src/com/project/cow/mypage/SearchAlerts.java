@@ -71,12 +71,12 @@ public class SearchAlerts {
         int number = (Integer.valueOf(num)) -1;
         String item = select.get(number);
         System.out.println(item);
-        System.out.println("[번호]               [품명]     [상품품질]      [가격]    [판매자]         [거래방법]       [지불방법]      [판매시작일]     [판매마감일]   [찜횟수]");
+        System.out.println("[번호]\t\t[품명]\t\t[상품품질]\t[가격]\t\t[판매자]\t[거래방법]\t\t[지불방법]\t\t[판매시작일]\t\t[판매마감일]\t\t[찜횟수]");
 
-        for (SellingStuff s : SellingStuffData.list) {
+        for (SellingStuff s : SellingStuffData.sellingList) {
           if (s.getName().toUpperCase().replace(" ", "").contains(item.toUpperCase().replace(" ", ""))) {
 
-                System.out.printf("%5s %15s %11s %9s %10s %13s %13s %13s %13s %8s\r\n", s.getNo(), s.getName(),
+                System.out.printf("%5s\t%-14s\t%s\t%9s\t%8s\t%-6s\t\t%-13s\t%-15s\t%-14s\t%3s\r\n", s.getNo(), s.getName(),
                         Constant.Condition(s.getCondition()), s.getPrice(), s.getSellerNo(),
                         Constant.Method(s.getMethod()), Constant.Payment(s.getPayment()), s.getFrom(), s.getUntil(),
                         s.getLike());

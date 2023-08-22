@@ -1,6 +1,8 @@
 package com.project.cow.mypage;
 
+import com.project.cow.data.BadReviewData;
 import com.project.cow.data.SellingStuffData;
+import com.project.cow.data.object.BadReview;
 
 public class Test {
     public static void main(String[] args) {
@@ -8,10 +10,9 @@ public class Test {
         Data.soldOutLoad();
         Data.keyWordListLoad();
         SellingStuffData.load();
-
-
-
-        MyPageList myPageList = new MyPageList(Data.userList.get(0));
+        Data.reviewLoad();
+        Data.badReviewLoad();
+        MyPageList myPageList = new MyPageList(Data.userList.get(1234));
 
         myPageList.myPageScreen();
 

@@ -49,6 +49,8 @@ public class StuffSearch {
                     	search();   //이전화면
                         break;  
                     } else if (num.equals(stuff.getNo())) {
+
+
                     	System.out.println("판매 페이지로 이동하시려면 Enter를 눌러주세요.");
                     	sc.nextLine();
                         BuyMenu.FirstScreen();  //판매 페이지로 이동.
