@@ -3,18 +3,26 @@ package com.project.cow;
 import java.util.Scanner;
 
 import com.project.cow.data.Data;
+import com.project.cow.data.LikeItemData;
+import com.project.cow.data.SellingStuffData;
 import com.project.cow.find.FindID;
 import com.project.cow.find.FindPW;
 import com.project.cow.join.Join;
 import com.project.cow.login.Login;
-import com.project.cow.member.MemberMenu;
 
 public class Main {
 	
 	public static void main(String[] args) {
 		
 		Data.memberLoad();
+		SellingStuffData.load();
+		LikeItemData.likeItemLoad();
 		
+		MainScreen();
+		
+	}
+
+	public static void MainScreen() {
 		boolean loop = true;
 		Scanner scan = new Scanner(System.in);
 		
@@ -40,17 +48,13 @@ public class Main {
 		
 		if(sel.equals("1")) {	
 			Login.login();
-			
 		}else if (sel.equals("2")) {
 			joinInstance.join();
-			
 		}else if (sel.equals("3")) {
 			FindID.findId();
 		}else if(sel.equals("4")){
 			FindPW.findpw();
-			
-		}
-		else if(sel.equals("5")) {
+		}else if(sel.equals("5")) {
 			System.exit(0);
 		}
 		else {
@@ -63,7 +67,6 @@ public class Main {
 		// loop =false;
 	}
 		System.out.println("프로그램 종료");
-		
 	}
 
 }

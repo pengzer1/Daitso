@@ -2,6 +2,7 @@ package com.project.cow.login;
 
 import java.util.Scanner;
 
+import com.project.cow.Main;
 import com.project.cow.data.Data;
 import com.project.cow.data.Member;
 import com.project.cow.member.MemberMenu;
@@ -58,13 +59,16 @@ public class Login {
 	
 	public static void logout() {
 		
+		Scanner scan = new Scanner(System.in);
+		
 		Login.login = null; //인증 티켓 제거 == 로그아웃
 		
 		System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
 		System.out.println("로그아웃 되었습니다.");
 		System.out.println("초기화면으로 돌아가려면 엔터를 입력하세요.");
+		scan.nextLine();
 		
-		
+		Main.MainScreen();
 	}
 	
 }

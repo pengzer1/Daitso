@@ -3,6 +3,7 @@ package com.project.cow.member;
 import java.util.Scanner;
 
 import com.project.cow.login.Login;
+import com.project.cow.member.buy.BuyMenu;
 import com.project.cow.member.sell.SellMenu;
 
 public class MemberMenu {
@@ -29,7 +30,7 @@ public class MemberMenu {
 		String sel = scan.nextLine();
 		
 		if(sel.equals("1")) {	
-			
+			BuyMenu.FirstScreen();
 		}else if (sel.equals("2")) {
 			sellMenu.Screen();
 		}else if (sel.equals("3")) {

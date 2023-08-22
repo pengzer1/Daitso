@@ -4,12 +4,14 @@ import java.util.Calendar;
 import java.util.Scanner;
 
 import com.project.cow.constant.Constant;
+import com.project.cow.data.Member;
 import com.project.cow.data.SellingStuffData;
 import com.project.cow.data.object.SellingStuff;
+import com.project.cow.login.Login;
 
 public class Register {
 	SellingStuffData sellingStuffData = new SellingStuffData();
-	
+	Member seller = Login.login;
 	Scanner scan = new Scanner(System.in);
 	
 	private String category;
@@ -35,8 +37,7 @@ public class Register {
 		
 		int no = Integer.parseInt(maxNo) + 1;
 		
-//		TODO 마지막 sellerNo는 로그인되어 있는 사용자 번호로 변경해야함
-		SellingStuff s = new SellingStuff(no + "", name, category, price, method, payment, condition, from, until, "0", "6000");
+		SellingStuff s = new SellingStuff(no + "", name, category, price, method, payment, condition, from, until, "0", seller.getNo());
 		
 		SellingStuffData.sellingList.add(s);
 		
@@ -44,7 +45,7 @@ public class Register {
 		System.out.println("Enter를 누르면 초기화면으로 돌아갑니다.");
 		
 		scan.nextLine();
-		sellingStuffData.save();
+		SellingStuffData.save();
 		sellMenu.Screen();
 	}
 	

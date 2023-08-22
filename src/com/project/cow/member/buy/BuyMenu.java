@@ -2,11 +2,12 @@ package com.project.cow.member.buy;
 import java.util.*;
 
 import com.project.cow.data.object.SellingStuff;
+import com.project.cow.member.MemberMenu;
 
 public class BuyMenu {
    SellingStuff item;
    public BuyMenu(SellingStuff item) {
-      this.item =item;
+      this.item = item;
    }
    public BuyMenu()   {}
    
@@ -87,8 +88,8 @@ public class BuyMenu {
             //찜하기
 
         } else if (input.equals("0")) {
-           System.out.println();
-            FirstScreen();
+        	System.out.println();
+            MemberMenu.membermenu();
         }else {
            System.out.println();
            System.out.println("잘못된 선택입니다.");
