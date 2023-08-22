@@ -126,7 +126,7 @@ public class Data {  //txt 파일을 받아서 조작하고 데이터 입출력�
 
                 SellingStuff s = new SellingStuff(temp[0], temp[1], temp[2], temp[3], temp[4], temp[5], temp[6], temp[7], temp[8], temp[9], temp[10]);
 
-                SellingStuffData.list.add(s);
+                SellingStuffData.sellingList.add(s);
 
             }
 
@@ -142,7 +142,7 @@ public class Data {  //txt 파일을 받아서 조작하고 데이터 입출력�
 
             BufferedWriter writer = new BufferedWriter(new FileWriter("/Users/green/Desktop/sellingStuff.txt"));
 
-            for (SellingStuff s : SellingStuffData.list) {
+            for (SellingStuff s : SellingStuffData.sellingList) {
 
                 writer.write(String.format("%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s\r\n", s.getNo(), s.getName(), s.getCategory(), s.getPrice(), s.getMethod(), s.getPayment(), s.getCondition(), s.getFrom(), s.getUntil(), s.getLike(), s.getSellerNo()));
 
