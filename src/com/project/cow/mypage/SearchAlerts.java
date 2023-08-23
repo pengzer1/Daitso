@@ -49,7 +49,7 @@ public class SearchAlerts {
     private void myKeyWord(User user) {
         int count = 1;
         int userNum = Integer.valueOf(user.getNumber())-1;
-        for (int i = 0; i < Data.keyWordList.get(userNum).str.length; i++) {
+        for (int i = 0; i < Data.keyWordList.get(userNum).str.length - 1; i++) {
             System.out.println(count+"."+Data.keyWordList.get(userNum).getWord()[i]);
             select.add(Data.keyWordList.get(userNum).getWord()[i]);
             count++;

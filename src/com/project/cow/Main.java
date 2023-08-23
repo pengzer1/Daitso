@@ -2,7 +2,6 @@ package com.project.cow;
 
 import java.util.Scanner;
 
-import com.project.cow.admin.MemberListDisplay;
 import com.project.cow.admin.MemberQuestion;
 import com.project.cow.data.BlackListData;
 import com.project.cow.data.Data;
@@ -10,7 +9,7 @@ import com.project.cow.data.KeyWordData;
 import com.project.cow.data.LikeItemData;
 import com.project.cow.data.MemberData;
 import com.project.cow.data.SellingStuffData;
-import com.project.cow.data.object.BlackList;
+import com.project.cow.data.TradeStuffData;
 import com.project.cow.find.FindID;
 import com.project.cow.find.FindPW;
 import com.project.cow.join.Join;
@@ -32,6 +31,7 @@ public class Main {
         Data.reviewLoad();
         Data.badReviewLoad();
         Data.tradeStuffLoad();
+        TradeStuffData.tradeStuffLoad();
         
 		
 		
