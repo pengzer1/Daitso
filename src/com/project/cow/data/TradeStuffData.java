@@ -12,7 +12,7 @@ public class TradeStuffData {
 	
 	public static void tradeStuffLoad() {  // 판매 예정된 물품 목록
         try {
-            BufferedReader reader = new BufferedReader(new FileReader("C:\\class\\code\\java\\Project\\data\\tradeStuff.txt"));
+            BufferedReader reader = new BufferedReader(new FileReader("data\\tradeStuff.txt"));
 
             String line = null;
             while ((line = reader.readLine()) != null) {
@@ -30,11 +30,10 @@ public class TradeStuffData {
 	
 	public static void tradeStuffSave() {   // 배열에 새로운 내용들을 반영시켜 저장하기.
 		try {
-			BufferedWriter writer = new BufferedWriter(new FileWriter("C:\\class\\code\\java\\Project\\data\\tradeStuff.txt"));
+			BufferedWriter writer = new BufferedWriter(new FileWriter("data\\tradeStuff.txt"));
 			
 			for(TradeStuff tradeStuff : TradeStuffData.tradeList) {
 				writer.write(String.format("%s,%s,%s,%s,%s,%s,%s,%s,%s,%s\r\n", tradeStuff.getNo(), tradeStuff.getName(), tradeStuff.getCategory(), tradeStuff.getPrice(), tradeStuff.getMethod(), tradeStuff.getPayment(), tradeStuff.getCondition(), tradeStuff.getTradedate(), tradeStuff.getSellerNO(), tradeStuff.getBuyerNo()));
-				writer.newLine();
 			}  //배열에 새로운 내용들을 반영시키기.
 			
 			writer.close();

@@ -10,6 +10,7 @@ import com.project.cow.data.KeyWordData;
 import com.project.cow.data.LikeItemData;
 import com.project.cow.data.MemberData;
 import com.project.cow.data.SellingStuffData;
+import com.project.cow.data.TradeStuffData;
 import com.project.cow.data.object.BlackList;
 import com.project.cow.find.FindID;
 import com.project.cow.find.FindPW;
@@ -27,6 +28,7 @@ public class Main {
 		BlackListData.blackListLoad();
 		MemberData.load();
 		MemberQuestion.loadFAQInfo();
+		TradeStuffData.tradeStuffLoad();
 		
 		
 		 // 메인 화면 시작
