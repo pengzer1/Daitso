@@ -14,7 +14,7 @@ public class Test {
         Data.badReviewLoad();
         Data.tradeStuffLoad();
 
-        MyPageList myPageList = new MyPageList(Data.userList.get(25));
+        MyPageList myPageList = new MyPageList(Data.userList.get(1));
 
         myPageList.myPageScreen();
 

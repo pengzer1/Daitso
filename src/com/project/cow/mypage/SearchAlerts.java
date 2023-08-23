@@ -26,7 +26,6 @@ public class SearchAlerts {
           System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
           System.out.println("                 알림 키워드 설정");
           System.out.println(" 1.나의 현재 알림 키워드");
-          System.out.println(" 2.알림 키워드 설정하기");
           System.out.println(" 0.돌아가기");
           System.out.print(" 번호 입력 : ");
           String input = scan.nextLine().trim();
@@ -38,9 +37,6 @@ public class SearchAlerts {
               case "1":
                   myKeyWord(user);
                   break;
-              case "2":
-                  keyWordSave(user);
-                  break;
               default:
                   System.out.println("0~2숫자를 입력해주세요.");
                   continue;
@@ -51,17 +47,24 @@ public class SearchAlerts {
   }
 
     private void myKeyWord(User user) {
-        int userNum = Integer.valueOf(user.getNumber());
+        int count = 1;
+        int userNum = Integer.valueOf(user.getNumber())-1;
         for (int i = 0; i < Data.keyWordList.get(userNum).str.length; i++) {
-            System.out.println((i+1)+"."+Data.keyWordList.get(userNum).getWord()[i]);
+            System.out.println(count+"."+Data.keyWordList.get(userNum).getWord()[i]);
             select.add(Data.keyWordList.get(userNum).getWord()[i]);
+            count++;
         }
         System.out.println(" 1.판매목록을 보시려면 해당 키워드의 번호를 입력해주세요.");
         System.out.println(" 0.이전 페이지로 돌아가기");
         System.out.print(" 번호입력 : ");
         String input = scan.nextLine();
-        if (input.equals("0")) {
+        int peek = Integer.valueOf(input);
+        if (input.equals("0")){
             searchScreen(user);
+        }
+        if (peek > count-1 ) {
+            System.out.println("해당키워드의 번호를 재대로 입력해주세요.");
+            myKeyWord(user);
         }
         keyWordItemList(user, input);
 
@@ -88,32 +91,10 @@ public class SearchAlerts {
         myKeyWord(user);
     }
 
-    private void keyWordSave(User user) {
-        System.out.println("1.키워드 추가하기");
-        System.out.println("2.키워드 삭제하기");
-        System.out.print("번호 입력 : ");
-        String input = scan.nextLine().trim();
-        if (input.equals("1")) {
-            keyWordAdd(user);
-        } else if (input.equals("2")) {
-keyWordRemove(user);
-        }
 
-    }
 
-    private void keyWordAdd(User user){
-        System.out.println("추가하고싶은 키워드를 입력하세요");
-        System.out.print("키워드 입력 : ");
-        String input = scan.nextLine().trim()+"|";
-        System.out.println(input);
-        Data.addKeywordsAndSave(Integer.valueOf(user.getNumber()), input);
-    }
-    private void keyWordRemove(User user){
-        System.out.println("삭제하고싶은 키워드를 입력하세요");
-        System.out.print("키워드 입력 : ");
-        String input = scan.nextLine().trim();
-        System.out.println(input);
-        Data.removeKeywordsAndSave(Integer.valueOf(user.getNumber()), input);
-    }
+
+
+
 
 }
