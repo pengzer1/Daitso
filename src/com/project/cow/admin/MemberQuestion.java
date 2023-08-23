@@ -34,6 +34,8 @@ public class MemberQuestion {
 
 		if (manageChoice.equals("1")) { // 자주 묻는 질문 확인
 			displayFAQ(scan);
+			System.out.println();
+			System.out.println("Enter를 누르면 이전 화면으로 돌아갑니다.");
 			scan.nextLine();
 		} else if (manageChoice.equals("2")) { // 자주 묻는 질문 수정
 			displayFAQ(scan);
@@ -69,7 +71,7 @@ public class MemberQuestion {
 	 * @param scan Scanner 사용자 입력
 	 */
 	private static void modifyFAQAnswer(Scanner scan) {
-		System.out.print("답변할 질문 번호 입력: ");
+		System.out.print("답변할 질문 번호 입력(0 입력 시, 관리자 화면으로 이동): ");
 		String questionNumber = scan.nextLine().trim();
 		int index = Integer.parseInt(questionNumber);
 
@@ -79,10 +81,16 @@ public class MemberQuestion {
 			qnaDataList.get(index - 1)[3] = answer; // 답변을 데이터 목록에 저장
 			saveFAQInfo(); // 수정된 FAQ 업데이트
 			System.out.printf("%d번 답변을 수정하였습니다.\n", index);
-		} else {
-			System.out.println("유효하지 않은 질문 번호입니다.");
+		}else if(index == 0) {
+			return;
 		}
-
+		else {
+			System.out.println("유효하지 않은 질문 번호입니다.");
+			modifyFAQAnswer(scan);
+		}
+		
+		System.out.println();
+		System.out.println("Enter를 누르면 관리자 화면으로 돌아갑니다.");
 		scan.nextLine();
 	}
 

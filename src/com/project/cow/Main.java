@@ -8,6 +8,7 @@ import com.project.cow.data.BlackListData;
 import com.project.cow.data.Data;
 import com.project.cow.data.KeyWordData;
 import com.project.cow.data.LikeItemData;
+import com.project.cow.data.MemberData;
 import com.project.cow.data.SellingStuffData;
 import com.project.cow.data.object.BlackList;
 import com.project.cow.find.FindID;
@@ -24,7 +25,7 @@ public class Main {
 		LikeItemData.likeItemLoad();
 		KeyWordData.keyWordListLoad();
 		BlackListData.blackListLoad();
-		MemberListDisplay.loadMemberInfo();
+		MemberData.load();
 		MemberQuestion.loadFAQInfo();
 		
 		

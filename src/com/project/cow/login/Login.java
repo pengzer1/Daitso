@@ -41,7 +41,8 @@ public class Login {
 			System.out.println("엔터를 누르면 관리자 메뉴로 이동합니다.");
 			scan.nextLine();
 			
-			AdminMenu.adminMain();
+			AdminMenu adminMenu = new AdminMenu();
+			adminMenu.adminMenu();
 		}
 		
 ////	블랙리스트 회원 조회
