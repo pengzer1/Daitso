@@ -36,6 +36,16 @@ public class MemberSearch {
 		displaySearchResult(scan, searchKeyword);
 	}
 
+	private static void displaySellingStuffForMember(Member member) {
+	    
+		
+	}
+
+	private static void displaySoldOutStuffForMember(Member member) {
+	    
+		
+	}
+	
 	/**
 	 * 검색 결과를 출력하고 검색된 회원 수를 보여주는 메소드
 	 * @param scan    Scanner 사용자 입력
@@ -45,50 +55,75 @@ public class MemberSearch {
 		int foundCount = 0;
 		AdminMenu.printMenu("회원 목록");
 
-		MemberListDisplay.displayMemberHeader(); // 헤더 출력
-
 		for (Member member : MemberData.list) {
+			
 			if (member.getNo().equals(keyword) || member.getName().equals(keyword) || member.getId().equals(keyword)) {
+				MemberListDisplay.displayMemberHeader(); // 헤더 출력
 				MemberListDisplay.printMemberInfo(member);
 				foundCount++;
 				
-				int sellorBuyCount = 0;
+				int sellOrBuyCount = 0;
 				for (SellingStuff stuff : SellingStuffData.sellingList) {
 					if (member.getNo().equals(stuff.getSellerNo())) {
-						sellorBuyCount++;
+						sellOrBuyCount++;
 					}
 				}
 				
-				if (sellorBuyCount > 0) {
+				if (sellOrBuyCount > 0) {
 					System.out.println();
-					System.out.printf("[%s번 %3s 회원의 판매 물품]\n", member.getNo(), member.getName());
-					System.out.println("[번호]               [품명]     [상품품질]      [가격]    [판매자]         [거래방법]       [지불방법]      [판매시작일]     [판매마감일]   [찜횟수]");
-	
+					System.out.printf("[판매 물품]\n");
+					System.out.println(
+							"[번호]          [품명]          [카테고리]    [상품품질]      [가격]         [거래방법]       [지불방법]      [판매시작일]     [판매마감일]   [찜횟수]");
+
 					for (SellingStuff stuff : SellingStuffData.sellingList) {
+
 						if (member.getNo().equals(stuff.getSellerNo())) {
-							System.out.printf("%5s %15s %11s %9s %10s %13s %13s %13s %13s %8s\r\n", stuff.getNo(), stuff.getName(),
-									Constant.Condition(stuff.getCategory()), stuff.getPrice(), stuff.getSellerNo(),
-									Constant.Method(stuff.getMethod()), Constant.Payment(stuff.getPayment()), stuff.getFrom(), stuff.getUntil(),
-									stuff.getLike());
+
+							System.out.printf("%5s\t%-14s\t%s\t%3s\t%9s\t%-4s\t\t%-13s\t%-15s\t%-14s\t%3s\r\n"
+									, stuff.getNo(), stuff.getName(), Constant.Category(stuff.getCategory())
+									, Constant.Condition(stuff.getCondition()), stuff.getPrice()
+									, Constant.Method(stuff.getMethod()), Constant.Payment(stuff.getPayment())
+									, stuff.getFrom(), stuff.getUntil(), stuff.getLike());
+
 						}
 					}
 				}
-					
-				sellorBuyCount = 0;
+
+				sellOrBuyCount = 0;
 				for (SoldOutStuff stuff : SoldOutStuffData.soldOutList) {
-					if (member.getNo().equals(stuff.getSellerNo())) {
-						sellorBuyCount++;
+					if (member.getNo().equals(stuff.getBuyerNo())) {
+						sellOrBuyCount++;
 					}
 				}
-				
-				if (sellorBuyCount > 0) {
+
+				if (sellOrBuyCount > 0) {
 					System.out.println();
-					System.out.printf("[%s번 %3s 회원의 구매 물품]\n", member.getNo(), member.getName());
+					System.out.printf("[구매 물품]\n");
+					System.out.println(
+							"[번호]          [품명]          [카테고리]    [상품품질]      [가격]         [거래방법]       [지불방법]      [구매날짜]     [판매자]");
+
+					for (SoldOutStuff stuff : SoldOutStuffData.soldOutList) {
+
+						if (member.getNo().equals(stuff.getBuyerNo())) {
+
+							System.out.printf("%5s\t%-14s\t%s\t%3s\t%9s\t%-6s\t\t%-6s\t%-10s"
+									, stuff.getNo(), stuff.getName(), Constant.Category(stuff.getCategory())
+									, Constant.Condition(stuff.getCondition()), stuff.getPrice()
+									, Constant.Method(stuff.getMethod()), Constant.Payment(stuff.getPayment()), stuff.getWhen());
+
+							for (Member seller : MemberData.list) {
+								if (seller.getNo().equals(stuff.getSellerNo())) {
+									System.out.printf("%6s(%s)\r\n", seller.getName(), stuff.getSellerNo());
+								}
+							}
+						}
+					}
 				}
+
+				AdminMenu.printLine();
 			}
 		}
 
-		AdminMenu.printLine();
 		if (foundCount == 0) {
 			System.out.println("검색 결과가 없습니다.");
 		} else {

@@ -227,7 +227,7 @@ public class MemberListDisplay {
 	 * @param member 회원 정보 데이터 객체
 	 */
 	static void printMemberInfo(Member member) {
-		System.out.printf(" %-4s %5s %-16s %-12s %13s %14s %-24s %-5s", member.getNo(), member.getName(), member.getId(), member.getPwd(), member.getTel(), member.getJumin(), member.getEmail(), member.getGrade());
+		System.out.printf(" %-4s %5s %-16s %-12s %13s %14s %-24s %-5s", member.getNo(), member.getName(), member.getId(), member.getPwd(), member.getTel(), member.getJumin(), member.getEmail(), member.getAddress());
 
 		for (int i = 0; i < 4 - member.getAddress().length(); i++) { // 띄어쓰기 간격 조절
 			System.out.print(" ");

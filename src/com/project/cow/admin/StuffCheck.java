@@ -133,7 +133,7 @@ public class StuffCheck {
 		} else {
 			AdminMenu.printMenu("물품 현황 조회");
 			System.out.printf("검색 기간: %s ~ %s\n", startDate, endDate);
-			System.out.printf("판매중인 전체 물품 수: %,d개\n", stuffCount);
+			System.out.printf("검색된 물품 수: %,d개\n", stuffCount);
 
 			topStuffCategory = calculateTopCategory(stuffCategory); // 상위 카테고리 계산
 			displayCategoryRanking(topStuffCategory, stuffCategory); // 카테고리별 순위 및 개수 출력
@@ -294,7 +294,7 @@ public class StuffCheck {
 	 * @param stuffCategory 카테고리 번호
 	 * @return 카테고리 이름
 	 */
-	private static String getCategoryName(int stuffCategory) {
+	public static String getCategoryName(int stuffCategory) {
 		switch (stuffCategory) {
 		case 1:
 			return "가구/인테리어/생활/주방";
