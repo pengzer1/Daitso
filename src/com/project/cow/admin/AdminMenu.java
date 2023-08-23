@@ -2,6 +2,8 @@ package com.project.cow.admin;
 
 import java.util.Scanner;
 
+import com.project.cow.Main;
+
 public class AdminMenu {
 	/**
 	 * 관리자 메인 페이지 화면 출력 클래스
@@ -30,7 +32,7 @@ public class AdminMenu {
 				MemberCheck.adminMemberCheck();
 			} else if (input.equals("2")) {
 				// 블랙리스트 관리
-				
+				BlackListManagement.blackListScreen();
 			} else if (input.equals("3")) {
 				// 중고 물품 관리
 				StuffCheck.adminStuffCheck();
@@ -41,8 +43,7 @@ public class AdminMenu {
 				// 중고거래 제한물품
 				
 			} else {
-				// 돌아가기
-				return;
+				Main.MainScreen();
 			}
 		}
 	}
