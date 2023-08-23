@@ -1,25 +1,24 @@
 package com.project.cow.mypage;
 
-import com.project.cow.data.KeyWordData;
+import com.project.cow.data.BadReviewData;
 import com.project.cow.data.SellingStuffData;
-import com.project.cow.data.object.Member;
-import com.project.cow.login.Login;
+import com.project.cow.data.object.BadReview;
 
 public class Test {
     public static void main(String[] args) {
         Data.memberLoad();
         Data.soldOutLoad();
-        KeyWordData.keyWordListLoad();
+        Data.keyWordListLoad();
         SellingStuffData.load();
-        
-        Member member = Login.login;
+        Data.reviewLoad();
+        Data.badReviewLoad();
+        Data.tradeStuffLoad();
 
-        User user = new User(member.getNo(), member.getName(), member.getId(), member.getPwd(), member.getTel(), member.getJumin(), member.getEmail(), member.getAddress(), member.getAccount(), member.getMoney(), member.getGrade());
-
-        MyPageList myPageList = new MyPageList(user);
+        MyPageList myPageList = new MyPageList(Data.userList.get(1));
 
         myPageList.myPageScreen();
 
     }
 }
+
 

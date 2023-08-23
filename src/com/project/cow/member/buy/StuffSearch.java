@@ -3,6 +3,7 @@ import java.util.*;
 import com.project.cow.constant.Constant;
 import com.project.cow.data.SellingStuffData;
 import com.project.cow.data.object.SellingStuff;
+import com.project.cow.mypage.BuyList;
 
 public class StuffSearch {
     public static void search() {
@@ -45,10 +46,15 @@ public class StuffSearch {
                 System.out.print("번호 입력 : ");
                 String num = sc.nextLine();
                 for (SellingStuff stuff : sellChoice) {
+                   /*
+                    BuyList buyList = new BuyList();
+                    buyList.buyTest(stuff);
+*/
                     if (num.equals("0")) {
                     	search();   //이전화면
                         break;  
                     } else if (num.equals(stuff.getNo())) {
+
                     	System.out.println("판매 페이지로 이동하시려면 Enter를 눌러주세요.");
                     	sc.nextLine();
                         BuyMenu.FirstScreen();  //판매 페이지로 이동.

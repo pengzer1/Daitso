@@ -48,9 +48,10 @@ public class MyPageList {
         System.out.println("     1. 회원 정보 수정                                 ");
         System.out.println("     2. 구매/판매 내역                             ");
         System.out.println("     3. 상품 거래 후기                             ");
-        System.out.println("     4. 내 거래 약속                           ");
-        System.out.println("     5. 다잇소 페이                                 ");
-        System.out.println("     6. 회원 탈퇴            `                      ");
+        System.out.println("     4. 내 알림 키워드                       ");
+        System.out.println("     5. 현재 내 거래                         ");
+        System.out.println("     6. 다잇소 페이                                 ");
+        System.out.println("     7. 회원 탈퇴            `                      ");
         System.out.println("     0. 돌아가기                                     "  );
         System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
         System.out.print("     > 번호 입력:");
@@ -63,13 +64,18 @@ public class MyPageList {
             BuyList buyList = new BuyList();
             buyList.buySellHistoryScreen(user);
         } else if (input.equals("3")) {
-            // 상품 거래 후기
+            Review review = new Review();
+            review.reviewScreen(user);
         } else if (input.equals("4")) {
-            // 내 거래약스
+            SearchAlerts searchAlerts = new SearchAlerts();
+            searchAlerts.searchScreen(user);
         } else if (input.equals("5")) {
+            MyTrade myTrade = new MyTrade();
+            myTrade.tradeScreen(user);
+        } else if (input.equals("6")) {
             Account account = new Account();
             account.accountScreen(user);
-        } else if (input.equals("6")) {
+        } else if (input.equals("7")) {
             DeleteAccount deleteAccount = new DeleteAccount();
             deleteAccount.deleteAccountScreen(user);
         } else if (input.equals("0")) {
