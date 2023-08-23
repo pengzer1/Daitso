@@ -17,7 +17,7 @@ public class MemberRemove {
 	 * 목적: 관리자가 회원 정보를 삭제하는 기능을 제공하는 클래스
 	 * 기능:
 	 * - 검색한 회원 정보를 출력하고 선택한 회원을 삭제할 수 있다.
-	 * - 회원을 삭제하여 파일이 변경된 경우 업데이트를 수행한다.
+	 * - 회원을 삭제하여 회원 정보 파일이 수정되면 파일을 업데이트한다.
 	 */
 
 	public static final String MEMBER_LIST = "data\\member.txt"; // 회원 정보 파일 경로
