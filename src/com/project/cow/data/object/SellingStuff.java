@@ -1,6 +1,8 @@
 package com.project.cow.data.object;
 
-public class SellingStuff {
+import com.project.cow.admin.StuffCheck.Stuff;
+
+public class SellingStuff implements Stuff {
 
 	private String no;
 	private String name;

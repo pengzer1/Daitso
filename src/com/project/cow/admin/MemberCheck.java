@@ -23,7 +23,8 @@ public class MemberCheck {
 		while (true) {
 			// 메인 메뉴 표시 및 사용자 선택
 			AdminMenu.printMenu("회원 관리");
-			memberCheckFunction();
+			System.out.println("[회원 관리 기능]");
+			AdminMenu.printOption("전체 회원 목록 조회", "회원 검색", "회원 삭제");
 			String manageChoice = scan.nextLine().trim();
 
 			if (manageChoice.equals("1")) { // 전체 회원 목록 조회
@@ -36,13 +37,5 @@ public class MemberCheck {
 				return;
 			}
 		}
-	}
-
-	/**
-	 * 등급별 정렬 방법 화면 출력
-	 */
-	private static void memberCheckFunction() {
-		System.out.println("[회원 관리 기능]");
-		AdminMenu.printOption("전체 회원 목록 조회", "회원 검색", "회원 삭제");
 	}
 }
