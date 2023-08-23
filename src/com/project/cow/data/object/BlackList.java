@@ -15,9 +15,9 @@ public class BlackList {  //블랙리스트 1명의 정보
 	private String yellowCard;
 	private String ago;
 	private String van;
+	
 	public BlackList(String no, String name, String id, String pwd, String tel, String jumin, String email,
 			String address, String account, String money, String grade, String yellowCard, String ago, String van) {
-		super();
 		this.no = no;
 		this.name = name;
 		this.id = id;
@@ -33,6 +33,7 @@ public class BlackList {  //블랙리스트 1명의 정보
 		this.ago = ago;
 		this.van = van;
 	}
+
 	public String getNo() {
 		return no;
 	}
@@ -117,13 +118,12 @@ public class BlackList {  //블랙리스트 1명의 정보
 	public void setVan(String van) {
 		this.van = van;
 	}
+	
 	@Override
 	public String toString() {
 		return "BlackList [no=" + no + ", name=" + name + ", id=" + id + ", pwd=" + pwd + ", tel=" + tel + ", jumin="
 				+ jumin + ", email=" + email + ", address=" + address + ", account=" + account + ", money=" + money
-				+ ", grade=" + grade + ", yellowCard=" + yellowCard + ", ago=" + ago + ", van=" + van + "]";
+				+ ", grade=" + grade + ", yellowCard=" + yellowCard + ", ago=" + ago + ", van=" + van +"]";
 	}
-	
-
 	
 }

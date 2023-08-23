@@ -1,6 +1,7 @@
 package com.project.cow.data;
 import java.io.*;
 import java.util.*;
+import com.project.cow.data.object.Member;
 
 import com.project.cow.data.object.BlackList;
 

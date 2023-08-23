@@ -11,7 +11,7 @@ public class BadReviewData {
 
 	public static void badReviewLoad() {   // 리뷰 txt를 배열에 load.
 		try {
-			BufferedReader reader= new BufferedReader(new FileReader("C:\\class\\code\\java\\Project\\data\\badReview.txt"));
+			BufferedReader reader= new BufferedReader(new FileReader("data\\badReview.txt"));
 			
 			String line=null;
 			while((line=reader.readLine()) != null) {
@@ -29,7 +29,7 @@ public class BadReviewData {
 	
 	public static void badReviewSave() {   // 배열에 새로운 내용들을 반영시켜 저장하기.
 		try {
-			BufferedWriter writer = new BufferedWriter(new FileWriter("C:\\class\\code\\java\\Daitso\\data\\badReview.txt"));
+			BufferedWriter writer = new BufferedWriter(new FileWriter("data\\badReview.txt"));
 			
 			for(BadReview review : BadReviewData.badReview) {
 				writer.write(String.format("%s,%s,%s,%s\r\n", review.getNo(), review.getBuyerNo(), review.getSellerNo(), review.getWarningCnt()));

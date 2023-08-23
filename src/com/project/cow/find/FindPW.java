@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import com.project.cow.data.Member;
+import com.project.cow.data.object.Member;
 
 public class FindPW {
 	
@@ -36,11 +36,11 @@ public class FindPW {
 		
 		System.out.println("[가입시 등록한 회원정보를 입력하세요.]");
 		System.out.print("아이디: ");
-		String id = scan.nextLine();
+		String id = scan.nextLine().trim();
 		System.out.print("이름: ");
-		String name = scan.nextLine();
+		String name = scan.nextLine().trim();
 		System.out.print("전화번호: ");
-		String tel = scan.nextLine();
+		String tel = scan.nextLine().trim();
 		
 	
 		 
@@ -57,7 +57,7 @@ public class FindPW {
 	            	foundpwd = true;
 	            	
 	                System.out.println();
-	                System.out.println("메인 화면으로 돌아가려면 엔터를 입력하시오.");
+	                System.out.println("메인 화면으로 돌아가려면 엔터를 입력하세요.");
 	                scan.nextLine();
 	                break;
 	            }
@@ -67,7 +67,7 @@ public class FindPW {
 	            System.out.println("입력하신 회원정보의 비밀번호를 찾을 수 없습니다.");
 	            
 	            System.out.println();
-	            System.out.println("메인 화면으로 계속하려면 엔터를 입력하시오.");
+	            System.out.println("메인 화면으로 돌아가려면 엔터를 입력하세요.");
 	            scan.nextLine();
 	        }
     }
