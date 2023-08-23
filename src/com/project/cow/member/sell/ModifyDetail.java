@@ -136,7 +136,6 @@ public class ModifyDetail {
 		
 		if(check.equals("1")) {
 			String num = s.getNo();
-//			SellingStuffData.sellingList.remove(s);
 			
 			for (int i = Integer.parseInt(num); i < SellingStuffData.sellingList.size(); i++) {
 				SellingStuffData.sellingList.set(i - 1, SellingStuffData.sellingList.get(i));

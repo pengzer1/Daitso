@@ -4,8 +4,13 @@ import java.util.Scanner;
 
 import com.project.cow.Main;
 import com.project.cow.data.Data;
+import com.project.cow.data.MemberData;
+import com.project.cow.data.object.Member;
+import com.project.cow.login.Login;
 
 public class DeleteAccount { //회원탈퇴 클래스
+	
+	Member member = Login.login;
 
     static Scanner scan;
     static {
@@ -40,10 +45,18 @@ public class DeleteAccount { //회원탈퇴 클래스
         System.out.println(" 번호입력 : ");
         String select = scan.nextLine().trim();
         if (select.equals("1")) {
+        	String num = member.getNo();
+        	
+        	for (int i = Integer.parseInt(num); i < Data.list.size(); i++) {
+        		Data.list.set(i - 1, Data.list.get(i));
+        	}
+        	Data.list.remove(Data.list.size() - 1);
+        	
             Data.deleteMember(user);
             
             System.out.println("삭제가 완료되었습니다.");
             System.out.println("Enter를 누르면 초기화면으로 돌아갑니다.");
+            Login.login = null;
             scan.nextLine().trim();
             
             Main.MainScreen();

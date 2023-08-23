@@ -35,7 +35,7 @@ public class StuffCategory { // 카테고리별 물품 확인하기
 					if (s.getCategory().equals(input)) {
 						choiceCategory.add(s);
 						System.out.printf("%5s %15s %11s %9s %10s %13s %13s %13s %13s %8s\r\n", s.getNo(), s.getName(),
-								Constant.Condition(s.getCategory()), s.getPrice(), s.getSellerNo(),
+								Constant.Condition(s.getCondition()), s.getPrice(), s.getSellerNo(),
 								Constant.Method(s.getMethod()), Constant.Payment(s.getPayment()), s.getFrom(), s.getUntil(),
 								s.getLike());
 					}
@@ -56,7 +56,7 @@ public class StuffCategory { // 카테고리별 물품 확인하기
 							System.out.println("판매 페이지로 이동하시려면 Enter를 눌러주세요.");
 	                    	sc.nextLine();
 	                    	System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
-	                        BuyMenu.FirstScreen();  //판매 페이지로 이동.
+	                        BuyPage.buyPage(stuff);
 	                        flag=1;
 	                        loop = false;  // 루프 종료
 						} else continue; flag=0;

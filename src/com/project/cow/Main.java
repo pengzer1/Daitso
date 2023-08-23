@@ -24,7 +24,6 @@ public class Main {
 		LikeItemData.likeItemLoad();
 		KeyWordData.keyWordListLoad();
 		BlackListData.blackListLoad();
-		MemberData.load();
 		MemberQuestion.loadFAQInfo();
         Data.soldOutLoad();
         Data.keyWordListLoad();
@@ -32,6 +31,7 @@ public class Main {
         Data.badReviewLoad();
         Data.tradeStuffLoad();
         TradeStuffData.tradeStuffLoad();
+        
         
 		
 		

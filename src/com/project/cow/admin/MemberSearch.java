@@ -81,26 +81,28 @@ public class MemberSearch {
 	 * @param displayStuffNo 판매 물품 번호를 저장하는 Set
 	 */
 	private static void sellingStuffMember(Member member, Set<String> displayStuffNo) {
-	    int sellOrBuyCount = 0;
+		int sellOrBuyCount = 0;
 
-	    for (SellingStuff stuff : SellingStuffData.sellingList) {
+		for (SellingStuff stuff : SellingStuffData.sellingList) {
 			// 판매자 번호와 물품 번호를 비교하여 이전에 출력한 물품이 아닌 경우에만 출력
-	        if (member.getNo().equals(stuff.getSellerNo()) && !displayStuffNo.contains(stuff.getNo())) {
-	            sellOrBuyCount++;
+			if (member.getNo().equals(stuff.getSellerNo()) && !displayStuffNo.contains(stuff.getNo())) {
+				sellOrBuyCount++;
 
-	            System.out.println();
-	            System.out.printf("[판매 물품] (%d개)\n", sellOrBuyCount);
-	            System.out.println("[번호]          [품명]          [카테고리]    [상품품질]      [가격]         [거래방법]       [지불방법]      [판매시작일]     [판매마감일]   [찜횟수]");
+				if (sellOrBuyCount == 1) {
+					System.out.println();
+					System.out.printf("[판매 물품]\n");
+					System.out.println(
+							"[번호]          [품명]          [카테고리]    [상품품질]      [가격]         [거래방법]       [지불방법]      [판매시작일]     [판매마감일]   [찜횟수]");
+				}
 
-	            System.out.printf("%5s\t%-14s\t%s\t%3s\t%9s\t%-4s\t%-13s\t%-15s\t%-14s\t%3s\r\n",
-	                    stuff.getNo(), stuff.getName(), Constant.Category(stuff.getCategory()),
-	                    Constant.Condition(stuff.getCondition()), stuff.getPrice(),
-	                    Constant.Method(stuff.getMethod()), Constant.Payment(stuff.getPayment()), stuff.getFrom(),
-	                    stuff.getUntil(), stuff.getLike());
-	            
-	            displayStuffNo.add(stuff.getNo()); // 출력한 물품 번호를 저장하여 중복 출력 방지
-	        }
-	    }
+				System.out.printf("%5s\t%-14s\t%s\t%3s\t%9s\t%-4s\t%-13s\t%-15s\t%-14s\t%3s\r\n", stuff.getNo(),
+						stuff.getName(), Constant.Category(stuff.getCategory()),
+						Constant.Condition(stuff.getCondition()), stuff.getPrice(), Constant.Method(stuff.getMethod()),
+						Constant.Payment(stuff.getPayment()), stuff.getFrom(), stuff.getUntil(), stuff.getLike());
+
+				displayStuffNo.add(stuff.getNo()); // 출력한 물품 번호를 저장하여 중복 출력 방지
+			}
+		}
 	}
 
 	/**
@@ -111,30 +113,32 @@ public class MemberSearch {
 	private static void soldOutStuffMember(Member member, Set<String> displayStuffNo) {
 		int sellOrBuyCount = 0;
 
-	    for (SoldOutStuff stuff : SoldOutStuffData.soldOutList) {
+		for (SoldOutStuff stuff : SoldOutStuffData.soldOutList) {
 			// 구매자 번호와 물품 번호를 비교하여 이전에 출력한 물품이 아닌 경우에만 출력
-	        if (member.getNo().equals(stuff.getBuyerNo()) && !displayStuffNo.contains(stuff.getNo())) {
-	            sellOrBuyCount++;
+			if (member.getNo().equals(stuff.getBuyerNo()) && !displayStuffNo.contains(stuff.getNo())) {
+				sellOrBuyCount++;
 
-	            System.out.println();
-	            System.out.printf("[구매 물품] (%d개)\n", sellOrBuyCount);
-	            System.out.println(
-	                    "[번호]          [품명]          [카테고리]    [상품품질]      [가격]         [거래방법]       [지불방법]      [구매날짜]     [판매자]");
+				if (sellOrBuyCount == 1) {
+					System.out.println();
+					System.out.printf("[구매 물품]\n");
+					System.out.println(
+							"[번호]          [품명]          [카테고리]    [상품품질]      [가격]         [거래방법]       [지불방법]      [구매날짜]     [판매자]");
+				}
 
-	            System.out.printf("%5s\t%-14s\t%s\t%3s\t%9s\t%-6s\t%-6s\t%-10s",
-	                    stuff.getNo(), stuff.getName(), Constant.Category(stuff.getCategory()),
-	                    Constant.Condition(stuff.getCondition()), stuff.getPrice(),
-	                    Constant.Method(stuff.getMethod()), Constant.Payment(stuff.getPayment()), stuff.getWhen());
+				System.out.printf("%5s\t%-14s\t%s\t%3s\t%9s\t%-6s\t%-6s\t%-10s", stuff.getNo(), stuff.getName(),
+						Constant.Category(stuff.getCategory()), Constant.Condition(stuff.getCondition()),
+						stuff.getPrice(), Constant.Method(stuff.getMethod()), Constant.Payment(stuff.getPayment()),
+						stuff.getWhen());
 
-	            // 해당 물품의 판매자 정보 출력
-	            for (Member seller : MemberData.list) {
-	                if (seller.getNo().equals(stuff.getSellerNo())) {
-	                    System.out.printf("%6s(%s)\r\n", seller.getName(), stuff.getSellerNo());
-	                }
-	            }
+				// 해당 물품의 판매자 정보 출력
+				for (Member seller : MemberData.list) {
+					if (seller.getNo().equals(stuff.getSellerNo())) {
+						System.out.printf("%6s(%s)\r\n", seller.getName(), stuff.getSellerNo());
+					}
+				}
 
-	            displayStuffNo.add(stuff.getNo()); // 출력한 물품 번호를 저장하여 중복 출력 방지
-	        }
-	    }
+				displayStuffNo.add(stuff.getNo()); // 출력한 물품 번호를 저장하여 중복 출력 방지
+			}
+		}
 	}
 }
