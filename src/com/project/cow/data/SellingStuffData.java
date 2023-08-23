@@ -20,7 +20,7 @@ public class SellingStuffData {
 		
 		try {
 			
-			BufferedReader reader = new BufferedReader(new FileReader("data\\sellingStuff.txt"));
+			BufferedReader reader = new BufferedReader(new FileReader("data//sellingStuff.txt"));
 			
 			String line = null;
 			

@@ -4,15 +4,17 @@ import java.util.Scanner;
 
 import com.project.cow.constant.Constant;
 import com.project.cow.data.LikeItemData;
+import com.project.cow.data.object.Member;
 import com.project.cow.data.SellingStuffData;
 import com.project.cow.data.object.SellingStuff;
+import com.project.cow.login.Login;
 
 public class LikeItem {
-//	TODO 추후 로그인 된 사용자 번호로 변경해야 함
-	private static final int BUYER = 3702;
+	Member buyer = Login.login;
 	
 	String num = "";
 	Scanner scan = new Scanner(System.in);
+	SellingStuff a;
 	
 	public void Screen() {
 		System.out.println();
@@ -22,7 +24,7 @@ public class LikeItem {
 		
 		System.out.println("[번호]\t[제목]\t\t[카테고리]\t[물건 상태]\t[판매 가격]\t[판매자명]\t[상품 거래 방식]\t[결제 방식]\t[등록 날짜]\t[마감 날짜]\t[찜]");
 		for (com.project.cow.data.object.LikeItem likeItem : LikeItemData.likeList) {
-			if (likeItem.getBuyerNo().equals(BUYER + "")) {
+			if (likeItem.getBuyerNo().equals(buyer.getNo())) {
 				String no = likeItem.getItemNo();
 				
 				for(SellingStuff s : SellingStuffData.sellingList) {
@@ -56,7 +58,7 @@ public class LikeItem {
 		com.project.cow.data.object.LikeItem likeItem = new com.project.cow.data.object.LikeItem(null, "", null);
 		
 		for (com.project.cow.data.object.LikeItem l : LikeItemData.likeList) {
-			if (l.getBuyerNo().equals(BUYER + "") && l.getItemNo().equals(no)) {
+			if (l.getBuyerNo().equals(buyer.getNo()) && l.getItemNo().equals(no)) {
 				likeItem = l;
 				return no;
 			}
@@ -78,7 +80,16 @@ public class LikeItem {
 		String check = scan.nextLine();
 		
 		if (check.equals("1")) {
-			
+			for(SellingStuff stuff : SellingStuffData.sellingList) {
+				if(num.equals(stuff.getNo())){
+					a = stuff;
+					System.out.println("판매 페이지로 이동하시려면 Enter를 눌러주세요.");
+                	scan.nextLine();
+                	System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+                    BuyPage.buyPage(a);  //판매 페이지로 이동.
+                    break;
+				}
+			}
 		}
 		else if (check.equals("2")) {
 			DeleteLikeItem();
@@ -110,7 +121,7 @@ public class LikeItem {
 		if (check.equals("1")) {
 			
 			for (com.project.cow.data.object.LikeItem likeItem : LikeItemData.likeList) {
-				if (likeItem.getItemNo().equals(num) && likeItem.getBuyerNo().equals(BUYER+"")) {
+				if (likeItem.getItemNo().equals(num) && likeItem.getBuyerNo().equals(buyer.getNo())) {
 					index++;
 					break;
 				}

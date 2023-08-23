@@ -136,7 +136,6 @@ public class ModifyDetail {
 		
 		if(check.equals("1")) {
 			String num = s.getNo();
-//			SellingStuffData.sellingList.remove(s);
 			
 			for (int i = Integer.parseInt(num); i < SellingStuffData.sellingList.size(); i++) {
 				SellingStuffData.sellingList.set(i - 1, SellingStuffData.sellingList.get(i));
@@ -144,6 +143,7 @@ public class ModifyDetail {
 			SellingStuffData.sellingList.remove(SellingStuffData.sellingList.size() - 1);
 			System.out.println();
 			System.out.println("삭제가 완료되었습니다.");
+			SellingStuffData.save();
 			System.out.println("Enter를 누르면 상품 정보 수정/삭제 화면으로 돌아갑니다.");
 			scan.nextLine();
 			

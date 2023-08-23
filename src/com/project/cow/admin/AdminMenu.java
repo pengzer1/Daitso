@@ -2,9 +2,9 @@ package com.project.cow.admin;
 
 import java.util.Scanner;
 
-import com.project.cow.data.MemberData;
+import com.project.cow.Main;
 
-class AdminMenu {
+public class AdminMenu {
 	/**
 	 * 관리자 메인 페이지 화면 출력 클래스
 	 * @author 이승원
@@ -17,16 +17,14 @@ class AdminMenu {
 	/**
 	 * 관리자 메인 메뉴 메소드
 	 */
-	public static void main(String[] args) {
-		Scanner scan = new Scanner(System.in);
-		
-		MemberData.load(); // 회원 정보 로드
-		MemberQuestion.loadFAQInfo(); // FAQ 정보 로드
+	Scanner scan = new Scanner(System.in);
+	
+	public void adminMenu() {
 		
 		while (true) {
 			// 관리자 메인 메뉴 화면 출력
 			AdminMenu.printMenu("관리자 메인 메뉴");
-			AdminMenu.printOption("회원 관리", "블랙리스트 관리", "중고 물품 관리", "고객센터 F A Q", "각 지역 우편함", "중고거래 제한물품");
+			AdminMenu.printOption("회원 관리", "블랙리스트 관리", "중고 물품 관리", "고객센터 F A Q", "중고거래 제한물품");
 			String input = scan.nextLine().trim();
 
 			if (input.equals("1")) {
@@ -34,7 +32,7 @@ class AdminMenu {
 				MemberCheck.adminMemberCheck();
 			} else if (input.equals("2")) {
 				// 블랙리스트 관리
-				
+				BlackListManagement.blackListScreen();
 			} else if (input.equals("3")) {
 				// 중고 물품 관리
 				StuffCheck.adminStuffCheck();
@@ -43,10 +41,9 @@ class AdminMenu {
 				MemberQuestion.adminFAQCheck();
 			} else if (input.equals("5")) {
 				// 중고거래 제한물품
-				
+				ProhibitedItems.prohibitScreen();
 			} else {
-				// 돌아가기
-				return;
+				Main.MainScreen();
 			}
 		}
 	}
