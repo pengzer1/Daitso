@@ -17,7 +17,7 @@ class AdminMenu {
 	/**
 	 * 관리자 메인 메뉴 메소드
 	 */
-	public static void adminMain() {
+	public static void main(String[] args) {
 		Scanner scan = new Scanner(System.in);
 		
 		MemberData.load(); // 회원 정보 로드

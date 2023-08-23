@@ -73,6 +73,7 @@ public class MemberRemove {
 	private static void performMemberRemove(Scanner scan, Member selectedMember) {
 		MemberData.list.remove(selectedMember);
 		
+		//MemberData.save();
 		updateMemberFile(); // 회원 정보 파일 업데이트
 		
 		System.out.println("회원이 삭제되었습니다.");
