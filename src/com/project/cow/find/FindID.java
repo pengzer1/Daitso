@@ -11,8 +11,22 @@ import com.project.cow.data.object.Member;
 public class FindID {
 
 
+	/*
+	 아이디 찾기 클래스
+	 @author 이슬아
+	 목적: 입력된 이름과 전화번호로 회원 아이디를 찾는 기능을 제공하는 클래스
+	 기능:
+	 - 입력된 이름과 전화번호로 가입 시 등록한 회원 아이디를 찾아 출력한다.
+	 - 회원 정보 파일에서 데이터를 읽어와 검색을 수행한다.
+	 */
 
 	public static void findId() {
+		
+		
+		/*
+		  목적:
+		  - 회원 아이디 찾기 기능을 구현하여 사용자에게 정보 제공을 도와줍니다.
+		 */
 		
 		Scanner scan = new Scanner(System.in);
 		
@@ -22,9 +36,9 @@ public class FindID {
 		
 		System.out.println("[가입시 등록한 회원정보를 입력하세요.]");
 		System.out.print("이름: ");
-		String name = scan.nextLine();
+		String name = scan.nextLine().trim();
 		System.out.print("전화번호: ");
-		String tel = scan.nextLine();
+		String tel = scan.nextLine().trim();
 		
 	
 		 
@@ -40,7 +54,7 @@ public class FindID {
 	                System.out.println();
 	            	found = true;
 	                System.out.println();
-	                System.out.println("초기화면으로 돌아가려면 엔터를 입력하세요.");
+	                System.out.println("메인화면으로 돌아가려면 엔터를 입력하세요.");
 	                scan.nextLine();
 	                break;
 	            }
@@ -49,12 +63,17 @@ public class FindID {
 	        if (!found) {
 	            System.out.println("입력하신 회원정보의 아이디를 찾을 수 없습니다.");
                 System.out.println();
-                System.out.println("초기화면으로 돌아가려면 엔터를 입력하세요.");
+                System.out.println("메인화면으로 돌아가려면 엔터를 입력하세요.");
                 scan.nextLine();
 	        }
 	    }
 
-
+		
+		/*
+		 * 회원 정보를 파일에서 읽어와 ArrayList로 반환하는 메소드
+		 * @param filename 회원 정보가 저장된 파일의 경로
+		 * @return ArrayList<Member> 회원 정보가 저장된 ArrayList
+		 */
 		private static ArrayList<Member> memberId(String filename) {
 	        ArrayList<Member> members = new ArrayList<>();
 

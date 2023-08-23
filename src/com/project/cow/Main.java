@@ -8,7 +8,6 @@ import com.project.cow.data.KeyWordData;
 import com.project.cow.data.LikeItemData;
 import com.project.cow.data.SellingStuffData;
 import com.project.cow.data.object.BlackList;
-import com.project.cow.data.object.KeyWord;
 import com.project.cow.find.FindID;
 import com.project.cow.find.FindPW;
 import com.project.cow.join.Join;
@@ -24,9 +23,15 @@ public class Main {
 		KeyWordData.keyWordListLoad();
 		BlackListData.blackListLoad();
 		
+		
+		 // 메인 화면 시작
 		MainScreen();
 		
 	}
+	
+    /*
+     * 메인 화면을 표시하고 사용자 입력을 처리하는 메소드
+     */
 
 	public static void MainScreen() {
 		boolean loop = true;
@@ -35,6 +40,14 @@ public class Main {
 		Join joinInstance = new Join(); 
 		
 		while(loop) {
+			
+		System.out.println(" _______       ___       __  .___________.     _______.  ______   \r\n"
+				+ "|       \\     /   \\     |  | |           |    /       | /  __  \\  \r\n"
+				+ "|  .--.  |   /  ^  \\    |  | `---|  |----`   |   (----`|  |  |  | \r\n"
+				+ "|  |  |  |  /  /_\\  \\   |  |     |  |         \\   \\    |  |  |  | \r\n"
+				+ "|  '--'  | /  _____  \\  |  |     |  |     .----)   |   |  `--'  | \r\n"
+				+ "|_______/ /__/     \\__\\ |__|     |__|     |_______/     \\______/  \r\n"
+				+ "                                                                  ");
 		System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
 		System.out.println("	    DAITSO");
 		System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");

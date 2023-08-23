@@ -4,7 +4,7 @@ import java.util.*;
 import com.project.cow.data.object.BlackList;
 
 public class BlackListData {
-	public static ArrayList<BlackList> blackList;   //블랙리스트 배열s
+	public static ArrayList<BlackList> blackList;   //블랙리스트 배열
 	static {
 		BlackListData.blackList = new ArrayList<BlackList>();
 	}

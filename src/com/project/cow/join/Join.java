@@ -7,6 +7,16 @@ import java.util.regex.Pattern;
 import com.project.cow.data.Data;
 import com.project.cow.data.object.Member;
 
+
+/*
+ * 회원가입 클래스
+ * 이 클래스는 사용자로부터 입력을 받아 회원 정보를 등록하는 기능을 제공합니다.
+ * 기능:
+ * - 아이디, 비밀번호, 이름, 주민등록번호, 전화번호, 이메일, 지역, 계좌번호를 입력받아 회원 정보를 등록합니다.
+ * - 중복된 아이디는 등록할 수 없습니다.
+ * 목적:
+ * - 사용자의 정보를 입력받아 회원으로 등록하여 서비스 이용을 가능하게 합니다.
+ */
 public class Join {
 	
     private String id;
@@ -17,6 +27,11 @@ public class Join {
     private String email;
     private String address;
     private String account;
+    
+    /*
+      회원가입 기능을 수행하는 메인 메소드
+
+     */
 
 	public void join() {
 		
@@ -24,11 +39,9 @@ public class Join {
 		
 		
 		  System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
-	      System.out.println("             회원가입");
-	      System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+	      System.out.println("             회원가입");	      
 	      
-	      
-	   
+	      // 아이디 입력 받음
 	      id();
 	      
 
@@ -36,21 +49,22 @@ public class Join {
 	      System.out.println("회원가입이 완료되었습니다.");
 	      
 	      System.out.println();
-	      System.out.println("계속하려면 엔터를 입력하시오.");
+	      System.out.println("계속하려면 엔터를 입력하세요.");
 	      scan.nextLine();
 	      
-	      
+	      // 회원 번호 생성 로직
 	      String maxNo = Data.list.stream()
 	               .map(s->s.getNo())
 	               .max((a,b)->Integer.parseInt(a)-Integer.parseInt(b))
 	               .get();
 	   int no = Integer.parseInt(maxNo)+1;
 	   
+	   // 회원 등급 설정 및 생성
 	   String maxmemberNo = Data.list.stream()
 	                  .map(s->s.getNo())
 	                  .max((a,b)->Integer.parseInt(a)-Integer.parseInt(b))
 	                  .get();
-
+	   
 	   int memberNo = Integer.parseInt(maxmemberNo)+1;
 	      
 	        // 회원 정보 생성
@@ -69,11 +83,11 @@ public class Join {
 		Scanner scan = new Scanner(System.in);
 		System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
 
-		System.out.println("[계좌번호] 은행 1.가나 2.다라 3.마바 4.사아 5.자차 중 선택해주세요");
+		System.out.println("[계좌번호] 은행 1.가나 2.다라 3.마바 4.사아 5.자차 ");
 		System.out.println("Ex) 가나-1234567891234");
 		System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
 	      System.out.print("계좌번호: ");
-	      String account = scan.nextLine();
+	      String account = scan.nextLine().trim();
 	      
 	      if (account.matches("(가나|다라|마바|사아|자차)-\\d{13}")) {
 	    	  this.account=account;
@@ -98,9 +112,9 @@ public class Join {
 	      areaList();
 	      System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
 	      System.out.print("지역 설정: ");
-	      String address = scan.nextLine();
+	      String address = scan.nextLine().trim();
 	      areaSelect(address);
-	      
+	      System.out.println();   
 	      account();
 	      }
 
@@ -184,7 +198,8 @@ public class Join {
                 break;
                 
             default:
-                System.out.println("올바른 지역 번호를 입력하세요");
+            	System.out.println();
+                System.out.println("올바른 지역 번호를 다시 입력하세요");
                 address();
         }
         
@@ -211,7 +226,7 @@ public class Join {
 		System.out.println("Ex) ssangyong@naver.com");
 		System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
 	      System.out.print("이메일: ");
-	      String email = scan.nextLine();
+	      String email = scan.nextLine().trim();
 	      
 	      if(email.length()>3&&Pattern.matches("[a-z0-9]+@[a-z]+.[a-z]+",email)) {
 	    	  this.email=email;
@@ -233,7 +248,7 @@ public class Join {
 	      System.out.println("[주민등록번호] '-' 포함해서 입력해주세요. \r\n Ex)000000-000000");
 	      System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
 	      System.out.print("주민등록번호: ");
-	      String jumin = scan.nextLine();
+	      String jumin = scan.nextLine().trim();
 	      Random rd = new Random();
 	      
 	      if(jumin.matches("\\d{6}-[1234]\\d{6}")) {
@@ -246,6 +261,8 @@ public class Join {
             
             if(month >= 1 && month <= 12 ) {
             	if (day >= 1 && day <= 30 ) {
+            	
+            		
             		this.jumin=jumin;
       	    	  System.out.println();
       	    	  email();
@@ -279,7 +296,7 @@ public class Join {
 	      		+ "\r\n Ex) 010-1234-5678 ");
 	      System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
 	      System.out.print("전화번호: ");
-	      String tel = scan.nextLine();
+	      String tel = scan.nextLine().trim();
 	      
 	      if(tel.matches("010-\\d{4}-\\d{4}")) {
 	    	  this.tel=tel;
@@ -302,7 +319,7 @@ public class Join {
 		System.out.println("[이름] 한글만 입력 가능합니다. ");
 		System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
 		System.out.print("이름:");
-	      String name = scan.nextLine();
+	      String name = scan.nextLine().trim();
 	      if(name.length()>1&&name.length()<7&&Pattern.matches("[가-힣]*", name)) {
 	    	  this.name=name;
 	    	  System.out.println();
@@ -324,7 +341,7 @@ public class Join {
 	      System.out.println("[비밀번호] 4~12 글자 사이 영어+숫자로만 입력하세요.");
 	      System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
 	      System.out.print("비밀번호: ");
-	      String pwd = scan.nextLine();
+	      String pwd = scan.nextLine().trim();
 	      
 	      
 	      
@@ -340,18 +357,22 @@ public class Join {
 		    }
 		
 	}
-
+	// 아이디 입력 및 중복 체크
 	private void id() {
 		Scanner scan=new Scanner(System.in);
+		System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
 		System.out.println("[아이디] 4~16 글자 사이 영어+숫자로만 입력하세요.");
 		System.out.println("중복 아이디는 불가능합니다.");
 		System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
 		
 	    System.out.print("아이디: ");
-	    String id = scan.nextLine();
+	    String id = scan.nextLine().trim();
 	    this.id = id;
 	    
+	    // 아이디 길이와 형식 검사
 	    if(id.length()>3&&id.length()<=16&&Pattern.matches("[A-Za-z0-9]*", id)){
+	    	
+	    	// 중복 체크
 	    	if(doublecheck(id)) {
 	    		this.id = id;
 	    		System.out.println();
@@ -365,13 +386,14 @@ public class Join {
 	    	}
 	    	
 	    }else {
-	    	System.out.println();
+	    	System.out.println();	
 	    	System.out.println("올바른 형식으로 다시 입력하세요.");
 	    	id();
 	    }
 		
 	}
-
+	
+	// 중복 아이디 체크 메소드
 	private static boolean doublecheck(String id) {
 		
 		for(Member member : Data.list){
@@ -381,5 +403,6 @@ public class Join {
 		}
 		return true;
 	}
-
+	
+	
 }
