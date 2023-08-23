@@ -49,7 +49,7 @@ public class MemberSearch {
 
 		Set<String> sellingStuffNo = new HashSet<>(); // 출력한 판매 물품 번호를 저장하는 Set
 		Set<String> SoldOutStuffNo = new HashSet<>(); // 출력한 구매 물품 번호를 저장하는 Set
-
+		
 		for (Member member : MemberData.list) {
 
 			// 회원 번호, 이름, 아이디 중 검색 키워드와 일치하는지 확인
