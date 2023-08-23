@@ -193,16 +193,17 @@ public class Data {  //txt 파일을 받아서 조작하고 데이터 입출력�
 
     public static void addKeywordsAndSave(int userNumber, String keywordsToAdd) {
         try {
-            BufferedWriter writer = new BufferedWriter(new FileWriter("/Users/green/Desktop/TempKeyWord.txt",false));
+            BufferedWriter writer = new BufferedWriter(new FileWriter("/Users/green/Desktop/TempKeyWord.txt"));
 
             BufferedReader reader = new BufferedReader(new FileReader("/Users/green/Desktop/KeyWord.txt"));
             String line;
             while ((line = reader.readLine()) != null) {
                 if (line.startsWith(userNumber + ",")) {
-                    writer.write(userNumber + "," + keywordsToAdd + "\r\n");
+                    writer.write(userNumber + "," + keywordsToAdd);
                 } else {
-                    writer.write(line + "\r\n");
+                    writer.write(line);
                 }
+                writer.newLine(); // Add a new line after each line
             }
 
             reader.close();
@@ -210,11 +211,13 @@ public class Data {  //txt 파일을 받아서 조작하고 데이터 입출력�
 
             File originalFile = new File("/Users/green/Desktop/KeyWord.txt");
             File tempFile = new File("/Users/green/Desktop/TempKeyWord.txt");
-            if (!tempFile.renameTo(originalFile)) {
+            if (tempFile.renameTo(originalFile)) {
+                System.out.println("Keywords added and saved successfully.");
+            } else {
                 System.out.println("Could not rename the temp file.");
             }
         } catch (Exception e) {
-            System.out.println("at Data.addKeywordsAndSave");
+            System.out.println("An error occurred in Data.addKeywordsAndSave");
             e.printStackTrace();
         }
     }
