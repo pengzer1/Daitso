@@ -1,10 +1,9 @@
 package com.project.cow.mypage;
 
-import org.w3c.dom.ls.LSOutput;
-
 import java.util.Scanner;
 import java.util.function.Function;
-import java.util.function.Predicate;
+
+import com.project.cow.data.Data;
 
 public class Account { // 다이소페이 클래스
 

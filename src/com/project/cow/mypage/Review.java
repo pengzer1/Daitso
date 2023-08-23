@@ -1,6 +1,7 @@
 package com.project.cow.mypage;
 
 import com.project.cow.data.BadReviewData;
+import com.project.cow.data.Data;
 
 import java.util.Scanner;
 
@@ -11,7 +12,6 @@ public class Review { // 상품 거래 후기
     }
 
     User user;
-    User a = Data.userList.get(1);
 
     void reviewScreen(User user){
         while (true) {

@@ -27,6 +27,11 @@ public class Main {
 		BlackListData.blackListLoad();
 		MemberData.load();
 		MemberQuestion.loadFAQInfo();
+        Data.soldOutLoad();
+        Data.keyWordListLoad();
+        Data.reviewLoad();
+        Data.badReviewLoad();
+        Data.tradeStuffLoad();
 		
 		
 		 // 메인 화면 시작

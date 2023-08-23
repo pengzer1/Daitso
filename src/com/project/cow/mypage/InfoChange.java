@@ -2,6 +2,8 @@ package com.project.cow.mypage;
 
 import java.util.Scanner;
 
+import com.project.cow.data.Data;
+
 public class InfoChange {  //회원 정보 수정
     static Scanner scan;
 

@@ -1,5 +1,6 @@
 package com.project.cow.mypage;
 
+import com.project.cow.data.Data;
 import com.project.cow.data.BadReviewData;
 import com.project.cow.data.SellingStuffData;
 import com.project.cow.data.object.BadReview;

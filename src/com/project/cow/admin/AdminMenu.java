@@ -41,7 +41,7 @@ public class AdminMenu {
 				MemberQuestion.adminFAQCheck();
 			} else if (input.equals("5")) {
 				// 중고거래 제한물품
-				
+				ProhibitedItems.prohibitScreen();
 			} else {
 				Main.MainScreen();
 			}

@@ -2,6 +2,9 @@ package com.project.cow.mypage;
 
 import java.util.Scanner;
 
+import com.project.cow.Main;
+import com.project.cow.data.Data;
+
 public class DeleteAccount { //회원탈퇴 클래스
 
     static Scanner scan;
@@ -38,6 +41,13 @@ public class DeleteAccount { //회원탈퇴 클래스
         String select = scan.nextLine().trim();
         if (select.equals("1")) {
             Data.deleteMember(user);
+            
+            System.out.println("삭제가 완료되었습니다.");
+            System.out.println("Enter를 누르면 초기화면으로 돌아갑니다.");
+            scan.nextLine().trim();
+            
+            Main.MainScreen();
+            
         } else if (select.equals("0")) {
             MyPageList myPageList = new MyPageList(user);
         }

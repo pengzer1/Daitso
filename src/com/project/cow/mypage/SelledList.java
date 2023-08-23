@@ -1,6 +1,6 @@
 package com.project.cow.mypage;
 
-
+import com.project.cow.data.Data;
 
 import java.util.Scanner;
 

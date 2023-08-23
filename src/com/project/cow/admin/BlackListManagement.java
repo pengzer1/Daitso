@@ -39,6 +39,10 @@ public class BlackListManagement {
                     String username = scanner.nextLine();
                     blacklistManager.addToBlacklist(username);
                     System.out.println("사용자가 블랙리스트에 추가 되었습니다.");
+                    
+                    System.out.println();
+                    System.out.println("Enter를 눌러 이전화면으로 돌아가기");
+                    scanner.nextLine();
                     break;
 
                 case 2:
@@ -46,8 +50,12 @@ public class BlackListManagement {
                     String fileContent = TextFileReader.readTextFile(filePath);
 
                     if (fileContent != null) {
-                        System.out.println("File content:");
                         System.out.println(fileContent);
+                        
+                        System.out.println();
+                        System.out.println("Enter를 눌러 이전화면으로 돌아가기");
+                        scanner.nextLine();
+                        
                     } else {
                         System.out.println("파일을 읽는데 오류가 발생하였습니다.");
                     }
@@ -71,6 +79,10 @@ public class BlackListManagement {
             		System.out.println("4회적발 : 사이트영구 이용제한 및 회원정보 말소");
             		System.out.println();
             		System.out.println();
+                    
+                    System.out.println();
+                    System.out.println("Enter를 눌러 이전화면으로 돌아가기");
+                    scanner.nextLine();
                     break;
                 default:
                     System.out.println("잘못된 선택 입니다. 다시 입력해 주십시오.");
