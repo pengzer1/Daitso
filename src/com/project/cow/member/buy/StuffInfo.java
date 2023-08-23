@@ -1,82 +1,62 @@
 package com.project.cow.member.buy;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.*;
 import com.project.cow.constant.Constant;
+import com.project.cow.data.SellingStuffData;
 import com.project.cow.data.object.SellingStuff;
 
 public class StuffInfo {
 	
-	public static ArrayList<SellingStuff> list;
-	    static {
-	        StuffInfo.list = new ArrayList<>();
-	    }
+	public static void stuffInfo() {
+		SellingStuffData.load();  //데이터 불러오기
+		Scanner sc = new Scanner(System.in);
+		boolean loop = true;
+		ArrayList<SellingStuff> wantBuyStuff = new ArrayList<SellingStuff>();  //구매하고 싶은 물건의 정보를 담는 배열
+		SellingStuff a;
+		
+		System.out.println("[번호]\t\t[품명]\t\t[상품품질]\t[가격]\t\t[판매자]\t[거래방법]\t\t[지불방법]\t\t[판매시작일]\t\t[판매마감일]\t\t[찜횟수]");
+		int index=0;
+		for (SellingStuff s : SellingStuffData.sellingList) {
+				System.out.printf("%5s\t%-14s\t%s\t%9s\t%8s\t%-6s\t\t%-13s\t%-15s\t%-14s\t%3s\r\n", s.getNo(), s.getName(),
+						Constant.Condition(s.getCondition()), s.getPrice(), s.getSellerNo(),
+						Constant.Method(s.getMethod()), Constant.Payment(s.getPayment()), s.getFrom(), s.getUntil(),
+						s.getLike());
+				index++;
+				if(index==100) break;
+		}
+		int flag=0;
+		while (loop) {
+			System.out.println();
+			System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+			System.out.println("구매할 물품의 번호를 입력하세요.");
+			System.out.println("이전 화면으로 돌아가시려면 0을 입력해 주세요.");
+			System.out.print("번호 입력 : ");
+			String num = sc.nextLine();
 
-	public void listLoad(){
-	    try (BufferedReader br = new BufferedReader(new FileReader("data\\sellingStuff.txt"))) {
-	        String line;
-	        while ((line = br.readLine()) != null ) {
-	            String[] temp=line.split(","); //
-	            SellingStuff s = new SellingStuff(temp[0],temp[1],temp[2],temp[3],temp[4],temp[5],temp[6],temp[7], temp[8],temp[9],temp[10]);
-	            StuffInfo.list.add(s);
-	        }
-	    }
-	    catch (IOException e) {
-	        e.printStackTrace();
-
-	    }
-	       // StuffInfo stuffInfo = new StuffInfo();
-
-			//SellingStuffData.load();
-	        try {
-	        	
-	        	BufferedReader br = new BufferedReader(new FileReader("data\\sellingStuff.txt"));
-	            String line;
-	            int lineRead = 0;
-
-	            System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
-	            System.out.println("[번호]\t [제목]\t\t\t[카테고리]\t\t [물건 상태]\t[판매 가격]\t[판매자 번호]\t  [상품 거래 방식] \t[결제 방식]\t\t[등록 날짜]\t\t[마감 날짜]\t\t[찜]");
-
-	            while ((line = br.readLine()) != null && lineRead < 10) {
-
-	                listLoad();
-
-	                String[] data = line.split(",");
-
-	                String num = data[0];
-	                String name = data[1];
-	                String category = data[2];
-	                String condition = data[6];
-	                String price = data[3];
-	                String seller = data[10];
-	                String method = data[4];
-	                String payment = data[5];
-	                String from = data[7];
-	                String end = data[8];
-	                String like = data[9];
-
-	                System.out.printf("%3s %-10s %17s %6s %12s %11s %10s %14s %15s %15s %6s", num, name, Constant.Category(category), Constant.Condition(condition), price, seller, Constant.Method(method), Constant.Payment(payment)           , from, end, like);
-	                System.out.println();
-
-	                lineRead++;// 10줄 출력 하기 위해
-	            }
-
-
-	            System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
-
-	        } catch (Exception e) {
-	            e.printStackTrace();
-	        }
-
-
-	        Scanner sc = new Scanner(System.in);
-
-	        System.out.println("[구매할 물품의 번호를 입력하세요]");
-	        System.out.println("구매할 물품>");
-	        
-	        BuyPage.sellpage();
-	        
-	} 
+			for(SellingStuff stuff : SellingStuffData.sellingList) {
+				if (num.equals("0")) {  
+					StuffCategory.Screen();  //이전화면
+					break;
+				} else if(num.equals(stuff.getNo())){
+					a = stuff;
+					System.out.println(a);
+					wantBuyStuff.add(stuff);   //사고 싶은 상품을 배열에 넣기
+					System.out.println("판매 페이지로 이동하시려면 Enter를 눌러주세요.");
+                	sc.nextLine();
+                	System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+                    BuyPage.buyPage(a);  //판매 페이지로 이동.
+                    loop = false;  // 루프 종료
+                    flag=1;
+                    break;
+				} else flag=0;
+			}
+			if(flag==0) {
+				System.out.println("번호를 바르게 입력해 주십시오.");
+				System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+			}
+		}
+	
+	loop=false;   //추가
+		
+	}
+	
 }

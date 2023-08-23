@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Data {  //txt 파일을 받아서 조작하고 데이터 입출력을 담당.
-        public static ArrayList<User> userList;  //회원배열
+    public static ArrayList<User> userList;  //회원배열
     public static ArrayList<SoldOut> soldOutArrayList;
     public static ArrayList<String> keyWordList;
 
