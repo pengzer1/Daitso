@@ -8,6 +8,8 @@ import java.util.Scanner;
 import com.project.cow.constant.Constant;
 
 public class BuyPage {
+	static StuffInfo stuffInfo = new StuffInfo();
+	
     public static void sellpage() {
 
         Scanner sc = new Scanner(System.in);
@@ -52,7 +54,7 @@ public class BuyPage {
             sc.nextLine(); // 두번하지 않으면 한번에 엔터 안눌러도 나와
             System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
 
-            StuffInfo.listLoad();
+            stuffInfo.listLoad();
 
             System.out.println("\t[제목]\t\t\t    [카테고리]\t\t[물건 상태]\t[판매 가격]\t[판매자명]\t[상품 거래 방식]\t[결제 방식]\t[등록 날짜]  \t [마감 날짜]\t [찜]");
 
@@ -83,7 +85,7 @@ public class BuyPage {
             LocalDate endDate = LocalDate.parse(endDateStr);
             LocalDate checkDate = LocalDate.parse(checkDateStr);
 
-            StuffInfo.listLoad();
+            stuffInfo.listLoad();
 
             if (isWithinDateRange(checkDate, startDate, endDate)) {
                 System.out.println("물품을 구매를 진행합니다.");

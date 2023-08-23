@@ -27,7 +27,8 @@ public class MemberMenu {
 		System.out.println("1.구매하기");
 		System.out.println("2.판매하기");
 		System.out.println("3.마이페이지");
-		System.out.println("4.로그아웃");
+		System.out.println("4.제3자 보관함 위치 보기");
+		System.out.println("5.로그아웃");
 		
 		
 		System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
@@ -41,10 +42,11 @@ public class MemberMenu {
 		}else if (sel.equals("3")) {
 			MyPageList myPageList = new MyPageList(user);
 	        myPageList.myPageScreen();
-		}else if(sel.equals("4")){
+		}else if (sel.equals("4")) {
+			Locker locker = new Locker();
+			locker.screen();
+		}else if(sel.equals("5")){
 			Login.logout();
-			
-			
 		}
 		else {
 			System.out.println("잘못된 입력입니다. 다시 입력해주세요.");

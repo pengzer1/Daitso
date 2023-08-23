@@ -11,13 +11,15 @@ public class BuyMenu {
    }
    public BuyMenu()   {}
    
+   static StuffInfo stuffInfo = new StuffInfo();
+   
    public static void FirstScreen() {
-      Scanner sc = new Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
       
-      LikeItem likeItem = new LikeItem();
-      KeyWordSet keyWordSet = new KeyWordSet();
+        LikeItem likeItem = new LikeItem();
+        KeyWordSet keyWordSet = new KeyWordSet();
       
-      System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+      	System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
         System.out.println("[구매하기]");
         System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
         System.out.println("1.물품구매");
@@ -78,8 +80,7 @@ public class BuyMenu {
         String input = sc.nextLine().trim();
 
         if (input.equals("1")) {
-            // 물품 구매 
-
+        	stuffInfo.listLoad();
         } else if (input.equals("2")) {  // 물품검색
             System.out.println();
             StuffSearch.search();
@@ -88,7 +89,7 @@ public class BuyMenu {
             StuffSort.stuffSortChoice();
         } else if (input.equals("4")) {
             //찜하기
-
+        	//TODO BuyPage에서 구매/찜하기 나눠서 할 예정, 완료 후 삭제될 버튼
         } else if (input.equals("0")) {
         	System.out.println();
             MemberMenu.membermenu();

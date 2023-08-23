@@ -14,8 +14,8 @@ public class StuffInfo {
 	        StuffInfo.list = new ArrayList<>();
 	    }
 
-	public static void listLoad(){
-	    try (BufferedReader br = new BufferedReader(new FileReader("C:\\class\\code\\java\\Project\\data\\sellingStuff.txt"))) {
+	public void listLoad(){
+	    try (BufferedReader br = new BufferedReader(new FileReader("data\\sellingStuff.txt"))) {
 	        String line;
 	        while ((line = br.readLine()) != null ) {
 	            String[] temp=line.split(","); //
@@ -32,7 +32,7 @@ public class StuffInfo {
 			//SellingStuffData.load();
 	        try {
 	        	
-	        	BufferedReader br = new BufferedReader(new FileReader("C:\\class\\code\\java\\Project\\data\\sellingStuff.txt"));
+	        	BufferedReader br = new BufferedReader(new FileReader("data\\sellingStuff.txt"));
 	            String line;
 	            int lineRead = 0;
 
