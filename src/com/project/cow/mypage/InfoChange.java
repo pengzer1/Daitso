@@ -17,7 +17,7 @@ public class InfoChange {  //회원 정보 수정
             System.out.println(" 2. 비밀번호 변경 ");
             System.out.println(" 3. 휴대폰 번호 변경 ");
             System.out.println(" 4. 동네 변경 ");
-            System.out.println(" 5. 마이페이지로 돌아가기");
+            System.out.println(" 0. 마이페이지로 돌아가기");
             System.out.print("변경할 정보를 선택해주세요(번호입력) : ");
             String input = scan.nextLine();
             switch (input) {

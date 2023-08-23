@@ -39,7 +39,7 @@ public class SearchAlerts {
                   myKeyWord(user);
                   break;
               case "2":
-                  //알림 키워드 설정하기
+                  keyWordSave(user);
                   break;
               default:
                   System.out.println("0~2숫자를 입력해주세요.");
@@ -84,11 +84,36 @@ public class SearchAlerts {
 
         }
         System.out.println("돌아가실려면 (엔터)");
-        scan.nextLine();
+        scan.nextLine().trim();
         myKeyWord(user);
     }
-    private void numInput(){
 
+    private void keyWordSave(User user) {
+        System.out.println("1.키워드 추가하기");
+        System.out.println("2.키워드 삭제하기");
+        System.out.print("번호 입력 : ");
+        String input = scan.nextLine().trim();
+        if (input.equals("1")) {
+            keyWordAdd(user);
+        } else if (input.equals("2")) {
+keyWordRemove(user);
+        }
+
+    }
+
+    private void keyWordAdd(User user){
+        System.out.println("추가하고싶은 키워드를 입력하세요");
+        System.out.print("키워드 입력 : ");
+        String input = scan.nextLine().trim()+"|";
+        System.out.println(input);
+        Data.addKeywordsAndSave(Integer.valueOf(user.getNumber()), input);
+    }
+    private void keyWordRemove(User user){
+        System.out.println("삭제하고싶은 키워드를 입력하세요");
+        System.out.print("키워드 입력 : ");
+        String input = scan.nextLine().trim();
+        System.out.println(input);
+        Data.removeKeywordsAndSave(Integer.valueOf(user.getNumber()), input);
     }
 
 }

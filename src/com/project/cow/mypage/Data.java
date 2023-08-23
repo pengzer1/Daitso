@@ -7,6 +7,7 @@ import com.project.cow.data.object.SellingStuff;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Data {  //txt 파일을 받아서 조작하고 데이터 입출력을 담당.
@@ -14,6 +15,7 @@ public class Data {  //txt 파일을 받아서 조작하고 데이터 입출력�
     public static ArrayList<SoldOut> soldOutArrayList;
     public static ArrayList<KeyWord> keyWordList;   //키워드 배열
     public static ArrayList<ReviewInstance> ReviewList;
+    public static ArrayList<TradeStuff> tradeList;
 
 
     static {
@@ -25,6 +27,7 @@ public class Data {  //txt 파일을 받아서 조작하고 데이터 입출력�
         Data.soldOutArrayList = new ArrayList<>();
         keyWordList = new ArrayList<>();
         ReviewList = new ArrayList<>();
+        tradeList = new ArrayList<>();
     }
 
     public static void memberLoad() {   // 회원정보txt를 배열에 load.
@@ -167,7 +170,7 @@ public class Data {  //txt 파일을 받아서 조작하고 데이터 입출력�
 
     public static void keyWordListLoad() {   // 키워드 배열
         try {
-            BufferedReader reader = new BufferedReader(new FileReader("/Users/green/Downloads/KeyWord.txt"));
+            BufferedReader reader = new BufferedReader(new FileReader("/Users/green/Desktop/KeyWord.txt"));
 
             String line = null;
             while ((line = reader.readLine()) != null) {
@@ -187,20 +190,74 @@ public class Data {  //txt 파일을 받아서 조작하고 데이터 입출력�
         }
     }
 
-    public static void keyWordListSave() {   // 배열에 새로운 내용들을 반영시켜 저장하기.
+
+    public static void addKeywordsAndSave(int userNumber, String keywordsToAdd) {
         try {
-            BufferedWriter writer = new BufferedWriter(new FileWriter("/Users/green/Downloads/KeyWord.txt"));
+            BufferedWriter writer = new BufferedWriter(new FileWriter("/Users/green/Desktop/TempKeyWord.txt",false));
 
-            for (KeyWord key : Data.keyWordList) {
-                writer.write(String.format("%s,%s\r\n", key.getNo(), key.getKeyWord()));
-            }  //배열에 새로운 내용들을 반영시키기.
+            BufferedReader reader = new BufferedReader(new FileReader("/Users/green/Desktop/KeyWord.txt"));
+            String line;
+            while ((line = reader.readLine()) != null) {
+                if (line.startsWith(userNumber + ",")) {
+                    writer.write(userNumber + "," + keywordsToAdd + "\r\n");
+                } else {
+                    writer.write(line + "\r\n");
+                }
+            }
 
+            reader.close();
             writer.close();
+
+            File originalFile = new File("/Users/green/Desktop/KeyWord.txt");
+            File tempFile = new File("/Users/green/Desktop/TempKeyWord.txt");
+            if (!tempFile.renameTo(originalFile)) {
+                System.out.println("Could not rename the temp file.");
+            }
         } catch (Exception e) {
-            System.out.println("at Data.save");
+            System.out.println("at Data.addKeywordsAndSave");
             e.printStackTrace();
         }
     }
+
+    public static void removeKeywordsAndSave(int userNumber, String keywordsToRemove) {
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter("/Users/green/Desktop/TempKeyWord.txt", false));
+
+            BufferedReader reader = new BufferedReader(new FileReader("/Users/green/Desktop/KeyWord.txt"));
+            String line;
+            while ((line = reader.readLine()) != null) {
+                if (line.startsWith(userNumber + ",")) {
+                    List<String> existingKeywords = new ArrayList<>(Arrays.asList(line.split(",")[1].split("\\|")));
+                    List<String> keywordsToRemoveList = Arrays.asList(keywordsToRemove.split("\\|"));
+                    existingKeywords.removeAll(keywordsToRemoveList);
+
+                    writer.write(userNumber + ",");
+                    for (String keyword : existingKeywords) {
+                        writer.write(keyword + "|");
+                    }
+                    writer.write("\r\n");
+                } else {
+                    writer.write(line + "\r\n");
+                }
+            }
+
+            reader.close();
+            writer.close();
+
+            File originalFile = new File("/Users/green/Desktop/KeyWord.txt");
+            File tempFile = new File("/Users/green/Desktop/TempKeyWord.txt");
+            if (!tempFile.renameTo(originalFile)) {
+                System.out.println("Could not rename the temp file.");
+            }
+        } catch (Exception e) {
+            System.out.println("at Data.removeKeywordsAndSave");
+            e.printStackTrace();
+        }
+    }
+
+
+
+
 
     public static void reviewLoad() {
 
@@ -225,7 +282,7 @@ public class Data {  //txt 파일을 받아서 조작하고 데이터 입출력�
 
     public static void reviewSave(){
         try {
-            BufferedWriter writer = new BufferedWriter(new FileWriter("//Users/green/Desktop/reviewSave.txt"));
+            BufferedWriter writer = new BufferedWriter(new FileWriter("/Users/green/Desktop/reviewSave.txt"));
 
             for (ReviewInstance review : Data.ReviewList) {
                 // 객체 정보를 텍스트 파일에 쓰는 로직
@@ -273,6 +330,25 @@ public class Data {  //txt 파일을 받아서 조작하고 데이터 입출력�
             writer.close();
         }catch(Exception e) {
             System.out.println("at Data.save");
+            e.printStackTrace();
+        }
+
+
+    }
+    public static void tradeStuffLoad() {  // 판매된 목록
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader("/Users/green/Downloads/tradeStuff.txt"));
+
+            String line = null;
+            while ((line = reader.readLine()) != null) {
+                String[] temp = line.split(",");
+                TradeStuff soldOut = new TradeStuff(temp[0], temp[1], temp[2], temp[3], temp[4], temp[5], temp[6], temp[7], temp[8], temp[9]);
+                tradeList.add(soldOut);
+            }
+
+            reader.close();
+        } catch (Exception e) {
+            System.out.println("at Data.load");
             e.printStackTrace();
         }
     }

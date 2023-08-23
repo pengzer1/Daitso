@@ -12,7 +12,9 @@ public class Test {
         SellingStuffData.load();
         Data.reviewLoad();
         Data.badReviewLoad();
-        MyPageList myPageList = new MyPageList(Data.userList.get(1234));
+        Data.tradeStuffLoad();
+
+        MyPageList myPageList = new MyPageList(Data.userList.get(25));
 
         myPageList.myPageScreen();
 
