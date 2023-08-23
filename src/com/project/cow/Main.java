@@ -2,6 +2,8 @@ package com.project.cow;
 
 import java.util.Scanner;
 
+import com.project.cow.admin.MemberListDisplay;
+import com.project.cow.admin.MemberQuestion;
 import com.project.cow.data.BlackListData;
 import com.project.cow.data.Data;
 import com.project.cow.data.KeyWordData;
@@ -22,6 +24,8 @@ public class Main {
 		LikeItemData.likeItemLoad();
 		KeyWordData.keyWordListLoad();
 		BlackListData.blackListLoad();
+		MemberListDisplay.loadMemberInfo();
+		MemberQuestion.loadFAQInfo();
 		
 		
 		 // 메인 화면 시작

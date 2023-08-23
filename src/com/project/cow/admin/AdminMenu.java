@@ -2,7 +2,7 @@ package com.project.cow.admin;
 
 import java.util.Scanner;
 
-class AdminMenu {
+public class AdminMenu {
 	/**
 	 * 관리자 메인 페이지 화면 출력 클래스
 	 * @author 이승원

@@ -3,6 +3,8 @@ package com.project.cow.login;
 import java.util.Calendar;
 import java.util.Scanner;
 
+import com.project.cow.Main;
+import com.project.cow.admin.AdminMenu;
 import com.project.cow.data.BlackListData;
 import com.project.cow.data.Data;
 import com.project.cow.data.object.BlackList;
@@ -39,7 +41,7 @@ public class Login {
 			System.out.println("엔터를 누르면 관리자 메뉴로 이동합니다.");
 			scan.nextLine();
 			
-			return;
+			AdminMenu.adminMain();
 		}
 		
 ////	블랙리스트 회원 조회
@@ -55,7 +57,7 @@ public class Login {
                 System.out.println();
                 System.out.println("메인화면으로 돌아가려면 엔터를 입력하세요.");
                 scan.nextLine();
-        		//TODO 화면 초기화면
+        		Main.MainScreen();
         	}else {
         		if(isBlocked(bl)) {
         			System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
@@ -63,7 +65,7 @@ public class Login {
                     System.out.println();
                     System.out.println("메인화면으로 돌아가려면 엔터를 입력하세요.");
                     scan.nextLine();
-            		//TODO 초기화면 돌리기
+            		Main.MainScreen();
             	}
         		
         	}
