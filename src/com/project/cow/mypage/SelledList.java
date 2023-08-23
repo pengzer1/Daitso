@@ -19,7 +19,7 @@ public class SelledList { //판매목록 클래스
     public void selledScreen(User user) {
 
     	AdminMenu.printMenu("나의 판매목록");
-        System.out.println(" 1.번호\t\t2.제목\t\t3.카테고리\t4.가격\t5.거래방법\t6.결제방식\t7.물품상태\t8.거래일자\t9.판매자번호\t10.구매자번호");
+        System.out.println("1.번호\t\t2.제목\t\t3.카테고리\t4.가격\t5.거래방법\t6.결제방식\t7.물품상태\t8.거래일자\t9.판매자번호\t10.구매자번호");
         for (int i = 0; i < Data.soldOutArrayList.size(); i++) {
             if (user.getNumber().equals(Data.soldOutArrayList.get(i).getSellNum())) {
 

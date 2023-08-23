@@ -3,7 +3,9 @@ package com.project.cow.mypage;
 import com.project.cow.admin.AdminMenu;
 import com.project.cow.constant.Constant;
 import com.project.cow.data.Data;
+import com.project.cow.data.MemberData;
 import com.project.cow.data.SellingStuffData;
+import com.project.cow.data.object.Member;
 import com.project.cow.data.object.SellingStuff;
 
 import java.util.Scanner;
@@ -43,14 +45,29 @@ public class BuyList {
     private void myBuyList(User user) {
 
     	AdminMenu.printMenu("나의 구매목록");
-        System.out.println(" 1.번호\t\t2.제목\t\t3.카테고리\t4.가격\t5.거래방법\t6.결제방식\t7.물품상태\t8.거래일자\t9.판매자번호\t10.구매자번호");
+    	System.out.println("[번호]           [품명]             [카테고리]           [상품품질]   [가격]      [거래방법]      [지불방법]     [거래일자]      [판매자]      [구매자]");
         for (int i = 0; i < Data.soldOutArrayList.size(); i++) {
             if (user.getNumber().equals(Data.soldOutArrayList.get(i).getBuyNum())) {
 
                 SoldOut item = Data.soldOutArrayList.get(i);
-                System.out.printf("%5s %10s %8s %12s %8s %10s %11s %16s %9s %10s\n",
-                        item.getNum(), item.getName(), item.getCategory(), item.getPrice(), item.getTransactionMethod()
-                        , item.getPaymentMethod(), item.getStatus(), item.getTransactionData(), item.getSellNum(), item.getBuyNum());
+                
+                System.out.printf("%5s %10s\t%8s\t  %12s\t   %8s  %10s %11s %16s",
+                        item.getNum(), item.getName(), Constant.Category(item.getCategory()), Constant.Condition(item.getStatus()), item.getPrice(), Constant.Method(item.getTransactionMethod()),
+                        Constant.Payment(item.getPaymentMethod()), item.getTransactionData());
+                
+                // 해당 물품의 판매자 이름 출력
+				for (Member seller : MemberData.list) {
+					if (seller.getNo().equals(item.getSellNum())) {
+						System.out.printf(" %8s", seller.getName());
+					}
+				}
+				
+				// 해당 물품의 구매자 이름 출력
+				for (Member buyer : MemberData.list) {
+					if (buyer.getNo().equals(item.getBuyNum())) {
+						System.out.printf(" %10s\n", buyer.getName());
+					}
+				}
             }
         }
         System.out.println("Enter를 누르면 이전 화면으로 돌아갑니다.");

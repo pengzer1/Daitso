@@ -3,7 +3,9 @@ import java.util.*;
 
 import com.project.cow.admin.AdminMenu;
 import com.project.cow.constant.Constant;
+import com.project.cow.data.MemberData;
 import com.project.cow.data.SellingStuffData;
+import com.project.cow.data.object.Member;
 import com.project.cow.data.object.SellingStuff;
 
 public class StuffInfo {
@@ -13,16 +15,25 @@ public class StuffInfo {
 		boolean loop = true;
 		SellingStuff a;
 		
-		System.out.println("[번호]\t\t[품명]\t\t[상품품질]\t[가격]\t\t[판매자]\t[거래방법]\t\t[지불방법]\t\t[판매시작일]\t\t[판매마감일]\t\t[찜횟수]");
+		System.out.println("[번호]           [품명]             [상품품질]  [가격]  [판매자]    [거래방법]            [지불방법]           [판매시작일]    [판매마감일]   [찜횟수]");
 		int index=0;
 		for (SellingStuff s : SellingStuffData.sellingList) {
-				System.out.printf("%5s\t%-14s\t%s\t%9s\t%8s\t%-6s\t\t%-13s\t%-15s\t%-14s\t%3s\r\n", s.getNo(), s.getName(),
-						Constant.Condition(s.getCondition()), s.getPrice(), s.getSellerNo(),
-						Constant.Method(s.getMethod()), Constant.Payment(s.getPayment()), s.getFrom(), s.getUntil(),
+				System.out.printf(" %4s  %-16s\t\t%s %10s", s.getNo(), s.getName(), Constant.Condition(s.getCondition()), s.getPrice());
+				
+				// 해당 물품의 판매자 정보 출력
+				for (Member seller : MemberData.list) {
+					if (seller.getNo().equals(s.getSellerNo())) {
+						System.out.printf(" %6s ", seller.getName());
+					}
+				}
+				System.out.printf("  %-9s  \t %-13s\t%-15s %-15s %3s\r\n", Constant.Method(s.getMethod()), Constant.Payment(s.getPayment()), s.getFrom(), s.getUntil(),
 						s.getLike());
+				
+				
 				index++;
 				if(index==100) break;
 		}
+		
 		int flag=0;
 		while (loop) {
 			System.out.println();

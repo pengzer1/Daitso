@@ -25,12 +25,12 @@ public class MyPageList {
     public void myPageScreen(){
 
     	AdminMenu.printMenu("마이페이지");
-        System.out.printf("  이름 : %s\n", user.getName());
-        System.out.printf("  아이디 : %s\n", user.getId());
-        System.out.printf("  비밀번호 : %s\n",user.getPassword());
-        System.out.printf("  연락처 : %s\n", user.getPhoneNumber());
-        System.out.printf("  이메일 : %s\n", user.getEmail());
-        System.out.printf("  주소 : %s\n", user.getLivingArea());
+        System.out.printf("이름: %s\n", user.getName());
+        System.out.printf("아이디: %s\n", user.getId());
+        System.out.printf("비밀번호: %s\n",user.getPassword());
+        System.out.printf("연락처: %s\n", user.getPhoneNumber());
+        System.out.printf("이메일: %s\n", user.getEmail());
+        System.out.printf("주소: %s\n", user.getLivingArea());
         select();
 
     }
@@ -71,7 +71,7 @@ public class MyPageList {
         } else if (input.equals("0")) {
             MemberMenu.membermenu();
         } else {
-            System.out.println("1~6의 번호를 입력해주세요");
+            System.out.println("1~6 번호를 입력해주세요");
             myPageScreen();
         }
     }

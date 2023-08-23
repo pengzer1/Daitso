@@ -2,9 +2,11 @@ package com.project.cow.mypage;
 
 
 import com.project.cow.data.Data;
+import com.project.cow.data.MemberData;
 import com.project.cow.admin.AdminMenu;
 import com.project.cow.constant.Constant;
 import com.project.cow.data.SellingStuffData;
+import com.project.cow.data.object.Member;
 import com.project.cow.data.object.SellingStuff;
 
 import java.util.ArrayList;
@@ -36,7 +38,7 @@ public class SearchAlerts {
                   myKeyWord(user);
                   break;
               default:
-                  System.out.println("0~2숫자를 입력해주세요.");
+                  System.out.println("0~2 숫자를 입력해주세요.");
                   continue;
           }
 
@@ -52,7 +54,8 @@ public class SearchAlerts {
             select.add(Data.keyWordList.get(userNum).getWord()[i]);
             count++;
         }
-        AdminMenu.printOption("판매목록을 보시려면 해당 키워드의 번호를 입력해주세요.");
+        System.out.println("판매목록을 보시려면 해당 키워드의 번호를 입력해주세요.");
+        System.out.println("0. 돌아가기");
         String input = scan.nextLine();
         int peek = Integer.valueOf(input);
         if (input.equals("0")){
@@ -70,15 +73,20 @@ public class SearchAlerts {
         int number = (Integer.valueOf(num)) -1;
         String item = select.get(number);
         System.out.println(item);
-        System.out.println("[번호]\t\t[품명]\t\t[상품품질]\t[가격]\t\t[판매자]\t[거래방법]\t\t[지불방법]\t\t[판매시작일]\t\t[판매마감일]\t\t[찜횟수]");
-
+        System.out.println("[번호]           [품명]             [상품품질]  [가격]  [판매자]    [거래방법]            [지불방법]           [판매시작일]    [판매마감일]   [찜횟수]");
+		
         for (SellingStuff s : SellingStuffData.sellingList) {
           if (s.getName().toUpperCase().replace(" ", "").contains(item.toUpperCase().replace(" ", ""))) {
-
-                System.out.printf("%5s\t%-14s\t%s\t%9s\t%8s\t%-6s\t\t%-13s\t%-15s\t%-14s\t%3s\r\n", s.getNo(), s.getName(),
-                        Constant.Condition(s.getCondition()), s.getPrice(), s.getSellerNo(),
-                        Constant.Method(s.getMethod()), Constant.Payment(s.getPayment()), s.getFrom(), s.getUntil(),
-                        s.getLike());
+        	  System.out.printf(" %4s  %-16s\t\t%s %10s", s.getNo(), s.getName(), Constant.Condition(s.getCondition()), s.getPrice());
+				
+				// 해당 물품의 판매자 정보 출력
+				for (Member seller : MemberData.list) {
+					if (seller.getNo().equals(s.getSellerNo())) {
+						System.out.printf(" %6s ", seller.getName());
+					}
+				}
+				System.out.printf("  %-9s  \t %-13s\t%-15s %-15s %3s\r\n", Constant.Method(s.getMethod()), Constant.Payment(s.getPayment()), s.getFrom(), s.getUntil(),
+						s.getLike());
           }
 
         }

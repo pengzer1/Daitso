@@ -10,6 +10,7 @@ import com.project.cow.data.KeyWordData;
 import com.project.cow.data.LikeItemData;
 import com.project.cow.data.MemberData;
 import com.project.cow.data.SellingStuffData;
+import com.project.cow.data.SoldOutStuffData;
 import com.project.cow.data.TradeStuffData;
 import com.project.cow.find.FindID;
 import com.project.cow.find.FindPW;
@@ -19,9 +20,10 @@ import com.project.cow.login.Login;
 public class Main {
 	
 	public static void main(String[] args) {
-		
+
 		Data.memberLoad();
 		SellingStuffData.load();
+		SoldOutStuffData.load();
 		LikeItemData.likeItemLoad();
 		KeyWordData.keyWordListLoad();
 		BlackListData.blackListLoad();
@@ -33,7 +35,6 @@ public class Main {
         Data.tradeStuffLoad();
         TradeStuffData.tradeStuffLoad();
         MemberData.load();
-        SellingStuffData.load();
 
         // 메인 화면 시작
 		MainScreen();

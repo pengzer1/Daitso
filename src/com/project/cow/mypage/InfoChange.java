@@ -46,9 +46,9 @@ public class InfoChange {  //회원 정보 수정
 
     private void changeId(User user){ // 아이디 변경 메서드
     	AdminMenu.printMenu("아이디 변경");
-        System.out.println("현재 아이디 : " + user.getId());
+        System.out.println("현재 아이디: " + user.getId());
         System.out.println("(변경을 취소하시려면 0을 입력하세요.)");
-        System.out.print("변경할 아이디  : " );
+        System.out.print("변경할 아이디: " );
         String input = scan.nextLine().trim();
         if (input.equals("0")) {
             changeMyInfo(user);
@@ -63,9 +63,9 @@ public class InfoChange {  //회원 정보 수정
 
     private void changePw(User user) {
     	AdminMenu.printMenu("비밀번호 변경");
-        System.out.println("현재 비밀번호 : " + user.getPassword());
+        System.out.println("현재 비밀번호: " + user.getPassword());
         System.out.println("(변경을 취소하시려면 0을 입력하세요.)");
-        System.out.print("변경할 비밀번호 : ");
+        System.out.print("변경할 비밀번호: ");
         String input = scan.nextLine().trim();
         if (input.equals("0")) {
             changeMyInfo(user);
@@ -79,9 +79,9 @@ public class InfoChange {  //회원 정보 수정
     }
 private void changePhoneNumber(User user){
 	AdminMenu.printMenu("휴대폰 번호 변경");
-    System.out.println("현재 전화번호 : " + user.getPhoneNumber());
+    System.out.println("현재 전화번호: " + user.getPhoneNumber());
     System.out.println("(변경을 취소하시려면 0을 입력하세요.)");
-    System.out.print("변경할 전화번호 : ");
+    System.out.print("변경할 전화번호: ");
     String input = scan.nextLine().trim();
     if (input.equals("0")) {
         changeMyInfo(user);
@@ -95,7 +95,7 @@ private void changePhoneNumber(User user){
 }
 private void changeLivingArea(User user){
 	AdminMenu.printMenu("동네 변경");
-    System.out.println("현재 동네 : " + user.getLivingArea());
+    System.out.println("현재 동네: " + user.getLivingArea());
     System.out.println();
     System.out.println("지역을 선택해 주세요.");
     areaList();
@@ -202,7 +202,7 @@ private void changeLivingArea(User user){
             + "16.강서구 " + " 17.구로구 " + " 18.금천구 " + " 19.영등포구 " + " 20.동작구\n"
             + "21.관악구 " + " 22.서초구 " + " 23.강남구 " + " 24.송파구 " + " 25.강동구\n";
     System.out.println(area);
-        System.out.println("0.이전으로 돌아가기");
+        System.out.println("0. 돌아가기");
 }
 
 private void returnPage(User user){

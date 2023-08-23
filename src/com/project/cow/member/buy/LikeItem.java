@@ -66,7 +66,7 @@ public class LikeItem {
 		if (likeItem.getItemNo().equals("")) {
 			System.out.println();
 			System.out.println("잘못된 상품 번호입니다. 다시 입력해주세요.");
-			System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+			AdminMenu.printLine();
 			GetStuff();
 		}
 		
@@ -84,7 +84,7 @@ public class LikeItem {
 					a = stuff;
 					System.out.println("판매 페이지로 이동하시려면 Enter를 눌러주세요.");
                 	scan.nextLine();
-                	System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+                	AdminMenu.printLine();
                     BuyPage.buyPage(a);  //판매 페이지로 이동.
                     break;
 				}
@@ -108,7 +108,7 @@ public class LikeItem {
 
 	private void DeleteLikeItem() {
 		System.out.println();
-		System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+		AdminMenu.printLine();
 		System.out.println("정말 삭제하시겠습니까?");
 		System.out.println("1.네\t\t0.아니오");
 		System.out.print("번호입력: ");
@@ -145,7 +145,7 @@ public class LikeItem {
 		else {
 			System.out.println();
 			System.out.println("잘못된 입력입니다. 다시 입력해주세요.");
-			System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+			AdminMenu.printLine();
 			DeleteLikeItem();
 		}
 	}

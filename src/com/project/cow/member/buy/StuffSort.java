@@ -5,23 +5,18 @@ import java.util.stream.Collectors;
 
 import com.project.cow.admin.AdminMenu;
 import com.project.cow.constant.Constant;
+import com.project.cow.data.MemberData;
 import com.project.cow.data.SellingStuffData;
+import com.project.cow.data.object.Member;
 import com.project.cow.data.object.SellingStuff;
 
 public class StuffSort {
 	public static void stuffSortChoice() {
-		SellingStuffData.load();  //물품 불러오기
 		Scanner sc = new Scanner(System.in);
 		
 		AdminMenu.printLine();
         System.out.println("물품을 정렬할 기준을 선택하세요.");
-        System.out.println("1. 가격 낮은 순 정렬"); //오름차순
-        System.out.println("2. 가격 높은 순 정렬");
-        System.out.println("3. 날짜별 정렬");
-        System.out.println("4. 인기별 정렬");     //찜 개수 기준
-        System.out.println("5. 나눔만 보기");
-        System.out.println("0을 입력하시면 이전화면으로 돌아갑니다.");
-        System.out.print("번호 입력 : ");
+        AdminMenu.printOption("가격 낮은 순 정렬", "가격 높은 순 정렬", "날짜별 정렬", "인기별 정렬", "나눔만 보기");
         String input = sc.nextLine();
         AdminMenu.printLine();
 		
@@ -65,25 +60,32 @@ public class StuffSort {
    			stuffSortChoice();
    		}
 
-       	System.out.println("[번호]               [품명]     [상품품질]      [가격]    [판매자]         [거래방법]       [지불방법]      [판매시작일]     [판매마감일]   [찜횟수]");
-       int index = 0;
-       	for(SellingStuff s : SellingStuffData.sellingList) {
-    			System.out.printf("%5s %15s %11s %9s %10s %13s %13s %13s %13s %8s\r\n", s.getNo(), s.getName(),
-						Constant.Condition(s.getCondition()), s.getPrice(), s.getSellerNo(),
-						Constant.Method(s.getMethod()), Constant.Payment(s.getPayment()), s.getFrom(), s.getUntil(),
+        System.out.println("[번호]           [품명]             [상품품질]  [가격]  [판매자]    [거래방법]            [지불방법]           [판매시작일]    [판매마감일]   [찜횟수]");
+		int index=0;
+		for (SellingStuff s : SellingStuffData.sellingList) {
+				System.out.printf(" %4s  %-16s\t\t%s %10s", s.getNo(), s.getName(), Constant.Condition(s.getCondition()), s.getPrice());
+				
+				// 해당 물품의 판매자 정보 출력
+				for (Member seller : MemberData.list) {
+					if (seller.getNo().equals(s.getSellerNo())) {
+						System.out.printf(" %6s ", seller.getName());
+					}
+				}
+				System.out.printf("  %-9s  \t %-13s\t%-15s %-15s %3s\r\n", Constant.Method(s.getMethod()), Constant.Payment(s.getPayment()), s.getFrom(), s.getUntil(),
 						s.getLike());
-    			index++;
-    			if(index == 100) {
-    				break;
-    			}
-        }
+				
+				
+				index++;
+				if(index==100) break;
+		}
+		
        	int flag=0;
        	boolean loop = true;
 		while (loop) {
 			System.out.println();
 			System.out.println("구매하고 싶은 상품의 키워드를 입력하세요.");
 			System.out.println("이전 화면으로 돌아가시려면 0을 입력해 주세요.");
-			System.out.print("번호 입력 : ");
+			System.out.print("번호 입력: ");
 			String num = sc.nextLine();
 
 			for(SellingStuff stuff : SellingStuffData.sellingList) {
@@ -92,7 +94,7 @@ public class StuffSort {
 					break;
 				} else if(num.equals(stuff.getNo())){
 					AdminMenu.printLine();
-					System.out.println("판매 페이지로 이동하시려면 Enter를 눌러주세요.");
+					System.out.println("Enter를 입력하면 이전 화면으로 돌아갑니다.");
                 	sc.nextLine();
                     BuyMenu.FirstScreen();  //판매 페이지로 이동.
                     flag=1;
@@ -111,7 +113,7 @@ public class StuffSort {
 		while(true) {
 			AdminMenu.printLine();
 			System.out.println("이전화면으로 돌아가시려면 0을 입력해주세요.");
-			System.out.print("번호 입력 : ");
+			System.out.print("번호 입력: ");
 			int num=sc.nextInt();
 			
 			if(num==0) {

@@ -13,18 +13,12 @@ public class BlackListManagement {
         while (true) {
         	AdminMenu.printMenu("블랙리스트 관리창");
         	System.out.println();
-            System.out.println("1. 블랙리스트 추가하기");
-            System.out.println("2. 추가된 블랙리스트 명단 확인하기");
-            System.out.println("3. 블랙리스트 징계 양정 기준");
-            System.out.println("0. 뒤로가기");
-            System.out.println();
-            System.out.print("                버튼을 눌러 선택해주세요\n");
-            AdminMenu.printLine();
+        	AdminMenu.printOption("블랙리스트 추가하기", "추가된 블랙리스트 명단 확인하기", "블랙리스트 징계 양정 기준");
             int choice = scanner.nextInt();
 
             switch (choice) {
                 case 0:
-                    System.out.println("현재 블랙리스트 :  " + blacklistManager.getBlacklist());
+                    System.out.println("현재 블랙리스트:  " + blacklistManager.getBlacklist());
                     String sourceFilePath = "member.txt"; // 원본 파일 경로
                     String destinationFilePath = "blacklist.txt"; // 복사될 파일 경로
                     
@@ -32,14 +26,14 @@ public class BlackListManagement {
                     adminMenu.adminMenu();
                     break;
                 case 1:
-                    System.out.print("블랙리스트에 추가할 사용자 번호 입력 : ");
+                    System.out.print("블랙리스트에 추가할 사용자 번호 입력: ");
                     scanner.nextLine(); // Consume newline left-over
                     String username = scanner.nextLine();
                     blacklistManager.addToBlacklist(username);
                     System.out.println("사용자가 블랙리스트에 추가 되었습니다.");
                     
                     System.out.println();
-                    System.out.println("Enter를 눌러 이전화면으로 돌아가기");
+        			System.out.println("Enter를 누르면 이전 화면으로 돌아갑니다.");
                     scanner.nextLine();
                     break;
 
@@ -51,7 +45,7 @@ public class BlackListManagement {
                         System.out.println(fileContent);
                         
                         System.out.println();
-                        System.out.println("Enter를 눌러 이전화면으로 돌아가기");
+            			System.out.println("Enter를 누르면 이전 화면으로 돌아갑니다.");
                         scanner.nextLine();
                         
                     } else {
@@ -68,19 +62,19 @@ public class BlackListManagement {
             		
 
                 	AdminMenu.printMenu("회원징계양정기준");
-            		System.out.println("1회적발 : 사이트3일 이용제한");
-            		System.out.println("2회적발 : 사이트7일 이용제한");
-            		System.out.println("3회적발 : 사이트30일 이용제한");
-            		System.out.println("4회적발 : 사이트영구 이용제한 및 회원정보 말소");
+            		System.out.println("1회적발: 사이트3일 이용제한");
+            		System.out.println("2회적발: 사이트7일 이용제한");
+            		System.out.println("3회적발: 사이트30일 이용제한");
+            		System.out.println("4회적발: 사이트영구 이용제한 및 회원정보 말소");
             		System.out.println();
             		System.out.println();
                     
                     System.out.println();
-                    System.out.println("Enter를 눌러 이전화면으로 돌아가기");
+        			System.out.println("Enter를 누르면 이전 화면으로 돌아갑니다.");
                     scanner.nextLine();
                     break;
                 default:
-                    System.out.println("잘못된 선택 입니다. 다시 입력해 주십시오.");
+                    System.out.println("잘못된 선택입니다. 다시 입력해 주세요.");
             }
         }
     }

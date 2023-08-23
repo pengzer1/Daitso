@@ -28,9 +28,6 @@ public class StuffCheck {
 	 * 관리자가 중고 물품을 확인하는 메인 메소드
 	 */
 	public static void adminStuffCheck() {
-		SellingStuffData.load(); // 판매중인 물품 로드
-		SoldOutStuffData.load(); // 판매된 물품 로드
-
 		Scanner scan = new Scanner(System.in);
 
 		stuffStatusCheck(scan);

@@ -50,7 +50,7 @@ int count = 1;
         }
         for (int i = 0; i < Data.badList.size(); i++) {
             if (user.getNumber().equals(Data.badList.get(i).getSellerNo())) {
-                System.out.print("신고 누적 횟수 : ");
+                System.out.print("신고 누적 횟수: ");
                 System.out.println(Data.badList.get(i).getWarningCnt());
             }
         }
@@ -73,7 +73,7 @@ int count = 1;
                 System.out.println("친절하고 매너가 좋아요.");
                 break;
             case "5":
-                System.out.println("상품상태가 설명한 것과 같아요");
+                System.out.println("상품상태가 설명한 것과 같아요.");
                 break;
 
         }

@@ -54,7 +54,8 @@ public class MemberListDisplay {
 		String sortCriterion = "0";
 
 		if (sortProcess.equals("1")) { // 등급 옵션 표시 및 사용자 선택
-			displayRateCriterionList();
+			System.out.println("[등급별 정렬]");
+			AdminMenu.printOption("1++등급 정렬", "1+등급 정렬", "1등급 정렬", "2등급 정렬", "3등급 정렬");
 			String rateCriterion = scan.nextLine().trim();
 
 			if (Pattern.matches("[1234]", rateCriterion)) {
@@ -118,7 +119,9 @@ public class MemberListDisplay {
 	 * @param scan Scanner 사용자 입력
 	 */
 	private static String chooseSortProcess(Scanner scan) {
-		displaySortMemberList(); // 정렬 방식 옵션 표시 및 사용자 선택
+		// 정렬 방식 옵션 표시 및 사용자 선택
+		System.out.println("[회원 목록 정렬]");
+		AdminMenu.printOption("등급별 정렬", "이름순 정렬", "나이순 정렬", "주소별 정렬");
 		return scan.nextLine().trim();
 	}
 
@@ -242,22 +245,6 @@ public class MemberListDisplay {
 	public static void displayMemberHeader() {
 		System.out.println(
 				"[번호]  [이름]      [아이디]      [비밀번호]  [전화번호]     [주민번호]           [이메일]          [주소]      [계좌번호]     [보유금액] [회원등급]");
-	}
-
-	/**
-	 * 회원 목록 정렬 화면을 출력하는 메소드
-	 */
-	private static void displaySortMemberList() {
-		System.out.println("[회원 목록 정렬]");
-		AdminMenu.printOption("등급별 정렬", "이름순 정렬", "나이순 정렬", "주소별 정렬");
-	}
-
-	/**
-	 * 등급별 정렬 방법을 화면에 출력하는 메소드
-	 */
-	private static void displayRateCriterionList() {
-		System.out.println("[등급별 정렬]");
-		AdminMenu.printOption("1++등급 정렬", "1+등급 정렬", "1등급 정렬", "2등급 정렬", "3등급 정렬");
 	}
 
 	/**

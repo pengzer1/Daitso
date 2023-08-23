@@ -9,7 +9,6 @@ import com.project.cow.mypage.BuyList;
 
 public class StuffSearch {
     public static void search() {
-        SellingStuffData.load();  // 물품 불러오기
         Scanner sc = new Scanner(System.in);
         boolean loop = true;
         ArrayList<SellingStuff> sellChoice = new ArrayList<SellingStuff>();

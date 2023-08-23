@@ -35,9 +35,8 @@ public class KeyWordSet {
 	}
 
 	private void select() {
-		System.out.println("키워드를 수정하겠습니까?");
-		System.out.println("1.추가하기\t2.삭제하기\t0.돌아가기");
-		System.out.print("번호입력:");
+		AdminMenu.printMenu("키워드 수정");
+		AdminMenu.printOption("추가하기", "삭제하기");
 		String no = scan.nextLine();
 		
 		AdminMenu.printLine();

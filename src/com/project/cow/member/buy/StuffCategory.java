@@ -8,7 +8,6 @@ import com.project.cow.constant.Constant;
 public class StuffCategory { // 카테고리별 물품 확인하기
 
 	public static void Screen() {
-		SellingStuffData.load();
 		Scanner sc = new Scanner(System.in);
 		boolean loop = true;
 		ArrayList<SellingStuff> choiceCategory = new ArrayList<SellingStuff>();
