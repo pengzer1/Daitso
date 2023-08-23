@@ -1,8 +1,5 @@
 package com.project.cow.admin;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.Scanner;
 import java.util.Set;
 import java.util.TreeSet;
@@ -86,7 +83,7 @@ public class MemberRemove {
 	 */
 	private static Set<Integer> searchAndSelectMember(String keyword) {
 		// TreeSet을 사용하여 중복 없이 선택된 회원 인덱스 저장
-		Set<Integer> selectedMemberList = new TreeSet<>();
+		Set<Integer> selectedMember = new TreeSet<>();
 
 		AdminMenu.printMenu("회원 목록");
 
@@ -95,14 +92,13 @@ public class MemberRemove {
 		int index = 0; // 회원 인덱스
 
 		for (Member member : MemberData.list) {
-			if (member.getNo().equals(keyword) || member.getName().equals(keyword) || member.getId().equals(keyword)) {
+			if (member.getNo().equals(keyword) || member.getName().equals(keyword)) {
 				MemberListDisplay.printMemberInfo(member);
-				selectedMemberList.add(index);
+				selectedMember.add(index);
 			}
 			index++;
 		}
-		System.out.println(MemberData.list.size());
 
-		return selectedMemberList;
+		return selectedMember; // 삭제할 회원 정보 객체
 	}
 }

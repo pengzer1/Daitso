@@ -1,6 +1,8 @@
 package com.project.cow.admin;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Scanner;
 import java.util.Set;
 
@@ -41,9 +43,9 @@ public class MemberSearch {
 	 * @param keyword 검색 키워드 (회원 번호, 이름, 아이디)
 	 */
 	private static void displaySearchResult(Scanner scan, String keyword) {
-		int foundCount = 0; // 검색된 회원 수
 		AdminMenu.printMenu("회원 목록");
-
+		
+		List<Member> foundMembers = new ArrayList<>();
 		Set<String> sellingStuffNo = new HashSet<>(); // 출력한 판매 물품 번호를 저장하는 Set
 		Set<String> SoldOutStuffNo = new HashSet<>(); // 출력한 구매 물품 번호를 저장하는 Set
 		
@@ -51,7 +53,7 @@ public class MemberSearch {
 
 			// 회원 번호, 이름, 아이디 중 검색 키워드와 일치하는지 확인
 			if (member.getNo().equals(keyword) || member.getName().equals(keyword) || member.getId().equals(keyword)) {
-				foundCount++;
+				foundMembers.add(member);
 
 				MemberListDisplay.displayMemberHeader(); // 헤더 출력
 				MemberListDisplay.printMemberInfo(member); // 회원 출력
@@ -63,6 +65,8 @@ public class MemberSearch {
 			}
 		}
 
+		int foundCount = foundMembers.size();
+		
 		if (foundCount == 0) {
 			System.out.println("검색 결과가 없습니다.");
 		} else {

@@ -24,14 +24,12 @@ public class SellMenu {
 		
 		if(answer.equals("1")) {
 			System.out.println("상품 정보 등록 화면으로 이동합니다.");
-			AdminMenu.printLine();
 			System.out.println();
 			
 			register.Screen();
 		}
 		else if (answer.equals("2")) {
 			System.out.println("상품 정보 수정/삭제 화면으로 이동합니다.");
-			AdminMenu.printLine();
 			System.out.println();
 			
 			modify.Screen();
@@ -40,8 +38,7 @@ public class SellMenu {
 			MemberMenu.membermenu();
 		}
 		else {
-			System.out.println("잘못된 선택입니다.");
-			System.out.println("다시 선택해주세요.");
+			System.out.println("잘못된 선택입니다. 다시 선택해주세요.");
 			AdminMenu.printLine();
 			System.out.print("번호입력: ");
 			

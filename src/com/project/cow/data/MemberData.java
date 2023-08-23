@@ -11,7 +11,7 @@ public class MemberData {
 	static {
 		MemberData.list = new ArrayList<Member>();
 	}
-
+	
 	public static void load() { // 회원정보txt를 배열에 load
 		try {
 			BufferedReader reader = new BufferedReader(new FileReader("data\\member.txt"));

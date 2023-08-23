@@ -33,8 +33,9 @@ public class Main {
         Data.tradeStuffLoad();
         TradeStuffData.tradeStuffLoad();
         MemberData.load();
-		
-		 // 메인 화면 시작
+        SellingStuffData.load();
+
+        // 메인 화면 시작
 		MainScreen();
 	}
 	

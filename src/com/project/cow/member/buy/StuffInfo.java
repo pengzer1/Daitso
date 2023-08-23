@@ -9,7 +9,6 @@ import com.project.cow.data.object.SellingStuff;
 public class StuffInfo {
 	
 	public static void stuffInfo() {
-		SellingStuffData.load();  //데이터 불러오기
 		Scanner sc = new Scanner(System.in);
 		boolean loop = true;
 		SellingStuff a;
@@ -35,7 +34,7 @@ public class StuffInfo {
 
 			for(SellingStuff stuff : SellingStuffData.sellingList) {
 				if (num.equals("0")) {  
-					StuffCategory.Screen();  //이전화면
+					BuyMenu.Screen(); //이전화면
 					break;
 				} else if(num.equals(stuff.getNo())){
 					a = stuff;

@@ -35,8 +35,8 @@ public class Login {
 		
 		//관리자 로그인 화면
 		if(id.equals("admin")&&pwd.equals("admin")) {
-			System.out.println("관리자로 로그인 되었습니다");
-			System.out.println("엔터를 누르면 관리자 메뉴로 이동합니다.");
+			System.out.println("관리자로 로그인 되었습니다.");
+			System.out.println("Enter를 누르면 관리자 메뉴로 이동합니다.");
 			scan.nextLine();
 			
 			AdminMenu adminMenu = new AdminMenu();
@@ -54,7 +54,7 @@ public class Login {
     			AdminMenu.printLine();
         		System.out.println("영구제한 회원입니다.");
                 System.out.println();
-                System.out.println("메인화면으로 돌아가려면 엔터를 입력하세요.");
+                System.out.println("Enter를 누르면 이전 화면으로 돌아갑니다.");
                 scan.nextLine();
         		Main.MainScreen();
         	}else {
@@ -62,7 +62,7 @@ public class Login {
         			AdminMenu.printLine();
             		System.out.println("사용이 제한된 회원입니다.");
                     System.out.println();
-                    System.out.println("메인화면으로 돌아가려면 엔터를 입력하세요.");
+                    System.out.println("Enter를 누르면 이전 화면으로 돌아갑니다.");
                     scan.nextLine();
             		Main.MainScreen();
             	}
@@ -91,12 +91,12 @@ public class Login {
 		AdminMenu.printLine();
 		if (Login.login != null) {
 			
-			System.out.println("로그인 성공!");
+			System.out.println("로그인 되었습니다.");
 			
 			 user = new User(login.getNo(), login.getName(), login.getId(), login.getPwd(), login.getTel(), login.getJumin(), login.getEmail(), login.getAddress(), login.getAccount(), login.getMoney(), login.getGrade());
 
-			
-		      System.out.println("엔터를 누르면 회원 메뉴로 이동됩니다.");
+
+             System.out.println("Enter를 누르면 이전 화면으로 돌아갑니다.");
 		      scan.nextLine();
 		      
 		      MemberMenu.membermenu();
@@ -122,7 +122,7 @@ public class Login {
 		
 		AdminMenu.printLine();
 		System.out.println("로그아웃 되었습니다.");
-		System.out.println("메인화면으로 돌아가려면 엔터를 입력하세요.");
+        System.out.println("Enter를 누르면 이전 화면으로 돌아갑니다.");
 		System.out.println();
 		
 		

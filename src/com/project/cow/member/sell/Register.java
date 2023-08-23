@@ -53,8 +53,7 @@ public class Register {
 		
 		System.out.println();
 		System.out.println("상품을 등록하시겠습니까?");
-		System.out.println("1.등록하기\t0.돌아가기");
-		System.out.print("번호입력: ");
+		AdminMenu.printOption("등록하기");
 		String check = scan.nextLine();
 		
 		if (check.equals("0")) {
@@ -85,7 +84,7 @@ public class Register {
 		System.out.println();
 		System.out.println("상품 카테고리 설정");
 		System.out.println("1.가구/인테리어/생활/주방\t2.디지털기기\n3.여성잡화\t4.남성잡화\t5.가공식품\n6.스포츠/레저\t7.취미/게임/음반\t8.뷰티/미용\n9.반려동물용품\t10.티켓/교환권/도서\t11.기타");
-		System.out.println("");
+		AdminMenu.printLine();
 		System.out.print("카테고리 번호: ");
 		this.category = scan.nextLine();
 		
@@ -110,7 +109,7 @@ public class Register {
 		System.out.println();
 		System.out.println("거래방식 설정");
 		System.out.println("1.대면거래 2.택배거래 3.제3자 안전 거래");
-		System.out.println();
+		AdminMenu.printLine();
 		System.out.print("거래방식 번호: ");
 		this.method = scan.nextLine();
 		
@@ -127,7 +126,7 @@ public class Register {
 		System.out.println();
 		System.out.println("결제방식 설정");
 		System.out.println("1.현금거래\t2.계좌이체\r3.ITSO페이\t4.제3자안전거래");
-		System.out.println();
+		AdminMenu.printLine();
 		System.out.print("결제방식 번호: ");
 		this.payment = scan.nextLine();
 		
@@ -144,7 +143,7 @@ public class Register {
 		System.out.println();
 		System.out.println("물품상태 설정");
 		System.out.println("1.상\t2.중\t3.하");
-		System.out.println();
+		AdminMenu.printLine();
 		System.out.print("물품상태 번호: ");
 		this.condition = scan.nextLine();
 		
@@ -162,7 +161,7 @@ public class Register {
 		System.out.println("가격 설정(0 ~ 999,999,999원)");
 		System.out.println("0원일 경우, 무료 나눔으로 적용됩니다.");
 		System.out.println("1,000원 단위만 가능합니다.");
-		System.out.println();
+		AdminMenu.printLine();
 		System.out.print("가격: ");
 		int price = scan.nextInt();
 		scan.nextLine();
@@ -192,7 +191,7 @@ public class Register {
 		System.out.println();
 		System.out.println("날짜 설정");
 		System.out.println("오늘부터 며칠 후까지 판매하실지 설정하세요.(최대 30일)");
-		System.out.println();
+		AdminMenu.printLine();
 		System.out.print("며칠: ");
 		date = scan.nextInt();
 		if (date < 0 || date > 30) {
