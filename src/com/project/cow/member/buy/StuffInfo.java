@@ -10,7 +10,6 @@ public class StuffInfo {
 		SellingStuffData.load();  //데이터 불러오기
 		Scanner sc = new Scanner(System.in);
 		boolean loop = true;
-		ArrayList<SellingStuff> wantBuyStuff = new ArrayList<SellingStuff>();  //구매하고 싶은 물건의 정보를 담는 배열
 		SellingStuff a;
 		
 		System.out.println("[번호]\t\t[품명]\t\t[상품품질]\t[가격]\t\t[판매자]\t[거래방법]\t\t[지불방법]\t\t[판매시작일]\t\t[판매마감일]\t\t[찜횟수]");
@@ -38,8 +37,6 @@ public class StuffInfo {
 					break;
 				} else if(num.equals(stuff.getNo())){
 					a = stuff;
-					System.out.println(a);
-					wantBuyStuff.add(stuff);   //사고 싶은 상품을 배열에 넣기
 					System.out.println("판매 페이지로 이동하시려면 Enter를 눌러주세요.");
                 	sc.nextLine();
                 	System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");

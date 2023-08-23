@@ -14,6 +14,7 @@ public class LikeItem {
 	
 	String num = "";
 	Scanner scan = new Scanner(System.in);
+	SellingStuff a;
 	
 	public void Screen() {
 		System.out.println();
@@ -79,7 +80,16 @@ public class LikeItem {
 		String check = scan.nextLine();
 		
 		if (check.equals("1")) {
-			
+			for(SellingStuff stuff : SellingStuffData.sellingList) {
+				if(num.equals(stuff.getNo())){
+					a = stuff;
+					System.out.println("판매 페이지로 이동하시려면 Enter를 눌러주세요.");
+                	scan.nextLine();
+                	System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+                    BuyPage.buyPage(a);  //판매 페이지로 이동.
+                    break;
+				}
+			}
 		}
 		else if (check.equals("2")) {
 			DeleteLikeItem();

@@ -62,7 +62,7 @@ public class SearchAlerts {
         if (input.equals("0")){
             searchScreen(user);
         }
-        if (peek > count-1 ) {
+        if (peek > count - 1) {
             System.out.println("해당키워드의 번호를 재대로 입력해주세요.");
             myKeyWord(user);
         }

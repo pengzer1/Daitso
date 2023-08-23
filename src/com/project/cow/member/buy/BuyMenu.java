@@ -72,7 +72,6 @@ public class BuyMenu {
         System.out.println("1.물품선택");
         System.out.println("2.물품검색");
         System.out.println("3.물품정렬");
-        System.out.println("4.찜하기");
         System.out.println("0.돌아가기");
         System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
         
@@ -87,10 +86,7 @@ public class BuyMenu {
         } else if (input.equals("3")) {
             System.out.println();
             StuffSort.stuffSortChoice();
-        } else if (input.equals("4")) {
-            //찜하기
-        	//TODO BuyPage에서 구매/찜하기 나눠서 할 예정, 완료 후 삭제될 버튼
-        } else if (input.equals("0")) {
+        }else if (input.equals("0")) {
         	System.out.println();
             MemberMenu.membermenu();
         }else {

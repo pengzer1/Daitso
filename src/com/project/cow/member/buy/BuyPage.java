@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import com.project.cow.constant.Constant;
+import com.project.cow.data.LikeItemData;
 import com.project.cow.data.TradeStuffData;
 import com.project.cow.data.object.Member;
 import com.project.cow.data.object.SellingStuff;
@@ -17,6 +18,7 @@ public class BuyPage {
 		Scanner sc = new Scanner(System.in);
 		String startDateStr = "", endDateStr = "";
 		Member buyer = Login.login;
+		com.project.cow.data.object.LikeItem likeItem;
 
 		System.out.println("<   판매 페이지 입니다~!   >");
 		System.out.println();
@@ -77,8 +79,15 @@ public class BuyPage {
 				} else
 					System.out.println("해당 기간에 물품을 판매하지 않습니다.");
 
-			} else if (choice.equals("2")) { // 찜하기 -> 찜목록으로 저장하기
-				// 찜하기 -> 찜목록으로 저장하기
+			} else if (choice.equals("2")) { 
+				likeItem = new com.project.cow.data.object.LikeItem((LikeItemData.likeList.size() + 1) + "", stuff.getNo(), buyer.getNo());
+				LikeItemData.likeList.add(likeItem);
+				LikeItemData.likeItemSave();
+				System.out.println("찜 목록에 추가되었습니다.");
+				System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+				System.out.println("엔터를 누르면 구매자 화면으로 돌아갑니다.");
+				sc.nextLine();
+				BuyMenu.FirstScreen();
 
 			} else
 				System.out.println("번호를 올바르게 입력해 주십시오.");
