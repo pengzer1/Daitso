@@ -17,11 +17,11 @@ class AdminMenu {
 	/**
 	 * 관리자 메인 메뉴 메소드
 	 */
-	public static void main(String[] args) {
-		MemberData.load();
-		MemberQuestion.loadFAQInfo(); // FAQ 정보 로드
-		
+	public static void adminMain() {
 		Scanner scan = new Scanner(System.in);
+		
+		MemberData.load(); // 회원 정보 로드
+		MemberQuestion.loadFAQInfo(); // FAQ 정보 로드
 		
 		while (true) {
 			// 관리자 메인 메뉴 화면 출력
@@ -49,8 +49,6 @@ class AdminMenu {
 				return;
 			}
 		}
-		// TODO 로그인 기능에서 통합할 때 adminMain 메소드로 이름을 변경하고 실행하게 하면 됩니다!
-		// TODO 전체 회원 정보를 로드하는 부분을 다른 클래스에서 만들 예정이므로 추후 수정해야 할 수 있습니다.
 	}
 
 	/**
