@@ -80,7 +80,7 @@ public class BuyMenu {
         String input = sc.nextLine().trim();
 
         if (input.equals("1")) {
-        	stuffInfo.listLoad();
+        	stuffInfo.stuffInfo();
         } else if (input.equals("2")) {  // 물품검색
             System.out.println();
             StuffSearch.search();

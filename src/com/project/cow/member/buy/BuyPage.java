@@ -1,114 +1,93 @@
 package com.project.cow.member.buy;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
+
 import com.project.cow.constant.Constant;
+import com.project.cow.data.TradeStuffData;
+import com.project.cow.data.object.Member;
+import com.project.cow.data.object.SellingStuff;
+import com.project.cow.data.object.TradeStuff;
+import com.project.cow.login.Login;
 
 public class BuyPage {
-	static StuffInfo stuffInfo = new StuffInfo();
-	
-    public static void sellpage() {
 
-        Scanner sc = new Scanner(System.in);
-        
-        System.out.println("[구매할 물품의 번호를 입력하세요]");
-        System.out.println("구매할 물품>");
-        int input = sc.nextInt();
-        System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+	public static void buyPage(SellingStuff stuff) {
+		Scanner sc = new Scanner(System.in);
+		String startDateStr = "", endDateStr = "";
+		Member buyer = Login.login;
 
-        int aaa;
-        ArrayList<String[]> numList = new ArrayList<>();
-        ArrayList<String> test = new ArrayList<>();
-        try (BufferedReader br = new BufferedReader(new FileReader("/Users/oseunghyeon/Downloads/sellingStuff.txt"))) {
-            String line;
+		System.out.println("<   판매 페이지 입니다~!   >");
+		System.out.println();
+		System.out.println("[번호]\t\t[품명]\t\t[상품품질]\t[가격]\t\t[판매자]\t[거래방법]\t\t[지불방법]\t\t[판매시작일]\t\t[판매마감일]\t\t[찜횟수]");
 
-            while ((line = br.readLine()) != null) {
-                String[] data = line.split(",");
-                numList.add(data);
-                test.add(data[0]);
+		
+			System.out.printf("%5s\t%-14s\t%s\t%9s\t%8s\t%-6s\t\t%-13s\t%-15s\t%-14s\t%3s\r\n", stuff.getName(),
+					Constant.Category(stuff.getCategory()), Constant.Condition(stuff.getCondition()), stuff.getPrice(),
+					stuff.getSellerNo(), Constant.Method(stuff.getMethod()), Constant.Payment(stuff.getPayment()),
+					stuff.getFrom(), stuff.getUntil(), stuff.getLike());
+			startDateStr = stuff.getFrom();
+			endDateStr = stuff.getUntil();
+		
 
-                //SellingStuff sellingStuff = new SellingStuff(data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7], data[9], data[10], data[11]);
-                //list.add(sellingStuff);
-            }
+		boolean loop = true;
+		while (loop) {
+			System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+			System.out.println("1. 구매하기\n2. 찜하기");
+			System.out.print("번호를 선택해주세요. : ");
+			String choice = sc.nextLine();
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+			if (choice.equals("1")) { // 구매하기
+				System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+				System.out.println("물품 거래 날짜를 선택하세요");
+				System.out.println("날짜 설정하기");
+				System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+				System.out.println("구매가 가능하신 날짜는 " + startDateStr + "부터 " + endDateStr + "까지입니다.");
+				System.out.print("구매하고 싶은 날짜 (yyyy-MM-dd): "); // 유효성 검사..?
+				String checkDateStr = sc.nextLine();
 
-        aaa = -1;
+				LocalDate startDate = LocalDate.parse(startDateStr);
+				LocalDate endDate = LocalDate.parse(endDateStr);
+				LocalDate checkDate = LocalDate.parse(checkDateStr);
 
-        for (int i = 0; i < test.size(); i++) {
-            if (test.get(i).equals(input + "")) {
-                aaa = 1;
-            }
-        }
+				if (isWithinDateRange(checkDate, startDate, endDate)) {
+					System.out.println("물품 구매를 진행합니다. 선택하신 제품이 마이페이지 알림설정에 등록되었습니다.");
+					
+					TradeStuff tradeStuff = new TradeStuff(stuff.getNo(), stuff.getName(), stuff.getCategory(),
+									stuff.getPrice(), stuff.getMethod(), stuff.getPayment(), stuff.getCondition(),
+									checkDateStr, stuff.getSellerNo(), buyer.getNo());
 
-        if (aaa > 0) {
-            System.out.println("판매 페이지로 이동합니다.");
-            System.out.println("판매 페이지로 이동하려면 Enter를 눌러주세요");
+					TradeStuffData.tradeList.add(tradeStuff); // 한 번에 tradeList에 추가
+					TradeStuffData.tradeStuffSave();
+					// ->마이페이지 알림설정에 저장되게 하기
+					while (loop) {
+						System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+						System.out.println("처음으로 돌아가려면 0번을 누르세요.");
+						System.out.print("번호 입력하기 : ");
+						String input = sc.nextLine();
+						if (input.equals("0")) {
+							BuyMenu.FirstScreen(); // 구매자의 처음화면
+							loop = false;
+							break;
+						} else
+							System.out.println("올바른 번호를 입력해 주십시오.");
+					}
 
-            sc.nextLine();
-            sc.nextLine(); // 두번하지 않으면 한번에 엔터 안눌러도 나와
-            System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+				} else
+					System.out.println("해당 기간에 물품을 판매하지 않습니다.");
 
-            stuffInfo.listLoad();
+			} else if (choice.equals("2")) { // 찜하기 -> 찜목록으로 저장하기
+				// 찜하기 -> 찜목록으로 저장하기
 
-            System.out.println("\t[제목]\t\t\t    [카테고리]\t\t[물건 상태]\t[판매 가격]\t[판매자명]\t[상품 거래 방식]\t[결제 방식]\t[등록 날짜]  \t [마감 날짜]\t [찜]");
+			} else
+				System.out.println("번호를 올바르게 입력해 주십시오.");
+		}
 
+	}
 
-            System.out.printf("%s %20s %7s %13s %10s %12s %13s %13s %12s %4s\n", StuffInfo.list.get(input - 1).getName(), Constant.Category(StuffInfo.list.get(input - 1).getCategory())
-                    , Constant.Condition(StuffInfo.list.get(input - 1).getCondition()), StuffInfo.list.get(input - 1).getPrice(), StuffInfo.list.get(input - 1).getSellerNo(), Constant.Method(StuffInfo.list.get(input).getMethod())
-                    , Constant.Payment(StuffInfo.list.get(input - 1).getPayment()), StuffInfo.list.get(input - 1).getFrom(), StuffInfo.list.get(input - 1).getUntil(), StuffInfo.list.get(input - 1).getLike());
+	private static boolean isWithinDateRange(LocalDate checkDate, LocalDate startDate, LocalDate endDate) {
+		return !checkDate.isBefore(startDate) && !checkDate.isAfter(endDate);
+	}
 
-
-            System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
-            System.out.println("물품 거래 날짜를 선택하세요");
-            System.out.println("날짜 설정하기");
-
-            System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
-
-            Scanner scanner = new Scanner(System.in);
-
-
-            String startDateStr = StuffInfo.list.get(input - 1).getFrom();
-
-
-            String endDateStr = StuffInfo.list.get(input - 1).getUntil();
-
-            System.out.print("확인할 날짜 (yyyy-MM-dd): ");
-            String checkDateStr = scanner.next();
-
-            LocalDate startDate = LocalDate.parse(startDateStr);
-            LocalDate endDate = LocalDate.parse(endDateStr);
-            LocalDate checkDate = LocalDate.parse(checkDateStr);
-
-            stuffInfo.listLoad();
-
-            if (isWithinDateRange(checkDate, startDate, endDate)) {
-                System.out.println("물품을 구매를 진행합니다.");
-                System.out.println();
-                System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
-                System.out.println("이전화면으로 돌아가려면 0번을 누르세요.");
-                int num=0;
-                num = sc.nextInt();
-                BuyMenu.FirstScreen();
-
-
-
-            } else {
-                System.out.println("해당 기간에 물품을 판매하지 않습니다.");
-            }
-
-
-        }
-
-    }
-
-    public static boolean isWithinDateRange(LocalDate date, LocalDate startDate, LocalDate endDate) {
-        return !date.isBefore(startDate) && !date.isAfter(endDate);
-    }
 }
-

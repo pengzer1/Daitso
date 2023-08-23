@@ -32,6 +32,7 @@ public class Main {
         Data.reviewLoad();
         Data.badReviewLoad();
         Data.tradeStuffLoad();
+        
 		
 		
 		 // 메인 화면 시작
