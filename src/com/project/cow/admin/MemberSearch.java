@@ -27,11 +27,8 @@ public class MemberSearch {
 	 * @param scan Scanner 사용자 입력
 	 */
 	public static void searchMember(Scanner scan) {
-		SellingStuffData.load(); // 판매 중인 물품 데이터 로드
-		SoldOutStuffData.load(); // 판매 완료 물품 데이터 로드
-
 		AdminMenu.printMenu("회원 검색");
-
+		
 		System.out.print("검색할 회원 번호, 이름 또는 아이디 입력: ");
 		String searchKeyword = scan.nextLine().trim();
 

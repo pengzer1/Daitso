@@ -1,5 +1,6 @@
 package com.project.cow.mypage;
 
+import com.project.cow.admin.AdminMenu;
 import com.project.cow.data.Data;
 
 import java.util.Scanner;
@@ -17,8 +18,7 @@ public class SelledList { //판매목록 클래스
 
     public void selledScreen(User user) {
 
-        System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
-        System.out.println("                   나의 판매목록");
+    	AdminMenu.printMenu("나의 판매목록");
         System.out.println(" 1.번호\t\t2.제목\t\t3.카테고리\t4.가격\t5.거래방법\t6.결제방식\t7.물품상태\t8.거래일자\t9.판매자번호\t10.구매자번호");
         for (int i = 0; i < Data.soldOutArrayList.size(); i++) {
             if (user.getNumber().equals(Data.soldOutArrayList.get(i).getSellNum())) {
@@ -30,7 +30,7 @@ public class SelledList { //판매목록 클래스
             }
 
         }
-        System.out.println("이전으로 돌아가실려면 (엔터)");
+        System.out.println("Enter를 누르면 이전 화면으로 돌아갑니다.");
         scan.nextLine().trim();
         BuyList buyList = new BuyList();
         buyList.buySellHistoryScreen(user);

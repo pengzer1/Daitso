@@ -2,21 +2,14 @@ package com.project.cow.member.sell;
 
 import java.util.Scanner;
 
-import com.project.cow.data.SellingStuffData;
+import com.project.cow.admin.AdminMenu;
 import com.project.cow.member.MemberMenu;
-
 
 public class SellMenu {
 
 	public void Screen() {
-		System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
-		System.out.println("[판매하기]");
-		System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
-		System.out.println("1. 상품 정보 등록");
-		System.out.println("2. 상품 정보 수정/삭제");
-		System.out.println("0. 돌아가기");
-		System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
-		System.out.print("번호입력: ");
+		AdminMenu.printMenu("판매하기");
+		AdminMenu.printOption("상품 정보 등록", "상품 정보 수정/삭제");
 		
 		Answer();
 	}
@@ -31,14 +24,14 @@ public class SellMenu {
 		
 		if(answer.equals("1")) {
 			System.out.println("상품 정보 등록 화면으로 이동합니다.");
-			System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+			AdminMenu.printLine();
 			System.out.println();
 			
 			register.Screen();
 		}
 		else if (answer.equals("2")) {
 			System.out.println("상품 정보 수정/삭제 화면으로 이동합니다.");
-			System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+			AdminMenu.printLine();
 			System.out.println();
 			
 			modify.Screen();
@@ -49,7 +42,7 @@ public class SellMenu {
 		else {
 			System.out.println("잘못된 선택입니다.");
 			System.out.println("다시 선택해주세요.");
-			System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+			AdminMenu.printLine();
 			System.out.print("번호입력: ");
 			
 			Answer();

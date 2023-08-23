@@ -2,6 +2,7 @@ package com.project.cow.member;
 
 import java.util.Scanner;
 
+import com.project.cow.admin.AdminMenu;
 import com.project.cow.data.object.Member;
 import com.project.cow.login.Login;
 import com.project.cow.member.buy.BuyMenu;
@@ -19,10 +20,7 @@ public class MemberMenu {
 		SellMenu sellMenu = new SellMenu();
 		Scanner scan = new Scanner(System.in);
 		
-		System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
-		System.out.println("           회원 메뉴");
-		System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
-		
+		AdminMenu.printMenu("회원 메뉴");
 		
 		System.out.println("1.구매하기");
 		System.out.println("2.판매하기");
@@ -31,7 +29,7 @@ public class MemberMenu {
 		System.out.println("5.로그아웃");
 		
 		
-		System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+		AdminMenu.printLine();
 		System.out.print("번호 입력:");
 		String sel = scan.nextLine();
 		

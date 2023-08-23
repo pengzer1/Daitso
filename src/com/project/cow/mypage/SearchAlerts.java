@@ -2,6 +2,7 @@ package com.project.cow.mypage;
 
 
 import com.project.cow.data.Data;
+import com.project.cow.admin.AdminMenu;
 import com.project.cow.constant.Constant;
 import com.project.cow.data.SellingStuffData;
 import com.project.cow.data.object.SellingStuff;
@@ -23,11 +24,8 @@ public class SearchAlerts {
   void searchScreen(User user){
       while (true) {
 
-          System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
-          System.out.println("                 알림 키워드 설정");
-          System.out.println(" 1.나의 현재 알림 키워드");
-          System.out.println(" 0.돌아가기");
-          System.out.print(" 번호 입력 : ");
+    	  AdminMenu.printMenu("알림 키워드 설정");
+    	  AdminMenu.printOption("나의 현재 알림 키워드");
           String input = scan.nextLine().trim();
           switch (input) {
               case "0":
@@ -54,16 +52,14 @@ public class SearchAlerts {
             select.add(Data.keyWordList.get(userNum).getWord()[i]);
             count++;
         }
-        System.out.println(" 1.판매목록을 보시려면 해당 키워드의 번호를 입력해주세요.");
-        System.out.println(" 0.이전 페이지로 돌아가기");
-        System.out.print(" 번호입력 : ");
+        AdminMenu.printOption("판매목록을 보시려면 해당 키워드의 번호를 입력해주세요.");
         String input = scan.nextLine();
         int peek = Integer.valueOf(input);
         if (input.equals("0")){
             searchScreen(user);
         }
         if (peek > count - 1) {
-            System.out.println("해당키워드의 번호를 재대로 입력해주세요.");
+            System.out.println("해당 키워드의 번호를 제대로 입력해주세요.");
             myKeyWord(user);
         }
         keyWordItemList(user, input);
@@ -86,7 +82,7 @@ public class SearchAlerts {
           }
 
         }
-        System.out.println("돌아가실려면 (엔터)");
+        System.out.println("Enter를 누르면 이전 화면으로 돌아갑니다.");
         scan.nextLine().trim();
         myKeyWord(user);
     }

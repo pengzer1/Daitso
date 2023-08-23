@@ -3,6 +3,7 @@ package com.project.cow.member.sell;
 import java.util.Calendar;
 import java.util.Scanner;
 
+import com.project.cow.admin.AdminMenu;
 import com.project.cow.constant.Constant;
 import com.project.cow.data.SellingStuffData;
 import com.project.cow.data.object.SellingStuff;
@@ -18,7 +19,7 @@ public class ModifyDetail {
 		System.out.println();
 		
 		System.out.println("1.제목 수정하기\t\t2.판매 기간 수정하기\r\n3.판매 가격 수정하기\t4.삭제하기\t0.돌아가기");
-		System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+		AdminMenu.printLine();
 		System.out.print("번호입력: ");
 		Check(s);
 	}
@@ -75,7 +76,7 @@ public class ModifyDetail {
 		if (Integer.parseInt(date) < 1 || Integer.parseInt(date) > 30) {
 			System.out.println();
 			System.out.println("잘못된 일 수입니다. 다시 입력해 주세요.");
-			System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+			AdminMenu.printLine();
 			ChangeDate(s);
 		}
 		
@@ -105,12 +106,12 @@ public class ModifyDetail {
 		if(price < 0 || price > 999999999) {
 			System.out.println();
 			System.out.println("잘못된 가격 범위입니다.");
-			System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+			AdminMenu.printLine();
 			ChangePrice(s);
 		} else if(price % 1000 != 0) {
 			System.out.println();
 			System.out.println("잘못된 가격 범위입니다.");
-			System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+			AdminMenu.printLine();
 			ChangePrice(s);
 		} else {
 			s.setPrice(price + "");
@@ -127,7 +128,7 @@ public class ModifyDetail {
 
 	private void DeleteStuff(SellingStuff s) {
 		System.out.println();
-		System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+		AdminMenu.printLine();
 		System.out.println("정말 삭제하시겠습니까?");
 		System.out.println("1.네\t\t0.아니오");
 		System.out.print("번호입력: ");
@@ -155,7 +156,7 @@ public class ModifyDetail {
 		else {
 			System.out.println();
 			System.out.println("잘못된 입력입니다. 다시 입력해주세요.");
-			System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+			AdminMenu.printLine();
 			DeleteStuff(s);
 		}
 		

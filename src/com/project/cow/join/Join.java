@@ -4,6 +4,7 @@ import java.util.Random;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
+import com.project.cow.admin.AdminMenu;
 import com.project.cow.data.Data;
 import com.project.cow.data.object.Member;
 
@@ -81,11 +82,11 @@ public class Join {
 	private  void account() {
 		
 		Scanner scan = new Scanner(System.in);
-		System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+		AdminMenu.printLine();
 
 		System.out.println("[계좌번호] 은행 1.가나 2.다라 3.마바 4.사아 5.자차 ");
 		System.out.println("Ex) 가나-1234567891234");
-		System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+		AdminMenu.printLine();
 	      System.out.print("계좌번호: ");
 	      String account = scan.nextLine().trim();
 	      
@@ -104,13 +105,13 @@ public class Join {
 	private void address() {
 		
 	    Scanner scan = new Scanner(System.in);
-	      System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+	    AdminMenu.printLine();
 
 	      System.out.println("[지역설정] 서울시 25개 자치구만 설정 가능합니다. ");
 	      System.out.println("다음 중 원하는 지역 번호를 입력하세요 ");
 	      System.out.println();
 	      areaList();
-	      System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+	      AdminMenu.printLine();
 	      System.out.print("지역 설정: ");
 	      String address = scan.nextLine().trim();
 	      areaSelect(address);
@@ -221,10 +222,10 @@ public class Join {
 	private void email() {
 		
 		Scanner scan = new Scanner(System.in);
-		System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+		AdminMenu.printLine();
 		System.out.println("[이메일] @를 포함하여 입력하세요");
 		System.out.println("Ex) ssangyong@naver.com");
-		System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+		AdminMenu.printLine();
 	      System.out.print("이메일: ");
 	      String email = scan.nextLine().trim();
 	      
@@ -244,9 +245,9 @@ public class Join {
 	private void jumin() {
 
 		Scanner scan = new Scanner(System.in);
-		System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+		AdminMenu.printLine();
 	      System.out.println("[주민등록번호] '-' 포함해서 입력해주세요. \r\n Ex)000000-000000");
-	      System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+	      AdminMenu.printLine();
 	      System.out.print("주민등록번호: ");
 	      String jumin = scan.nextLine().trim();
 	      Random rd = new Random();
@@ -291,10 +292,10 @@ public class Join {
 	private void tel() {
 		
 		Scanner scan = new Scanner(System.in);
-		System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+		AdminMenu.printLine();
 	      System.out.println("[전화번호] -를 포함해서 입력하세요.  "
 	      		+ "\r\n Ex) 010-1234-5678 ");
-	      System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+	      AdminMenu.printLine();
 	      System.out.print("전화번호: ");
 	      String tel = scan.nextLine().trim();
 	      
@@ -315,9 +316,9 @@ public class Join {
 	private void name() {
 		
 		Scanner scan = new Scanner(System.in);
-		System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+		AdminMenu.printLine();
 		System.out.println("[이름] 한글만 입력 가능합니다. ");
-		System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+		AdminMenu.printLine();
 		System.out.print("이름:");
 	      String name = scan.nextLine().trim();
 	      if(name.length()>1&&name.length()<7&&Pattern.matches("[가-힣]*", name)) {
@@ -336,10 +337,10 @@ public class Join {
 	private void password() {
 		
 		Scanner scan = new Scanner(System.in);
-		System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+		AdminMenu.printLine();
 
 	      System.out.println("[비밀번호] 4~12 글자 사이 영어+숫자로만 입력하세요.");
-	      System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+	      AdminMenu.printLine();
 	      System.out.print("비밀번호: ");
 	      String pwd = scan.nextLine().trim();
 	      
@@ -360,10 +361,10 @@ public class Join {
 	// 아이디 입력 및 중복 체크
 	private void id() {
 		Scanner scan=new Scanner(System.in);
-		System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+		AdminMenu.printLine();
 		System.out.println("[아이디] 4~16 글자 사이 영어+숫자로만 입력하세요.");
 		System.out.println("중복 아이디는 불가능합니다.");
-		System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+		AdminMenu.printLine();
 		
 	    System.out.print("아이디: ");
 	    String id = scan.nextLine().trim();
@@ -379,7 +380,7 @@ public class Join {
 	    		password();
 	    		
 	    	}else {
-	    		System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+	    		AdminMenu.printLine();
 	    		System.out.println("이미 사용 중인 아이디입니다.");
 	    		System.out.println();
 	    		id();

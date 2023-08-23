@@ -25,9 +25,7 @@ public class MemberQuestion {
 	public static void adminFAQCheck() {
 		Scanner scan = new Scanner(System.in);
 		
-		AdminMenu.printLine();
-		System.out.println("                 고객센터 F A Q");
-		AdminMenu.printLine();
+		AdminMenu.printMenu("고객센터 F A Q");
 		System.out.println("[F A Q 관리 기능]");
 		AdminMenu.printOption("F A Q 게시판", "F A Q 답변 수정");
 		String manageChoice = scan.nextLine().trim();
@@ -48,9 +46,7 @@ public class MemberQuestion {
 	 * @param scan Scanner 사용자 입력
 	 */
 	private static void displayFAQ(Scanner scan) {
-		AdminMenu.printLine();
-		System.out.println("                  F A Q 게시판");
-		AdminMenu.printLine();
+		AdminMenu.printMenu("F A Q 게시판");
 
 		for (String[] data : qnaDataList) {
 			String index = data[0];
@@ -90,7 +86,7 @@ public class MemberQuestion {
 		}
 		
 		System.out.println();
-		System.out.println("Enter를 누르면 관리자 화면으로 돌아갑니다.");
+		System.out.println("Enter를 누르면 이전 화면으로 돌아갑니다.");
 		scan.nextLine();
 	}
 

@@ -3,6 +3,7 @@ package com.project.cow.member.sell;
 import java.util.Calendar;
 import java.util.Scanner;
 
+import com.project.cow.admin.AdminMenu;
 import com.project.cow.constant.Constant;
 import com.project.cow.data.object.Member;
 import com.project.cow.data.SellingStuffData;
@@ -27,9 +28,7 @@ public class Register {
 		SellMenu sellMenu = new SellMenu();
 		
 		System.out.println();
-		System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
-		System.out.println("상품등록화면");
-		System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+		AdminMenu.printMenu("상품등록화면");
 		
 		Check();
 		
@@ -67,7 +66,7 @@ public class Register {
 		} else {
 			System.out.println();
 			System.out.println("잘못된 번호입니다. 다시 선택해주세요.");
-			System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+			AdminMenu.printLine();
 			Check();
 		}
 	}
@@ -93,10 +92,10 @@ public class Register {
 		if (Constant.Category(this.category).equals("")) {
 			System.out.println();
 			System.out.println("잘못된 번호입니다. 다시 입력해주세요.");
-			System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+			AdminMenu.printLine();
 			Category();
 		}
-		System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+		AdminMenu.printLine();
 	}
 	
 	private void Name() {
@@ -104,7 +103,7 @@ public class Register {
 		System.out.print("제목: ");
 		this.name = scan.nextLine();
 		//TODO 제목에 검열 시스템 추가해야됨
-		System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+		AdminMenu.printLine();
 	}
 	
 	private void Method() {
@@ -118,10 +117,10 @@ public class Register {
 		if (Constant.Method(this.method).equals("")) {
 			System.out.println();
 			System.out.println("잘못된 번호입니다. 다시 입력해주세요.");
-			System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+			AdminMenu.printLine();
 			Method();
 		}
-		System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+		AdminMenu.printLine();
 	}
 	
 	private void Payment() {
@@ -135,10 +134,10 @@ public class Register {
 		if(Constant.Payment(this.payment).equals("")) {
 			System.out.println();
 			System.out.println("잘못된 번호입니다. 다시 입력해주세요.");
-			System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+			AdminMenu.printLine();
 			Payment();
 		}
-		System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+		AdminMenu.printLine();
 	}
 	
 	private void Condition() {
@@ -152,10 +151,10 @@ public class Register {
 		if(Constant.Condition(this.condition).equals("")) {
 			System.out.println();
 			System.out.println("잘못된 번호입니다. 다시 입력해주세요.");
-			System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+			AdminMenu.printLine();
 			Condition();
 		}
-		System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+		AdminMenu.printLine();
 	}
 	
 	private void Price() {
@@ -171,16 +170,16 @@ public class Register {
 		if(price < 0 || price > 999999999) {
 			System.out.println();
 			System.out.println("잘못된 가격 범위입니다.");
-			System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+			AdminMenu.printLine();
 			Price();
 		} else if(price % 1000 != 0) {
 			System.out.println();
 			System.out.println("잘못된 가격 범위입니다.");
-			System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+			AdminMenu.printLine();
 			Price();
 		} else {
 			this.price = price + "";
-			System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+			AdminMenu.printLine();
 		}
 	}
 	
@@ -199,10 +198,10 @@ public class Register {
 		if (date < 0 || date > 30) {
 			System.out.println();
 			System.out.println("잘못된 날짜입니다.");
-			System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+			AdminMenu.printLine();
 			Until();
 		}
-		System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+		AdminMenu.printLine();
 		scan.nextLine();
 		
 		c.add(Calendar.DATE, date);

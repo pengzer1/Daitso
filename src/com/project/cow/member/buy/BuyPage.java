@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import com.project.cow.admin.AdminMenu;
 import com.project.cow.constant.Constant;
 import com.project.cow.data.LikeItemData;
 import com.project.cow.data.TradeStuffData;
@@ -20,7 +21,7 @@ public class BuyPage {
 		Member buyer = Login.login;
 		com.project.cow.data.object.LikeItem likeItem;
 
-		System.out.println("<   판매 페이지 입니다~!   >");
+		AdminMenu.printMenu("구매 페이지");
 		System.out.println();
 		System.out.println("[번호]\t\t[품명]\t\t[상품품질]\t[가격]\t\t[판매자]\t[거래방법]\t\t[지불방법]\t\t[판매시작일]\t\t[판매마감일]\t\t[찜횟수]");
 
@@ -35,16 +36,16 @@ public class BuyPage {
 
 		boolean loop = true;
 		while (loop) {
-			System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+			AdminMenu.printLine();
 			System.out.println("1. 구매하기\n2. 찜하기");
 			System.out.print("번호를 선택해주세요. : ");
 			String choice = sc.nextLine();
 
 			if (choice.equals("1")) { // 구매하기
-				System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+				AdminMenu.printLine();
 				System.out.println("물품 거래 날짜를 선택하세요");
 				System.out.println("날짜 설정하기");
-				System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+				AdminMenu.printLine();
 				System.out.println("구매가 가능하신 날짜는 " + startDateStr + "부터 " + endDateStr + "까지입니다.");
 				System.out.print("구매하고 싶은 날짜 (yyyy-MM-dd): "); // 유효성 검사..?
 				String checkDateStr = sc.nextLine();
@@ -64,7 +65,7 @@ public class BuyPage {
 					TradeStuffData.tradeStuffSave();
 					// ->마이페이지 알림설정에 저장되게 하기
 					while (loop) {
-						System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+						AdminMenu.printLine();
 						System.out.println("처음으로 돌아가려면 0번을 누르세요.");
 						System.out.print("번호 입력하기 : ");
 						String input = sc.nextLine();
@@ -84,7 +85,7 @@ public class BuyPage {
 				LikeItemData.likeList.add(likeItem);
 				LikeItemData.likeItemSave();
 				System.out.println("찜 목록에 추가되었습니다.");
-				System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+				AdminMenu.printLine();
 				System.out.println("엔터를 누르면 구매자 화면으로 돌아갑니다.");
 				sc.nextLine();
 				BuyMenu.FirstScreen();

@@ -1,5 +1,7 @@
 package com.project.cow.member.buy;
 import java.util.*;
+
+import com.project.cow.admin.AdminMenu;
 import com.project.cow.constant.Constant;
 import com.project.cow.data.SellingStuffData;
 import com.project.cow.data.object.SellingStuff;
@@ -25,7 +27,7 @@ public class StuffInfo {
 		int flag=0;
 		while (loop) {
 			System.out.println();
-			System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+			AdminMenu.printLine();
 			System.out.println("구매할 물품의 번호를 입력하세요.");
 			System.out.println("이전 화면으로 돌아가시려면 0을 입력해 주세요.");
 			System.out.print("번호 입력 : ");
@@ -39,7 +41,7 @@ public class StuffInfo {
 					a = stuff;
 					System.out.println("판매 페이지로 이동하시려면 Enter를 눌러주세요.");
                 	sc.nextLine();
-                	System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+                	AdminMenu.printLine();
                     BuyPage.buyPage(a);  //판매 페이지로 이동.
                     loop = false;  // 루프 종료
                     flag=1;
@@ -48,7 +50,7 @@ public class StuffInfo {
 			}
 			if(flag==0) {
 				System.out.println("번호를 바르게 입력해 주십시오.");
-				System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+				AdminMenu.printLine();
 			}
 		}
 	

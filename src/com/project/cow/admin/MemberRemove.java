@@ -73,8 +73,7 @@ public class MemberRemove {
 	private static void performMemberRemove(Scanner scan, Member selectedMember) {
 		MemberData.list.remove(selectedMember);
 		
-		//MemberData.save();
-		updateMemberFile(); // 회원 정보 파일 업데이트
+		MemberData.save(); // 회원 정보 파일 업데이트
 		
 		System.out.println("회원이 삭제되었습니다.");
 		scan.nextLine();
@@ -102,23 +101,8 @@ public class MemberRemove {
 			}
 			index++;
 		}
+		System.out.println(MemberData.list.size());
 
 		return selectedMemberList;
-	}
-	
-	/**
-	 * 회원 정보를 파일로 업데이트하는 메소드
-	 */
-	private static void updateMemberFile() {
-		try (BufferedWriter writer = new BufferedWriter(new FileWriter(MEMBER_LIST))) {
-			for (Member member : MemberData.list) {
-				String line = String.join(",", member.toString()); // 회원 정보를 CSV 형식으로 변환
-	            writer.write(line); // 파일에 회원 정보 쓰기
-	            writer.newLine(); // 다음 줄로 이동
-			}
-		} catch (IOException e) {
-			System.out.println("회원 정보 파일 업데이트 중 오류가 발생했습니다.");
-			e.printStackTrace();
-		}
 	}
 }

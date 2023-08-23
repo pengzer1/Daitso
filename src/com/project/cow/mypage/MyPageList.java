@@ -2,6 +2,7 @@ package com.project.cow.mypage;
 
 import java.util.Scanner;
 
+import com.project.cow.admin.AdminMenu;
 import com.project.cow.member.MemberMenu;
 
 public class MyPageList {
@@ -23,8 +24,7 @@ public class MyPageList {
 
     public void myPageScreen(){
 
-        System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
-        System.out.println("                  마이페이지");
+    	AdminMenu.printMenu("마이페이지");
         System.out.printf("  이름 : %s\n", user.getName());
         System.out.printf("  아이디 : %s\n", user.getId());
         System.out.printf("  비밀번호 : %s\n",user.getPassword());
@@ -43,18 +43,8 @@ public class MyPageList {
 // 관심목록 : 구매하기에서 물건 찜하면 관심 목록에 저장 , 다른사람이 구매하면 판매완료로 변경
 // 회원 탈퇴 :  확인메세지 물어보기
     public void select() {
-        System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
-        System.out.println("            [마이 페이지 활동을 선택하세요]           ");
-        System.out.println("     1. 회원 정보 수정                                 ");
-        System.out.println("     2. 구매/판매 내역                             ");
-        System.out.println("     3. 상품 거래 후기                             ");
-        System.out.println("     4. 내 알림 키워드                       ");
-        System.out.println("     5. 현재 내 거래                         ");
-        System.out.println("     6. 다잇소 페이                                 ");
-        System.out.println("     7. 회원 탈퇴            `                      ");
-        System.out.println("     0. 돌아가기                                     "  );
-        System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
-        System.out.print("     > 번호 입력:");
+    	AdminMenu.printMenu("마이페이지 메인 메뉴");
+    	AdminMenu.printOption("회원 정보 수정", "구매/판매 내역", "상품 거래 후기", "내 알림 키워드", "현재 내 거래", "Daitso Pay", "회원 탈퇴");
         String input = scan.nextLine();
 
         if (input.equals("1")) {

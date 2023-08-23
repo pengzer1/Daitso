@@ -1,5 +1,6 @@
 package com.project.cow.mypage;
 
+import com.project.cow.admin.AdminMenu;
 import com.project.cow.constant.Constant;
 import com.project.cow.data.Data;
 import com.project.cow.data.SellingStuffData;
@@ -15,11 +16,8 @@ public class BuyList {
     public void buySellHistoryScreen(User user){
         while (true) {
 
-            System.out.println("━━━━━━━━━━━━━━━━구매/판매 목록━━━━━━━━━━━━━━━━━━━━━");
-            System.out.println(" 1.구매 목록");
-            System.out.println(" 2.판매 목록");
-            System.out.println(" 0.이전으로 돌아가기");
-            System.out.print(" 번호 입력 : ");
+        	AdminMenu.printMenu("구매/판매 목록");
+        	AdminMenu.printOption("구매 목록", "판매 목록");
             String input = scan.nextLine();
 
             switch (input) {
@@ -44,8 +42,7 @@ public class BuyList {
 
     private void myBuyList(User user) {
 
-        System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
-        System.out.println("                   나의 구매목록");
+    	AdminMenu.printMenu("나의 구매목록");
         System.out.println(" 1.번호\t\t2.제목\t\t3.카테고리\t4.가격\t5.거래방법\t6.결제방식\t7.물품상태\t8.거래일자\t9.판매자번호\t10.구매자번호");
         for (int i = 0; i < Data.soldOutArrayList.size(); i++) {
             if (user.getNumber().equals(Data.soldOutArrayList.get(i).getBuyNum())) {
@@ -56,7 +53,7 @@ public class BuyList {
                         , item.getPaymentMethod(), item.getStatus(), item.getTransactionData(), item.getSellNum(), item.getBuyNum());
             }
         }
-        System.out.println(" 이전으로 돌아가실려면 (엔터)");
+        System.out.println("Enter를 누르면 이전 화면으로 돌아갑니다.");
         scan.nextLine().trim();
         buySellHistoryScreen(user);
     }

@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import com.project.cow.admin.AdminMenu;
 import com.project.cow.data.object.Member;
 
 public class FindPW {
@@ -30,9 +31,7 @@ public class FindPW {
 		
 		Scanner scan = new Scanner(System.in);
 		
-		  System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
-	      System.out.println("           비밀번호 찾기 ");
-	      System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+		AdminMenu.printMenu("비밀번호 찾기");
 		
 		System.out.println("[가입시 등록한 회원정보를 입력하세요.]");
 		System.out.print("아이디: ");
@@ -50,7 +49,7 @@ public class FindPW {
 	        boolean foundpwd = false;
 	        for (Member member : members) {
 	            if (member.getId().equals(id)&&member.getName().equals(name) && member.getTel().equals(tel)) {
-	            	System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+	            	AdminMenu.printLine();
 	            	System.out.println();
 	            	System.out.println("입력하신 회원정보의 비밀번호는  " + member.getPwd()+"입니다.");
 	                System.out.println();

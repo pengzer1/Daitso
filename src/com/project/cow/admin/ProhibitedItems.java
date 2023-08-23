@@ -10,9 +10,7 @@ public class ProhibitedItems {
 
         Scanner scanner = new Scanner(System.in);
         while (true) {
-        	System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
-        	System.out.println("                 중고거래 제한물품 관리창");
-        	System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+        	AdminMenu.printMenu("중고거래 제한물품 관리창");
         	System.out.println();
         	
             System.out.println("1. 금지물품 추가하기");
@@ -22,7 +20,7 @@ public class ProhibitedItems {
             System.out.println("0. 뒤로가기");
             System.out.println();
             System.out.print("원하시는 항목을 입력하여 주세요.\r\n");
-            System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+            AdminMenu.printLine();
             int choice = scanner.nextInt();
             scanner.nextLine(); 
 
@@ -70,9 +68,7 @@ public class ProhibitedItems {
                     }
                     break;       
                 case 4:
-                	System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
-            		System.out.println("                                     금지물품 선정기준");
-            		System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+                	AdminMenu.printMenu("금지물품 선정기준");
             		System.out.println("사용자, 판매자의 안전을 위협하는 물품 : \r\n"
             				+ "총포류, 화약류, 도검류, 유통기한이 명시되지않은 식품류, 유통기한이 지난 식품류, 화학제품류, 인/허가 받지않은 약품류,폭발물 등\r\n");
             		System.out.println("외설적인 요소가 첨가되어있는 물품 : \r\n"

@@ -25,9 +25,7 @@ public class Login {
 	public static void login() {
 		
 		Scanner scan = new Scanner(System.in);
-		System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
-		System.out.println("             로그인");
-		System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+		AdminMenu.printMenu("로그인");
 		
 		System.out.print("아이디:");
 		String id = scan.nextLine().trim();
@@ -53,7 +51,7 @@ public class Login {
     	if(bl.getId().equals(id)) {
     	
     		if(vanValue==0) {
-    			System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+    			AdminMenu.printLine();
         		System.out.println("영구제한 회원입니다.");
                 System.out.println();
                 System.out.println("메인화면으로 돌아가려면 엔터를 입력하세요.");
@@ -61,7 +59,7 @@ public class Login {
         		Main.MainScreen();
         	}else {
         		if(isBlocked(bl)) {
-        			System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+        			AdminMenu.printLine();
             		System.out.println("사용이 제한된 회원입니다.");
                     System.out.println();
                     System.out.println("메인화면으로 돌아가려면 엔터를 입력하세요.");
@@ -90,7 +88,7 @@ public class Login {
 		
 
 		
-		System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+		AdminMenu.printLine();
 		if (Login.login != null) {
 			
 			System.out.println("로그인 성공!");
@@ -122,7 +120,7 @@ public class Login {
 		
 		Login.login = null; //인증 티켓 제거 == 로그아웃
 		
-		System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+		AdminMenu.printLine();
 		System.out.println("로그아웃 되었습니다.");
 		System.out.println("메인화면으로 돌아가려면 엔터를 입력하세요.");
 		System.out.println();

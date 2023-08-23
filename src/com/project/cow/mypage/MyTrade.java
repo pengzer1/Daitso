@@ -2,6 +2,7 @@ package com.project.cow.mypage;
 
 import java.util.Scanner;
 
+import com.project.cow.admin.AdminMenu;
 import com.project.cow.data.Data;
 import com.project.cow.data.TradeStuffData;
 import com.project.cow.data.object.TradeStuff;
@@ -13,8 +14,7 @@ public class MyTrade {
     }
 
     public void tradeScreen(User user){
-        System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
-        System.out.println("                현재 진행중인 거래");
+    	AdminMenu.printMenu("현재 진행중인 거래");
         System.out.println("[번호]\t\t[품명]\t\t[카테고리]\t[가격]\t[거래방법]\t[결제방식]\t[물품상태]\t[거래일자]\t[판매자번호]\t[구매자번호]");
         
 //        for (int i = 0; i < Data.tradeList.size(); i++) {
@@ -33,7 +33,7 @@ public class MyTrade {
         	}
         }
         
-        System.out.println("마이페이지로 돌아가기(엔터)");
+        System.out.println("Enter를 누르면 마이페이지로 돌아갑니다.");
         scan.nextLine().trim();
         MyPageList myPageList = new MyPageList(user);
         myPageList.myPageScreen();

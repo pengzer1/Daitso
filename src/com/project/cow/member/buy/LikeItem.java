@@ -2,6 +2,7 @@ package com.project.cow.member.buy;
 
 import java.util.Scanner;
 
+import com.project.cow.admin.AdminMenu;
 import com.project.cow.constant.Constant;
 import com.project.cow.data.LikeItemData;
 import com.project.cow.data.object.Member;
@@ -18,9 +19,7 @@ public class LikeItem {
 	
 	public void Screen() {
 		System.out.println();
-		System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
-		System.out.println("[찜 목록 현황]");
-		System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+		AdminMenu.printMenu("찜 목록 현황");
 		
 		System.out.println("[번호]\t[제목]\t\t[카테고리]\t[물건 상태]\t[판매 가격]\t[판매자명]\t[상품 거래 방식]\t[결제 방식]\t[등록 날짜]\t[마감 날짜]\t[찜]");
 		for (com.project.cow.data.object.LikeItem likeItem : LikeItemData.likeList) {

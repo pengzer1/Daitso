@@ -12,16 +12,15 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
+import com.project.cow.admin.AdminMenu;
+
 public class Locker {
 	Scanner scan = new Scanner(System.in);
 	
 	public void screen() {
-		
-		System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
-		System.out.println("[보관함 위치 찾기]");
-		System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+		AdminMenu.printMenu("보관함 위치 찾기");
 		areaList();
-		System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+		AdminMenu.printLine();
 		System.out.println("지역을 선택해주세요.");
 		System.out.println("0을 선택하면 이전 화면으로 돌아갑니다.");
 		System.out.print("번호입력:");
@@ -221,7 +220,7 @@ public class Locker {
 	        	JSONObject item = (JSONObject)items.get("item");
 	        	
 	        	System.out.println("이 지역 보관함은 " + item.get("subwayStationName") + "역 1번 출구 옆에 있습니다.");
-	        	System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+	        	AdminMenu.printLine();
 	        }
 	        else {
 	        	JSONArray arr = (JSONArray)items.get("item");
@@ -231,7 +230,7 @@ public class Locker {
 	        		
 	        		if (item.get("subwayStationId").equals(id)) {
 	        			System.out.println("이 지역 보관함은 " + item.get("subwayStationName") + "역 1번 출구 옆에 있습니다.");
-			        	System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+	        			AdminMenu.printLine();
 	        		}
 	        	}
 	        			

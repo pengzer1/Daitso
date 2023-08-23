@@ -2,6 +2,7 @@ package com.project.cow.member.buy;
 
 import java.util.Scanner;
 
+import com.project.cow.admin.AdminMenu;
 import com.project.cow.data.KeyWordData;
 import com.project.cow.data.object.KeyWord;
 import com.project.cow.data.object.Member;
@@ -15,17 +16,16 @@ public class KeyWordSet {
 
 	public void Screen() {
 		
-		System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
-		System.out.println("[키워드 알림 설정]");
+		AdminMenu.printMenu("키워드 알림 설정");
 		System.out.println("키워드 설정을 통해 마이페이지에서\n원하는 물품을 볼 수 있습니다.");
 		System.out.println("키워드는 최대 5개까지 설정할 수 있습니다.");
 		
 		System.out.println("현재 설정되어있는 키워드");
-		System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+		AdminMenu.printLine();
 
 		findKeyWord();
 
-		System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+		AdminMenu.printLine();
 		
 		select();
 		
@@ -40,7 +40,7 @@ public class KeyWordSet {
 		System.out.print("번호입력:");
 		String no = scan.nextLine();
 		
-		System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+		AdminMenu.printLine();
 		System.out.println();
 		
 		if (no.equals("1")) {
@@ -68,7 +68,7 @@ public class KeyWordSet {
 				System.out.println(keyWord.getWord()[i]);
 				index++;
 			}
-			System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+			AdminMenu.printLine();
 			System.out.println();
 			
 			System.out.println("몇번 키워드를 삭제하시겠습니까?");
@@ -106,7 +106,7 @@ public class KeyWordSet {
 			}
 			else {
 				System.out.println("잘못된 입력입니다.");
-				System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+				AdminMenu.printLine();
 				System.out.println();
 				
 				deleteKeyWord();

@@ -66,8 +66,8 @@ public class AdminMenu {
 	 * @param text 출력할 문자열
 	 */
 	public static void printMenu(String text) {
-		String line = "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━";
-		int totalWidth = line.length() / 2; // 총 출력 폭 설정(24)
+		String line = "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━";
+		int totalWidth = line.length() / 2; // 총 출력 폭 설정(75)
 
 		String formattedText = centerText(text, totalWidth);
 
@@ -90,7 +90,7 @@ public class AdminMenu {
 	 * 가운데 정렬된 선을 출력하는 메소드
 	 */
 	public static void printLine() {
-	    String line = "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━";
+	    String line = "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━";
 	    System.out.println(line);
 	}
 }

@@ -2,6 +2,7 @@ package com.project.cow.member.sell;
 
 import java.util.Scanner;
 
+import com.project.cow.admin.AdminMenu;
 import com.project.cow.constant.Constant;
 import com.project.cow.data.object.Member;
 import com.project.cow.data.SellingStuffData;
@@ -16,9 +17,7 @@ public class Modify {
 		ModifyDetail modifyDetail = new ModifyDetail();
 		
 		System.out.println();
-		System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
-		System.out.println("[판매 등록 현황]");
-		System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+		AdminMenu.printMenu("판매 등록 현황");
 		
 		System.out.println("[번호]\t[제목]\t\t[카테고리]\t[물건 상태]\t[판매 가격]\t[판매자명]\t[상품 거래 방식]\t[결제 방식]\t[등록 날짜]\t[마감 날짜]\t[찜]");
 		for (SellingStuff s : SellingStuffData.sellingList) {
@@ -30,14 +29,14 @@ public class Modify {
 		System.out.println();
 		System.out.println("상품 정보를 수정하시겠습니까?");
 		Check();
-		System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+		AdminMenu.printLine();
 		System.out.println();
 		System.out.println("수정하실 상품 번호를 입력해주세요.");
 		System.out.println();
 		
 		SellingStuff s = GetStuff();
 		
-		System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+		AdminMenu.printLine();
 		System.out.println();
 
 		modifyDetail.Screen(s);
@@ -45,7 +44,7 @@ public class Modify {
 	
 	private void Check() {
 		SellMenu sellMenu = new SellMenu();
-		System.out.println("1.수정하기\t0.돌아가기");
+		AdminMenu.printOption("수정하기");
 		System.out.print("번호입력: ");
 		String check = scan.nextLine();
 		
@@ -57,7 +56,7 @@ public class Modify {
 		else {
 			System.out.println();
 			System.out.println("잘못된 번호입니다. 다시 선택해주세요.");
-			System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+			AdminMenu.printLine();
 			Check();
 		}
 	}
@@ -84,7 +83,7 @@ public class Modify {
 		if(sellingStuff.getNo().equals("")) {
 			System.out.println();
 			System.out.println("잘못된 상품 번호입니다. 다시 입력해주세요.");
-			System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+			AdminMenu.printLine();
 			GetStuff();
 		}
 		

@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import com.project.cow.admin.AdminMenu;
 import com.project.cow.data.object.Member;
 
 public class FindID {
@@ -30,10 +31,7 @@ public class FindID {
 		
 		Scanner scan = new Scanner(System.in);
 		
-		  System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
-	      System.out.println("            아이디 찾기");
-	      System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
-		
+		AdminMenu.printMenu("아이디 찾기");
 		System.out.println("[가입시 등록한 회원정보를 입력하세요.]");
 		System.out.print("이름: ");
 		String name = scan.nextLine().trim();
@@ -48,7 +46,7 @@ public class FindID {
 	        boolean found = false;
 	        for (Member member : members) {
 	            if (member.getName().equals(name) && member.getTel().equals(tel)) {
-	            	System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+	            	AdminMenu.printLine();
 	            	System.out.println();
 	            	System.out.println("입력하신 회원정보의 아이디는  " + member.getId()+"입니다.");
 	                System.out.println();

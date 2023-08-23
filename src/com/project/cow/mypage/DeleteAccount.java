@@ -3,6 +3,7 @@ package com.project.cow.mypage;
 import java.util.Scanner;
 
 import com.project.cow.Main;
+import com.project.cow.admin.AdminMenu;
 import com.project.cow.data.Data;
 import com.project.cow.data.MemberData;
 import com.project.cow.data.object.Member;
@@ -18,31 +19,24 @@ public class DeleteAccount { //회원탈퇴 클래스
     }
 
     public void deleteAccountScreen(User user){
-        System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
-        System.out.println("                  탈퇴하기 ");
+    	AdminMenu.printMenu("탈퇴하기");
         System.out.println(".."+user.getName()+"님 이제 새거 사러가시는건가요?");
         System.out.println(" "+user.getName()+"님이 탈퇴하시려는 이유가 궁금해요");
         System.out.println();
-        System.out.println(" 1.너무 많이 이용해요");
-        System.out.println(" 2.물품이 안팔려요 ");
-        System.out.println(" 3.주머니가 무거워져서 이제 중고가 눈에안들어와요");
-        System.out.println(" 0.돌아가기");
-        System.out.print(" 번호입력 : ");
+        AdminMenu.printOption("너무 많이 이용해요.", "물품이 안팔려요.", "주머니가 무거워져서 이제 중고가 눈에 안 들어와요.");
         String input = scan.nextLine().trim();
 
         ment(user, input);
 
-        System.out.println("계속하실려면 엔터");
+        System.out.println("계속하시려면 엔터를 입력하세요.");
         scan.nextLine();
         System.out.println(" 진짜 계정을 삭제하시겠습니까?");
         System.out.println();
         System.out.println(" 1.계정을 삭제하시면 그동안의 회원님의 기록은 삭제되며 데이터 복구는 불가능합니다.");
-        System.out.println(" 2.회원 탈퇴시 회원님이 보유하고있던 Daitso 페이는 모두소멸되며 , 복구가 불가능합니다.");
+        System.out.println(" 2.회원 탈퇴시 회원님이 보유하고있던 Daitso 페이는 모두 소멸되며, 복구가 불가능합니다.");
         System.out.println(" 남은 Daitso 페이 : " + user.getMoney());
         System.out.println();
-        System.out.println(" 1.탈퇴하기");
-        System.out.println(" 0.돌아가기");
-        System.out.println(" 번호입력 : ");
+        AdminMenu.printOption("탈퇴하기");
         String select = scan.nextLine().trim();
         if (select.equals("1")) {
         	String num = member.getNo();
@@ -55,7 +49,7 @@ public class DeleteAccount { //회원탈퇴 클래스
             Data.deleteMember(user);
             
             System.out.println("삭제가 완료되었습니다.");
-            System.out.println("Enter를 누르면 초기화면으로 돌아갑니다.");
+            System.out.println("Enter를 누르면 이전 화면으로 돌아갑니다.");
             Login.login = null;
             scan.nextLine().trim();
             

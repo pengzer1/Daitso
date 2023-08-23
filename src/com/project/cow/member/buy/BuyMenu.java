@@ -1,6 +1,7 @@
 package com.project.cow.member.buy;
 import java.util.*;
 
+import com.project.cow.admin.AdminMenu;
 import com.project.cow.data.object.SellingStuff;
 import com.project.cow.member.MemberMenu;
 
@@ -19,16 +20,14 @@ public class BuyMenu {
         LikeItem likeItem = new LikeItem();
         KeyWordSet keyWordSet = new KeyWordSet();
       
-      	System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
-        System.out.println("[구매하기]");
-        System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+        AdminMenu.printMenu("구매하기");
         System.out.println("1.물품구매");
         System.out.println("2.카테고리 보기");
         System.out.println("3.찜목록");
         System.out.println("4.알림 키워드 설정");
         System.out.println("0.돌아가기");
-        System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
-
+        AdminMenu.printLine();
+        
         System.out.print("번호 입력: ");
         String input = sc.nextLine().trim();
 
@@ -55,7 +54,7 @@ public class BuyMenu {
            System.out.println();
            System.out.println("잘못된 선택입니다.");
          System.out.println("다시 선택하려면 Enter를 눌러주세요.");
-         System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+         AdminMenu.printLine();
          sc.nextLine();
          
          FirstScreen();
@@ -66,14 +65,12 @@ public class BuyMenu {
     public static void Screen() {
        Scanner sc = new Scanner(System.in);
        
-        System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
-        System.out.println("물품 구매 화면으로 이동합니다.");
-        System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+        AdminMenu.printMenu("물품 구매 화면으로 이동합니다.");
         System.out.println("1.물품선택");
         System.out.println("2.물품검색");
         System.out.println("3.물품정렬");
         System.out.println("0.돌아가기");
-        System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+        AdminMenu.printLine();
         
         System.out.print("번호 입력: ");
         String input = sc.nextLine().trim();
@@ -93,7 +90,7 @@ public class BuyMenu {
            System.out.println();
            System.out.println("잘못된 선택입니다.");
          System.out.println("다시 선택하려면 Enter를 눌러주세요.");
-         System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+         AdminMenu.printLine();
          sc.nextLine();
          
          Screen();

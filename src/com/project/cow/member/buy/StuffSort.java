@@ -2,6 +2,8 @@ package com.project.cow.member.buy;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.stream.Collectors;
+
+import com.project.cow.admin.AdminMenu;
 import com.project.cow.constant.Constant;
 import com.project.cow.data.SellingStuffData;
 import com.project.cow.data.object.SellingStuff;
@@ -11,7 +13,7 @@ public class StuffSort {
 		SellingStuffData.load();  //물품 불러오기
 		Scanner sc = new Scanner(System.in);
 		
-		System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+		AdminMenu.printLine();
         System.out.println("물품을 정렬할 기준을 선택하세요.");
         System.out.println("1. 가격 낮은 순 정렬"); //오름차순
         System.out.println("2. 가격 높은 순 정렬");
@@ -21,7 +23,7 @@ public class StuffSort {
         System.out.println("0을 입력하시면 이전화면으로 돌아갑니다.");
         System.out.print("번호 입력 : ");
         String input = sc.nextLine();
-        System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+        AdminMenu.printLine();
 		
         if(input.equals("1")) {
     		System.out.println();
@@ -89,7 +91,7 @@ public class StuffSort {
 					StuffSort.stuffSortChoice();  //이전화면
 					break;
 				} else if(num.equals(stuff.getNo())){
-					System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+					AdminMenu.printLine();
 					System.out.println("판매 페이지로 이동하시려면 Enter를 눌러주세요.");
                 	sc.nextLine();
                     BuyMenu.FirstScreen();  //판매 페이지로 이동.
@@ -99,7 +101,7 @@ public class StuffSort {
 			}
 			if(flag==0) {
 				System.out.println("번호를 바르게 입력해 주십시오.");
-				System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+				AdminMenu.printLine();
 			}
 		}
        
@@ -107,7 +109,7 @@ public class StuffSort {
 	public static void Exception() {
 		Scanner sc = new Scanner(System.in);
 		while(true) {
-			System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+			AdminMenu.printLine();
 			System.out.println("이전화면으로 돌아가시려면 0을 입력해주세요.");
 			System.out.print("번호 입력 : ");
 			int num=sc.nextInt();

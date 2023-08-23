@@ -2,6 +2,7 @@ package com.project.cow.mypage;
 
 import java.util.Scanner;
 
+import com.project.cow.admin.AdminMenu;
 import com.project.cow.data.Data;
 
 public class InfoChange {  //회원 정보 수정
@@ -14,14 +15,10 @@ public class InfoChange {  //회원 정보 수정
     public void changeMyInfo(User user) {// 아이디,비밀번호 , 휴대폰번호 , 동네
         System.out.println();
         while (true) {
-            System.out.println("━━━━━━━━━━━━━━━━회원 정보 수정━━━━━━━━━━━━━━━━━━━━━");
-            System.out.println(" 1. 아이디 변경 ");
-            System.out.println(" 2. 비밀번호 변경 ");
-            System.out.println(" 3. 휴대폰 번호 변경 ");
-            System.out.println(" 4. 동네 변경 ");
-            System.out.println(" 0. 마이페이지로 돌아가기");
-            System.out.print("변경할 정보를 선택해주세요(번호입력) : ");
+        	AdminMenu.printMenu("회원 정보 수정");
+        	AdminMenu.printOption("아이디 변경", "비밀번호 변경", "휴대폰 번호 변경", "동네 변경");
             String input = scan.nextLine();
+            
             switch (input) {
                 case "0":
                     MyPageList myPageList = new MyPageList(user);
@@ -48,63 +45,59 @@ public class InfoChange {  //회원 정보 수정
     }
 
     private void changeId(User user){ // 아이디 변경 메서드
-        System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
-        System.out.println("                  아이디 변경");
+    	AdminMenu.printMenu("아이디 변경");
         System.out.println("현재 아이디 : " + user.getId());
-        System.out.println("(변경을 취소하실려면 0을 입력하세요)");
-        System.out.print("변경 하실 아이디  : " );
+        System.out.println("(변경을 취소하시려면 0을 입력하세요.)");
+        System.out.print("변경할 아이디  : " );
         String input = scan.nextLine().trim();
         if (input.equals("0")) {
             changeMyInfo(user);
         }
         user.setId(input);
         Data.memberSave(); // 변경된 아이디 덮어씌우기
-        System.out.println("메이페이지로 돌아갑니다 (엔터)");
+        System.out.println("Enter를 누르면 마이페이지로 돌아갑니다.");
         scan.nextLine();
         returnPage(user);
 
     }
 
     private void changePw(User user) {
-        System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
-        System.out.println("                  비밀번호 변경");
+    	AdminMenu.printMenu("비밀번호 변경");
         System.out.println("현재 비밀번호 : " + user.getPassword());
-        System.out.println("(변경을 취소하실려면 0을 입력하세요)");
-        System.out.print("변경 하실 비밀번호 : ");
+        System.out.println("(변경을 취소하시려면 0을 입력하세요.)");
+        System.out.print("변경할 비밀번호 : ");
         String input = scan.nextLine().trim();
         if (input.equals("0")) {
             changeMyInfo(user);
         }
         user.setPassword(input);
         Data.memberSave();
-        System.out.println("메이페이지로 돌아갑니다 (엔터)");
+        System.out.println("Enter를 누르면 마이페이지로 돌아갑니다.");
         scan.nextLine();
         returnPage(user);
 
     }
 private void changePhoneNumber(User user){
-    System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
-    System.out.println("                 휴대폰 번호 변경");
+	AdminMenu.printMenu("휴대폰 번호 변경");
     System.out.println("현재 전화번호 : " + user.getPhoneNumber());
-    System.out.println("(변경을 취소하실려면 0을 입력하세요)");
-    System.out.print("변경 하실 전화번호 : ");
+    System.out.println("(변경을 취소하시려면 0을 입력하세요.)");
+    System.out.print("변경할 전화번호 : ");
     String input = scan.nextLine().trim();
     if (input.equals("0")) {
         changeMyInfo(user);
     }
     user.setPhoneNumber(input);
     Data.memberSave();
-    System.out.println("메이페이지로 돌아갑니다 (엔터)");
+    System.out.println("Enter를 누르면 마이페이지로 돌아갑니다.");
     scan.nextLine();
     returnPage(user);
 
 }
 private void changeLivingArea(User user){
-    System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
-    System.out.println("                    동네 변경");
+	AdminMenu.printMenu("동네 변경");
     System.out.println("현재 동네 : " + user.getLivingArea());
     System.out.println();
-    System.out.println("지역을 선택해 주세요");
+    System.out.println("지역을 선택해 주세요.");
     areaList();
     System.out.print("번호 선택 : ");
     String input = scan.nextLine();
@@ -192,12 +185,12 @@ private void changeLivingArea(User user){
                 user.setLivingArea("강동구");
                 break;
             default:
-                System.out.println("1~25숫자를 입력해주세요.");
+                System.out.println("1~25 숫자를 입력하세요.");
             return;
         }
         System.out.println(user.getLivingArea()+"로 지역이 변경되었습니다.");
         System.out.println();
-        System.out.println("메이페이지로 돌아갑니다 (엔터)");
+        System.out.println("Enter를 누르면 마이페이지로 돌아갑니다.");
         scan.nextLine();
         returnPage(user);
     }

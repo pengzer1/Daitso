@@ -2,6 +2,7 @@ package com.project.cow;
 
 import java.util.Scanner;
 
+import com.project.cow.admin.AdminMenu;
 import com.project.cow.admin.MemberQuestion;
 import com.project.cow.data.BlackListData;
 import com.project.cow.data.Data;
@@ -31,13 +32,10 @@ public class Main {
         Data.badReviewLoad();
         Data.tradeStuffLoad();
         TradeStuffData.tradeStuffLoad();
-        
-        
-		
+        MemberData.load();
 		
 		 // 메인 화면 시작
 		MainScreen();
-		
 	}
 	
     /*
@@ -51,27 +49,26 @@ public class Main {
 		Join joinInstance = new Join(); 
 		
 		while(loop) {
-			
-		System.out.println(" _______       ___       __  .___________.     _______.  ______   \r\n"
-				+ "|       \\     /   \\     |  | |           |    /       | /  __  \\  \r\n"
-				+ "|  .--.  |   /  ^  \\    |  | `---|  |----`   |   (----`|  |  |  | \r\n"
-				+ "|  |  |  |  /  /_\\  \\   |  |     |  |         \\   \\    |  |  |  | \r\n"
-				+ "|  '--'  | /  _____  \\  |  |     |  |     .----)   |   |  `--'  | \r\n"
-				+ "|_______/ /__/     \\__\\ |__|     |__|     |_______/     \\______/  \r\n"
-				+ "                                                                  ");
-		System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
-		System.out.println("	    DAITSO");
-		System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+		
+		System.out.println(""
+				+ "\t\t\t\t\t _______       ___       __  .___________.     _______.  ______   \r\n"
+				+ "\t\t\t\t\t|       \\     /   \\     |  | |           |    /       | /  __  \\  \r\n"
+				+ "\t\t\t\t\t|  .--.  |   /  ^  \\    |  | `---|  |----`   |   (----`|  |  |  | \r\n"
+				+ "\t\t\t\t\t|  |  |  |  /  /_\\  \\   |  |     |  |         \\   \\    |  |  |  | \r\n"
+				+ "\t\t\t\t\t|  '--'  | /  _____  \\  |  |     |  |     .----)   |   |  `--'  | \r\n"
+				+ "\t\t\t\t\t|_______/ /__/     \\__\\ |__|     |__|     |_______/     \\______/  \r\n"
+				+ "\t\t\t\t\t                                                                  ");
+		AdminMenu.printMenu("ＤＡＩＴＳＯ");
 		
 		if(Login.login == null) {
-		System.out.println("1.로그인");
-		System.out.println("2.회원가입");
-		System.out.println("3.아이디 찾기");
-		System.out.println("4.비밀번호 찾기");
-		System.out.println("5.프로그램 종료");
+			System.out.println("1.로그인");
+			System.out.println("2.회원가입");
+			System.out.println("3.아이디 찾기");
+			System.out.println("4.비밀번호 찾기");
+			System.out.println("5.프로그램 종료");
 		}
 
-		System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+		AdminMenu.printLine();
 		System.out.print("번호 입력:");
 		String sel = scan.nextLine();
 		System.out.println();
@@ -93,8 +90,7 @@ public class Main {
 			continue; //잘못된 입력일 경우 루프의 처음으로 다시 돌아간다
 			
 		}
-		
-		// loop =false;
+		// loop = false;
 	}
 		System.out.println("프로그램 종료");
 	}

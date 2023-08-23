@@ -1,5 +1,7 @@
 package com.project.cow.member.buy;
 import java.util.*;
+
+import com.project.cow.admin.AdminMenu;
 import com.project.cow.constant.Constant;
 import com.project.cow.data.SellingStuffData;
 import com.project.cow.data.object.SellingStuff;
@@ -12,12 +14,12 @@ public class StuffSearch {
         boolean loop = true;
         ArrayList<SellingStuff> sellChoice = new ArrayList<SellingStuff>();
 
-        System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+        AdminMenu.printLine();
         System.out.println("구매하고 싶은 상품의 키워드를 입력하세요.");
         System.out.println("0을 입력하시면 이전화면으로 돌아갑니다.");
         System.out.print("검색 키워드 : ");
         String input = sc.nextLine();
-        System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+        AdminMenu.printLine();
 
         for (SellingStuff s : SellingStuffData.sellingList) {
         	if (input.equals("0")) {
@@ -40,7 +42,7 @@ public class StuffSearch {
                 search();
             } else {
             	System.out.println();
-                System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+            	AdminMenu.printLine();
                 System.out.println("구매하고 싶은 상품의 번호를 입력하세요.");
                 System.out.println("이전 화면으로 돌아가고 싶으시면 0을 입력하세요.");
                 System.out.print("번호 입력 : ");

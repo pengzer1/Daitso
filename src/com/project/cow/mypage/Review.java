@@ -1,5 +1,6 @@
 package com.project.cow.mypage;
 
+import com.project.cow.admin.AdminMenu;
 import com.project.cow.data.BadReviewData;
 import com.project.cow.data.Data;
 
@@ -15,11 +16,8 @@ public class Review { // 상품 거래 후기
 
     void reviewScreen(User user){
         while (true) {
-            System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
-            System.out.println("                   상품 거래 후기");
-            System.out.println(" 1. 내 리뷰 보기");
-            System.out.println(" 0. 돌아가기");
-            System.out.print(" 번호 입력 : ");
+        	AdminMenu.printMenu("상품 거래 후기");
+        	AdminMenu.printOption("내 리뷰 보기");
             String input = scan.nextLine().trim();
             switch (input) {
                 case "0":
@@ -33,7 +31,7 @@ public class Review { // 상품 거래 후기
                     // 리뷰 남기기
                     break;
                 default:
-                    System.out.println("1 또는 0번을 입력해주세요.");
+                    System.out.println("1 또는 0을 입력해주세요.");
                     continue;
             }
             break;
@@ -41,8 +39,7 @@ public class Review { // 상품 거래 후기
     }
     private void myReview(User user){
 int count = 1;
-        System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
-        System.out.println("                 받은 매너 평가");
+		AdminMenu.printMenu("받은 매너 평가");
         for (int i = 0; i < Data.ReviewList.size(); i++) {
             if (user.getNumber().equals(Data.ReviewList.get(i).getSeller())) {
                 System.out.print(count+".");
@@ -57,7 +54,7 @@ int count = 1;
                 System.out.println(Data.badList.get(i).getWarningCnt());
             }
         }
-        System.out.println("이전으로 돌아가기 (엔터)");
+        System.out.println("Enter를 누르면 이전 화면으로 돌아갑니다.");
         scan.nextLine().trim();
         reviewScreen(user);
     }

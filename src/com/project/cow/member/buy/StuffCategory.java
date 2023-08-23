@@ -2,6 +2,7 @@ package com.project.cow.member.buy;
 import java.util.*;
 import com.project.cow.data.SellingStuffData;
 import com.project.cow.data.object.SellingStuff;
+import com.project.cow.admin.AdminMenu;
 import com.project.cow.constant.Constant;
 
 public class StuffCategory { // 카테고리별 물품 확인하기
@@ -12,9 +13,7 @@ public class StuffCategory { // 카테고리별 물품 확인하기
 		boolean loop = true;
 		ArrayList<SellingStuff> choiceCategory = new ArrayList<SellingStuff>();
 
-		System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
-		System.out.println("카테고리 선택하기");
-		System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+		AdminMenu.printMenu("카테고리 선택하기");
 		System.out.println("1.가구/인테리어/생활/주방\t\t2.디지털기기\n3.여성잡화\t\t4.남성잡화\t\t5.가공식품\n6.스포츠/레저\t7.취미/게임/음반\t8.뷰티/미용\n9.반려동물용품\t10.티켓/교환권/도서\t11.기타\n0.돌아가기");
 		
 		while(loop) {
@@ -55,7 +54,7 @@ public class StuffCategory { // 카테고리별 물품 확인하기
 						} else if(num.equals(stuff.getNo())){
 							System.out.println("판매 페이지로 이동하시려면 Enter를 눌러주세요.");
 	                    	sc.nextLine();
-	                    	System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+	                    	AdminMenu.printLine();
 	                        BuyPage.buyPage(stuff);
 	                        flag=1;
 	                        loop = false;  // 루프 종료
@@ -63,7 +62,7 @@ public class StuffCategory { // 카테고리별 물품 확인하기
 					}
 					if(flag==0) {
 						System.out.println("번호를 바르게 입력해 주십시오.");
-						System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+						AdminMenu.printLine();
 					}
 				}
 			}
