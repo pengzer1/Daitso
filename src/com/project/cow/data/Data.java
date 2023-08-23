@@ -15,7 +15,7 @@ public class Data {  //txt 파일을 받아서 조작하고 데이터 입출력�
 	
 	public static void memberLoad() {   // 회원정보txt를 배열에 load.
 		try {
-			BufferedReader reader= new BufferedReader(new FileReader("data\\member.txt"));
+			BufferedReader reader= new BufferedReader(new FileReader("/Users/green/Desktop/member.txt"));
 			
 			String line=null;
 			while((line=reader.readLine()) != null) {
@@ -42,6 +42,60 @@ public class Data {  //txt 파일을 받아서 조작하고 데이터 입출력�
 			writer.close();
 		}catch(Exception e) {
 			System.out.println("at Data.save");
+			e.printStackTrace();
+		}
+	}
+	public static void memberSave1() {// 변경된 정보를 텍스트에 세이브
+		try {
+			BufferedWriter writer = new BufferedWriter(new FileWriter("/Users/green/Desktop/member.txt"));
+
+			for (com.project.cow.data.object.Member user : com.project.cow.data.MemberData.list) {
+				// 객체 정보를 텍스트 파일에 쓰는 로직
+				String userInfo = user.toCsvFormat();  // User 객체를 CSV 형식으로 변환
+				writer.write(userInfo);
+				writer.newLine();
+			}
+
+			writer.close();
+		} catch (Exception e) {
+			System.out.println("Error updating file.");
+			e.printStackTrace();
+		}
+
+
+	}
+	public static void deleteMember(com.project.cow.mypage.Member userToDelete) { // 회원 탈퇴 메서드
+		String filePath = "/Users/green/Desktop/member.txt";
+		String tempFilePath = "/Users/green/Desktop/temp_member.txt";
+
+		try {
+			File inputFile = new File(filePath);
+			File tempFile = new File(tempFilePath);
+
+			BufferedReader reader = new BufferedReader(new FileReader(inputFile));
+			BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile));
+
+			List<String> lines = new ArrayList<>();
+			String currentLine;
+			while ((currentLine = reader.readLine()) != null) {
+				String[] userData = currentLine.split(",");
+				if (userData.length >= 3 && userData[2].equals(userToDelete.getId())) {
+					continue; // Skip the line to delete
+				}
+				lines.add(currentLine);
+			}
+
+			reader.close();
+
+			BufferedWriter newWriter = new BufferedWriter(new FileWriter(inputFile));
+			for (String line : lines) {
+				newWriter.write(line + System.lineSeparator());
+			}
+			newWriter.close();
+
+			System.out.println("계정을 삭제했습니다.");
+		} catch (Exception e) {
+			System.out.println("Error updating file.");
 			e.printStackTrace();
 		}
 	}

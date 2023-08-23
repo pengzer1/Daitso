@@ -2,7 +2,7 @@ package com.project.cow.mypage;
 
 import java.util.function.Function;
 
-public class User {
+public class Member {
     private String number; // 고유번호
     private String name; //이름
     private String id; // 아이디
@@ -16,11 +16,11 @@ public class User {
     private String grade; //등급
 
 
-    public User(){
+    public Member(){
 
     }
 
-    public User(String number, String name, String id, String password, String phoneNumber, String residentNumber, String email, String livingArea, String accountNumber, String money, String grade) {
+    public Member(String number, String name, String id, String password, String phoneNumber, String residentNumber, String email, String livingArea, String accountNumber, String money, String grade) {
         this.number = number;
         this.name = name;
         this.id = id;

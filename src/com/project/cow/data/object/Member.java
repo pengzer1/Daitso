@@ -14,6 +14,10 @@ public class Member {   //회원 1명의 정보
 	   private String grade;
 	   
 	   public Member() {}
+	public  String toCsvFormat() {
+		return no + "," + name + "," + id+ "," +pwd+ "," +tel
+				+ "," +jumin + "," +email+ "," + address+ "," +account+ "," +money+ "," +grade;
+	}
 	   
 	   public Member(String no, String name, String id, String pwd, String tel, String jumin, String email, String address,
 	         String account, String money, String grade) {

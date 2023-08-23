@@ -11,7 +11,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Data {  //txt 파일을 받아서 조작하고 데이터 입출력을 담당.
-    public static ArrayList<User> userList;  //회원배열
+    public static ArrayList<Member> userList;  //회원배열
     public static ArrayList<SoldOut> soldOutArrayList;
     public static ArrayList<KeyWord> keyWordList;   //키워드 배열
     public static ArrayList<ReviewInstance> ReviewList;
@@ -23,7 +23,7 @@ public class Data {  //txt 파일을 받아서 조작하고 데이터 입출력�
     }
 
     static {
-        Data.userList = new ArrayList<User>();
+        Data.userList = new ArrayList<Member>();
         Data.soldOutArrayList = new ArrayList<>();
         keyWordList = new ArrayList<>();
         ReviewList = new ArrayList<>();
@@ -37,7 +37,7 @@ public class Data {  //txt 파일을 받아서 조작하고 데이터 입출력�
             String line = null;
             while ((line = reader.readLine()) != null) {
                 String[] temp = line.split(",");
-                User user = new User(temp[0], temp[1], temp[2], temp[3], temp[4], temp[5], temp[6], temp[7], temp[8], temp[9], temp[10]);
+                Member user = new Member(temp[0], temp[1], temp[2], temp[3], temp[4], temp[5], temp[6], temp[7], temp[8], temp[9], temp[10]);
                 Data.userList.add(user);
             }
 
@@ -52,7 +52,7 @@ public class Data {  //txt 파일을 받아서 조작하고 데이터 입출력�
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter("/Users/green/Desktop/member.txt"));
 
-            for (User user : Data.userList) {
+            for (com.project.cow.data.object.Member user : com.project.cow.data.MemberData.list) {
                 // 객체 정보를 텍스트 파일에 쓰는 로직
                 String userInfo = user.toCsvFormat();  // User 객체를 CSV 형식으로 변환
                 writer.write(userInfo);
@@ -70,7 +70,7 @@ public class Data {  //txt 파일을 받아서 조작하고 데이터 입출력�
     // 1,삼성 전기포트,1,34000,3,1,2,2023-08-22,2023-08-27,15,1208
 
 
-    public static void deleteMember(User userToDelete) { // 회원 탈퇴 메서드
+    public static void deleteMember(Member userToDelete) { // 회원 탈퇴 메서드
         String filePath = "/Users/green/Desktop/member.txt";
         String tempFilePath = "/Users/green/Desktop/temp_member.txt";
 

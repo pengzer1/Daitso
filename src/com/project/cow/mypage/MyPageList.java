@@ -2,6 +2,7 @@ package com.project.cow.mypage;
 
 import java.util.Scanner;
 
+import com.project.cow.data.object.Member;
 import com.project.cow.member.MemberMenu;
 
 public class MyPageList {
@@ -13,9 +14,13 @@ public class MyPageList {
         scan = new Scanner(System.in);
     }
 
-    User user; // 로그인유저
-    public MyPageList(User user){ // 로그인유저 생성자주입
+    Member user; // 로그인유저
+   /* public MyPageList(Member user){ // 로그인유저 생성자주입
         this.user = user;
+    }*/
+
+    public MyPageList(com.project.cow.data.object.Member member) {
+        this.user = member;
     }
 
 
@@ -27,10 +32,10 @@ public class MyPageList {
         System.out.println("                  마이페이지");
         System.out.printf("  이름 : %s\n", user.getName());
         System.out.printf("  아이디 : %s\n", user.getId());
-        System.out.printf("  비밀번호 : %s\n",user.getPassword());
-        System.out.printf("  연락처 : %s\n", user.getPhoneNumber());
+        System.out.printf("  비밀번호 : %s\n",user.getPwd());
+        System.out.printf("  연락처 : %s\n", user.getTel());
         System.out.printf("  이메일 : %s\n", user.getEmail());
-        System.out.printf("  주소 : %s\n", user.getLivingArea());
+        System.out.printf("  주소 : %s\n", user.getAddress());
         select();
 
     }
@@ -58,7 +63,7 @@ public class MyPageList {
         String input = scan.nextLine();
 
         if (input.equals("1")) {
-            InfoChange infoChange = new InfoChange();
+            InfoChange infoChange = new InfoChange(user);
             infoChange.changeMyInfo(user);
         } else if (input.equals("2")) {
             BuyList buyList = new BuyList();

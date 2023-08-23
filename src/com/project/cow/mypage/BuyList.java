@@ -1,9 +1,8 @@
 package com.project.cow.mypage;
 
 import com.project.cow.constant.Constant;
-import com.project.cow.data.SellingStuffData;
 import com.project.cow.data.object.SellingStuff;
-
+import com.project.cow.data.object.Member;
 import java.util.Scanner;
 
 public class BuyList {
@@ -11,7 +10,7 @@ public class BuyList {
     static {
         scan = new Scanner(System.in);
     }
-    public void buySellHistoryScreen(User user){
+    public void buySellHistoryScreen(Member user){
         while (true) {
 
             System.out.println("━━━━━━━━━━━━━━━━구매/판매 목록━━━━━━━━━━━━━━━━━━━━━");
@@ -41,13 +40,13 @@ public class BuyList {
         }
     }
 
-    private void myBuyList(User user) {
+    private void myBuyList(Member user) {
 
         System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
         System.out.println("                   나의 구매목록");
         System.out.println(" 1.번호\t\t2.제목\t\t3.카테고리\t4.가격\t5.거래방법\t6.결제방식\t7.물품상태\t8.거래일자\t9.판매자번호\t10.구매자번호");
         for (int i = 0; i < Data.soldOutArrayList.size(); i++) {
-            if (user.getNumber().equals(Data.soldOutArrayList.get(i).getBuyNum())) {
+            if (user.getNo().equals(Data.soldOutArrayList.get(i).getBuyNum())) {
 
                 SoldOut item = Data.soldOutArrayList.get(i);
                 System.out.printf("%5s %10s %8s %12s %8s %10s %11s %16s %9s %10s\n",

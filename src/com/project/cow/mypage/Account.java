@@ -1,10 +1,10 @@
 package com.project.cow.mypage;
 
-import org.w3c.dom.ls.LSOutput;
-
 import java.util.Scanner;
 import java.util.function.Function;
-import java.util.function.Predicate;
+
+import com.project.cow.data.Data;
+import com.project.cow.data.object.Member;
 
 public class Account { // 다이소페이 클래스
 
@@ -18,7 +18,7 @@ public class Account { // 다이소페이 클래스
 
 
 
-    public void accountScreen(User user){
+    public void accountScreen(Member user){
         while (true) {
 
             System.out.println("━━━━━━━━━━━━━━━━Daitso pay━━━━━━━━━━━━━━━━━━━━━");
@@ -43,7 +43,7 @@ public class Account { // 다이소페이 클래스
         }
     }
 
-    private void payCharging(User user){
+    private void payCharging(Member user){
         System.out.println("━━━━━━━━━━━━━━━━Daitso pay━━━━━━━━━━━━━━━━━━━━━");
         System.out.println("Daitso 페이 머니로 충전할 금액을 입력해주세요 ");
         System.out.println("최소금액 10,000원");
@@ -73,9 +73,9 @@ public class Account { // 다이소페이 클래스
 
     }
 
-    private void payChargingScreen(User user) {
+    private void payChargingScreen(Member user) {
         user.setMoney(money);
-        Data.memberSave();
+       Data.memberSave1();
         Function<String, Integer> f = i -> Integer.parseInt(i);
         int intMoney = f.apply(money);
 
@@ -88,7 +88,7 @@ public class Account { // 다이소페이 클래스
         System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
         int intMyMoney = f.apply(user.getMoney());
         System.out.printf(" Daitso 페이 머니 잔액 : %,d원\n", intMyMoney);
-        System.out.println(" 출금 계좌 : " + user.getAccountNumber());
+        System.out.println(" 출금 계좌 : " + user.getAccount());
 
         System.out.println("마이페이지 돌아가기");
         scan.nextLine();

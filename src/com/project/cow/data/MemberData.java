@@ -11,7 +11,7 @@ public class MemberData {
 	
 	public static void memberLoad() {   // 회원정보txt를 배열에 load.
 		try {
-			BufferedReader reader= new BufferedReader(new FileReader("C:\\class\\code\\java\\Daitso\\data\\member.txt"));
+			BufferedReader reader= new BufferedReader(new FileReader("/Users/green/Downloads/member.txt"));
 			
 			String line=null;
 			while((line=reader.readLine()) != null) {

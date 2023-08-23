@@ -5,7 +5,7 @@ package com.project.cow.mypage;
 import com.project.cow.constant.Constant;
 import com.project.cow.data.SellingStuffData;
 import com.project.cow.data.object.SellingStuff;
-
+import com.project.cow.data.object.Member;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -20,7 +20,7 @@ public class SearchAlerts {
 
 
 
-  void searchScreen(User user){
+  void searchScreen(Member user){
       while (true) {
 
           System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
@@ -46,9 +46,9 @@ public class SearchAlerts {
       }
   }
 
-    private void myKeyWord(User user) {
+    private void myKeyWord(Member user) {
         int count = 1;
-        int userNum = Integer.valueOf(user.getNumber())-1;
+        int userNum = Integer.valueOf(user.getNo())-1;
         for (int i = 0; i < Data.keyWordList.get(userNum).str.length; i++) {
             System.out.println(count+"."+Data.keyWordList.get(userNum).getWord()[i]);
             select.add(Data.keyWordList.get(userNum).getWord()[i]);
@@ -70,7 +70,7 @@ public class SearchAlerts {
 
 
     }
-    private void keyWordItemList(User user,String num) {
+    private void keyWordItemList(Member user, String num) {
         int number = (Integer.valueOf(num)) -1;
         String item = select.get(number);
         System.out.println(item);

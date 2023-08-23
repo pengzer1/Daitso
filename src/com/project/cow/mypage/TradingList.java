@@ -9,7 +9,7 @@ static {
     scan = new Scanner(System.in);
 }
 
-    public void tradingScreen(User user) {
+    public void tradingScreen(Member user) {
         System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
         System.out.println("                 현재 내 거래");
         System.out.println(" 1.구매중인 거래 ");

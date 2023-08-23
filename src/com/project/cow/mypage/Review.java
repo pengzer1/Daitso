@@ -1,19 +1,17 @@
 package com.project.cow.mypage;
 
-import com.project.cow.data.BadReviewData;
-
 import java.util.Scanner;
-
+import com.project.cow.data.object.Member;
 public class Review { // 상품 거래 후기
     static Scanner scan;
     static {
         scan = new Scanner(System.in);
     }
 
-    User user;
-    User a = Data.userList.get(1);
+    Member user;
 
-    void reviewScreen(User user){
+
+    void reviewScreen(Member user){
         while (true) {
             System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
             System.out.println("                   상품 거래 후기");
@@ -39,12 +37,12 @@ public class Review { // 상품 거래 후기
             break;
         }
     }
-    private void myReview(User user){
+    private void myReview(Member user){
 int count = 1;
         System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
         System.out.println("                 받은 매너 평가");
         for (int i = 0; i < Data.ReviewList.size(); i++) {
-            if (user.getNumber().equals(Data.ReviewList.get(i).getSeller())) {
+            if (user.getNo().equals(Data.ReviewList.get(i).getSeller())) {
                 System.out.print(count+".");
             String  peek =  Data.ReviewList.get(i).getSelect();
                 check(peek);
@@ -52,7 +50,7 @@ int count = 1;
             }
         }
         for (int i = 0; i < Data.badList.size(); i++) {
-            if (user.getNumber().equals(Data.badList.get(i).getSellerNo())) {
+            if (user.getNo().equals(Data.badList.get(i).getSellerNo())) {
                 System.out.print("신고 누적 횟수 : ");
                 System.out.println(Data.badList.get(i).getWarningCnt());
             }
