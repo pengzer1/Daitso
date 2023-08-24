@@ -31,6 +31,7 @@ public class Main {
         Data.badReviewLoad();
         Data.tradeStuffLoad();
         TradeStuffData.tradeStuffLoad();
+        MemberData.load();
         
         
 		
