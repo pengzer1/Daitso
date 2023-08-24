@@ -15,8 +15,8 @@ public class StuffSearch {
 
         AdminMenu.printLine();
         System.out.println("구매하고 싶은 상품의 키워드를 입력하세요.");
-        System.out.println("0을 입력하시면 이전화면으로 돌아갑니다.");
-        System.out.print("검색 키워드 : ");
+        System.out.println("0을 입력하면 이전 화면으로 돌아갑니다.");
+        System.out.print("검색 키워드: ");
         String input = sc.nextLine();
         AdminMenu.printLine();
 
@@ -43,8 +43,8 @@ public class StuffSearch {
             	System.out.println();
             	AdminMenu.printLine();
                 System.out.println("구매하고 싶은 상품의 번호를 입력하세요.");
-                System.out.println("이전 화면으로 돌아가고 싶으시면 0을 입력하세요.");
-                System.out.print("번호 입력 : ");
+                System.out.println("0을 입력하면 이전 화면으로 돌아갑니다.");
+                System.out.print("번호 입력: ");
                 String num = sc.nextLine();
                 for (SellingStuff stuff : sellChoice) {
                    /*
@@ -56,12 +56,12 @@ public class StuffSearch {
                         break;  
                     } else if (num.equals(stuff.getNo())) {
 
-                    	System.out.println("판매 페이지로 이동하시려면 Enter를 눌러주세요.");
+                    	System.out.println("Enter를 누르면 이전 화면으로 돌아갑니다.");
                     	sc.nextLine();
-                        BuyMenu.FirstScreen();  //판매 페이지로 이동.
+                        BuyMenu.FirstScreen(); //구매 페이지로 이동.
                         flag=1;
                         loop = false;  // 루프 종료
-                        //break;  // 검색 루프도 종료
+                        //break; // 검색 루프도 종료
                     } else continue; flag=0;   
                 }
                 if(flag==0) System.out.println("\n알맞은 판매 번호를 다시 입력하십시오.");
