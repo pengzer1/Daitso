@@ -4,11 +4,11 @@ import java.io.*;
 import java.util.HashSet;
 import java.util.Set;
 
-public class ProhibitedItemsManager {
+public class LimitManager {
     private Set<String> prohibitedItems;
     private String prohibitedItemsFilePath;
 
-    public ProhibitedItemsManager(String prohibitedItemsFilePath) {
+    public LimitManager(String prohibitedItemsFilePath) {
         this.prohibitedItemsFilePath = prohibitedItemsFilePath;
         prohibitedItems = loadProhibitedItemsFromFile();
     }

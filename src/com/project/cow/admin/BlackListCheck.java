@@ -7,8 +7,10 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
-public class blackListBringIn {
-    public static void main(String[] args) {
+public class BlackListCheck {
+	
+    public static void adminBlackListCheck() {
+    	
         String blacklistFilePath = "C:\\git\\Daitso\\blacklist.txt"; // 텍스트 파일 경로
         String memberFilePath = "C:\\git\\Daitso\\member.txt";
 
@@ -20,7 +22,8 @@ public class blackListBringIn {
         	System.out.println("                   블랙리스트 관리창");
         	System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
         	System.out.println();
-        	System.out.println("0. 뒤로가기");
+        	System.out.println("[블랙리스트 관리 기능]");
+        	System.out.println("0. 돌아가기");
             System.out.println("1. 블랙리스트 추가하기");
             System.out.println("2. 추가된 블랙리스트 명단 확인하기");
             System.out.println("3. 블랙리스트 징계 양정 기준");
@@ -37,15 +40,16 @@ public class blackListBringIn {
                     String destinationFilePath = "blacklist.txt"; // 복사될 파일 경로
                     break;
                 case 1:
-                    System.out.print("블랙리스트에 추가할 사용자 이름 입력 : ");
+                    System.out.print("블랙리스트에 추가할 사용자 숫자 입력 : ");
                     scanner.nextLine(); // Consume newline left-over
                     String username = scanner.nextLine();
                     blacklistManager.addToBlacklist(username);
                     System.out.println("사용자가 블랙리스트에 추가 되었습니다.");
                     break;
+
                 case 2:
                     String filePath = "C:\\git\\Daitso\\blacklist.txt"; 
-                    String fileContent = TextFileReader.readTextFile(filePath);
+                    String fileContent = BlackListTextFileReader.readTextFile(filePath);
 
                     if (fileContent != null) {
                         System.out.println("File content:");
@@ -69,7 +73,7 @@ public class blackListBringIn {
             		System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
             		System.out.println("1회적발 : 사이트3일 이용제한");
             		System.out.println("2회적발 : 사이트7일 이용제한");
-            		System.out.println("3회적발 : 사이트1달 이용제한");
+            		System.out.println("3회적발 : 사이트30일 이용제한");
             		System.out.println("4회적발 : 사이트영구 이용제한 및 회원정보 말소");
             		System.out.println();
             		System.out.println();
@@ -85,6 +89,8 @@ public class blackListBringIn {
             }
         }
     }
+
+
 }
 
 

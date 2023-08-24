@@ -5,7 +5,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
-public class TextFileReader {
+public class BlackListTextFileReader {
 
     public static String readTextFile(String filePath) {
         StringBuilder content = new StringBuilder();
@@ -19,6 +19,7 @@ public class TextFileReader {
             while ((line = reader.readLine()) != null) {
                 content.append(line).append("\n");
             }
+                
 
             
             

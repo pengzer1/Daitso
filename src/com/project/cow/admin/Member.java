@@ -1,6 +1,7 @@
 package com.project.cow.admin;
 
-public class UserRecord {  //블랙리스트 1명의 정보
+public class Member {   //회원 1명의 정보
+	
 	private String no;
 	private String name;
 	private String id;
@@ -12,12 +13,9 @@ public class UserRecord {  //블랙리스트 1명의 정보
 	private String account; 
 	private String money;
 	private String grade;
-	private String yellowCard;
-	private String ago;
-	private String van;
 	
-	public UserRecord(String no, String name, String id, String pwd, String tel, String jumin, String email,
-			String address, String account, String money, String grade, String yellowCard, String ago, String van) {
+	public Member(String no, String name, String id, String pwd, String tel, String jumin, String email, String address,
+			String account, String money, String grade) {
 		this.no = no;
 		this.name = name;
 		this.id = id;
@@ -29,9 +27,6 @@ public class UserRecord {  //블랙리스트 1명의 정보
 		this.account = account;
 		this.money = money;
 		this.grade = grade;
-		this.yellowCard = yellowCard;
-		this.ago = ago;
-		this.van = van;
 	}
 
 	public String getNo() {
@@ -100,74 +95,10 @@ public class UserRecord {  //블랙리스트 1명의 정보
 	public void setGrade(String grade) {
 		this.grade = grade;
 	}
-	public String getYellowCard() {
-		return yellowCard;
-	}
-	public void setYellowCard(String yellowCard) {
-		this.yellowCard = yellowCard;
-	}
-	public String getAgo() {
-		return ago;
-	}
-	public void setAgo(String ago) {
-		this.ago = ago;
-	}
-	public String getVan() {
-		return van;
-	}
-	public void setVan(String van) {
-		this.van = van;
-	}
-	
+
 	@Override
 	public String toString() {
-		return "BlackList [no=" + no + ", name=" + name + ", id=" + id + ", pwd=" + pwd + ", tel=" + tel + ", jumin="
-				+ jumin + ", email=" + email + ", address=" + address + ", account=" + account + ", money=" + money
-				+ ", grade=" + grade + ", yellowCard=" + yellowCard + ", ago=" + ago + ", van=" + van +"]";
-	}
-	
-	
+        return String.format("%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s",
+            no, name, id, pwd, tel, jumin, email, address, account, money, grade);
+    }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
