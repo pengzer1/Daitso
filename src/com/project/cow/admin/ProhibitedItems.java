@@ -57,7 +57,6 @@ public class ProhibitedItems {
                     String filePath = "data\\prohibited_items.txt"; 
                     String fileContent = TextProhibitFileReader.readTextFile(filePath);
                     if (fileContent != null) {
-                        System.out.println("File content:");
                         System.out.println(fileContent);
                         
                         System.out.println();

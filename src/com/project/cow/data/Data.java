@@ -3,7 +3,7 @@ import java.io.*;
 import java.util.*;
 import com.project.cow.data.object.Member;
 import com.project.cow.data.object.SellingStuff;
-import com.project.cow.mypage.KeyWord;
+import com.project.cow.data.object.KeyWord;
 import com.project.cow.mypage.ReviewInstance;
 import com.project.cow.mypage.SoldOut;
 import com.project.cow.mypage.TradeStuff;
