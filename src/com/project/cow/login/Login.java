@@ -107,6 +107,8 @@ public class Login {
 	 * 로그아웃 기능을 수행하는 메소드
 	 */
 	public static void logout() {
+		
+		Scanner scan = new Scanner(System.in);
 
 		Login.login = null; // 인증 티켓 제거 == 로그아웃
 
@@ -114,6 +116,9 @@ public class Login {
 		System.out.println("로그아웃 되었습니다.");
 		System.out.println("Enter를 누르면 이전 화면으로 돌아갑니다.");
 		System.out.println();
+		
+		scan.nextLine().trim();
+		Main.MainScreen();
 
 	}
 

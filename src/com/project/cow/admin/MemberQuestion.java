@@ -24,20 +24,24 @@ public class MemberQuestion {
 	 */
 	public static void adminFAQCheck() {
 		Scanner scan = new Scanner(System.in);
-		
-		AdminMenu.printMenu("고객센터 F A Q");
-		System.out.println("[F A Q 관리 기능]");
-		AdminMenu.printOption("F A Q 게시판", "F A Q 답변 수정");
-		String manageChoice = scan.nextLine().trim();
 
-		if (manageChoice.equals("1")) { // 자주 묻는 질문 확인
-			displayFAQ(scan);
-			System.out.println();
-			System.out.println("Enter를 누르면 이전 화면으로 돌아갑니다.");
-			scan.nextLine();
-		} else if (manageChoice.equals("2")) { // 자주 묻는 질문 수정
-			displayFAQ(scan);
-			modifyFAQAnswer(scan);
+		while (true) {
+			AdminMenu.printMenu("고객센터 F A Q");
+			System.out.println("[F A Q 관리 기능]");
+			AdminMenu.printOption("F A Q 게시판", "F A Q 답변 수정");
+			String manageChoice = scan.nextLine().trim();
+
+			if (manageChoice.equals("1")) { // 자주 묻는 질문 확인
+				displayFAQ(scan);
+				System.out.println();
+				System.out.println("Enter를 누르면 이전 화면으로 돌아갑니다.");
+				scan.nextLine();
+			} else if (manageChoice.equals("2")) { // 자주 묻는 질문 수정
+				displayFAQ(scan);
+				modifyFAQAnswer(scan);
+			} else {
+				return;
+			}
 		}
 	}
 

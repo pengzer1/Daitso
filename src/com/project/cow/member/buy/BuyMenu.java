@@ -77,7 +77,7 @@ public class BuyMenu {
 			StuffSort.stuffSortChoice();
 		} else if (input.equals("0")) {
 			System.out.println();
-			MemberMenu.membermenu();
+			FirstScreen();
 		} else {
 			System.out.println();
 			System.out.println("잘못된 선택입니다.");

@@ -11,13 +11,12 @@ public class ProhibitedItems {
         Scanner scanner = new Scanner(System.in);
         while (true) {
         	AdminMenu.printMenu("중고거래 제한물품 관리창");
-        	System.out.println();
         	
             System.out.println("1. 금지물품 추가하기");
             System.out.println("2. 물품 금지여부 확인하기");
             System.out.println("3. 추가된 금지물품 명단 확인하기");
             System.out.println("4. 금지물품 선정기준 확인하기");
-            System.out.println("0. 뒤로가기");
+            System.out.println("0. 돌아가기");
             System.out.println();
             System.out.print("원하시는 항목을 입력하여 주세요.\r\n");
             AdminMenu.printLine();

@@ -54,7 +54,7 @@ public class InfoChange { // 회원 정보 수정
 			changeMyInfo(user);
 		}
 		user.setId(input);
-		Data.memberSave(); // 변경된 아이디 덮어씌우기
+		Data.userSave(); // 변경된 아이디 덮어씌우기
 		System.out.println("Enter를 누르면 마이페이지로 돌아갑니다.");
 		scan.nextLine();
 		returnPage(user);
@@ -71,7 +71,7 @@ public class InfoChange { // 회원 정보 수정
 			changeMyInfo(user);
 		}
 		user.setPassword(input);
-		Data.memberSave();
+		Data.userSave();
 		System.out.println("Enter를 누르면 마이페이지로 돌아갑니다.");
 		scan.nextLine();
 		returnPage(user);
@@ -88,7 +88,7 @@ public class InfoChange { // 회원 정보 수정
 			changeMyInfo(user);
 		}
 		user.setPhoneNumber(input);
-		Data.memberSave();
+		Data.userSave();
 		System.out.println("Enter를 누르면 마이페이지로 돌아갑니다.");
 		scan.nextLine();
 		returnPage(user);
@@ -104,7 +104,7 @@ public class InfoChange { // 회원 정보 수정
 		System.out.print("번호 선택: ");
 		String input = scan.nextLine();
 		areaSelect(user, input);
-		Data.memberSave();
+		Data.userSave();
 	}
 
 	private void areaSelect(User user, String input) {

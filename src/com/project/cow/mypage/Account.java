@@ -65,7 +65,7 @@ public class Account { // 다이소페이 클래스
 
 	private void payChargingScreen(User user) {
 		user.setMoney(money);
-		Data.memberSave();
+		Data.userSave();
 		Function<String, Integer> f = i -> Integer.parseInt(i);
 		int intMoney = f.apply(money);
 

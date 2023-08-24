@@ -12,13 +12,12 @@ public class BlackListManagement {
         Scanner scanner = new Scanner(System.in);
         while (true) {
         	AdminMenu.printMenu("블랙리스트 관리창");
-        	System.out.println();
+        	
         	AdminMenu.printOption("블랙리스트 추가하기", "추가된 블랙리스트 명단 확인하기", "블랙리스트 징계 양정 기준");
             int choice = scanner.nextInt();
 
             switch (choice) {
                 case 0:
-                    System.out.println("현재 블랙리스트:  " + blacklistManager.getBlacklist());
                     String sourceFilePath = "member.txt"; // 원본 파일 경로
                     String destinationFilePath = "blacklist.txt"; // 복사될 파일 경로
                     

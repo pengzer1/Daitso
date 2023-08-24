@@ -83,7 +83,7 @@ public class Join {
 		Scanner scan = new Scanner(System.in);
 
 		System.out.println("[계좌번호] 은행 1.가나 2.다라 3.마바 4.사아 5.자차 ");
-		System.out.println("Ex) 가나-12345678912345 (숫자 14개)");
+		System.out.println("Ex) 가나-1234567891234 (숫자 13개)");
 		AdminMenu.printLine();
 	      System.out.print("계좌번호: ");
 	      String account = scan.nextLine().trim();
@@ -206,7 +206,7 @@ public class Join {
 
 
 	    private void areaList(){
-	    String area = "1.종로구" + "\t2.중구" + "\t3.용산구" + "\t4.성동구" + "\t5.광진구\n"
+	    String area = "1.종로구" + "\t2.중구" + "\t\t3.용산구" + "\t4.성동구" + "\t5.광진구\n"
 	            + "6.동대문구" + "\t7.중랑구" + "\t8.성북구" + "\t9.강북구" + "\t10.도봉구\n"
 	            + "11.노원구" + "\t12.은평구" + "\t13.서대문구"+"\t14.마포구" + "\t15.양천구\n"
 	            + "16.강서구" + "\t17.구로구" + "\t18.금천구" + "\t19.영등포구" + "\t20.동작구\n"

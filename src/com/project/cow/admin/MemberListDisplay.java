@@ -236,7 +236,7 @@ public class MemberListDisplay {
 			System.out.print(" ");
 		}
 
-		System.out.printf("%16s %,9d %7s\r\n", member.getAccount(), Integer.parseInt(member.getMoney()), member.getGrade());
+		System.out.printf("%16s %,9d %9s\r\n", member.getAccount(), Integer.parseInt(member.getMoney()), member.getGrade());
 	}
 
 	/**
@@ -244,7 +244,7 @@ public class MemberListDisplay {
 	 */
 	public static void displayMemberHeader() {
 		System.out.println(
-				"[번호]  [이름]      [아이디]      [비밀번호]  [전화번호]     [주민번호]           [이메일]          [주소]      [계좌번호]     [보유금액] [회원등급]");
+				"[번호]  [이름]      [아이디]      [비밀번호]  [전화번호]     [주민번호]           [이메일]          [주소]      [계좌번호]     [보유금액]   [회원등급]");
 	}
 
 	/**

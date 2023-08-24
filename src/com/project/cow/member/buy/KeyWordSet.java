@@ -25,8 +25,6 @@ public class KeyWordSet {
 		AdminMenu.printLine();
 
 		findKeyWord();
-
-		AdminMenu.printLine();
 		
 		select();
 		

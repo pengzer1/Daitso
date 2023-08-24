@@ -142,7 +142,7 @@ public class MemberSearch {
 					} else {
 						System.out.print("\t");
 					}
-					System.out.printf("\t\t%3s\t   %,9d\t\t%-6s\t%-6s\t  %-10s", Constant.Condition(stuff.getCondition()),
+					System.out.printf("\t\t%3s\t   %,9d\t\t%-6s\t%-6s\t%-10s", Constant.Condition(stuff.getCondition()),
 							Integer.parseInt(stuff.getPrice()), Constant.Method(stuff.getMethod()), Constant.Payment(stuff.getPayment()),
 							stuff.getWhen());
 							
@@ -150,7 +150,7 @@ public class MemberSearch {
 					// 해당 물품의 판매자 정보 출력
 					for (Member seller : MemberData.list) {
 						if (seller.getNo().equals(stuff.getSellerNo())) {
-							System.out.printf("%6s\r\n", seller.getName());
+							System.out.printf("  %6s\r\n", seller.getName());
 						}
 					}
 				}

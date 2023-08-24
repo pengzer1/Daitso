@@ -52,13 +52,24 @@ public class Data {  //txt 파일을 받아서 조작하고 데이터 입출력�
 		}
 	}
 	
-	public static void memberSave() {   // 배열에 새로운 내용들을 반영시켜 저장하기.
+	public static void memberSave() { // 배열에 새로운 내용들을 반영시켜 저장하기.
 		try {
 			BufferedWriter writer = new BufferedWriter(new FileWriter("data\\member.txt"));
 			
 			for(Member m : Data.list) {
 				writer.write(String.format("%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s\r\n", m.getNo(), m.getName(), m.getId(), m.getPwd(), m.getTel(), m.getJumin(), m.getEmail(), m.getAddress(), m.getAccount(), m.getMoney(), m.getGrade()));
 			}  //배열에 새로운 내용들을 반영시키기.
+			
+			writer.close();
+		}catch(Exception e) {
+			System.out.println("at Data.save");
+			e.printStackTrace();
+		}
+	}
+	
+	public static void userSave() { // 배열에 새로운 내용들을 반영시켜 저장하기.
+		try {
+			BufferedWriter writer = new BufferedWriter(new FileWriter("data\\member.txt"));
 			
             for (User user : Data.userList) {
                 // 객체 정보를 텍스트 파일에 쓰는 로직
