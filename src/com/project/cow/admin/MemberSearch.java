@@ -93,11 +93,11 @@ public class MemberSearch {
 		if (sellOrBuyCount > 0) {
 			System.out.println();
 			System.out.printf("[판매 물품]\n");
-			System.out.println("[번호]           [품명]             [상품품질]  [가격]  [판매자]    [거래방법]            [지불방법]           [판매시작일]    [판매마감일]   [찜횟수]");
+			System.out.println("[번호]          [품명]              [상품품질]  [가격]  [판매자]    [거래방법]            [지불방법]           [판매시작일]    [판매마감일]   [찜횟수]");
 			
 			for (SellingStuff stuff : SellingStuffData.sellingList) {
 				if (member.getNo().equals(stuff.getSellerNo())) {
-					System.out.printf(" %4s  %-16s\t\t%s %10s", stuff.getNo(), stuff.getName(), Constant.Condition(stuff.getCondition()), stuff.getPrice());
+					System.out.printf(" %4s   %-16s\t\t%s %10s", stuff.getNo(), stuff.getName(), Constant.Condition(stuff.getCondition()), stuff.getPrice());
 					
 					// 해당 물품의 판매자 정보 출력
 					for (Member seller : MemberData.list) {
@@ -129,21 +129,28 @@ public class MemberSearch {
 			System.out.println();
 			System.out.printf("[구매 물품]\n");
 			System.out.println(
-					"[번호]          [품명]          [카테고리]    [상품품질]      [가격]         [거래방법]       [지불방법]      [구매날짜]     [판매자]");
+					"[번호]          [품명]          [카테고리]                    [상품품질]      [가격]           [거래방법]      [지불방법]      [구매날짜]     [판매자]");
 			
 			for (SoldOutStuff stuff : SoldOutStuffData.soldOutList) {
 				if (member.getNo().equals(stuff.getBuyerNo())) {
 					sellOrBuyCount++;
 
-					System.out.printf("%5s\t%-14s\t%s\t%3s\t%9s\t%-6s\t%-6s\t%-10s", stuff.getNo(), stuff.getName(),
-							Constant.Category(stuff.getCategory()), Constant.Condition(stuff.getCondition()),
-							stuff.getPrice(), Constant.Method(stuff.getMethod()), Constant.Payment(stuff.getPayment()),
+					System.out.printf("%5s\t%-14s\t%s", stuff.getNo(), stuff.getName(), Constant.Category(stuff.getCategory()));
+
+					if (Constant.Category(stuff.getCategory()).length() > 6) {
+						System.out.print("");
+					} else {
+						System.out.print("\t");
+					}
+					System.out.printf("\t\t%3s\t   %,9d\t\t%-6s\t%-6s\t  %-10s", Constant.Condition(stuff.getCondition()),
+							Integer.parseInt(stuff.getPrice()), Constant.Method(stuff.getMethod()), Constant.Payment(stuff.getPayment()),
 							stuff.getWhen());
+							
 
 					// 해당 물품의 판매자 정보 출력
 					for (Member seller : MemberData.list) {
 						if (seller.getNo().equals(stuff.getSellerNo())) {
-							System.out.printf("%6s(%s)\r\n", seller.getName(), stuff.getSellerNo());
+							System.out.printf("%6s\r\n", seller.getName());
 						}
 					}
 				}

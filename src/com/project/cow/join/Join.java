@@ -39,18 +39,17 @@ public class Join {
 		Scanner scan = new Scanner(System.in);
 		
 		
-		  System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
-	      System.out.println("             회원가입");	      
+		
+			AdminMenu.printMenu("회원가입");
 	      
 	      // 아이디 입력 받음
 	      id();
-	      
 
 	      System.out.println();
 	      System.out.println("회원가입이 완료되었습니다.");
 	      
 	      System.out.println();
-	      System.out.println("계속하려면 엔터를 입력하세요.");
+	      System.out.println("Enter를 입력하여 로그인하세요.");
 	      scan.nextLine();
 	      
 	      // 회원 번호 생성 로직
@@ -82,10 +81,9 @@ public class Join {
 	private  void account() {
 		
 		Scanner scan = new Scanner(System.in);
-		AdminMenu.printLine();
 
 		System.out.println("[계좌번호] 은행 1.가나 2.다라 3.마바 4.사아 5.자차 ");
-		System.out.println("Ex) 가나-1234567891234");
+		System.out.println("Ex) 가나-12345678912345 (숫자 14개)");
 		AdminMenu.printLine();
 	      System.out.print("계좌번호: ");
 	      String account = scan.nextLine().trim();
@@ -105,7 +103,6 @@ public class Join {
 	private void address() {
 		
 	    Scanner scan = new Scanner(System.in);
-	    AdminMenu.printLine();
 
 	      System.out.println("[지역설정] 서울시 25개 자치구만 설정 가능합니다. ");
 	      System.out.println("다음 중 원하는 지역 번호를 입력하세요 ");
@@ -222,7 +219,6 @@ public class Join {
 	private void email() {
 		
 		Scanner scan = new Scanner(System.in);
-		AdminMenu.printLine();
 		System.out.println("[이메일] @를 포함하여 입력하세요");
 		System.out.println("Ex) ssangyong@naver.com");
 		AdminMenu.printLine();
@@ -245,8 +241,7 @@ public class Join {
 	private void jumin() {
 
 		Scanner scan = new Scanner(System.in);
-		AdminMenu.printLine();
-	      System.out.println("[주민등록번호] '-' 포함해서 입력해주세요. \r\n Ex)000000-000000");
+	      System.out.println("[주민등록번호] '-' 포함해서 입력해주세요. \r\n Ex)000000-0000000");
 	      AdminMenu.printLine();
 	      System.out.print("주민등록번호: ");
 	      String jumin = scan.nextLine().trim();
@@ -292,7 +287,6 @@ public class Join {
 	private void tel() {
 		
 		Scanner scan = new Scanner(System.in);
-		AdminMenu.printLine();
 	      System.out.println("[전화번호] -를 포함해서 입력하세요.  "
 	      		+ "\r\n Ex) 010-1234-5678 ");
 	      AdminMenu.printLine();
@@ -316,7 +310,6 @@ public class Join {
 	private void name() {
 		
 		Scanner scan = new Scanner(System.in);
-		AdminMenu.printLine();
 		System.out.println("[이름] 한글만 입력 가능합니다. ");
 		AdminMenu.printLine();
 		System.out.print("이름:");
@@ -337,7 +330,6 @@ public class Join {
 	private void password() {
 		
 		Scanner scan = new Scanner(System.in);
-		AdminMenu.printLine();
 
 	      System.out.println("[비밀번호] 4~12 글자 사이 영어+숫자로만 입력하세요.");
 	      AdminMenu.printLine();
@@ -361,7 +353,6 @@ public class Join {
 	// 아이디 입력 및 중복 체크
 	private void id() {
 		Scanner scan=new Scanner(System.in);
-		AdminMenu.printLine();
 		System.out.println("[아이디] 4~16 글자 사이 영어+숫자로만 입력하세요.");
 		System.out.println("중복 아이디는 불가능합니다.");
 		AdminMenu.printLine();
