@@ -12,6 +12,8 @@ import com.project.cow.login.Login;
 public class Modify {
 	Member seller = Login.login;
 	Scanner scan = new Scanner(System.in);
+	private String no;
+	SellingStuff s;
 
 	public void Screen() {
 		ModifyDetail modifyDetail = new ModifyDetail();
@@ -34,7 +36,7 @@ public class Modify {
 		System.out.println("수정하실 상품 번호를 입력해주세요.");
 		System.out.println();
 		
-		SellingStuff s = GetStuff();
+		GetStuff();
 		
 		AdminMenu.printLine();
 		System.out.println();
@@ -45,7 +47,7 @@ public class Modify {
 	private void Check() {
 		SellMenu sellMenu = new SellMenu();
 		AdminMenu.printOption("수정하기");
-		System.out.print("번호입력: ");
+//		System.out.print("번호입력: ");
 		String check = scan.nextLine();
 		
 		if (check.equals("0")) {
@@ -61,11 +63,12 @@ public class Modify {
 		}
 	}
 	
-	private SellingStuff GetStuff() {
+	private void GetStuff() {
 		System.out.println("선택을 취소하려면 0을 입력하세요.");
 		System.out.print("상품번호입력: ");
 		
-		String no = scan.nextLine();
+		this.no = scan.nextLine().trim();
+		
 		
 		SellingStuff sellingStuff = new SellingStuff("", null, null, null, null, null, null, null, null, null, null);
 		
@@ -79,15 +82,17 @@ public class Modify {
 				break;
 			}
 		}
-		
+
+		this.s = sellingStuff;
 		if(sellingStuff.getNo().equals("")) {
 			System.out.println();
 			System.out.println("잘못된 상품 번호입니다. 다시 입력해주세요.");
 			AdminMenu.printLine();
 			GetStuff();
 		}
-		
-		return sellingStuff;
+		else {
+			this.s = sellingStuff;
+		}
 	}
 	
 }

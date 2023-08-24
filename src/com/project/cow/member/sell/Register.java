@@ -23,6 +23,7 @@ public class Register {
 	private String price;
 	private String from;
 	private String until;
+	private String date;
 	
 	public void Screen() {
 		SellMenu sellMenu = new SellMenu();
@@ -191,9 +192,9 @@ public class Register {
 		System.out.println("숫자로만 입력하세요");
 		AdminMenu.printLine();
 		System.out.print("며칠: ");
-		String date = scan.nextLine();
+		this.date = scan.nextLine();
 		
-		if(date.matches("[가-힣A-Za-z]*")) {
+		if(date.matches("[가-힣A-Za-z\s\t]*")) {
 			System.out.println();
 			System.out.println("잘못된 입력입니다.");
 			AdminMenu.printLine();
@@ -206,8 +207,8 @@ public class Register {
 			AdminMenu.printLine();
 			Until();
 		}
+		
 		AdminMenu.printLine();
-		scan.nextLine();
 		
 		c.add(Calendar.DATE, Integer.parseInt(date));
 		this.until = String.format("%tF", c);
