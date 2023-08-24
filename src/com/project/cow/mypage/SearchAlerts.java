@@ -38,7 +38,7 @@ public class SearchAlerts {
                   myKeyWord(user);
                   break;
               default:
-                  System.out.println("0~2 숫자를 입력해주세요.");
+                  System.out.println("0~1 숫자를 입력해주세요.");
                   continue;
           }
 
@@ -49,11 +49,13 @@ public class SearchAlerts {
     private void myKeyWord(User user) {
         int count = 1;
         int userNum = Integer.valueOf(user.getNumber())-1;
-        for (int i = 0; i < Data.keyWordList.get(userNum).str.length - 1; i++) {
+        System.out.println();
+        for (int i = 0; i < Data.keyWordList.get(userNum).getWord().length; i++) {
             System.out.println(count+"."+Data.keyWordList.get(userNum).getWord()[i]);
             select.add(Data.keyWordList.get(userNum).getWord()[i]);
             count++;
         }
+        
         System.out.println("판매목록을 보시려면 해당 키워드의 번호를 입력해주세요.");
         System.out.println("0. 돌아가기");
         String input = scan.nextLine();
@@ -71,6 +73,7 @@ public class SearchAlerts {
     }
     private void keyWordItemList(User user,String num) {
         int number = (Integer.valueOf(num)) -1;
+        System.out.println(number);
         String item = select.get(number);
         System.out.println(item);
         System.out.println("[번호]           [품명]             [상품품질]  [가격]  [판매자]    [거래방법]            [지불방법]           [판매시작일]    [판매마감일]   [찜횟수]");

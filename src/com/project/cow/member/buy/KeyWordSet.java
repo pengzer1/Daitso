@@ -3,6 +3,7 @@ package com.project.cow.member.buy;
 import java.util.Scanner;
 
 import com.project.cow.admin.AdminMenu;
+import com.project.cow.data.Data;
 import com.project.cow.data.KeyWordData;
 import com.project.cow.data.object.KeyWord;
 import com.project.cow.data.object.Member;
@@ -91,11 +92,13 @@ public class KeyWordSet {
 				}
 				
 				keyWord = new KeyWord(buyer.getNo(), keyWords);
+
+				KeyWordData.keyWordList.set(Integer.parseInt(buyer.getNo()) - 1, keyWord);
+				Data.keyWordList.set(Integer.parseInt(buyer.getNo()) - 1, keyWord);
 				
 				System.out.println();
 				System.out.println("키워드 삭제가 완료되었습니다.");
 				System.out.println("Enter를 누르면 키워드 설정 화면으로 돌아갑니다.");
-				KeyWordData.keyWordList.set(Integer.parseInt(buyer.getNo()) - 1, keyWord);
 				
 				KeyWordData.keyWordListSave();
 				
@@ -142,6 +145,7 @@ public class KeyWordSet {
 			System.out.println("키워드 입력이 완료되었습니다.");
 			System.out.println("Enter를 누르면 키워드 설정 화면으로 돌아갑니다.");
 			KeyWordData.keyWordList.set(Integer.parseInt(buyer.getNo()) - 1, keyWord);
+			Data.keyWordList.set(Integer.parseInt(buyer.getNo()) - 1, keyWord);
 			
 			KeyWordData.keyWordListSave();
 			

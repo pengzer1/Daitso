@@ -39,16 +39,17 @@ public class LikeItem {
 		System.out.println("원하시는 찜 상품을 골라주세요.\r\n초기화면으로 돌아가려면 0을 입력하세요.");
 		System.out.println();
 		
-		this.num = GetStuff();
+		GetStuff();
+		
 		
 		System.out.println("구매 활동을 선택하세요.");
 		
 		Check();
 	}
 
-	private String GetStuff() {
+	private void GetStuff() {
 		System.out.print("상품번호입력: ");
-		String no = scan.nextLine();
+		String no = scan.nextLine().trim();
 		
 		if (no.equals("0")) {
 			BuyMenu.FirstScreen();
@@ -59,7 +60,7 @@ public class LikeItem {
 		for (com.project.cow.data.object.LikeItem l : LikeItemData.likeList) {
 			if (l.getBuyerNo().equals(buyer.getNo()) && l.getItemNo().equals(no)) {
 				likeItem = l;
-				return no;
+				this.num = no;
 			}
 		}
 		
@@ -70,7 +71,6 @@ public class LikeItem {
 			GetStuff();
 		}
 		
-		return "";
 	}
 
 	private void Check() {
@@ -100,7 +100,8 @@ public class LikeItem {
 		}
 		else {
 			System.out.println();
-			System.out.println("잘못된 입력입니다. 다시 입력해 주세요.");
+			System.out.println("잘못된 입력입니다. Enter를 눌러 다시 입력해 주세요.");
+			scan.nextLine();
 			System.out.println();
 			Check();
 		}
