@@ -3,7 +3,9 @@ import java.util.*;
 
 import com.project.cow.admin.AdminMenu;
 import com.project.cow.constant.Constant;
+import com.project.cow.data.MemberData;
 import com.project.cow.data.SellingStuffData;
+import com.project.cow.data.object.Member;
 import com.project.cow.data.object.SellingStuff;
 import com.project.cow.mypage.BuyList;
 
@@ -27,10 +29,16 @@ public class StuffSearch {
             }
             if (s.getName().toUpperCase().replace(" ", "").contains(input.toUpperCase().replace(" ",""))) {
                 sellChoice.add(s);
-                System.out.println("[번호]               [품명]     [상품품질]      [가격]    [판매자]         [거래방법]       [지불방법]      [판매시작일]     [판매마감일]   [찜횟수]");
-				System.out.printf("%5s %15s %11s %9s %10s %13s %13s %13s %13s %8s\r\n", s.getNo(), s.getName(),
-						Constant.Condition(s.getCategory()), s.getPrice(), s.getSellerNo(),
-						Constant.Method(s.getMethod()), Constant.Payment(s.getPayment()), s.getFrom(), s.getUntil(),
+                System.out.println("[번호]           [품명]             [상품품질]  [가격]  [판매자]    [거래방법]            [지불방법]           [판매시작일]    [판매마감일]   [찜횟수]");
+                	System.out.printf(" %4s  %-16s\t\t%s %10s", s.getNo(), s.getName(), Constant.Condition(s.getCondition()), s.getPrice());
+				
+				// 해당 물품의 판매자 정보 출력
+				for (Member seller : MemberData.list) {
+					if (seller.getNo().equals(s.getSellerNo())) {
+						System.out.printf(" %6s ", seller.getName());
+					}
+				}
+				System.out.printf("  %-9s  \t %-13s\t%-15s %-15s %3s\r\n", Constant.Method(s.getMethod()), Constant.Payment(s.getPayment()), s.getFrom(), s.getUntil(),
 						s.getLike());
             }
         }

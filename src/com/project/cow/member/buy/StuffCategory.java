@@ -1,6 +1,9 @@
 package com.project.cow.member.buy;
 import java.util.*;
+
+import com.project.cow.data.MemberData;
 import com.project.cow.data.SellingStuffData;
+import com.project.cow.data.object.Member;
 import com.project.cow.data.object.SellingStuff;
 import com.project.cow.admin.AdminMenu;
 import com.project.cow.constant.Constant;
@@ -32,9 +35,15 @@ public class StuffCategory { // 카테고리별 물품 확인하기
 				for (SellingStuff s : SellingStuffData.sellingList) {
 					if (s.getCategory().equals(input)) {
 						choiceCategory.add(s);
-						System.out.printf("%5s %15s %11s %9s %10s %13s %13s %13s %13s %8s\r\n", s.getNo(), s.getName(),
-								Constant.Condition(s.getCondition()), s.getPrice(), s.getSellerNo(),
-								Constant.Method(s.getMethod()), Constant.Payment(s.getPayment()), s.getFrom(), s.getUntil(),
+						System.out.printf(" %4s  %-16s\t\t%s %10s", s.getNo(), s.getName(), Constant.Condition(s.getCondition()), s.getPrice());
+						
+						// 해당 물품의 판매자 정보 출력
+						for (Member seller : MemberData.list) {
+							if (seller.getNo().equals(s.getSellerNo())) {
+								System.out.printf(" %6s ", seller.getName());
+							}
+						}
+						System.out.printf("  %-9s  \t %-13s\t%-15s %-15s %3s\r\n", Constant.Method(s.getMethod()), Constant.Payment(s.getPayment()), s.getFrom(), s.getUntil(),
 								s.getLike());
 					}
 				}
