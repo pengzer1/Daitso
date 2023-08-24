@@ -56,14 +56,14 @@ public class LikeItem {
 		System.out.println("원하시는 찜 상품을 골라주세요.\r\n0을 입력하면 이전 화면으로 돌아갑니다.");
 		System.out.println();
 
-		this.num = GetStuff();
+		GetStuff();
 
 		System.out.println("구매 활동을 선택하세요.");
 
 		Check();
 	}
 
-	private String GetStuff() {
+	private void GetStuff() {
 		System.out.print("상품 번호 입력: ");
 		String no = scan.nextLine();
 
@@ -76,7 +76,7 @@ public class LikeItem {
 		for (com.project.cow.data.object.LikeItem l : LikeItemData.likeList) {
 			if (l.getBuyerNo().equals(buyer.getNo()) && l.getItemNo().equals(no)) {
 				likeItem = l;
-				return no;
+				this.num = no;
 			}
 		}
 
@@ -86,7 +86,6 @@ public class LikeItem {
 			GetStuff();
 		}
 
-		return "";
 	}
 
 	private void Check() {
