@@ -22,7 +22,7 @@ public class Account { // 다이소페이 클래스
         while (true) {
 
         	AdminMenu.printMenu("Daitso Pay");
-            System.out.printf(" Daitso 페이 머니: %,d원\n", Integer.parseInt(user.getMoney()));
+            System.out.printf("Daitso 페이 머니: %,d원\n", Integer.parseInt(user.getMoney()));
             AdminMenu.printOption("충전하기");
             String input = scan.nextLine();
             switch (input) {
@@ -84,8 +84,8 @@ public class Account { // 다이소페이 클래스
         }
         AdminMenu.printLine();
         int intMyMoney = f.apply(user.getMoney());
-        System.out.printf(" Daitso 페이 머니 잔액: %,d원\n", intMyMoney);
-        System.out.println(" 출금 계좌: " + user.getAccountNumber());
+        System.out.printf("Daitso 페이 머니 잔액: %,d원\n", intMyMoney);
+        System.out.println("출금 계좌: " + user.getAccountNumber());
 
         System.out.println("Enter를 입력하면 이전 화면으로 돌아갑니다.");
         scan.nextLine();
