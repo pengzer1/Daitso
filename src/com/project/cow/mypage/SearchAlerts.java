@@ -45,6 +45,7 @@ public class SearchAlerts {
           break;
       }
   }
+  
 
     private void myKeyWord(User user) {
         int count = 1;
