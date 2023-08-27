@@ -24,29 +24,29 @@ public class StuffCheck {
 		String getName();
 	}
 
+	static Scanner scan = new Scanner(System.in);
+	
 	/**
 	 * 관리자가 중고 물품을 확인하는 메인 메소드
 	 */
 	public static void adminStuffCheck() {
-		Scanner scan = new Scanner(System.in);
 
-		stuffStatusCheck(scan);
+		stuffStatusCheck();
 	}
 
 	/**
 	 * 중고 물품 관리 메뉴를 처리하는 메소드
-	 * @param scan Scanner 사용자 입력
 	 */
-	private static void stuffStatusCheck(Scanner scan) {
+	private static void stuffStatusCheck() {
 		while (true) {
 			AdminMenu.printMenu("중고 물품 관리");
 			AdminMenu.printOption("판매중인 물품 현황", "판매된 물품 현황");
 			String searchChoice = scan.nextLine().trim();
 
 			if (searchChoice.equals("1")) { // 판매중인 물품 현황
-				analyzeSellingStuff(scan);
+				analyzeSellingStuff();
 			} else if (searchChoice.equals("2")) { // 판매된 물품 현황
-				analyzeSoldOutStuff(scan);
+				analyzeSoldOutStuff();
 			} else {
 				return;
 			}
@@ -55,9 +55,8 @@ public class StuffCheck {
 
 	/**
 	 * 판매중인 물품 분석 기능을 수행하는 메소드
-	 * @param scan Scanner 사용자 입력
 	 */
-	private static void analyzeSellingStuff(Scanner scan) {
+	private static void analyzeSellingStuff() {
 		String startDate = null;
 		String endDate = null;
 
@@ -75,14 +74,13 @@ public class StuffCheck {
 		}
 
 		// 판매중인 물품 현황 출력
-		displayStuffStatus(scan, SellingStuffData.sellingList, startDate, endDate);
+		displayStuffStatus(SellingStuffData.sellingList, startDate, endDate);
 	}
 
 	/**
 	 * 판매된 물품 분석 기능을 수행하는 메소드
-	 * @param scan Scanner 사용자 입력
 	 */
-	private static void analyzeSoldOutStuff(Scanner scan) {
+	private static void analyzeSoldOutStuff() {
 		String startDate = null;
 		String endDate = null;
 
@@ -99,17 +97,16 @@ public class StuffCheck {
 		}
 
 		// 판매중인 물품 현황 출력
-		displayStuffStatus(scan, SoldOutStuffData.soldOutList, startDate, endDate);
+		displayStuffStatus(SoldOutStuffData.soldOutList, startDate, endDate);
 	}
 
 	/**
 	 * 물품 현황을 출력하는 메소드
-	 * @param scan      Scanner 사용자 입력
 	 * @param stuffList 물품 정보 객체 리스트
 	 * @param startDate 검색 시작 날짜
 	 * @param endDate   검색 종료 날짜
 	 */
-	private static void displayStuffStatus(Scanner scan, List<? extends Stuff> stuffList, String startDate, String endDate) {
+	private static void displayStuffStatus(List<? extends Stuff> stuffList, String startDate, String endDate) {
 		int stuffCount = 0;
 		int[] stuffCategory = new int[12]; // 카테고리별 물품 개수 배열
 		int[] topStuffCategory; // 인기 있는 카테고리 배열
@@ -153,7 +150,7 @@ public class StuffCheck {
 	 * @param stuffList     물품 정보 객체 리스트
 	 * @param stuffCategory 카테고리별 물품 개수를 저장하는 배열
 	 * @param stuffName     물품 이름을 저장하는 배열
-	 * @return 업데이트된 물품 개수
+	 * @return				업데이트된 물품 개수
 	 */
 	private static int updateStuffInfo(List<? extends Stuff> stuffList, int[] stuffCategory, String[] stuffName) {
 		int stuffCount = 0;

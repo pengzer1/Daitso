@@ -28,7 +28,7 @@ public class MemberCheck {
 			String manageChoice = scan.nextLine().trim();
 
 			if (manageChoice.equals("1")) { // 전체 회원 목록 조회
-				MemberListDisplay.sortMemberList(scan, sortCriterion, rateCriterionList);
+				MemberListDisplay.sortMemberList(sortCriterion, rateCriterionList);
 			} else if (manageChoice.equals("2")) { // 회원 검색
 				MemberSearch.searchMember(scan);
 			} else if (manageChoice.equals("3")) { // 회원 삭제

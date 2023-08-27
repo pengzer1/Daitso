@@ -18,6 +18,7 @@ public class MemberRemove {
 	 */
 
 	public static final String MEMBER_LIST = "data\\member.txt"; // 회원 정보 파일 경로
+	static Scanner scan = new Scanner(System.in);
 	
 	/**
 	 * 회원 삭제 기능을 수행하는 메인 메소드
@@ -47,7 +48,7 @@ public class MemberRemove {
 				String confirm = scan.nextLine().trim();
 
 				if (confirm.equalsIgnoreCase("y")) {
-					performMemberRemove(scan, selectedMember);
+					performMemberRemove(selectedMember);
 				} else {
 					System.out.println("삭제가 취소되었습니다.");
 					scan.nextLine();
@@ -64,10 +65,9 @@ public class MemberRemove {
 
 	/**
 	 * 회원 정보 삭제를 수행하는 메소드
-	 * @param scan           Scanner 사용자 입력
 	 * @param selectedMember 선택된 회원의 정보 객체
 	 */
-	private static void performMemberRemove(Scanner scan, Member selectedMember) {
+	private static void performMemberRemove(Member selectedMember) {
 		MemberData.list.remove(selectedMember);
 		
 		MemberData.save(); // 회원 정보 파일 업데이트
