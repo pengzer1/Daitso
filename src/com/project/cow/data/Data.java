@@ -18,8 +18,8 @@ public class Data {  //txt 파일을 받아서 조작하고 데이터 입출력�
     public static ArrayList<User> userList;  //회원배열
     public static ArrayList<SoldOut> soldOutArrayList;
     public static ArrayList<KeyWord> keyWordList;   //키워드 배열
-    public static ArrayList<ReviewInstance> ReviewList;
-    public static ArrayList<TradeStuff> tradeList;
+    public static ArrayList<ReviewInstance> ReviewList; // 리뷰 배열
+    public static ArrayList<TradeStuff> tradeList; // 거래 배열
 	
 	static {
 		Data.list=new ArrayList<Member>();

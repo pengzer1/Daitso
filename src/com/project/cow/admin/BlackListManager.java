@@ -34,7 +34,7 @@ public class BlackListManager {
 //    			Writer.write(line + "3,111,111");
 //    			
 //    		}
-//    	}
+//    	} 
         
         try {
             // member.txt 파일에서 정보를 읽어와서 blacklist.txt 파일에 추가

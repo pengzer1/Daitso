@@ -127,12 +127,12 @@ public class Login {
 	 * @param blackList 블랙리스트 객체
 	 * @return 사용 제한 상태 여부
 	 */
-	private static boolean isBlocked(BlackList blackList) {
+	private static boolean isBlocked(BlackList blackList) {	
 		Calendar now = Calendar.getInstance();
 		Calendar present = Calendar.getInstance();
 
 		String[] temp = blackList.getAgo().split("-");
-		// 2022-08-17,3
+		// 2022-08-17, 3
 
 		// now.set(Calendar.YEAR,Integer.parseInt(temp[0]));
 		now.set(Integer.parseInt(temp[0]), Integer.parseInt(temp[1]) - 1, Integer.parseInt(temp[2]));
