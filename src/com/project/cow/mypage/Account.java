@@ -92,5 +92,4 @@ public class Account { // 다이소페이 클래스
 
 		return f.apply(money) > 9999;
 	}
-
 }

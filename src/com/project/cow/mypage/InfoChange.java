@@ -210,5 +210,4 @@ public class InfoChange { // 회원 정보 수정
 		MyPageList myPageList = new MyPageList(user);
 		myPageList.myPageScreen();
 	}
-
 }
