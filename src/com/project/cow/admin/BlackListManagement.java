@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class BlackListManagement {
     public static void blackListScreen() {
-        String blacklistFilePath = "data\\blacklist.txt"; // 텍스트 파일 경로
+        String blacklistFilePath = "data\\blacklist.txt"; // 텍스트 파일 경로 
         String memberFilePath = "data\\member.txt";
 
         BlackListManager blacklistManager = new BlackListManager(blacklistFilePath, memberFilePath);
