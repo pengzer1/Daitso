@@ -8,9 +8,7 @@ import com.project.cow.data.LikeItemData;
 import com.project.cow.data.MemberData;
 import com.project.cow.data.object.Member;
 import com.project.cow.data.SellingStuffData;
-import com.project.cow.data.SoldOutStuffData;
 import com.project.cow.data.object.SellingStuff;
-import com.project.cow.data.object.SoldOutStuff;
 import com.project.cow.login.Login;
 
 public class LikeItem {
