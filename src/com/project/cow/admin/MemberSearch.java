@@ -1,20 +1,16 @@
 package com.project.cow.admin;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Scanner;
-import java.util.Set;
 
 import com.project.cow.constant.Constant;
-import com.project.cow.data.Data;
 import com.project.cow.data.MemberData;
 import com.project.cow.data.SellingStuffData;
 import com.project.cow.data.SoldOutStuffData;
 import com.project.cow.data.object.Member;
 import com.project.cow.data.object.SellingStuff;
 import com.project.cow.data.object.SoldOutStuff;
-import com.project.cow.mypage.SoldOut;
 
 public class MemberSearch {
 	/**
@@ -25,7 +21,9 @@ public class MemberSearch {
 	 * - 회원 번호, 이름, 아이디로 검색한 회원 정보를 출력한다.
 	 * - 검색한 회원의 판매한 물품과 구매한 물품 정보를 출력한다.
 	 */
-
+	
+	static Scanner scan = new Scanner(System.in);
+	
 	/**
 	 * 회원 검색 기능을 수행하는 메소드
 	 * @param scan Scanner 사용자 입력
@@ -36,15 +34,14 @@ public class MemberSearch {
 		System.out.print("검색할 회원 번호, 이름 또는 아이디 입력: ");
 		String searchKeyword = scan.nextLine().trim();
 
-		displaySearchResult(scan, searchKeyword); // 검색 결과 출력
+		displaySearchResult(searchKeyword); // 검색 결과 출력
 	}
 
 	/**
 	 * 검색 결과를 출력하고 검색된 회원 수를 보여주는 메소드
-	 * @param scan    Scanner 사용자 입력
 	 * @param keyword 검색 키워드 (회원 번호, 이름, 아이디)
 	 */
-	private static void displaySearchResult(Scanner scan, String keyword) {
+	private static void displaySearchResult(String keyword) {
 		AdminMenu.printMenu("회원 목록");
 
 		List<Member> foundMembers = new ArrayList<>();

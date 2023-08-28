@@ -3,6 +3,7 @@ package com.project.cow.mypage;
 import java.util.Scanner;
 
 import com.project.cow.admin.AdminMenu;
+import com.project.cow.constant.Constant;
 import com.project.cow.data.Data;
 import com.project.cow.data.MemberData;
 import com.project.cow.data.TradeStuffData;
@@ -30,8 +31,8 @@ public class MyTrade {
 		
 		for (TradeStuff item : TradeStuffData.tradeList) {
 			if (item.getBuyerNo().equals(user.getNumber()) || item.getSellerNO().equals(user.getNumber())) {
-				System.out.printf("%2s %-8s %8s %12s %8s %10s %11s %16s %7s %10s\n", item.getNo(), item.getName(),
-						item.getCategory(), item.getPrice(), item.getMethod(), item.getPayment(), item.getCondition(),
+				System.out.printf("%2s %-8s %8s %12s %8s %10s %11s %16s %7s %10s", item.getNo(), item.getName(),
+						Constant.Category(item.getCategory()), item.getPrice(), Constant.Method(item.getMethod()), Constant.Payment(item.getPayment()), Constant.Condition(item.getCondition()),
 						item.getTradedate(), item.getSellerNO(), item.getBuyerNo());
 				// 해당 물품의 판매자 정보 출력
 				for (Member seller : MemberData.list) {
@@ -44,7 +45,7 @@ public class MyTrade {
 				// 해당 물품의 판매자 정보 출력
 				for (Member buyer : MemberData.list) {
 					if (buyer.getNo().equals(item.getBuyerNo())) {
-						System.out.printf(" %6s ", buyer.getName());
+						System.out.printf(" %6s \n", buyer.getName());
 						break;
 					}
 				}

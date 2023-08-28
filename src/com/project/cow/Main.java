@@ -61,15 +61,15 @@ public class Main {
 			AdminMenu.printMenu("ＤＡＩＴＳＯ");
 
 			if (Login.login == null) {
-				System.out.println("1.로그인");
-				System.out.println("2.회원가입");
-				System.out.println("3.아이디 찾기");
-				System.out.println("4.비밀번호 찾기");
-				System.out.println("5.프로그램 종료");
+				System.out.println("1. 로그인");
+				System.out.println("2. 회원가입");
+				System.out.println("3. 아이디 찾기");
+				System.out.println("4. 비밀번호 찾기");
+				System.out.println("5. 프로그램 종료");
 			}
 
 			AdminMenu.printLine();
-			System.out.print("번호 입력:");
+			System.out.print("번호 입력: ");
 			String sel = scan.nextLine();
 			System.out.println();
 

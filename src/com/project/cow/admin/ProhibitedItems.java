@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class ProhibitedItems {
     public static void prohibitScreen() {
         String prohibitedItemsFilePath = "data\\prohibited_items.txt"; // 금지물품 파일 경로
-
+ 
         ProhibitedItemsManager prohibitedItemsManager = new ProhibitedItemsManager(prohibitedItemsFilePath);
 
         Scanner scanner = new Scanner(System.in);
@@ -57,7 +57,6 @@ public class ProhibitedItems {
                     String fileContent = TextProhibitFileReader.readTextFile(filePath);
                     if (fileContent != null) {
                         System.out.println(fileContent);
-                        
                         System.out.println();
                         System.out.println("Enter를 눌러 이전화면으로 돌아가기");
                         scanner.nextLine();
