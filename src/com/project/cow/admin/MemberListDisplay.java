@@ -176,11 +176,11 @@ public class MemberListDisplay {
 			MemberData.list.sort((member1, member2) -> {
 				int ageComparison = Integer.compare(calculateAge(member1.getJumin()), calculateAge(member1.getJumin()));
 
-				if (ageComparison == 0) { // 생일년도가 같은 경우 생일월로 내림차순 정렬
+				if (ageComparison == 0) { // 생년이 같은 경우 생월로 내림차순 정렬
 					int month1 = Integer.parseInt(member1.getJumin().substring(2, 4));
 					int month2 = Integer.parseInt(member2.getJumin().substring(2, 4));
 
-					if (month1 == month2) { // 생일월이 같은 경우 생일일로 내림차순 정렬
+					if (month1 == month2) { // 생월이 같은 경우 생일로 내림차순 정렬
 						int day1 = Integer.parseInt(member1.getJumin().substring(4, 6));
 						int day2 = Integer.parseInt(member2.getJumin().substring(4, 6));
 						return Integer.compare(day2, day1);
