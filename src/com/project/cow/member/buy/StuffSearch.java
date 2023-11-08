@@ -3,7 +3,9 @@ import java.util.*;
 
 import com.project.cow.admin.AdminMenu;
 import com.project.cow.constant.Constant;
+import com.project.cow.data.MemberData;
 import com.project.cow.data.SellingStuffData;
+import com.project.cow.data.object.Member;
 import com.project.cow.data.object.SellingStuff;
 import com.project.cow.mypage.BuyList;
 
@@ -15,8 +17,8 @@ public class StuffSearch {
 
         AdminMenu.printLine();
         System.out.println("구매하고 싶은 상품의 키워드를 입력하세요.");
-        System.out.println("0을 입력하시면 이전화면으로 돌아갑니다.");
-        System.out.print("검색 키워드 : ");
+        System.out.println("0을 입력하면 이전 화면으로 돌아갑니다.");
+        System.out.print("검색 키워드: ");
         String input = sc.nextLine();
         AdminMenu.printLine();
 
@@ -27,10 +29,16 @@ public class StuffSearch {
             }
             if (s.getName().toUpperCase().replace(" ", "").contains(input.toUpperCase().replace(" ",""))) {
                 sellChoice.add(s);
-                System.out.println("[번호]               [품명]     [상품품질]      [가격]    [판매자]         [거래방법]       [지불방법]      [판매시작일]     [판매마감일]   [찜횟수]");
-				System.out.printf("%5s %15s %11s %9s %10s %13s %13s %13s %13s %8s\r\n", s.getNo(), s.getName(),
-						Constant.Condition(s.getCategory()), s.getPrice(), s.getSellerNo(),
-						Constant.Method(s.getMethod()), Constant.Payment(s.getPayment()), s.getFrom(), s.getUntil(),
+                System.out.println("[번호]           [품명]             [상품품질]  [가격]  [판매자]    [거래방법]            [지불방법]           [판매시작일]    [판매마감일]   [찜횟수]");
+                	System.out.printf(" %4s  %-16s\t\t%s %10s", s.getNo(), s.getName(), Constant.Condition(s.getCondition()), s.getPrice());
+				
+				// 해당 물품의 판매자 정보 출력
+				for (Member seller : MemberData.list) {
+					if (seller.getNo().equals(s.getSellerNo())) {
+						System.out.printf(" %6s ", seller.getName());
+					}
+				}
+				System.out.printf("  %-9s  \t %-13s\t%-15s %-15s %3s\r\n", Constant.Method(s.getMethod()), Constant.Payment(s.getPayment()), s.getFrom(), s.getUntil(),
 						s.getLike());
             }
         }
@@ -43,8 +51,8 @@ public class StuffSearch {
             	System.out.println();
             	AdminMenu.printLine();
                 System.out.println("구매하고 싶은 상품의 번호를 입력하세요.");
-                System.out.println("이전 화면으로 돌아가고 싶으시면 0을 입력하세요.");
-                System.out.print("번호 입력 : ");
+                System.out.println("0을 입력하면 이전 화면으로 돌아갑니다.");
+                System.out.print("번호 입력: ");
                 String num = sc.nextLine();
                 for (SellingStuff stuff : sellChoice) {
                    /*
@@ -56,12 +64,12 @@ public class StuffSearch {
                         break;  
                     } else if (num.equals(stuff.getNo())) {
 
-                    	System.out.println("판매 페이지로 이동하시려면 Enter를 눌러주세요.");
+                    	System.out.println("Enter를 누르면 이전 화면으로 돌아갑니다.");
                     	sc.nextLine();
-                        BuyMenu.FirstScreen();  //판매 페이지로 이동.
+                        BuyMenu.FirstScreen(); //구매 페이지로 이동.
                         flag=1;
                         loop = false;  // 루프 종료
-                        //break;  // 검색 루프도 종료
+                        //break; // 검색 루프도 종료
                     } else continue; flag=0;   
                 }
                 if(flag==0) System.out.println("\n알맞은 판매 번호를 다시 입력하십시오.");

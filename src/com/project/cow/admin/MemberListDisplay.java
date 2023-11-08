@@ -19,38 +19,39 @@ public class MemberListDisplay {
 	 * - 회원 정보를 화면에 표시할 때 페이지 단위로 나눠서 보여주고 다음/이전 페이지로 이동할 수 있다.
 	 */
 	
+	static Scanner scan = new Scanner(System.in);
+	
 	/**
 	 * 회원 목록 조회 메인 메소드
-	 * @param scan                 Scanner 사용자 입력
 	 * @param defaultSortCriterion 기본 정렬 기준
 	 * @param rateCriterionList    등급 정렬 기준 리스트
 	 */
-	public static void sortMemberList(Scanner scan, String defaultSortCriterion, String[] rateCriterionList) {
+	public static void sortMemberList(String defaultSortCriterion, String[] rateCriterionList) {
+		
 		while (true) {
 			// 회원 목록 옵션 표시 및 사용자 선택
 			AdminMenu.printMenu("전체 회원 목록 조회");
-			String sortProcess = chooseSortProcess(scan);
+			String sortProcess = chooseSortProcess();
 
 			if (!Pattern.matches("[1234]", sortProcess)) {
 				return;
 			}
 
 			// 정렬 기준 선택
-			String sortCriterion = getSortCriterion(scan, sortProcess, rateCriterionList);
+			String sortCriterion = getSortCriterion(sortProcess, rateCriterionList);
 
 			// 사용자 선택에 따라 정렬 및 출력 수행
-			sortAndPrintMember(scan, sortCriterion);
+			sortAndPrintMember(sortCriterion);
 		}
 	}
 
 	/**
 	 * 정렬 기준 선택 메소드
-	 * @param scan              Scanner 사용자 입력
 	 * @param sortProcess       정렬 옵션
 	 * @param rateCriterionList 등급 정렬 기준 리스트
 	 * @return 선택된 정렬 기준
 	 */
-	private static String getSortCriterion(Scanner scan, String sortProcess, String[] rateCriterionList) {
+	private static String getSortCriterion(String sortProcess, String[] rateCriterionList) {
 		String sortCriterion = "0";
 
 		if (sortProcess.equals("1")) { // 등급 옵션 표시 및 사용자 선택
@@ -74,10 +75,9 @@ public class MemberListDisplay {
 
 	/**
 	 * 회원을 정렬하고 출력하는 메소드
-	 * @param scan          Scanner 사용자 입력
 	 * @param sortCriterion 정렬 기준
 	 */
-	private static void sortAndPrintMember(Scanner scan, String sortCriterion) {
+	private static void sortAndPrintMember(String sortCriterion) {
 		int groupDataCount = 0;
 		String groupChoice;
 
@@ -118,7 +118,7 @@ public class MemberListDisplay {
 	 * 정렬 방식 선택 메소드
 	 * @param scan Scanner 사용자 입력
 	 */
-	private static String chooseSortProcess(Scanner scan) {
+	private static String chooseSortProcess() {
 		// 정렬 방식 옵션 표시 및 사용자 선택
 		System.out.println("[회원 목록 정렬]");
 		AdminMenu.printOption("등급별 정렬", "이름순 정렬", "나이순 정렬", "주소별 정렬");
@@ -176,11 +176,11 @@ public class MemberListDisplay {
 			MemberData.list.sort((member1, member2) -> {
 				int ageComparison = Integer.compare(calculateAge(member1.getJumin()), calculateAge(member1.getJumin()));
 
-				if (ageComparison == 0) { // 생일년도가 같은 경우 생일월로 내림차순 정렬
+				if (ageComparison == 0) { // 생년이 같은 경우 생월로 내림차순 정렬
 					int month1 = Integer.parseInt(member1.getJumin().substring(2, 4));
 					int month2 = Integer.parseInt(member2.getJumin().substring(2, 4));
 
-					if (month1 == month2) { // 생일월이 같은 경우 생일일로 내림차순 정렬
+					if (month1 == month2) { // 생월이 같은 경우 생일로 내림차순 정렬
 						int day1 = Integer.parseInt(member1.getJumin().substring(4, 6));
 						int day2 = Integer.parseInt(member2.getJumin().substring(4, 6));
 						return Integer.compare(day2, day1);
@@ -236,7 +236,7 @@ public class MemberListDisplay {
 			System.out.print(" ");
 		}
 
-		System.out.printf("%16s %,9d %7s\r\n", member.getAccount(), Integer.parseInt(member.getMoney()), member.getGrade());
+		System.out.printf("%16s %,9d %9s\r\n", member.getAccount(), Integer.parseInt(member.getMoney()), member.getGrade());
 	}
 
 	/**
@@ -244,7 +244,7 @@ public class MemberListDisplay {
 	 */
 	public static void displayMemberHeader() {
 		System.out.println(
-				"[번호]  [이름]      [아이디]      [비밀번호]  [전화번호]     [주민번호]           [이메일]          [주소]      [계좌번호]     [보유금액] [회원등급]");
+				"[번호]  [이름]      [아이디]      [비밀번호]  [전화번호]     [주민번호]           [이메일]          [주소]      [계좌번호]     [보유금액]   [회원등급]");
 	}
 
 	/**

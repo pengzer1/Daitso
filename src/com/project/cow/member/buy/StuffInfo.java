@@ -49,10 +49,10 @@ public class StuffInfo {
 					break;
 				} else if(num.equals(stuff.getNo())){
 					a = stuff;
-					System.out.println("판매 페이지로 이동하시려면 Enter를 눌러주세요.");
+					System.out.println("구매 페이지로 이동하시려면 Enter를 눌러주세요.");
                 	sc.nextLine();
                 	AdminMenu.printLine();
-                    BuyPage.buyPage(a);  //판매 페이지로 이동.
+                    BuyPage.buyPage(a);  // 구매 페이지로 이동.
                     loop = false;  // 루프 종료
                     flag=1;
                     break;

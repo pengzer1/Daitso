@@ -107,6 +107,8 @@ public class Login {
 	 * 로그아웃 기능을 수행하는 메소드
 	 */
 	public static void logout() {
+		
+		Scanner scan = new Scanner(System.in);
 
 		Login.login = null; // 인증 티켓 제거 == 로그아웃
 
@@ -114,6 +116,9 @@ public class Login {
 		System.out.println("로그아웃 되었습니다.");
 		System.out.println("Enter를 누르면 이전 화면으로 돌아갑니다.");
 		System.out.println();
+		
+		scan.nextLine().trim();
+		Main.MainScreen();
 
 	}
 
@@ -122,12 +127,12 @@ public class Login {
 	 * @param blackList 블랙리스트 객체
 	 * @return 사용 제한 상태 여부
 	 */
-	private static boolean isBlocked(BlackList blackList) {
+	private static boolean isBlocked(BlackList blackList) {	
 		Calendar now = Calendar.getInstance();
 		Calendar present = Calendar.getInstance();
 
 		String[] temp = blackList.getAgo().split("-");
-		// 2022-08-17,3
+		// 2022-08-17, 3
 
 		// now.set(Calendar.YEAR,Integer.parseInt(temp[0]));
 		now.set(Integer.parseInt(temp[0]), Integer.parseInt(temp[1]) - 1, Integer.parseInt(temp[2]));

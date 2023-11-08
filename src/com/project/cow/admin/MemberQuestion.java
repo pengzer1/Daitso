@@ -18,34 +18,37 @@ public class MemberQuestion {
 
 	private static final String QNA_LIST = "data\\FAQ.txt"; // FAQ 정보 파일 경로
 	private static ArrayList<String[]> qnaDataList = new ArrayList<>(); // FAQ 정보 배열
+	static Scanner scan = new Scanner(System.in);
 
 	/**
 	 * FAQ 및 답변 게시판을 화면에 출력하는 메인 메소드
 	 */
 	public static void adminFAQCheck() {
-		Scanner scan = new Scanner(System.in);
-		
-		AdminMenu.printMenu("고객센터 F A Q");
-		System.out.println("[F A Q 관리 기능]");
-		AdminMenu.printOption("F A Q 게시판", "F A Q 답변 수정");
-		String manageChoice = scan.nextLine().trim();
 
-		if (manageChoice.equals("1")) { // 자주 묻는 질문 확인
-			displayFAQ(scan);
-			System.out.println();
-			System.out.println("Enter를 누르면 이전 화면으로 돌아갑니다.");
-			scan.nextLine();
-		} else if (manageChoice.equals("2")) { // 자주 묻는 질문 수정
-			displayFAQ(scan);
-			modifyFAQAnswer(scan);
+		while (true) {
+			AdminMenu.printMenu("고객센터 F A Q");
+			System.out.println("[F A Q 관리 기능]");
+			AdminMenu.printOption("F A Q 게시판", "F A Q 답변 수정");
+			String manageChoice = scan.nextLine().trim();
+
+			if (manageChoice.equals("1")) { // 자주 묻는 질문 확인
+				displayFAQ();
+				System.out.println();
+				System.out.println("Enter를 누르면 이전 화면으로 돌아갑니다.");
+				scan.nextLine();
+			} else if (manageChoice.equals("2")) { // 자주 묻는 질문 수정
+				displayFAQ();
+				modifyFAQAnswer();
+			} else {
+				return;
+			}
 		}
 	}
 
 	/**
 	 * FAQ 및 답변 게시판을 화면에 출력하는 메소드
-	 * @param scan Scanner 사용자 입력
 	 */
-	private static void displayFAQ(Scanner scan) {
+	private static void displayFAQ() {
 		AdminMenu.printMenu("F A Q 게시판");
 
 		for (String[] data : qnaDataList) {
@@ -64,9 +67,8 @@ public class MemberQuestion {
 
 	/**
 	 * FAQ 답변을 수정하는 메소드
-	 * @param scan Scanner 사용자 입력
 	 */
-	private static void modifyFAQAnswer(Scanner scan) {
+	private static void modifyFAQAnswer() {
 		System.out.print("답변할 질문 번호 입력(0 입력 시, 관리자 화면으로 이동): ");
 		String questionNumber = scan.nextLine().trim();
 		int index = Integer.parseInt(questionNumber);
@@ -82,7 +84,7 @@ public class MemberQuestion {
 		}
 		else {
 			System.out.println("유효하지 않은 질문 번호입니다.");
-			modifyFAQAnswer(scan);
+			modifyFAQAnswer();
 		}
 		
 		System.out.println();

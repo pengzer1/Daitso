@@ -65,7 +65,7 @@ public class StuffSort {
 		for (SellingStuff s : SellingStuffData.sellingList) {
 				System.out.printf(" %4s  %-16s\t\t%s %10s", s.getNo(), s.getName(), Constant.Condition(s.getCondition()), s.getPrice());
 				
-				// 해당 물품의 판매자 정보 출력
+				// 해당 물품의 판매자 이름 출력
 				for (Member seller : MemberData.list) {
 					if (seller.getNo().equals(s.getSellerNo())) {
 						System.out.printf(" %6s ", seller.getName());
@@ -83,7 +83,7 @@ public class StuffSort {
        	boolean loop = true;
 		while (loop) {
 			System.out.println();
-			System.out.println("구매하고 싶은 상품의 키워드를 입력하세요.");
+			System.out.println("구매하고 싶은 상품의 상품 번호를 입력하세요.");
 			System.out.println("이전 화면으로 돌아가시려면 0을 입력해 주세요.");
 			System.out.print("번호 입력: ");
 			String num = sc.nextLine();
@@ -94,9 +94,9 @@ public class StuffSort {
 					break;
 				} else if(num.equals(stuff.getNo())){
 					AdminMenu.printLine();
-					System.out.println("Enter를 입력하면 이전 화면으로 돌아갑니다.");
+					System.out.println("Enter를 입력하면 구매 페이지로 이동합니다.");
                 	sc.nextLine();
-                    BuyMenu.FirstScreen();  //판매 페이지로 이동.
+                    BuyPage.buyPage(stuff);  //구매 페이지로 이동.
                     flag=1;
                     loop = false;  // 루프 종료
 				} else continue; flag=0;
@@ -104,6 +104,7 @@ public class StuffSort {
 			if(flag==0) {
 				System.out.println("번호를 바르게 입력해 주십시오.");
 				AdminMenu.printLine();
+				stuffSortChoice();
 			}
 		}
        

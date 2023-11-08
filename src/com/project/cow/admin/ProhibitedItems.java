@@ -5,19 +5,18 @@ import java.util.Scanner;
 public class ProhibitedItems {
     public static void prohibitScreen() {
         String prohibitedItemsFilePath = "data\\prohibited_items.txt"; // 금지물품 파일 경로
-
+ 
         ProhibitedItemsManager prohibitedItemsManager = new ProhibitedItemsManager(prohibitedItemsFilePath);
 
         Scanner scanner = new Scanner(System.in);
         while (true) {
         	AdminMenu.printMenu("중고거래 제한물품 관리창");
-        	System.out.println();
         	
             System.out.println("1. 금지물품 추가하기");
             System.out.println("2. 물품 금지여부 확인하기");
             System.out.println("3. 추가된 금지물품 명단 확인하기");
             System.out.println("4. 금지물품 선정기준 확인하기");
-            System.out.println("0. 뒤로가기");
+            System.out.println("0. 돌아가기");
             System.out.println();
             System.out.print("원하시는 항목을 입력하여 주세요.\r\n");
             AdminMenu.printLine();
@@ -57,9 +56,7 @@ public class ProhibitedItems {
                     String filePath = "data\\prohibited_items.txt"; 
                     String fileContent = TextProhibitFileReader.readTextFile(filePath);
                     if (fileContent != null) {
-                        System.out.println("File content:");
                         System.out.println(fileContent);
-                        
                         System.out.println();
                         System.out.println("Enter를 눌러 이전화면으로 돌아가기");
                         scanner.nextLine();

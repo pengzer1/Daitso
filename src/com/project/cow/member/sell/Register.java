@@ -23,6 +23,7 @@ public class Register {
 	private String price;
 	private String from;
 	private String until;
+	private String date;
 	
 	public void Screen() {
 		SellMenu sellMenu = new SellMenu();
@@ -51,7 +52,6 @@ public class Register {
 	private void Check() {
 		SellMenu sellMenu = new SellMenu();
 		
-		System.out.println();
 		System.out.println("상품을 등록하시겠습니까?");
 		AdminMenu.printOption("등록하기");
 		String check = scan.nextLine();
@@ -158,7 +158,7 @@ public class Register {
 	
 	private void Price() {
 		System.out.println();
-		System.out.println("가격 설정(0 ~ 999,999,999원)");
+		System.out.println("가격 설정(0 ~ 999,999,000원)");
 		System.out.println("0원일 경우, 무료 나눔으로 적용됩니다.");
 		System.out.println("1,000원 단위만 가능합니다.");
 		AdminMenu.printLine();
@@ -166,7 +166,7 @@ public class Register {
 		int price = scan.nextInt();
 		scan.nextLine();
 		
-		if(price < 0 || price > 999999999) {
+		if(price < 0 || price > 999999000) {
 			System.out.println();
 			System.out.println("잘못된 가격 범위입니다.");
 			AdminMenu.printLine();
@@ -186,24 +186,31 @@ public class Register {
 		Calendar c = Calendar.getInstance();
 		this.from = String.format("%tF", c);
 		
-		int date;
-		
 		System.out.println();
 		System.out.println("날짜 설정");
 		System.out.println("오늘부터 며칠 후까지 판매하실지 설정하세요.(최대 30일)");
+		System.out.println("숫자로만 입력하세요");
 		AdminMenu.printLine();
 		System.out.print("며칠: ");
-		date = scan.nextInt();
-		if (date < 0 || date > 30) {
+		this.date = scan.nextLine();
+		
+		if(date.matches("[가-힣A-Za-z\s\t]*")) {
 			System.out.println();
-			System.out.println("잘못된 날짜입니다.");
+			System.out.println("잘못된 입력입니다.");
 			AdminMenu.printLine();
 			Until();
 		}
-		AdminMenu.printLine();
-		scan.nextLine();
 		
-		c.add(Calendar.DATE, date);
+		if (Integer.parseInt(date) < 0 || Integer.parseInt(date) > 30) {
+			System.out.println();
+			System.out.println("잘못된 입력입니다.");
+			AdminMenu.printLine();
+			Until();
+		}
+		
+		AdminMenu.printLine();
+		
+		c.add(Calendar.DATE, Integer.parseInt(date));
 		this.until = String.format("%tF", c);
 	}
 	
