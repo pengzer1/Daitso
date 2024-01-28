@@ -84,7 +84,6 @@ public class Account { // 다이소페이 클래스
 		scan.nextLine();
 		MyPageList myPageList = new MyPageList(user);
 		myPageList.myPageScreen();
-
 	}
 
 	private boolean check() {
@@ -92,5 +91,4 @@ public class Account { // 다이소페이 클래스
 
 		return f.apply(money) > 9999;
 	}
-
 }

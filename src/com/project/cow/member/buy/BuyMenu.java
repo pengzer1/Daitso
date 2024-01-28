@@ -13,9 +13,6 @@ public class BuyMenu {
 		this.item = item;
 	}
 
-	public BuyMenu() {
-	}
-
 	static StuffInfo stuffInfo = new StuffInfo();
 
 	public static void FirstScreen() {
